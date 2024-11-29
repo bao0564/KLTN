@@ -1,0 +1,82 @@
+﻿@using KLTN_YourLook.Areas.Admin.Models;
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model X.PagedList.IPagedList<AllCategoryViewModel>
+<div class="cp0">
+    Danh Sách Danh Mục Sản Phẩm
+</div>
+<div class="h-cp1">
+    <div class="h-cp-f">
+        <div class="h-cp-up">
+            <div class="bt-c"><a href="@Url.Action("CategoryCreat","Admin")">Tạo Danh Mục Mới</a></div>
+            <div class="bt-c"><a href="">In dữ liệu </a></div>
+            <div class="bt-c"><a href="">Xuất Excel</a></div>
+            <div class="bt-c"><a href="">Xuất PDF</a></div>
+        </div>
+        <div class="h-cp-mid">
+            <div class="messages">
+                @TempData["Message"]
+            </div>
+            <div>
+                <input class="form-search" type="text" placeholder="Tìm Kiếm Mã Danh Mục/ Tên Danh Mục . . .">
+            </div>
+            <table class="h-table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Ảnh</th>
+                        <th>Mã Danh Mục</th>
+                        <th>Tên Danh Mục</th>
+                        <th>Sản Phẩm Thuộc Danh Mục</th>
+                        <th>Ngày Tạo </th>
+                        <th>Ngày Sửa</th>
+                        <th>Tạo Bởi</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var prd in Model)
+                        {
+                            <tr>
+                                <td>@prd.IdDm</td>
+                                <td><img src="@Url.Content("/images/"+prd.AnhDaiDien)" alt=""></td>
+                                <td>@prd.MaDm</td>
+                                <td>@prd.TenDm</td>
+                                <td>@prd.Product</td>
+                                <td>@prd.CreateDate.ToString("dd/MM/yyyy")</td>
+                                <td>@prd.ModifiedDate.ToString("dd/MM/yyyy")</td>
+                                <td>@prd.CreateBy</td>
+                                <td>
+                                    <a href="@Url.Action("DeleteCategory", new { iddm = prd.IdDm })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
+                                    <a asp-action="UpdateCategory" asp-route-iddm="@prd.IdDm" style="color: black;">Sửa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">"Danh mục trống!"</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Category", "Category", new { page = page }))
+<script type="text/javascript">
+    function deletedm(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn Danh Mục này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>

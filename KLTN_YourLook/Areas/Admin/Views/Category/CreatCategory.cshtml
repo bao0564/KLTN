@@ -1,0 +1,65 @@
+﻿@model Data.Models.DbCategory
+@{
+    ViewData["Title"] = "CreatCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="menu-cp">
+    <div class="cp0">
+        Thêm / Tạo Danh Mục mới
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div style="display:flex;align-items:center;padding-top:15px">
+                <a asp-action="Category"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        @using (Html.BeginForm("CreatCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="h-cp-mid-1">
+                <div class="mid-c">
+                    <label class="control-label">Mã danh Mục</label>
+                    <input asp-for="MaDm" id="madm" class="form-control" />
+                    <span asp-validation-for="MaDm" class="text-danger"></span>
+                </div>
+                <div class="mid-c">
+                    <label class="control-label">Tên danh Mục</label>
+                    <input asp-for="TenDm" class="form-control" />
+                    <span asp-validation-for="TenDm" class="text-danger"></span>
+                </div>
+                <div class="mid-c">
+                    <label class="control-label">Ảnh</label>
+                    <input type="file" asp-for="AnhDaiDien" class="form-control" name="FileAnh" accept="image/*" />
+                    <span asp-validation-for="AnhDaiDien" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="h-cp-dow fljct">
+                <div class="mg">
+                    <input type="submit" value="Lưu Danh Mục" class="" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section scripts {
+    <script>
+        //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
+        document.getElementById("madm").addEventListener("blur", function () {
+            var dm = this.value;
+            fetch(`/admin/categorycheck?madm=${dm}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.exists) {
+                        alert("Mã danh mục đã tồn tại!");
+                    }
+                })
+                .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
+        });
+    </script>
+}
