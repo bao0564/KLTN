@@ -12,7 +12,6 @@ namespace Data.Models
         public int IdSp { get; set; }
         [StringLength(250)]
         public string? Img { get; set; }
-        public bool IsDefault { get; set; }
         [StringLength(10)]
         public string? Place { get; set; }
 

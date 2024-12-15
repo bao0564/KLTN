@@ -1,6 +1,5 @@
-﻿@* @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers *@
-@using X.PagedList.Mvc.Core;
-@using KLTN_YourLook.Areas.Admin.Models;
+﻿@using X.PagedList.Mvc.Core
+@using KLTN_YourLook.Areas.Admin.Models
 @{
     ViewData["Title"] = "Product";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -18,20 +17,23 @@
             <div class="bt-c"><a href="">Xuất PDF</a></div>
         </div>
         <div class="h-cp-mid">
-            <div class="mesages">
+            <div class="talg ttu">
                  @TempData["Message"]
             </div>
-            <div class="flspe">
-                <input class="form-search" type="text" placeholder="Tìm Kiếm Mã Sản phẩm/ Tên sản phẩm . . .">
-                <button>Tìm Kiếm</button>
-            </div>
+            @using (Html.BeginForm("Product", "Product", FormMethod.Get))
+            {
+                <div class="flspe">
+                    <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Mã Sản phẩm/ Tên sản phẩm . . .">
+                    <button type="submit">Tìm Kiếm</button>
+                </div>
+            }
             <table class="h-table">
                 <thead>
                     <tr>
                         <th class="hidden">Id</th>
                         <th>Mã SP</th>
                         <th>Ảnh SP </th>
-                        <th>Tên SP</th>
+                        <th style="width:200px">Tên SP</th>
                         <th>Giá gốc</th>
                         <th>Giá áp dụng</th>
                         <th>% Giảm giá</th>
@@ -39,10 +41,11 @@
                         <th>Nhóm</th>
                         <th>Số Lượng</th>
                         <th>Đã Bán</th>
-                        <th>Hiển Thị</th>
-                        <th>Mục Hot</th>
-                        <th>Mục Sale</th>
-                        <th></th>
+                        <th style="width:20px">Hiển Thị</th>
+                        <th style="width:20px">Nổi bật</th>
+                        <th style="width:20px">Mục Hot</th>
+                        <th style="width:20px">Mục Sale</th>
+                        <th>Chọn</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,9 +70,25 @@
                                 <td>@prd.GiamGia %</td>
                                 <td>@prd.TenDm</td>
                                 <td>@prd.GroupName</td>
-                                <td></td>
+                                <td>@prd.Quantity</td>
                                 <td>@prd.LuotSold</td>
                                 @if (prd.IActive == true)
+                                {
+                                    <td>
+                                        <div class="fljct" style="width:100%">
+                                            <div class="check-od"></div>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="fljct" style="width:100%">
+                                            <div class="check-od-none"></div>
+                                        </div>
+                                    </td>
+                                }
+                                @if (prd.IFeature == true)
                                 {
                                     <td>
                                         <div class="fljct" style="width:100%">
@@ -118,8 +137,15 @@
                                     </td>
                                 }
                                 <td>
-                                    <a href="@Url.Action("XoaSanPham", new { masp = prd.MaSp })" onclick="deletesp(event)" style="color: #000;">Xóa</a>
-                                    <a asp-action="SuaSanPham" asp-route-masp="@prd.MaSp" style="color: black;">Sửa</a>
+                                    <div class="flcl">
+                                        <div class="fljct bd">
+                                            <a class="cl000 ttu" href="@Url.Action("ProductDetail", new { idsp = prd.IdSp })">Chi Tiết Sản Phẩm</a>
+                                        </div>
+                                        <div class="flspe">
+                                            <a class="bd pd-lr cl000 ttu" href="@Url.Action("DeleteProduct", new { idsp = prd.IdSp })" onclick="deletesp(event)">Xóa</a>
+                                            <a class="bd pd-lr cl000 ttu" asp-action="UpdateProduct" asp-route-idsp="@prd.IdSp">Sửa</a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         }
@@ -127,7 +153,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="10">sản phẩm trống</td>
+                            <td class="ttu" colspan="14">không có sản phẩm nào</td>
                         </tr>
                     }
                 </tbody>

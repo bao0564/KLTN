@@ -132,7 +132,6 @@ namespace Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Img")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -144,13 +143,63 @@ namespace Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("Url")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<string>("Place")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
                     b.ToTable("DbAds");
+                });
+
+            modelBuilder.Entity("Data.Models.DbCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdKh")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdSp")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColorId");
+
+                    b.HasIndex("IdKh");
+
+                    b.HasIndex("IdSp");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("DbCart");
                 });
 
             modelBuilder.Entity("Data.Models.DbCategory", b =>
@@ -210,8 +259,8 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Img")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("MaColor")
                         .IsRequired()
@@ -227,8 +276,8 @@ namespace Data.Migrations
 
                     b.Property<string>("NameColor")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ColorId");
 
@@ -283,6 +332,7 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Passwords")
+                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
@@ -380,9 +430,6 @@ namespace Data.Migrations
                     b.Property<string>("Img")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Place")
                         .HasMaxLength(10)
@@ -557,9 +604,6 @@ namespace Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int?>("DbColorColorId")
-                        .HasColumnType("int");
-
                     b.Property<int>("IdDh")
                         .HasColumnType("int");
 
@@ -584,8 +628,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IdCTDH");
-
-                    b.HasIndex("DbColorColorId");
 
                     b.HasIndex("ProductDetailIdCTSP");
 
@@ -670,10 +712,10 @@ namespace Data.Migrations
                     b.Property<int>("IdDm")
                         .HasColumnType("int");
 
-                    b.Property<int>("LuotSold")
+                    b.Property<int?>("LuotSold")
                         .HasColumnType("int");
 
-                    b.Property<int>("LuotXem")
+                    b.Property<int?>("LuotXem")
                         .HasColumnType("int");
 
                     b.Property<string>("MaSp")
@@ -692,7 +734,7 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("NhomId")
+                    b.Property<int>("NhomId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("PriceMax")
@@ -741,6 +783,16 @@ namespace Data.Migrations
                     b.Property<int>("IdSp")
                         .HasColumnType("int");
 
+                    b.Property<string>("NameColor")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("NameSize")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -750,16 +802,13 @@ namespace Data.Migrations
                     b.Property<int?>("SoLuongBan")
                         .HasColumnType("int");
 
-                    b.Property<int>("productIdSp")
-                        .HasColumnType("int");
-
                     b.HasKey("IdCTSP");
 
                     b.HasIndex("ColorId");
 
-                    b.HasIndex("SizeId");
+                    b.HasIndex("IdSp");
 
-                    b.HasIndex("productIdSp");
+                    b.HasIndex("SizeId");
 
                     b.ToTable("DbProductDetail");
                 });
@@ -889,10 +938,45 @@ namespace Data.Migrations
                     b.Navigation("customer");
                 });
 
+            modelBuilder.Entity("Data.Models.DbCart", b =>
+                {
+                    b.HasOne("Data.Models.DbColor", "color")
+                        .WithMany("carts")
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbCustomer", "customer")
+                        .WithMany("carts")
+                        .HasForeignKey("IdKh")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbProduct", "product")
+                        .WithMany("carts")
+                        .HasForeignKey("IdSp")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbSize", "size")
+                        .WithMany("carts")
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("color");
+
+                    b.Navigation("customer");
+
+                    b.Navigation("product");
+
+                    b.Navigation("size");
+                });
+
             modelBuilder.Entity("Data.Models.DbFavoriteProduct", b =>
                 {
                     b.HasOne("Data.Models.DbCustomer", "customer")
-                        .WithMany("favoritepr")
+                        .WithMany("favorites")
                         .HasForeignKey("customerIdKh")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -944,10 +1028,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbOrderDetail", b =>
                 {
-                    b.HasOne("Data.Models.DbColor", null)
-                        .WithMany("orderdetails")
-                        .HasForeignKey("DbColorColorId");
-
                     b.HasOne("Data.Models.DbProductDetail", "ProductDetail")
                         .WithMany()
                         .HasForeignKey("ProductDetailIdCTSP")
@@ -983,20 +1063,20 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.DbProductDetail", b =>
                 {
                     b.HasOne("Data.Models.DbColor", "color")
-                        .WithMany()
+                        .WithMany("productdetails")
                         .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Data.Models.DbSize", "size")
-                        .WithMany("orderdetails")
-                        .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Data.Models.DbProduct", "product")
                         .WithMany("detailproducts")
-                        .HasForeignKey("productIdSp")
+                        .HasForeignKey("IdSp")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbSize", "size")
+                        .WithMany("productdetails")
+                        .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1033,14 +1113,18 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbColor", b =>
                 {
-                    b.Navigation("orderdetails");
+                    b.Navigation("carts");
+
+                    b.Navigation("productdetails");
                 });
 
             modelBuilder.Entity("Data.Models.DbCustomer", b =>
                 {
                     b.Navigation("addresses");
 
-                    b.Navigation("favoritepr");
+                    b.Navigation("carts");
+
+                    b.Navigation("favorites");
 
                     b.Navigation("orders");
 
@@ -1064,6 +1148,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbProduct", b =>
                 {
+                    b.Navigation("carts");
+
                     b.Navigation("detailproducts");
 
                     b.Navigation("favoriteproducts");
@@ -1073,7 +1159,9 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbSize", b =>
                 {
-                    b.Navigation("orderdetails");
+                    b.Navigation("carts");
+
+                    b.Navigation("productdetails");
                 });
 
             modelBuilder.Entity("Data.Models.DbVoucher", b =>

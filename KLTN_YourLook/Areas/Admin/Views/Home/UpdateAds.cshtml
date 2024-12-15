@@ -1,0 +1,51 @@
+﻿@model Data.Models.DbAds
+
+@{
+    ViewData["Title"] = "UpdateAds";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="menu-cp">
+    <div class="cp0">
+        Sửa Ads
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div class="flct mg">
+                <a asp-action="Ads"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        <form asp-action="UpdateAds" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="h-cp-mid-1">
+                <div class="col-4">
+                    <label class="control-label">Mã</label>
+                    <input asp-for="MaAds" class="form-control" />
+                    <span asp-validation-for="MaAds" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label class="control-label">Vị trí</label>
+                    <input asp-for="Place" class="form-control" readonly />
+                </div>
+                <div class="col-4">
+                    <label class="control-label">Ảnh (không đổi sẽ lấy ảnh cũ)</label>
+                    <input type="file" name="FileAnh" class="form-control" />
+                    <span asp-validation-for="Img" class="text-danger"></span>
+                </div>
+                <div class="col-4 form-check fl-center " style="padding-top:25px">
+                    <div class="custom-control custom-checkbox talg">
+                        @Html.CheckBoxFor(x => x.IsActive, new { @class = "custom-control-input", @id = "customCheckbox2" })
+                        <label for="customCheckbox2" class="custom-control-label nw">Hiển thị</label>
+                    </div>
+                </div>
+            </div>
+            <div class="h-cp-dow fljct">
+                <div class="mg">
+                    <input type="submit" value="Lưu Thay Đổi" class="" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

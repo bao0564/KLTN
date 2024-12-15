@@ -12,7 +12,11 @@ namespace Data.Models
         public int IdCTSP { get; set; }
         public int IdSp { get; set; }
         public int SizeId { get; set; }
+        [StringLength(50)]
+        public string NameSize { get; set; }
         public int ColorId { get; set; }
+        [StringLength(50)]
+        public string NameColor { get; set; }
         public int? SoLuongBan { get; set; }
         public decimal? GiaLoai {  get; set; }
         public int Quantity { get; set; }

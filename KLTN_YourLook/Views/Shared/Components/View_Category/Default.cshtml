@@ -1,0 +1,11 @@
+﻿@using Data.Models;
+@model IEnumerable<DbCategory>
+@foreach (var prd in Model)
+{
+    <li>
+        <div class="flspb flct" style="width:100%">
+            <img class="img-cate" src="@Url.Content("/images/"+prd.AnhDaiDien)" />
+            <a asp-controller="Home" asp-action="ProductTipe" asp-route-iddm="@prd.IdDm" style="margin-right:10%">@prd.TenDm</a>
+        </div>
+    </li>
+}  

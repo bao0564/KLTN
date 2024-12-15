@@ -1,0 +1,77 @@
+﻿@model Data.Models.DbColor
+
+@{
+    ViewData["Title"] = "ColorCreat";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="menu-cp">
+    <div class="cp0">
+        Thêm / Tạo Size mới
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div class="flct mg">
+                <a asp-action="Color"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="ColorCreat" method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="h-cp-mid-1">
+                <div class="col-4">
+                    <label class="control-label">Mã Màu</label>
+                    <input asp-for="MaColor" id="macl" value="#" class="form-control" />
+                    <span asp-validation-for="MaColor" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label class="control-label">Tên Màu</label>
+                    <input asp-for="NameColor" class="form-control" />
+                    <span asp-validation-for="NameColor" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label class="control-label">Ảnh màu (nếu có)</label>
+                    <input type="file" asp-for="Img" class="form-control" />
+                    <span asp-validation-for="Img" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="h-cp-mid-1">
+                <div class="mid-c">
+                    <label class="control-label">Ngày Tạo</label>
+                    <input id="dateInput" class="form-control" readonly />
+                </div>
+                <div class="mid-c">
+                    <label class="control-label">Người Tạo</label>
+                    <input class="form-control" value="bao" readonly />
+                </div>
+            </div>
+            <div class="h-cp-dow fljct">
+                <div class="mg">
+                    <input type="submit" value="Lưu Thay Đổi" class="" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts {
+    <script>
+        //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
+        document.getElementById("macl").addEventListener("blur", function () {
+            var cl = this.value;
+            fetch(`/admin/colorcheck?macl=${cl}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.exists) {
+                        alert("Mã đã tồn tại!");
+                    }
+                })
+                .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
+        });
+    </script>
+}
+

@@ -1,0 +1,50 @@
+﻿@model Data.Models.DbAds
+@{
+    ViewData["Title"] = "CreatAds";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="menu-cp">
+    <div class="cp0">
+        Thêm / Tạo ads mới
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div class="flct mg">
+                <a asp-action="Ads"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-action="CreatAds" method="post" enctype="multipart/form-data">
+            <div class="h-cp-mid-1">
+                <div class="col-3">
+                    <label class="control-label"> Tiêu Đề</label>
+                    <input asp-for="MaAds" class="form-control" />
+                    <span asp-validation-for="MaAds" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label class="control-label">Ảnh</label>
+                    <input type="file" name="FileAnh" class="form-control" />
+                    <span asp-validation-for="Img" class="text-danger"></span>
+                </div> 
+                <div class="col-3">
+                    <label class="control-label"> vị trí</label>
+                    <input asp-for="Place" class="form-control" value="." />
+                    <span asp-validation-for="Place" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <label class="control-label">Hiển thị</label>
+                    <div class="custom-control custom-checkbox">
+                        @Html.CheckBoxFor(x => x.IsActive, new { @class = "custom-control-input", @id = "customCheckbox2", @checked = "checked" })
+                        <label for="customCheckbox2" class="custom-control-label">Hiển thị</label>
+                    </div>
+                </div>
+            </div>
+            <div class="h-cp-dow fljct">
+                <div class="mg">
+                    <input type="submit" value="Thêm Mới" class="" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

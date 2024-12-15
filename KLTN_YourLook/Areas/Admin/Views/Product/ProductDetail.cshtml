@@ -1,0 +1,79 @@
+﻿@using KLTN_YourLook.Areas.Admin.Models
+@{
+    ViewData["Title"] = "ProductDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model ProductDetailViewModel
+
+<div class="menu-cp pd">
+    <div class="fl" >
+        <a class="flct" asp-action="Product"><img class="mg-lr" style="height:20px" src="\icon\drop left.svg" /> </a>
+        <h4 class ="cp0" style="width:100%">
+            Chi Tiết Sản Phẩm < @Model.Product.MaSp / @Model.Product.IdSp>
+        </h4>
+    </div>
+    <div class="pd bd bdrdu" style="margin:30px">
+        <div class="fl gap" style="width:100%">
+            <div class="flcl gap" style="width:20%">
+                <div class="fljct ttu">Ảnh Đại diện</div>
+                <div class="fljct">
+                    <div style="width:230px">
+                        <img class="bd" style="width:100%;height:auto;object-fit:cover" src="/img/@Model.Product.AnhSp" />
+                    </div>
+                </div>
+            </div>
+            <div style="width:80%">
+                <div>
+                    <h5 class="fljct">Chi Tiết Phân Loại Sản Phẩm</h5>
+                </div>
+                <div class ="fljct">
+                    <table style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Màu</th>
+                                <th>Size</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Số lượng đã bán</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pd in Model.Details)
+                            {
+                                <tr>
+                                    <td><i class="fa-solid fa-square fa-lg" style="color: @pd.MaColor"></i>@pd.NameColor</td>
+                                    <td>@pd.NameSize</td>
+                                    <td>@string.Format("{0:N0}", pd.GiaLoai) vnđ</td>
+                                    <td>@pd.Quantity</td>
+                                    <td>@pd.SoLuongBan</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="cp0" style="width:100%">
+            Ảnh Sản Phẩm
+        </div>
+        <div class="fl gap bd pd bdrdu" style="margin:30px">
+            @foreach (var detail in Model.Imgs)
+            {
+                <div style="height:200px">
+                    <img class="bd" style="height:100%;object-fit:cover" src="@detail.Img" alt="Ảnh sản phẩm chi tiết" />
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <div class="cp0 ttu" style="width:100%">
+            Mô Tả Sản Phẩm
+        </div>
+        <div class="bd pd bdrdu" style="margin:30px">           
+            @Model.Product.MotaSp
+        </div>
+    </div>
+</div>
+

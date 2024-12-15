@@ -1,4 +1,15 @@
-﻿body {
+﻿
+
+:root {
+    --White-1: #ccc /*Tr?ng ??c*/;
+    --White-2: #f2f2f2;
+    --gray-a: #2f3640;
+    --gray-b: #535c68 /* #353b48*/;
+    --gray-d: #bdc3c7;
+    --orange-a: #b77b02;
+    --font-1: /*"Fredoka One",*/ Arial, sans-serif; /*price*/
+}
+body {
     font-family: Tahoma, sans-serif;
     background: #ffffff;
     color: #ffffff;
@@ -73,7 +84,9 @@
     border: 1px solid;
     border-radius: 10px;
 }
-
+.bd{
+    border:1px solid var(--orange-a);
+}
 .pd {
     padding: 10px;
 }
@@ -101,11 +114,15 @@
 .nw {
     white-space: nowrap;
 }
-
+.cl000{
+    color:#000
+}
+.clfff{
+    color:#fff
+}
 .ttu {
     text-transform: uppercase;
     font-weight: 600;
-    margin-bottom: 10px;
 }
 .hidden{
     display:none;
@@ -123,7 +140,6 @@
 input {
     margin-bottom: 0 !important;
 }
-
 ul,
 li {
     list-style: none;
@@ -220,6 +236,7 @@ i{
 }
 
 .menu_cp {
+    position:relative;
     width: 85%;
     border: 1px solid #cd6133;
     border-radius: 10px;
@@ -260,9 +277,7 @@ i{
 }
 /* cp -trang index */
 .cp0 {
-    display: flex;
     margin: 10px;
-    justify-content: center;
     text-align: center;
     color: #cd6133;
     text-transform: uppercase;
@@ -563,7 +578,11 @@ td {
     width: 380px;
     height: 100px;
 }
-
+.h-cp-dow {
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+}
 .h-cp-dow input{
     height: 40px;
     background-color: #d6815d;
@@ -680,13 +699,11 @@ body, html {
     justify-content: center;
 }
 .box {
-    height: 130px;
     width: 130px;
     position: relative;
 }
 
 .box img {
-    position: absolute;
     width: 100%;
 }
 .box_btn {

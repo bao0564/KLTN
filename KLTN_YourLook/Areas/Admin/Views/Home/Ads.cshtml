@@ -1,0 +1,87 @@
+﻿@using Data.Models
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Ads";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model X.PagedList.IPagedList<DbAds>
+<div class="menu-cp">
+    <div class="cp0">
+        Danh Sách Ảnh Ads
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-f">
+            <div class="h-cp-up" style="display:flex;justify-content:flex-end">
+                <div class="bt-c"><a href="@Url.Action("CreatAds","Home")">+ Thêm Ads</a></div>
+            </div>
+            <div class="h-cp-mid">
+                <div class="messages">
+                    @TempData["Message"]
+                </div>
+                <table class="h-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Vị trí</th>
+                            <th style="max-width:600px">Ảnh</th>
+                            <th>Tên </th>
+                            <th>Hiển thị</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var prd in Model)
+                            {
+
+                                <tr>
+                                    <td>@prd.Id</td>
+                                    <td>@prd.Place</td>
+                                    <td><img src="@Url.Content("/images/"+prd.Img)" style="height:120px;width:auto" /></td>
+                                    <td>@prd.MaAds</td>
+                                    <td>
+                                        @if (@prd.IsActive)
+                                        {
+                                            <div style="display:flex;justify-content:center">
+                                                <div class="check-od"></div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="display:flex;justify-content:center">
+                                                <div class="check-od-none"></div>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("XoaAds", new { id = prd.Id})" onclick="deleteads(event)" style="color: #000;">Xóa</a>
+                                        <a asp-action="UpdateAds" asp-route-id="@prd.Id" style="color: black;">Sửa</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6">trống</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => @Url.Action("Ads", "Ads", new { page = page }))
+<script type="text/javascript">
+    function deleteads(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn xóa?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>

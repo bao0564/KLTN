@@ -59,7 +59,7 @@
 					<div class=" text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
-								@if (Context.Session.GetString("user") != null)
+								@if (Context.Session.GetString("userEmail") != null)
 								{
 									<li class="account">
 										<a href="#">
@@ -96,7 +96,7 @@
 										<li><a href="#">Spanish</a></li>
 									</ul>
 								</li>
-								@if (Context.Session.GetString("user") != null)
+								@if (Context.Session.GetString("userEmail") != null)
 								{
 									<li class="currency">
 										<a href="#">
@@ -160,7 +160,7 @@
 							</div>
 							<div class="">
 								<ul class="navbar_user">
-									@if (Context.Session.GetString("user") != null)
+									@if (Context.Session.GetString("userEmail") != null)
 									{
 										<li>
 											<div class="" style="border:1px solid #5c5c5c; border-radius:20px">
@@ -175,7 +175,7 @@
 										</li>
 									}
 									<li class="checkout">
-										<a href="@Url.Action("Index","ShoppingCart")">
+										<a href="@Url.Action("Cart","ShoppingCart")">
 											<i class="fa fa-shopping-cart" style="color:var(--White-1);position:relative" aria-hidden="true"></i>
 											@await Component.InvokeAsync("ViewProductInCart")
 										</a>
@@ -325,10 +325,10 @@
 				</div>
 				<ul class="menu_top_nav">
 					<li class="menu_item has-children">
-						@if (Context.Session.GetString("user") != null)
+						@if (Context.Session.GetString("userEmail") != null)
 						{
 							<a href="#">
-								Xin Chào: @Context.Session.GetString("user")
+								Xin Chào: @Context.Session.GetString("userEmail")
 								<i class="fa fa-angle-down"></i>
 							</a>
 							<ul class="menu_selection">
@@ -477,28 +477,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-block">
-				<div class="footer_nav_containe d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-					<ul class="footer_nav">
-						<li><a href="#">About YourLook</a></li>
-						<li><a href="#">FAQs</a></li>
-						<li><a href="contact.html">Contact us</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="row none">
-				<div class="inf footer_nav_container fljct">
+
+			<div class="ft_infor" style="">
+				<div class="inf footer_nav_containe fljct">
 					<div>
-						<h4>About YourLook</h4>
+						<h4 class="fljct">About YourLook</h4>
 						<ul class="inf-con" id="inf-con-1">
 							<li>Thành viên</li>
-							<li>Ưu đãi - Đặc quyền</li>
+							<li href="">Chính sách</li>
+							<li href="">Khuyễn mãi</li>
+							<li href="">Hỏi đáp</li>
 						</ul>
 					</div>
 				</div>
 				<div class="inf footer_nav_containe fljct">
 					<div>
-						<h4>Tài liệu-Tuyển dụng</h4>
+						<h4 class="fljct">Tài liệu-Tuyển dụng</h4>
 						<ul class="inf-con" id="inf-con-3">
 							<li>Tuyển dụng</li>
 							<li>Bản quyền</li>
@@ -508,7 +502,7 @@
 				</div>
 				<div class="inf footer_nav_containe fljct">
 					<div>
-						<h4>Costomer</h4>
+						<h4 class="fljct">Costomer</h4>
 						<ul class="inf-con" id="inf-con-2">
 							<li href="">Chính sách đổi trả</li>
 							<li href="">Chính sách bảo mật</li>
@@ -521,7 +515,7 @@
 				</div>
 				<div class="inf footer_nav_containe fljct">
 					<div>
-						<h4>Kiến thức mua sắm</h4>
+						<h4 class="fljct">Kiến thức mua sắm</h4>
 						<ul class="inf-con" id="inf-con-4">
 							<li>Blog mua sắm </li>
 							<li>Fanpage YourLook</li>
@@ -530,11 +524,11 @@
 				</div>
 				<div class="inf footer_nav_containe fljct">
 					<div>
-						<h4>Địa chỉ</h4>
+						<h4 class="fljct">Địa chỉ</h4>
 						<ul class="inf-con" id="inf-con-5">
-							<li><i class="fa fa-map-marker"></i>:Hà Nội</li>
+							<li><i class="fa fa-map-marker" style="color:var(--white-1);margin-right:10px">:</i>Thành Phố Hà Nội</li>
 							<li><a href="@Url.Action("About","About")">số nhà 55 ngõ 62 Thị Trấn Trâu Quỳ Thành Phố Hà Nội</a></li>
-							<li><i class="fa fa-map-marker"></i>:HCM</li>
+							<li><i class="fa fa-map-marker" style="color:var(--white-1);;margin-right:10px">:</i>Thành Phố Hồ Chí Minh</li>
 							<li><a href="@Url.Action("About","About")">số nhà 65 Phù Đổng Thiên Vương Phường 11 quận 5 Thành Phố Hồ Chí Minh</a></li>
 						</ul>
 					</div>

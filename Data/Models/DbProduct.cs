@@ -19,7 +19,7 @@ namespace Data.Models
         [StringLength(100)]
         public string TenSp { get; set; }
         public int? SaoDanhGia { get; set; }
-        public int? NhomId { get; set; }
+        public int NhomId { get; set; }
 
         [StringLength(250)]
         public string? AnhSp { get; set; }
@@ -29,8 +29,8 @@ namespace Data.Models
         public int? GiamGia { get; set; }
         public decimal? PriceMin { get; set; }
 
-        public int LuotXem { get; set; }
-        public int LuotSold { get; set; }
+        public int? LuotXem { get; set; }
+        public int? LuotSold { get; set; }
 
         [Required(ErrorMessage = "Mô tả sản phẩm không được để trống")]
         public string MotaSp { get; set; }
@@ -46,6 +46,6 @@ namespace Data.Models
         public virtual ICollection<DbImg> imgs { get; set; } = new List<DbImg>();//1 sp có nhiều ảnh
         public virtual ICollection<DbFavoriteProduct> favoriteproducts { get; set; } = new List<DbFavoriteProduct>();// 1 sp có thể xuất hiện nhiều trong bảng sp yêu thích
         public virtual ICollection<DbProductDetail> detailproducts { get; set; } = new List<DbProductDetail>();// 1 sp có thể xuất hiện nhiều trong bảng chi tiết sản phẩm}
-
+        public virtual ICollection<DbCart> carts { get; set; } = new List<DbCart>();//1 sp có thể xuất hiện nhiều trong giỏ hàng
     }
 }

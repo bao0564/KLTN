@@ -1,0 +1,55 @@
+﻿@using Data.Models
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model DbCustomer
+<main class="login-body mar_container">
+    <div class="font-login">
+        <div style="display:flex; justify-content:space-around;align-items:center">
+            <div>
+                <h2>LOGIN</h2>
+            </div>
+        </div>
+        <p>With:</p>
+        <div class="title">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+                <form asp-action="ExternalLogin" method="post">
+                    <button type="submit" name="provider" value="Google"><img src="/icon/google.png" alt="" /></button>
+                </form>
+                <button><img src="/icon/Facebook.png" alt="" /></button>
+            </div>
+            <div class="logo-login">
+                <img src="/logo/logo.png" alt="">
+                <p>Luôn mang đến cho bạn nhứng sản phẩm chất lượng</p>
+            </div>
+        </div>
+        <p>Or:</p>
+        @using (Html.BeginForm("Login", "Access", FormMethod.Post))
+        {
+            <div class="space-address">
+                <div class="inp">
+                    @Html.TextBoxFor(x => x.Email, new { @class = "input", placeholder = "Email/SĐT...", type = "text", required = "required", autofocus = "autofocus" })
+                </div>
+            </div>
+            <div class="space-address">
+                <div class="inp">
+                    @Html.TextBoxFor(x => x.Passwords, new { @class = "input", placeholder = "Mật Khẩu...", type = "text", required = "required", autofocus = "autofocus" })
+                </div>
+            </div>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="text-danger" style="display:flex;justify-content:center">
+                    @Html.ValidationSummary(true)
+                </div>
+            }
+            <div class="btn-login">
+                <button class="btn-login" type="submit">Đăng Nhập</button>
+            </div>
+        }
+        <div style="margin: 25px 0;display: flex;justify-content: space-between;">
+            <a href="">Quên mật khẩu</a>
+            <a asp-action="Register">Đăng ký tài khoản</a>
+        </div>
+    </div>
+</main>

@@ -25,7 +25,7 @@ namespace Data.Models
         public string Email { get; set; }
         [DataType(DataType.Password)]
         [StringLength(25)]
-        public string? Passwords { get; set; }
+        public string Passwords { get; set; }
         [Display(Name = "Confirm password")]
         [Compare("Passwords", ErrorMessage = "Mật khẩu không đúng.")]
         [StringLength(25)]
@@ -35,7 +35,8 @@ namespace Data.Models
         public virtual ICollection<DbOrder> orders { get; set; } = new List<DbOrder>();//1 user có nhiều đơn hàng
         public virtual ICollection<DbAddress> addresses { get; set; } = new List<DbAddress>(); // 1 user có nhiều địa chỉ
         public virtual ICollection<DbUser_Voucher> user_vouchers { get; set; } = new List<DbUser_Voucher>(); // 1 user có thể dùng nhiều voucher(ko phải cùng 1 mã)
-        public virtual ICollection<DbFavoriteProduct> favoritepr { get; set; } = new List<DbFavoriteProduct>(); // 1 user có nhiều sản phẩm yêu thích
-        
+        public virtual ICollection<DbFavoriteProduct> favorites { get; set; } = new List<DbFavoriteProduct>(); // 1 user có nhiều sản phẩm yêu thích
+        public virtual ICollection<DbCart> carts { get; set; } = new List<DbCart>(); // 1 user có nhiều sản phẩm trong giỏ hàng
+
     }
 }

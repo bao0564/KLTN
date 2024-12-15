@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using Data.Models;
 using KLTN_YourLook.Areas.Admin.Models;
+using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
-using KLTN_YourLook.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
@@ -34,7 +34,8 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         }
         //Sản Phẩm
         [Route("product")]
-        public async Task<IActionResult> Product(int? page)
+        [HttpGet]
+        public async Task<IActionResult> Product(int? page,string keyword)
         {
             //var name = HttpContext.Session.GetString("NameAdmin");
             //if (name == null)
@@ -43,7 +44,16 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             //}
             int pageSize = 20;
             int pageNumber = page ?? 1;
-            var lstSanPham = await _productRepository.GetAllProduct();
+            IEnumerable<AllProductViewModel> lstSanPham;//khai báo model chứa dữ liệu
+            if (!string.IsNullOrEmpty(keyword))//kiểm tra người dùng nhập keyword chưa
+            {
+                lstSanPham = await _productRepository.SearchProduct(keyword);
+                ViewBag.keyword = keyword;
+            }
+            else
+            {
+                lstSanPham = await _productRepository.GetAllProduct();
+            }
             PagedList<AllProductViewModel> lst = new PagedList<AllProductViewModel>(lstSanPham, pageNumber, pageSize);
             return View(lst);
         }
@@ -52,23 +62,23 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet] 
         public async Task<IActionResult> CreatProduct()
         {
-            //var viewModel = new AddProductViewModel
-            //{
-            //    SizeList =  _context.DbSizes.ToList(),
-            //    ColorList = _context.DbColors.ToList()
-            //};
+            var viewModel = new AddProductViewModel
+            {
+                SizeList = _context.DbSizes.ToList(),
+                ColorList = _context.DbColors.ToList()
+            };
             var danhmuc = await _context.DbCategorys//list chọn danh mục
                 .Select(c => new{c.IdDm,Namedm = $"{c.TenDm}-({c.MaDm})"}).ToListAsync();
             ViewBag.IdDm = new SelectList(danhmuc, "IdDm", "Namedm");
             var nhom = await _context.DbGroups//list chọn nhóm
                 .Select(c => new{c.IdNhom,Namen = $"{c.GroupName}-({c.MaNhom})"}).ToListAsync();
             ViewBag.IdNhom = new SelectList(nhom, "IdNhom", "Namen");
-            return View();
+            return View(viewModel);
         }
         [Route("productcreat")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatProduct(AddProductViewModel model, string Imgs, IFormFile AnhSpFile)//name trong 2 input tải ảnh
+        public async Task<IActionResult> CreatProduct(AddProductViewModel model, string Imgs,string DetailData, IFormFile AnhSpFile)//name trong 2 input tải ảnh
         {
             if (ModelState.IsValid)
             {
@@ -76,61 +86,53 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhSp = await _uploadimg.uploadOnePhotosAsync(AnhSpFile,"img");
                 }
-                var prd = new DbProduct
-                {
-                    MaSp = model.MaSp,
-                    TenSp = model.TenSp,
-                    AnhSp = model.AnhSp,
-                    IdDm = model.IdDm,
-                    NhomId = model.NhomId,
-                    SaoDanhGia = model.SaoDanhGia,
-                    PriceMax = model.PriceMax,
-                    PriceMin = model.PriceMin,
-                    GiamGia = model.GiamGia,
-                    MotaSp = model.MoTaSp,
-                    IActive = model.IActive,
-                    IFavorite=false,
-                    IFeature = model.IFeature,
-                    IHot = model.IHot,
-                    ISale = model.ISale,
-                    CreateDate=DateTime.Now
-                    //CreateBy=
-                };
-                _context.DbProducts.Add(prd);
-                await _context.SaveChangesAsync();
-
+                var prd = await _productRepository.CreateProduct(
+                        model.MaSp,
+                        model.IdDm,
+                        model.TenSp,
+                        model.NhomId,
+                        model.AnhSp,
+                        model.PriceMax,
+                        model.GiamGia ?? 0,
+                        model.PriceMin ?? 0,
+                        model.MoTaSp,
+                        model.IActive,
+                        model.IFeature,
+                        model.IFavorite,
+                        model.IHot,
+                        model.ISale,
+                        "bao"
+                    );               
                 //ảnh
                 if (!string.IsNullOrEmpty(Imgs))
                 {
                     var imagePaths = Imgs.Split(';');
                     foreach (var imagePath in imagePaths)
                     {
-                        _context.DbImgs.Add(new DbImg
-                        {
-                            IdSp = prd.IdSp,
-                            Img = imagePath
-                        });
+                        await _productRepository.CreateImg(
+                                prd,
+                                imagePath
+                            );
                     }
-                    await _context.SaveChangesAsync();
                 }
-                //if (!string.IsNullOrEmpty(model.DetailData))
-                //{
-                //    var details = model.DetailData.Split(';', StringSplitOptions.RemoveEmptyEntries);
-                //    foreach (var detail in details)
-                //    {
-                //        var parts = detail.Split(',');
-                //        var dbDetail = new DbProductDetail
-                //        {
-                //            IdSp = prd.IdSp,
-                //            ColorId = int.Parse(parts[0]),
-                //            SizeId = int.Parse(parts[1]),
-                //            GiaLoai = decimal.Parse(parts[2]),
-                //            Quantity = int.Parse(parts[3]),
-                //        };
-                //        _context.DbProductDetails.Add(dbDetail);
-                //    }
-                //    await _context.SaveChangesAsync();
-                //}
+                //chi tiết size,color,price,quantity
+                if (!string.IsNullOrEmpty(DetailData))
+                {
+                    var details = DetailData.Split(';', StringSplitOptions.RemoveEmptyEntries);//bỏ chuỗi rỗng
+                    foreach (var detail in details)
+                    {
+                        var parts = detail.Split(',');
+                        await _productRepository.CreateProductDetail(
+                            prd,
+                            int.Parse(parts[0]),
+                            parts[1],
+                            int.Parse(parts[2]),
+                            parts[3],
+                            decimal.Parse(parts[4]),
+                            int.Parse(parts[5])
+                        );
+                    }
+                }
                 return RedirectToAction("Product");
             }            
             else
@@ -145,12 +147,181 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                     }
                 }
             }
-            //var viewModel = new AddProductViewModel
-            //{
-            //    SizeList = await _context.DbSizes.ToListAsync(),
-            //    ColorList = await _context.DbColors.ToListAsync()
-            //};
+            var viewModel = new AddProductViewModel
+            {
+                SizeList = await _context.DbSizes.ToListAsync(),
+                ColorList = await _context.DbColors.ToListAsync()
+            };
+            var danhmuc = await _context.DbCategorys//list chọn danh mục
+                .Select(c => new { c.IdDm, Namedm = $"{c.TenDm}-({c.MaDm})" }).ToListAsync();
+            ViewBag.IdDm = new SelectList(danhmuc, "IdDm", "Namedm");
+            var nhom = await _context.DbGroups//list chọn nhóm
+                .Select(c => new { c.IdNhom, Namen = $"{c.GroupName}-({c.MaNhom})" }).ToListAsync();
+            ViewBag.IdNhom = new SelectList(nhom, "IdNhom", "Namen");
             return View(model);
+        }
+        //sửa Sản phẩm
+        [Route("updateproduct")]
+        [HttpGet]
+        public async Task<IActionResult> UpdateProduct(int idsp)
+        {
+            var prd= _context.DbProducts.Include(p=>p.imgs)
+                .Include(p=>p.detailproducts)
+                .ThenInclude(p=>p.size)
+                .Include(p=>p.detailproducts)
+                .ThenInclude(p=>p.color)
+                .FirstOrDefault(p=>p.IdSp==idsp);
+            var model = new AddProductViewModel
+            {
+                IdSp = prd.IdSp,
+                MaSp = prd.MaSp,
+                TenSp = prd.TenSp,
+                IdDm = prd.IdDm,
+                NhomId = prd.NhomId,
+                PriceMax = prd.PriceMax,
+                GiamGia = prd.GiamGia,
+                PriceMin = prd.PriceMin,
+                AnhSp = prd.AnhSp,
+                MoTaSp = prd.MotaSp,
+                IActive = prd.IActive,
+                IFeature = prd.IFeature,
+                IFavorite = prd.IFavorite,
+                IHot = prd.IHot,
+                ISale = prd.ISale,
+                Imgs = prd.imgs.ToList(),
+                Details = prd.detailproducts.Select(dt => new View_Productdetail
+                {
+                    IdSp = dt.IdSp,
+                    SizeId = dt.SizeId,
+                    NameSize = dt.NameSize,
+                    ColorId = dt.ColorId,
+                    NameColor= dt.NameColor,
+                    GiaLoai = dt.GiaLoai,
+                    Quantity = dt.Quantity,
+                }).ToList(),
+                SizeList = _context.DbSizes.ToList(),
+                ColorList = _context.DbColors.ToList(),
+                SelectedColor= prd.detailproducts.Select(ct=>ct.ColorId).ToList(),
+                SelectedSize=prd.detailproducts.Select(ct=>ct.SizeId).ToList()
+            };
+            var danhmuc = await _context.DbCategorys//list chọn danh mục
+                .Select(c => new { c.IdDm, Namedm = $"{c.TenDm}-({c.MaDm})" }).ToListAsync();
+            ViewBag.IdDm = new SelectList(danhmuc, "IdDm", "Namedm");
+            var nhom = await _context.DbGroups//list chọn nhóm
+                .Select(c => new { c.IdNhom, Namen = $"{c.GroupName}-({c.MaNhom})" }).ToListAsync();
+            ViewBag.IdNhom = new SelectList(nhom, "IdNhom", "Namen");
+            return View(model);
+        }
+        [Route("updateproduct")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateProduct(AddProductViewModel model, string? Imgs, string? DetailData, IFormFile? AnhSpFile)
+        {
+            if(ModelState.IsValid)
+            {
+                var img=_context.DbProducts.Where(p=>p.IdSp==model.IdSp).Select(p=>p.AnhSp).FirstOrDefault();//lấy ảnh hiện tại
+                var oldprd = _context.DbProducts.Include(p => p.imgs)
+                    .Include(p => p.detailproducts)
+                    .ThenInclude(p => p.size)
+                    .Include(p => p.detailproducts)
+                    .ThenInclude(p => p.color)
+                    .FirstOrDefault(p => p.IdSp == model.IdSp);
+
+                if (AnhSpFile != null && AnhSpFile.Length > 0) //nếu tải lên ảnh 
+                {
+                    model.AnhSp = await _uploadimg.uploadOnePhotosAsync(AnhSpFile, "img");
+                }
+                else
+                {
+                    model.AnhSp = img;
+                }
+                var prd = await _productRepository.UpdateProduct(
+                        model.IdSp,
+                        model.MaSp,
+                        model.IdDm,
+                        model.TenSp,
+                        model.NhomId,
+                        model.AnhSp,
+                        model.PriceMax,
+                        model.GiamGia ?? 0,
+                        model.PriceMin ?? 0,
+                        model.MoTaSp,
+                        model.IActive,
+                        model.IFeature,
+                        model.IFavorite,
+                        model.IHot,
+                        model.ISale,
+                        "bao2"
+                    );
+                //ảnh
+                if (!string.IsNullOrEmpty(Imgs))
+                {
+                    var oldimg = _context.DbImgs.Where(i => i.IdSp == model.IdSp).ToList();
+                    if (oldimg != null)
+                    {
+                        _context.DbImgs.RemoveRange(oldimg);
+                        await _context.SaveChangesAsync();
+                    }
+                    var imagePaths = Imgs.Split(';');
+                    foreach (var imagePath in imagePaths)
+                    {
+                        await _productRepository.CreateImg(
+                                model.IdSp,
+                                imagePath
+                            );
+                    }
+                }
+                //chi tiết size,color,price,quantity
+                if (!string.IsNullOrEmpty(DetailData))
+                {
+                    var olddetail= _context.DbProductDetails.Where(pd=>pd.IdSp== model.IdSp).ToList();
+                    if (olddetail !=null)
+                    {
+                        _context.DbProductDetails.RemoveRange(olddetail);
+                        await _context.SaveChangesAsync();
+                    }
+                    var details = DetailData.Split(';', StringSplitOptions.RemoveEmptyEntries);//bỏ chuỗi rỗng
+                    foreach (var detail in details)
+                    {
+                        var parts = detail.Split(',');
+                        await _productRepository.CreateProductDetail(
+                            model.IdSp,
+                            int.Parse(parts[0]),
+                            parts[1],
+                            int.Parse(parts[2]),
+                            parts[3],
+                            decimal.Parse(parts[4]),
+                            int.Parse(parts[5])
+                        );
+                    }
+                }
+                return RedirectToAction("Product");
+            }
+            return View(model);
+        }
+        //Xóa Sản Phảm
+        [Route("deleteproduct")]
+        [HttpGet]
+        public IActionResult DeleteProduct(int idsp)
+        {
+            TempData["Message"] = "";
+            var img = _context.DbImgs.Where(x => x.IdSp == idsp).ToList();
+            var sanpham = _context.DbProducts.Find(idsp);
+            var chitietsanpham = _context.DbProductDetails.Where(x => x.IdSp == idsp).ToList();
+            if (sanpham != null)
+            {
+                if (img.Any())
+                {
+                    _context.DbImgs.RemoveRange(img);
+                }
+                if (chitietsanpham.Any())
+                {
+                    _context.DbProductDetails.RemoveRange(chitietsanpham);
+                }
+                _context.DbProducts.Remove(sanpham);
+                _context.SaveChanges();
+            }
+            TempData["Message"] = "Sản Phẩm Đã Được Xóa";
+            return RedirectToAction("Product");
         }
         //dùng cho ajax tải ảnh trong js
         [HttpPost]
@@ -175,12 +346,28 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             }
             return Json(new { success = true, filePaths });
         }
+        //Chi Tiết Sản Phẩm 
+        [HttpGet]
+        [Route("productdetail")]
+        public async Task<IActionResult> ProductDetail(int idsp)
+        {
+            var prd =await _productRepository.Product_Find(idsp);
+            var img=await _productRepository.Product_Img_Find(idsp);
+            var ctsp = await _productRepository.Product_ProductDetail_Find(idsp);
+            var model = new ProductDetailViewModel
+            {
+                Product = prd,
+                Imgs = img.ToList(),
+                Details = ctsp.ToList()
+            };
+            return View(model);
+        }
         //kiểm tra mã sp trùng lặp trong js
         [HttpGet]
         [Route("productcheck")]
-        public async Task<IActionResult> check(string masp)
+        public async Task<IActionResult> check(string masp, int? idsp)
         {
-            var exists = await _context.DbProducts.AnyAsync(x => x.MaSp == masp);
+            var exists = await _context.DbProducts.AnyAsync(x => x.MaSp == masp && x.IdSp != idsp);
             return Json(new { exists });
         }
     }

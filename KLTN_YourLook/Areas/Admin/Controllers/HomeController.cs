@@ -1,6 +1,10 @@
 ﻿using Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
+using X.PagedList;
+using KLTN_YourLook.Interface;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -9,9 +13,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         private readonly YourlookContext _context;
-        public HomeController(YourlookContext context)
+        private readonly Iuploadimg _uploadimg;
+        public HomeController(YourlookContext context,Iuploadimg uploadimg)
         {
             _context = context;
+            _uploadimg = uploadimg;
         }
 
         //
@@ -73,6 +79,94 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             HttpContext.Session.Remove("EmailAdmin");
             HttpContext.Session.Remove("NameAdmin");
             return RedirectToAction("Login", "HomeAdmin");
+        }
+        //ads
+        [Route("ads")]
+        public IActionResult Ads(int? page)
+        {
+            //var name = HttpContext.Session.GetString("NameAdmin");
+            //if (name == null)
+            //{
+            //    return RedirectToAction("Login", "HomeAdmin");
+            //}
+            int pageSize = 20;
+            int pageNumber = page ?? 1;
+            var lstAds = _context.DbAdss.OrderByDescending(x => x.IsActive==true);
+            PagedList<DbAds> lst = new PagedList<DbAds>(lstAds, pageNumber, pageSize);
+            return View(lst);
+        }
+        //Thêm Ads
+
+        [Route("creatads")]
+        [HttpGet]
+        public IActionResult CreatAds()
+        {
+            return View();
+        }
+        [Route("creatads")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatAds(DbAds model,IFormFile FileAnh)
+        {
+            if (ModelState.IsValid)
+            {
+                if (FileAnh != null && FileAnh.Length > 0)
+                {
+                    model.Img = await _uploadimg.uploadOnePhotosAsync(FileAnh, "images");
+                }
+                _context.DbAdss.Add(model);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Ads");
+            }
+            return View(model);
+        }
+
+        //Thêm Ads
+        [Route("updateads")]
+        [HttpGet]
+        public IActionResult UpdateAds(int id)
+        {
+            var ad= _context.DbAdss.Find(id);
+            return View(ad);
+        }
+        [Route("updateads")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateAds(DbAds ads, IFormFile? FileAnh)
+        {
+            if (ModelState.IsValid)
+            {
+                var img= _context.DbAdss.Where(a=>a.Id==ads.Id).Select(a=>a.Img).FirstOrDefault();
+                if (FileAnh != null && FileAnh.Length > 0)
+                {
+                    ads.Img = await _uploadimg.uploadOnePhotosAsync(FileAnh, "images");
+                }
+                else
+                {
+                    ads.Img = img;
+                }
+                _context.DbAdss.Attach(ads);
+                _context.Entry(ads).State=EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Ads");
+            }
+            return View(ads);
+        }
+
+        //Xóa Ads
+        [Route("xoaads")]
+        [HttpGet]
+        public IActionResult XoaAds(int id)
+        {
+            TempData["Message"] = "";
+            var ads = _context.DbAdss.Find(id);
+            if (ads != null)
+            {
+                _context.DbAdss.Remove(ads);
+                _context.SaveChanges();
+            }
+            TempData["Message"] = "ĐÃ XÓA";
+            return RedirectToAction("ads");
         }
     }
 }

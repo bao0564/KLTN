@@ -1,7 +1,8 @@
 ﻿using Data.Models;
 using dotenv.net;
+using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
-using KLTN_YourLook.Repository;
+using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.Data.SqlClient;
@@ -9,12 +10,23 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(5016); // HTTP port
+    serverOptions.ListenAnyIP(7129, listenOptions => // HTTPS port
+    {
+        listenOptions.UseHttps();
+    });
+});
 //login gg
-
 DotEnv.Load();
 // Lấy giá trị từ biến môi trường
 string googleClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
 string googleClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+if (string.IsNullOrEmpty(googleClientId) || string.IsNullOrEmpty(googleClientSecret))
+{
+    throw new InvalidOperationException("Google Client ID or Secret is not set in the environment variables.");
+}
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -46,7 +58,12 @@ builder.Services.AddScoped<Isanpham, Product>();
 builder.Services.AddScoped<IDbConnection>(sp =>
     new SqlConnection(builder.Configuration.GetConnectionString("DbConnected")));
 builder.Services.AddScoped<ProductRepository>(); 
+builder.Services.AddScoped<SP_Product>(); 
+builder.Services.AddScoped<SP_OrderCart>(); 
 builder.Services.AddScoped<CategoryRepository>(); 
+builder.Services.AddScoped<SizeRepository>(); 
+builder.Services.AddScoped<ColorRepository>(); 
+builder.Services.AddScoped<OrderRepository>(); 
 //chuỗi kết nối (dbcontext)
 builder.Services.AddDbContext<YourlookContext>(options =>
 {
@@ -57,8 +74,8 @@ builder.Services.AddDbContext<YourlookContext>(options =>
 var app = builder.Build();
 
 //Environment
-//builder.Configuration.AddEnvironmentVariables();
-//builder.Environment.EnvironmentName = "Production";  // Thi?t l?p môi tr??ng thành Production
+builder.Configuration.AddEnvironmentVariables();
+builder.Environment.EnvironmentName = "Development";  // Thi?t l?p môi tr??ng thành Production
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
