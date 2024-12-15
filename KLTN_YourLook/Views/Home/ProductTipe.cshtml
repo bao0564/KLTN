@@ -1,0 +1,84 @@
+﻿@using yourlook.Models;
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "ProductTipe";
+    Layout = "~/Views/Shared/_LayoutCate.cshtml";
+}
+
+@model X.PagedList.IPagedList<ViewAllDetail>
+<div class="product-grid">
+    @foreach (var prd in Model)
+    {
+        <div class="product-item">
+            @if (prd.GiamGia > 0)
+            {
+                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-@prd.GiamGia%</span></div>
+            }
+            else
+            {
+                <div></div>
+            }
+            <div class="product discount product_filter">
+                <div class="product_image">
+                    <a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp"><img src="@Url.Content("/img/"+prd.AnhSp)" alt=""></a>
+                    <div class="box-inf-cl-s">
+                        <div>
+                            <div class="box-inf-title fljct">Phân Loại</div>
+                            <div class="box-inf-size fljct flct">
+                                Size:
+                                <div class="flscr">
+                                    @foreach (var sz in prd.Sizes)
+                                    {
+                                        <button>@sz.NameSize</button>
+                                        @* <div class="in-size-item" style="display:none;">@sz.NameSize</div> *@
+                                    }
+                                </div>
+                            </div>
+                            <div class="box-inf-color fljct flct">
+                                Màu:
+                                <div class="flscr">
+                                    @foreach (var cl in prd.Colors)
+                                    {
+                                        <button style="background-color:@cl.MaColor" title="@cl.NameColor"></button>
+                                        @* <div class="in-color-item" style="display:none;">@cl.NameColor</div> *@
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="favorite" data-id="@prd.IdSp" style="font-size:20px">
+                        @if (prd.IFavorite)
+                        {
+                            <i class="fa-solid fa-heart" style="color: #2f3640;"></i>
+                        }
+                        else
+                        {
+                            <i class="fa-regular fa-heart" style="color: #2f3640;"></i>
+                        }
+                    </div>
+                </div>
+                <div class="product_info">
+                    <h6 class="product_name">
+                        <a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp">@prd.TenSp</a>
+                    </h6>
+                    @if (prd.GiamGia > 0)
+                    {
+                        <div class="product_price">@string.Format("{0:N0}", prd.PriceMin)<span>@string.Format("{0:N0}", prd.PriceMax)</span></div>
+                        <div style="display:none;" class="in_product_price"> @prd.PriceMin</div>
+                    }
+                    else
+                    {
+                        <div class="product_price">@string.Format("{0:N0}", prd.PriceMax)</div>
+                        <div style="display:none;" class="in_product_price"> @prd.PriceMax</div>
+                    }
+                </div>
+            </div>
+            <div class="red_button add_to_cart_button">
+                <a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp">
+                    Xem Chi Tiết<i class="fa-solid fa-cart-plus fa-flip-horizontal fa-lg" style="color: #ffffff;padding:10px"></i>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+@Html.PagedListPager(Model, page => Url.Action("ProductTipe", "Home", new { page = page }))

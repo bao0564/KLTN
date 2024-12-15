@@ -553,7 +553,6 @@ COLOR PALETTE
 {
 	float: left;
 	width: 200px;
-	padding-left: 17px;
 }
 .sidebar_section {
 	border-bottom: solid 1px #ebebeb;
@@ -566,7 +565,12 @@ COLOR PALETTE
 	font-size: 18px;
 	margin:10px 0;
 }
-
+.angle_down {
+	position: absolute;
+	bottom: -5px;
+	left: 45%;
+	border-radius: 50%;
+}
 .sidebar_categories .img-cate {
 	max-height: 25px;
 	margin-left: 20%;

@@ -13,10 +13,9 @@ namespace Data.Models
         [StringLength(10)]
         public string MaAds { get; set; }
         [StringLength(250)]
-        public string? Url { get; set; }
-        [Required(ErrorMessage = "không được trống")]
-        [StringLength(250)]
-        public string Img { get; set; }
+        public string? Img { get; set; }
+        [StringLength(10)]
+        public string? Place { get; set; }
         public bool IsActive { get; set; }
     }
 }

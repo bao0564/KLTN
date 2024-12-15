@@ -1,0 +1,11 @@
+﻿@using Data.Models;
+
+@model IEnumerable<DbSize>
+@foreach (var prd in Model)
+{
+    @* <li><a asp-controller="Home" asp-action="ProductTipe" asp-route-sizeid="@prd.SizeId">@prd.NameSize</a></li> *@
+    <li class="flct" style="width:100%;">
+        <input class="size-filter mg-lr" type="checkbox" />
+        <p class="fl-center mg-lr" style="color:#000">@prd.NameSize</p>
+    </li>
+}  

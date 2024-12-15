@@ -20,16 +20,20 @@
             <div class="messages">
                 @TempData["Message"]
             </div>
-            <div>
-                <input class="form-search" type="text" placeholder="Tìm Kiếm Mã Danh Mục/ Tên Danh Mục . . .">
-            </div>
+            @using (Html.BeginForm("Category","Category",FormMethod.Get))
+            {                
+                <div class="flspe">
+                    <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Mã Danh Mục/ Tên Danh Mục . . .">
+                    <button type="submit">Tìm Kiếm</button>
+                </div>
+            }
             <table class="h-table">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Ảnh</th>
-                        <th>Mã Danh Mục</th>
                         <th>Tên Danh Mục</th>
+                        <th>Mã Danh Mục</th>
                         <th>Sản Phẩm Thuộc Danh Mục</th>
                         <th>Ngày Tạo </th>
                         <th>Ngày Sửa</th>
@@ -45,8 +49,8 @@
                             <tr>
                                 <td>@prd.IdDm</td>
                                 <td><img src="@Url.Content("/images/"+prd.AnhDaiDien)" alt=""></td>
-                                <td>@prd.MaDm</td>
                                 <td>@prd.TenDm</td>
+                                <td>@prd.MaDm</td>
                                 <td>@prd.Product</td>
                                 <td>@prd.CreateDate.ToString("dd/MM/yyyy")</td>
                                 <td>@prd.ModifiedDate.ToString("dd/MM/yyyy")</td>

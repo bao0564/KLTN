@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Data.Models.DbAds>
+    @foreach (var prd in Model)
+    {
+        <img style="width:100%" src="@Url.Content("/images/" + prd.Img)" alt="Ad Image" />
+    }

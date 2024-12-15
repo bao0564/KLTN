@@ -401,7 +401,13 @@
 	.box-inf-cl-s {
 		width: 100%;
 	}
-
+	.footer .ft_infor {
+		display: grid;
+		grid-template-columns: repeat(4,1fr)
+	}
+	.footer .ft_infor .footer_nav_containe:last-child {
+		display: none;
+	}
 	.prd-item {
 		max-width: 25%;
 		min-width: 25%;
@@ -569,10 +575,6 @@
 		font-size: 30px;
 	}
 
-	.footer .none {
-		display: none;
-	}
-
 	.product-item {
 		width: 33.3%
 	}
@@ -731,6 +733,14 @@
 		font-size: 13px;
 		margin: 0 5px;
 	}
+	.footer .ft_infor {
+		display: grid;
+		grid-template-columns: repeat(3,1fr)
+	}
+
+	.footer .ft_infor .footer_nav_containe:nth-child(3n+2) {
+		display: none;
+	}
 	.box-inf-cl-s {
 		width: 100%;
 	}
@@ -852,6 +862,16 @@
 		gap:20px;
 	}
 
+	.footer .ft_infor {
+		display: grid;
+		grid-template-columns: repeat(2,1fr)
+	}
+	.footer .ft_infor .footer_nav_containe:nth-child(3n+2){
+		display: block;
+	}
+	.footer .ft_infor .footer_nav_containe:last-child {
+		display: none;
+	}
 	.deal_ofthe_week_img {
 		max-width: 100%;
 		min-width: 100%;

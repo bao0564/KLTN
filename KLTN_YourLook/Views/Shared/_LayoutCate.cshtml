@@ -63,7 +63,7 @@
 					<div class=" text-right">
 						<div class="top_nav_right">
 							<ul class="top_nav_menu">
-								@if (Context.Session.GetString("user") != null)
+								@if (Context.Session.GetString("userEmail") != null)
 								{
 									<li class="account">
 										<a href="#">
@@ -100,7 +100,7 @@
 										<li><a href="#">Spanish</a></li>
 									</ul> *@
 								</li>
-								@if (Context.Session.GetString("user") != null)
+								@if (Context.Session.GetString("userEmail") != null)
 								{
 									<li class="currency">
 										<a href="#">
@@ -154,7 +154,7 @@
 								<ul class="navbar_menu">									
                                     <li><a class="link" href="@Url.Action("Index","Home")">Home</a></li>
                                     <li><a class="link" href="@Url.Action("ProductCategory","Home")">Product</a></li>
-									<li><a class="link" href="@Url.Action("SellProduct","Home")">Sale</a></li>
+									<li><a class="link" href="@Url.Action("SaleProduct","Home")">Sale</a></li>
 									<li><a class="link" href="@Url.Action("NewProduct","Home")">New</a></li>
 									<li><a class="link" href="@Url.Action("HotProduct","Home")">Hot</a></li>
 									<li><a class="link" href="@Url.Action("UnderProduct","Home")">Personal Item</a></li>
@@ -162,7 +162,7 @@
 							</div>
 							<div class="">
 								<ul class="navbar_user">
-									@if (Context.Session.GetString("user") != null)
+									@if (Context.Session.GetString("userEmail") != null)
 									{
 										<li>
 											<div class="" style="border:1px solid #5c5c5c; border-radius:20px">
@@ -177,9 +177,9 @@
 										</li>
 									}
 									<li class="checkout">
-										<a href="@Url.Action("Index","ShoppingCart")">
+										<a href="@Url.Action("Cart","ShoppingCart")">
 											<i class="fa fa-shopping-cart" style="color:var(--White-1);position:relative" aria-hidden="true"></i>
-											@await Component.InvokeAsync("ViewProductInCart")
+											@* @await Component.InvokeAsync("ViewProductInCart") *@
 										</a>
 									</li>
 								</ul>
@@ -325,10 +325,10 @@
 				</div>
 				<ul class="menu_top_nav">
 					<li class="menu_item has-children">
-						@if (Context.Session.GetString("user") != null)
+						@if (Context.Session.GetString("userEmail") != null)
 						{
 							<a href="#">
-								Xin Chào: @Context.Session.GetString("user")
+								Xin Chào: @Context.Session.GetString("userEmail")
 								<i class="fa fa-angle-down"></i>
 							</a>
 							<ul class="menu_selection">
@@ -348,7 +348,7 @@
 						}
 					</li>
 					<li class="menu_item"><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
-					<li class="menu_item"><a href="@Url.Action("SellProduct","Home")">Sản Phẩm Sell</a></li>
+					<li class="menu_item"><a href="@Url.Action("SellProduct","Home")">Sản Phẩm Sale</a></li>
 					<li class="menu_item"><a href="@Url.Action("NewProduct","Home")">Sản Phẩm Mới</a></li>
 					<li class="menu_item"><a href="@Url.Action("HotProduct","Home")">Sản Phẩm Hot</a></li>
 					<li class="menu_item"><a href="@Url.Action("UnderProduct","Home")">Đồ Lót</a></li>
@@ -385,18 +385,21 @@
 					<!-- Sidebar -->
 
 					<div class="sidebar">
-						<div class="sidebar_section sidebar_section-1">
+                        <div class="sidebar_section sidebar_section-1" style="position:relative">
 							<div class="sidebar_title">
 								<h4>Loại Sản Phẩm</h4>
 							</div>
 							<ul class="sidebar_categories scr" style="max-height: 200px;">
-								@await Component.InvokeAsync("ViewCategory")
+								 @await Component.InvokeAsync("View_Category")
 							</ul>
-                        </div>
+							<div class="angle_down">
+								<i class="fa-solid fa-angle-down fa-sm" style="color: #000;"></i>
+                            </div>
+						</div>
 						<div class="sidebar_section-2 ">
 							<div class="flct" style="margin:10px 0">
                                 <ul class="lst-cate" style="display:flex">
-                                    @await Component.InvokeAsync("ViewCategory")
+                                    @await Component.InvokeAsync("View_Category")
                                 </ul>
 							</div>
 						</div>
@@ -420,7 +423,7 @@
 								<h5>Sizes</h5>
 							</div>
 							<ul class="checkboxes">
-								@await Component.InvokeAsync("ViewSize")
+								 @await Component.InvokeAsync("View_Size") 
 							</ul>
 						</div>
 
@@ -430,7 +433,7 @@
 								<h5>Color</h5>
 							</div>
 							<ul class="checkboxes">
-								@await Component.InvokeAsync("ViewColor")
+								@await Component.InvokeAsync("View_Color")
 							</ul>
 							<div class="show_more">
 								<span><span>+</span>Show More</span>
@@ -447,14 +450,14 @@
 												<span>Size</span>
                                                 <i class="fa fa-angle-down"></i>
 												<ul class="sorting_num sorting_num_size">
-													@await Component.InvokeAsync("ViewSize")
+													 @await Component.InvokeAsync("View_Size") 
                                                 </ul>
 											</li>
 											<li class="sidebar_section-box1">
 												<span>Color</span>
 												<i class="fa fa-angle-down"></i>
 												<ul class="sorting_num sorting_num_color">
-													@await Component.InvokeAsync("ViewColor")
+													 @await Component.InvokeAsync("View_Color")
 												</ul>
 											</li>
 											<li class="type_sorting_text_box">
@@ -536,22 +539,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="row-block">
-				<div class="footer_nav_containe d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-					<ul class="footer_nav">
-						<li><a href="#">About YourLook</a></li>
-						<li><a href="#">FAQs</a></li>
-						<li><a href="contact.html">Contact us</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="row none">
-				<div class="inf footer_nav_container fljct">
+
+			<div class="ft_infor" style="">
+				<div class="inf footer_nav_containe fljct">
 					<div>
 						<h4 class="fljct">About YourLook</h4>
 						<ul class="inf-con" id="inf-con-1">
 							<li>Thành viên</li>
-							<li>Ưu đãi - Đặc quyền</li>
+							<li href="">Chính sách</li>
+							<li href="">Khuyễn mãi</li>
+							<li href="">Hỏi đáp</li>
 						</ul>
 					</div>
 				</div>
@@ -591,9 +588,9 @@
 					<div>
 						<h4 class="fljct">Địa chỉ</h4>
 						<ul class="inf-con" id="inf-con-5">
-							<li><i class="fa fa-map-marker" style="color:var(--white-1);margin-right:10px">:</i>Thành Phố Hà Nội</li>
+							<li><i class="fa fa-map-marker" style="color:var(--white-1);margin-right:10px">:</i>Tp. Hà Nội</li>
 							<li><a href="@Url.Action("About","About")">số nhà 55 ngõ 62 Thị Trấn Trâu Quỳ Thành Phố Hà Nội</a></li>
-							<li><i class="fa fa-map-marker" style="color:var(--white-1);;margin-right:10px">:</i>Tp.Hồ Chí Minh</li>
+							<li><i class="fa fa-map-marker" style="color:var(--white-1);margin-right:10px">:</i>Tp. Hồ Chí Minh</li>
 							<li><a href="@Url.Action("About","About")">số nhà 65 Phù Đổng Thiên Vương Phường 11 quận 5 Thành Phố Hồ Chí Minh</a></li>
 						</ul>
 					</div>

@@ -1,0 +1,93 @@
+﻿@using Data.Models
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Color";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model X.PagedList.IPagedList<DbColor>
+<div class="cp0">
+    Danh Sách Size Sản Phẩm
+</div>
+<div class="h-cp1">
+    <div class="h-cp-f">
+        <div class="h-cp-up">
+            <div class="bt-c"><a href="@Url.Action("creatcolor","Admin")">Thêm Màu Mới</a></div>
+            <div class="bt-c"><a href="">In dữ liệu </a></div>
+            <div class="bt-c"><a href="">Xuất Excel</a></div>
+            <div class="bt-c"><a href="">Xuất PDF</a></div>
+        </div>
+        <div class="h-cp-mid">
+            <div class="messages">
+                @TempData["Message"]
+            </div>
+            <div>
+                <input class="form-search" type="text" placeholder="Tìm Kiếm Size/ Tên Size . . .">
+            </div>
+            <table class="h-table">
+                <thead>
+                    <tr>
+                        <th class="hidden">id</th>
+                        <th>Tên màu</th>
+                        <th>Mã Màu</th>
+                        <th></th>
+                        <th>Ngày Tạo </th>
+                        <th>Tạo Bởi</th>
+                        <th>Ngày Sửa</th>
+                        <th>Sửa Bởi</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var prd in Model)
+                        {
+                            <tr>
+                                <td class="hidden">@prd.ColorId</td>
+                                <td>@prd.NameColor</td>
+                                <td>@prd.MaColor</td>
+                                @if (prd.Img != null && prd.Img.Length>2)
+                                {
+                                    <td>@prd.Img</td>
+                                }
+                                else
+                                {
+                                    <td style="position:relative">
+                                        <div class="" style="background-color:@prd.MaColor;width:80%;height:20px;position:absolute;top:25%"></div>
+                                    </td>
+                                }
+                                <td>@prd.CreateDate</td>
+                                <td>@prd.CreateBy</td>
+                                <td>@prd.ModifiedDate</td>
+                                <td>@prd.ModifiedBy</td>
+                                <td>
+                                    <a href="@Url.Action("ColorDelete", new { idcl = prd.ColorId })" onclick="deletec(event)" style="color: #000;">Xóa</a>
+                                    <a asp-action="ColorUpdate" asp-route-idcl="@prd.ColorId" style="color: black;">Sửa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">"trống!"</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Color", "Color", new { page = page }))
+<script type="text/javascript">
+    function deletec(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn màu này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>
+
+

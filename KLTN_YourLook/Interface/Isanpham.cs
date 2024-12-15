@@ -6,8 +6,8 @@ namespace KLTN_YourLook.Interface
     {
         DbProduct Add(DbProduct dbProduct);
         DbProduct Update(DbProduct dbProduct);
-        DbProduct Delete(string Masp);
-        DbProduct Search(string Masp);
+        DbProduct Delete(int idsp);
+        DbProduct Search(int idsp);
         IEnumerable<DbProduct> GetAllProduct();
     }
     public class Product : Isanpham
@@ -17,14 +17,14 @@ namespace KLTN_YourLook.Interface
         {
             _context = context;
         }
-        public DbProduct Add(DbProduct dbProduct)
+        public DbProduct Add(DbProduct model)
         {
-            _context.DbProducts.Add(dbProduct);
+            _context.DbProducts.Add(model);
             _context.SaveChanges();
-            return dbProduct;
+            return model;
         }
 
-        public DbProduct Delete(string Masp)
+        public DbProduct Delete(int idsp)
         {
             throw new NotImplementedException();
         }
@@ -34,16 +34,16 @@ namespace KLTN_YourLook.Interface
             return _context.DbProducts;
         }
 
-        public DbProduct Search(string Masp)
+        public DbProduct Search(int idsp)
         {
-            return _context.DbProducts.Find(Masp);
+            return _context.DbProducts.Find(idsp);
         }
 
-        public DbProduct Update(DbProduct dbProduct)
+        public DbProduct Update(DbProduct model)
         {
-            _context.Update(dbProduct);
+            _context.Update(model);
             _context.SaveChanges();
-            return dbProduct;
+            return model;
         }
     }
 }

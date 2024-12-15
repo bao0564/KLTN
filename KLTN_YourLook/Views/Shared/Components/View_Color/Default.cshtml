@@ -1,0 +1,14 @@
+﻿@using Data.Models;
+
+@model IEnumerable<DbColor>
+@foreach (var prd in Model)
+{
+    @* <li><a asp-controller="Home" asp-action="ProductTipe" asp-route-colorid="@prd.ColorId">@prd.NameColor</a></li>*@
+    <li class="flct" style="width:100%;">
+        <input class="color-filter mg-lr" type="checkbox" />
+        <div class="box_color flspb flct" style="width:100%;">
+            <p class="fl-center nw" style="color:#000;margin-right:5px">@prd.NameColor</p>
+            <div class="bd" style="background-color:@prd.MaColor;height:10px;width:25px;border-radius:10px"></div>
+        </div>
+    </li>
+}   

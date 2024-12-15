@@ -1,244 +1,283 @@
 ﻿use [KLTN];
-select * from DbCategory;
-/*Hiển thị tất cả thông tin sản phẩm từng sp*/
-SET ANSI_NULLS ON
-GO
+--all sản phẩm
 SET QUOTED_IDENTIFIER ON
 GO
-create procedure [dbo].[product_showall]
+create procedure [dbo].[product_view]
 as
 begin
-	select p.IdSp, p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,p.LuotSold ,c.TenDm , g.GroupName ,p.IActive ,p.IHot,p.ISale,p.IFeature
+	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
-	join DbCategory c on p.IdDm=c.IdDm
-	join DbGroup g on p.NhomId=g.IdNhom
-	where p.PriceMax > 0
-	order by p.CreateDate desc;	
+	WHERE p.IActive = 1
 end;
-go
-/*Thêm mới sản phẩm*/
-
-create procedure [dbo].[product_create]
-    @masp NVARCHAR(10),
-    @iddm NVARCHAR(10),
-    @tensp NVARCHAR(50),
-    @saodanhgia INT,
-    @nhomid INT,
-    @anhsp NVARCHAR(250),
-    @pricemax DECIMAL(18,2),
-    @giamgia INT,
-    @pricemin DECIMAL(18,2),
-    @luotxem INT,
-    @luotban INT,
-    @motasp NVARCHAR(MAX),
-    @iactive BIT,
-    @ifeature BIT,
-    @ihot BIT,
-    @isale BIT,
-    @createby NVARCHAR(20),
-    @createdate DATETIME,
-    @Images NVARCHAR(MAX),
-    @Details NVARCHAR(MAX) -- JSON chứa thông tin màu, size, giá, số lượng
-AS
-BEGIN
-    BEGIN TRY
-        BEGIN TRANSACTION;
-        
-        -- Thêm sản phẩm vào bảng DbProduct
-        INSERT INTO DbProduct (MaSp, TenSp, IdDm, NhomId, AnhSp, PriceMax, GiamGia, PriceMin, MotaSp, CreateDate, IActive, IFeature, IHot, ISale, CreateBy)
-        VALUES (@masp, @tensp, @iddm, @nhomid, @anhsp, @pricemax, @giamgia, @pricemin, @motasp, GETDATE(), @iactive, @ifeature, @ihot, @isale, @createby);
-        
-        DECLARE @idsp INT = SCOPE_IDENTITY(); -- Lấy IdSp vừa được tạo ra
-
-        -- Xử lý hình ảnh liên quan
-        IF (@Images IS NOT NULL)
-        BEGIN
-            INSERT INTO DbImg (IdSp, Img)
-            SELECT @idsp, TRIM(value)
-            FROM STRING_SPLIT(@Images, ';')
-            WHERE TRIM(value) <> '';
-        END
-
-        -- Xử lý JSON chi tiết sản phẩm
-        IF (@Details IS NOT NULL)
-        BEGIN
-            INSERT INTO DbProductDetail (IdSp, ColorId, SizeId, GiaLoai, Quantity)
-            SELECT 
-                @idsp AS IdSp,
-                JSON_VALUE(p.value, '$.ColorId') AS ColorId,
-                JSON_VALUE(p.value, '$.SizeId') AS SizeId,
-                JSON_VALUE(p.value, '$.GiaLoai') AS GiaLoai,
-                JSON_VALUE(p.value, '$.Quantity') AS Quantity
-            FROM OPENJSON(@Details) AS p;
-        END
-
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-        -- Ghi log lỗi hoặc trả về lỗi
-        THROW;
-    END CATCH
-END
-
-/**/
-SET ANSI_NULLS ON
-GO
+--sản phẩm sale
 SET QUOTED_IDENTIFIER ON
 GO
-create procedure [dbo].[product_insert]
-    @masp nvarchar(10),
-	@iddm nvarchar(10),
-	@tensp nvarchar(50),
-	@saodanhgia int,
-	@nhomid int,
-	@anhsp nvarchar(250),
-	@pricemax decimal,
-	@giamgia int,
-	@pricemin decimal,
-	@luotxem int,
-	@luotban int,
-	@motasp nvarchar(max),
-	@iactive bit,
-	@ifeature bit,
-	@ihot bit,
-	@isale bit,
-	@createby nvarchar(20),
-	@createdate datetime,
-    @Images NVARCHAR(700),
-    @Details NVARCHAR(700) -- Chuỗi chứa Màu, Size, Giá, Số lượng
-AS
-BEGIN
-    -- Thêm sản phẩm vào bảng DbSanPham
-    INSERT INTO DbProduct (MaSp,TenSp, IdDm, NhomId, AnhSp, PriceMax, GiamGia, PriceMin, MotaSp, CreateDate, IActive, IFeature, IHot, ISale,CreateBy)
-    VALUES (@masp,@TenSp, @iddm, @NhomId, @AnhSp, @PriceMax, @GiamGia, @PriceMin, @MotaSp, GETDATE(), @IActive, @IFeature, @IHot, @ISale,@createby);
-
-    DECLARE @idsp INT = SCOPE_IDENTITY(); -- Lấy MaSp vừa được tạo ra
-
-    -- Xử lý hình ảnh liên quan
-    IF (@Images IS NOT NULL)
-    BEGIN
-        DECLARE @ImagePath NVARCHAR(255);
-        DECLARE @ImgCursor CURSOR;
-        SET @ImgCursor = CURSOR FOR
-            SELECT value FROM STRING_SPLIT(@Images, ';');
-        
-        OPEN @ImgCursor;
-        FETCH NEXT FROM @ImgCursor INTO @ImagePath;
-        
-        WHILE @@FETCH_STATUS = 0
-        BEGIN
-            INSERT INTO DbImg (IdSp, Img)
-            VALUES (@idsp, @ImagePath);
-            FETCH NEXT FROM @ImgCursor INTO @ImagePath;
-        END
-        
-        CLOSE @ImgCursor;
-        DEALLOCATE @ImgCursor;
-    END
-
-    -- Xử lý Màu, Size, Giá, Số lượng
-    IF (@Details IS NOT NULL)
-    BEGIN
-        DECLARE @DetailCursor CURSOR;
-        DECLARE @Item NVARCHAR(255);
-        SET @DetailCursor = CURSOR FOR
-            SELECT value FROM STRING_SPLIT(@Details, ';');
-        
-        OPEN @DetailCursor;
-        FETCH NEXT FROM @DetailCursor INTO @Item;
-        
-        WHILE @@FETCH_STATUS = 0
-        BEGIN
-            DECLARE @IdColor int;
-            DECLARE @IdSize int;
-            DECLARE @Price DECIMAL(18,2);
-            DECLARE @Quantity INT;
-
-            -- Tách thông tin Màu, Size, Giá, Số lượng
-            SET @IdColor = CAST(PARSENAME(REPLACE(@Item, ',', '.'), 4) as int);
-            SET @IdSize = CAST(PARSENAME(REPLACE(@Item, ',', '.'), 3) as int);
-            SET @Price = CAST(PARSENAME(REPLACE(@Item, ',', '.'), 2) AS DECIMAL(18,2));
-            SET @Quantity = CAST(PARSENAME(REPLACE(@Item, ',', '.'), 1) AS INT);
-
-            -- Thêm chi tiết sản phẩm vào bảng DbChiTietSanPham
-            INSERT INTO DbProductDetail(IdSp, ColorId, SizeId,GiaLoai,Quantity)
-            VALUES (@idsp,@IdColor,@IdSize, @Price, @Quantity);            
-            FETCH NEXT FROM @DetailCursor INTO @Item;
-        END
-        
-        CLOSE @DetailCursor;
-        DEALLOCATE @DetailCursor;
-    END
-END
-
-/*Danh mục*/
---DROP PROCEDURE [dbo].[category_showall]
---exec category_showall
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create procedure [dbo].[category_showall]
+create procedure [dbo].[product_sale_view]
 as
 begin
-	select c.IdDm,c.MaDm,c.TenDm,c.AnhDaiDien,COUNT(p.IdSp) as Product,c.CreateBy,c.CreateDate,c.ModifiedDate
-	from DbCategory c
-	left join DbProduct p on c.IdDm=p.IdDm
-	group by c.IdDm,c.MaDm,c.TenDm,c.AnhDaiDien,c.CreateBy,c.CreateDate,c.ModifiedDate
-	order by c.IdDm
-end;
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-create procedure [dbo].[category_insert]
-	@madm NVARCHAR(10),
-	@tendm  NVARCHAR(10),
-	@anhdaidien  NVARCHAR(250),
-	@createby nvarchar(20),
-	@createdate datetime,
-	@ret int out
-as
-begin
-	set nocount on;
-	begin try
-		set @ret=1
-			insert into DbCategory(MaDm,TenDm,AnhDaiDien,CreateBy,CreateDate) 
-			values (@madm,@tendm,@anhdaidien,@createby,GETDATE())	
-		set @ret=2
-	end try
-	begin catch
-		set @ret=1
-		declare @msg nvarchar(2000)= ERROR_MESSAGE();
-		raiserror(@msg,16,1)
-	end catch
+	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.ISale =1
 end;
 
-SET ANSI_NULLS ON
-GO
+--sản phẩm new
+--drop procedure product_new_view
 SET QUOTED_IDENTIFIER ON
 GO
-create procedure [dbo].[category_update]
-	@iddm int,
-	@madm NVARCHAR(10),
-	@tendm  NVARCHAR(10),
-	@anhdaidien  NVARCHAR(250),
-	@modifiedby nvarchar(20),
-	@modifieddate datetime
+create procedure [dbo].[product_new_view]
 as
 begin
-	update DbCategory set MaDm=@madm,TenDm=@tendm,AnhDaiDien=@anhdaidien,ModifiedBy=@modifiedby,ModifiedDate=@modifieddate
-	where IdDm=@iddm
+	select top 10 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.CreateDate <= DATEADD(DAY,50,GETDATE())
 end;
 
-SET ANSI_NULLS ON
-GO
+--sản phẩm hot
+--drop procedure product_hot_view
 SET QUOTED_IDENTIFIER ON
 GO
-create procedure [dbo].[category_delete]
+create procedure [dbo].[product_hot_view]
+as
+begin
+	select top 10 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IHot =1
+end;
+
+--sản phẩm underwear
+--drop procedure product_ql_view
+--select * from DbCategory
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_ql_view]
+as
+begin
+	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = 2006
+end;
+
+--sản phẩm Quần short
+-- drop procedure product_qs_view
+--select * from DbCategory
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_qs_view]
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = 2005
+end;
+
+--sản phẩm Áo thun
+--drop procedure product_at_view
+--select * from DbCategory
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_at_view]
+as
+begin
+	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = 1
+end;
+
+--sản phẩm Quần bg
+--drop procedure product_qbg_view
+--select * from DbCategory
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_qbg_view]
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = 1007
+end;
+
+--sản phẩm Áo dài tay
+--drop procedure product_adt_view
+--select * from DbCategory
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_adt_view]
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = 1005
+end;
+
+--sản phẩm Áo khoác
+--drop procedure product_ak_view
+--select * from DbCategory
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_ak_view]
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = 2004
+end;
+
+--Sản phẩm Theo Danh mục
+--drop procedure product_ak_view
+--select * from DbCategory
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_by_iddm]
 	@iddm int
 as
 begin
-	delete DbCategory where IdDm=@iddm
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = @iddm
 end;
+--Chi tiết sản phẩm
+--drop procedure product_detail
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_detail]
+	@idsp int
+as
+begin
+	select p.IdSp, p.MaSp,ct.TenDm,p.TenSp,p.SaoDanhGia,p.AnhSp,p.PriceMax,p.GiamGia,p.PriceMin,p.LuotXem,p.LuotSold,p.MotaSp,p.Ifavorite,
+		(select string_agg(i.Img,';')
+		from DbImg i
+		where i.IdSp=p.IdSp)as ImgDetail,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize,',',pd.ColorId,',',pd.NameColor,',',c.MaColor,',',pd.GiaLoai,',',pd.Quantity),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp=p.IdSp)as Detail
+	from DbProduct p
+	join DbCategory ct on p.IdDm=ct.IdDm
+	where p.IActive = 1 and p.IdSp=@idsp
+end;
+--Giỏ Hàng
+--Hiển thị sản phẩm giỏ hàng
+--drop procedure cart_showall
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[cart_showall]
+	@idkh int
+as
+begin	
+	select cr.IdSp,p.MaSp,p.TenSp,p.AnhSp,dt.ColorId,dt.NameColor,dt.SizeId,dt.NameSize,dt.GiaLoai,cr.ProductQuantity,cr.ProductQuantity * dt.GiaLoai as Total
+	from DbCart cr 
+	join DbProduct p on cr.IdSp=p.IdSp
+	join DbProductDetail dt on cr.IdSp=dt.IdSp and cr.ColorId=dt.ColorId and cr.SizeId=dt.SizeId
+	where cr.IdKh=@idkh
+	order by cr.CreateDate desc
+end;
+--Thêm sản phẩm vào giỏ hàng
+--drop procedure product_in_cart
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[product_in_cart]
+	@idsp int,
+	@idkh int,
+	@quantity int,
+	@colorid int,
+	@sizeid int
+as
+begin
+	begin try
+		declare @SoluongTon int;
+		--kiểm tra số lượng trong kho
+			select @SoluongTon=dt.Quantity from DbProductDetail dt where dt.IdSp=@idsp and dt.ColorId=@colorid and dt.SizeId=@sizeid;
+			if @quantity > @SoluongTon
+			begin
+				RAISERROR('Số lượng sản phẩm yêu cầu vượt quá số lượng có trong kho.', 16, 1);
+				RETURN;
+			end
+		--thêm vào giỏ hàng
+		insert into DbCart(IdSp,IdKh,ProductQuantity,ColorId,SizeId,CreateDate) values(@idsp,@idkh,@quantity,@colorid,@sizeid,GETDATE());
+		
+		SELECT 'Thêm sản phẩm vào giỏ hàng thành công.' AS Message;
+	end try
+	begin catch
+		SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage;
+	end catch
+end;
+go

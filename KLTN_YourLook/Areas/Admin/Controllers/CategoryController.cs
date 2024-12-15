@@ -1,7 +1,7 @@
 ﻿using Data.Models;
 using KLTN_YourLook.Areas.Admin.Models;
+using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
-using KLTN_YourLook.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
@@ -27,7 +27,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         }
         //danh mục
         [Route("category")]
-        public async Task<IActionResult> Category(int? page)
+        public async Task<IActionResult> Category(int? page,string keyword)
         {
             //var name = HttpContext.Session.GetString("NameAdmin");
             //if (name == null)
@@ -36,7 +36,16 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             //}
             int pageSize = 20;
             int pageNumber = page ?? 1;
-            var lstDanhMuc = await _categoryRepository.GetAllCategory();
+            IEnumerable<AllCategoryViewModel> lstDanhMuc;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                lstDanhMuc= await _categoryRepository.SearchCategory(keyword);
+                ViewBag.keyword = keyword;
+            }
+            else
+            {
+                lstDanhMuc = await _categoryRepository.GetAllCategory();
+            }
             PagedList<AllCategoryViewModel> lst = new PagedList<AllCategoryViewModel>(lstDanhMuc, pageNumber, pageSize);
             return View(lst);
         }
@@ -59,7 +68,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 var cate = await _categoryRepository.CreateCategory(
                     model.MaDm,
                     model.TenDm,
-                    model.AnhDaiDien ?? "null",
+                    model.AnhDaiDien ?? "",
                     "Bao"
                     );
 
@@ -86,20 +95,26 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [Route("updatecategory")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateCategory(DbCategory model, IFormFile FileAnh)
+        public async Task<IActionResult> UpdateCategory(DbCategory model, IFormFile? FileAnh)
         {
             if (ModelState.IsValid)
             {
+                var img = _context.DbCategorys.Where(c=>c.IdDm==model.IdDm).Select(c=>c.AnhDaiDien).FirstOrDefault();//lấy ảnh hiện tại
+
                 if (FileAnh != null && FileAnh.Length > 0)
                 {
                     model.AnhDaiDien = await _uploadimg.uploadOnePhotosAsync(FileAnh, "images"); // Chỉ 1 ảnh đại diện
+                }
+                else
+                {
+                    model.AnhDaiDien = img;
                 }
                 var cate = await _categoryRepository.UpdateCategory(
                         model.IdDm,
                         model.MaDm,
                         model.TenDm,
-                        model.AnhDaiDien ?? "null",
-                        "bao"
+                        model.AnhDaiDien,
+                        "bao2"
                     );
                 return RedirectToAction("Category");
             }

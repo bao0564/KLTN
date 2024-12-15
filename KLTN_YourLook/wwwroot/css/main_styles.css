@@ -41,7 +41,7 @@ COLOR PALETTE
 ***********/
 
 :root {
-	--White-1: #ccc /*Tr?ng ??c*/;
+	--White-1: #000 /**/;
 	--White-2: #f2f2f2;
 	--gray-a: #2f3640;
 	--gray-b: #535c68 /* #353b48*/;
@@ -102,10 +102,12 @@ COLOR PALETTE
 	overflow: scroll;
 }
 
-	.flscr::-webkit-scrollbar, .scr::-webkit-scrollbar {
-		display: none;
-	}
-
+.flscr::-webkit-scrollbar, .scr::-webkit-scrollbar {
+	display: none;
+}
+.bd {
+	border: 1px solid var(--gray-a);
+}
 .bd-t {
 	/*border-bottom:1px solid var(--gray-a);*/
 	border-top: 1px solid var(--gray-a);
@@ -2514,42 +2516,43 @@ section {
 	background-color: var(--gray-a);
 }
 
-	.footer .row-block {
-		display: none;
+.footer .ft_infor {
+	display: grid;
+	grid-template-columns: repeat(5,1fr)
+}
+
+.footer .none {
+	padding: 30px;
+	width: 100%
+}
+
+	.footer .none .inf {
+		width: 20%;
 	}
 
-	.footer .none {
-		padding: 30px;
-		width: 100%
-	}
+.footer .row {
+	justify-content: space-around;
+}
 
-		.footer .none .inf {
-			width: 20%;
-		}
+.footer h4 {
+	white-space: nowrap;
+	color: #000;
+}
 
-	.footer .row {
-		justify-content: space-around;
-	}
-
-	.footer h4 {
-		white-space: nowrap;
-		color: #000;
-	}
-
-	.footer .col-lg-4, .footer .col-lg-3, .footer .col-lg-2 {
-		display: flex;
-		justify-content: center;
-	}
+.footer .col-lg-4, .footer .col-lg-3, .footer .col-lg-2 {
+	display: flex;
+	justify-content: center;
+}
 
 .ft-logo {
 	height: auto;
 	margin: 10px;
 }
 
-	.ft-logo img {
-		height: 80px;
-		margin: 10px;
-	}
+.ft-logo img {
+	height: 80px;
+	margin: 10px;
+}
 
 .ft-logo2 {
 	display: flex;
@@ -2584,7 +2587,7 @@ section {
 .footer .cha {
 	line-height: 50px;
 	margin: 30px 20px;
-	border-radius: 5px solid #000;
+	border-radius: 5px;
 }
 
 	.footer .cha .icon img {
@@ -2765,7 +2768,7 @@ section {
 .body-cart .order-cart {
 	width: 40%;
 	padding: 10px;
-	max-height: 860px;
+	height: 70vh;
 	overflow-y: scroll;
 }
 

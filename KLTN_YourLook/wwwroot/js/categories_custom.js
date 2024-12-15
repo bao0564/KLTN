@@ -386,7 +386,7 @@ jQuery(document).ready(function($)
 
 				// Thu thập tất cả các màu được chọn
 				$('.color-filter:checked').each(function () {
-					var color = $(this).siblings('p').text().toLowerCase().trim();
+					var color = $(this).next('.box_color').find('p').text().toLowerCase().trim();
 					selectedColors.push(color);
 				});
 

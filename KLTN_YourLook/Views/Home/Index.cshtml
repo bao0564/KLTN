@@ -2,4 +2,449 @@
 	ViewData["Title"] = "Trang Chủ";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>trang chủ</div>
+
+<div class="list-ad" id="listad">
+	<div class="img-ad" style="padding: 0">
+		@await Component.InvokeAsync("View_Ads", new { place = "ads" })
+	</div>
+	<button class="btn back">
+		<i class="fa-solid fa-angle-left fa-xl"
+		   style="color: #000000"></i>
+	</button>
+	<button class="btn next">
+		<i class="fa-solid fa-angle-right fa-xl"
+		   style="color: #0d0d0d"></i>
+	</button>
+</div>
+<script src="js/move-ad.js"></script>
+<!-- Banner -->
+<div class="banner" id="banner">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="banner_item align-items-center" style="background-image:url(images/all.png)">
+					<div class="banner_category">
+						<a href="@Url.Action("AllProduct","Home")">ALL</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="banner_item align-items-center" style="background-image:url(images/dl.png)">
+					<div class="banner_category">
+						<a href="@Url.Action("UnderProduct","Home")">PERSONAL ITEMS</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="banner_item align-items-center" style="background-image:url(images/pk.png)">
+					<div class="banner_category">
+						<a href="@Url.Action("ProductCategory","Home")">CATEGOGRY</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@* mini-map *@
+<div class="mini-map">
+	<ul>
+		<li>
+			<a href="#listad"><i class="fa-solid fa-record-vinyl"></i></a>
+		</li>
+		<li>
+			<div class="title">Hot - New</div>
+			<a href="#hot-new"><i class="fa-solid fa-record-vinyl"></i><i class="fa-solid fa-minus"></i></a>
+		</li>
+		<li>
+			<div class="title">Quần Dài</div>
+			<a href="#page1"><i class="fa-solid fa-record-vinyl"></i><i class="fa-solid fa-minus"></i> </a>
+		</li>
+		<li>
+			<div class="title">Quần Short</div>
+			<a href="#page2"><i class="fa-solid fa-record-vinyl"></i><i class="fa-solid fa-minus"></i></a>
+		</li>
+		<li>
+			<div class="title">Áo Phông</div>
+			<a href="#page3"><i class="fa-solid fa-record-vinyl"></i><i class="fa-solid fa-minus"></i></a>
+		</li>
+		<li>
+			<div class="title">Áo Khoác</div>
+			<a href="#page4"><i class="fa-solid fa-record-vinyl"></i><i class="fa-solid fa-minus"></i></a>
+		</li>
+		<li>
+			<a href="#footer"><i class="fa-solid fa-record-vinyl"></i></a>
+		</li>
+	</ul>
+</div>
+<!-- New Arrivals -->
+<!-- Best Sellers -->
+<div class="best_sellers">
+	<div class="container container-flashsell">
+		<div class="row" style="">
+			<div class="col col-fls-1" style="">
+				<div class="section_title new_arrivals_title" style="border:none">
+					<h2 style="color:#fff">F⚡︎ash Sell</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-fls-2" style="">
+				<div class="prd-grid bdrdu pd" style="background-color:#fff;">
+					<div class="productContainer" id="prdcontainerfls">
+						<!-- fls -->
+						@* @await Component.InvokeAsync("ViewFlashSell") *@
+					</div>
+				</div>
+				<!-- Slider Navigation -->
+				<button onclick="prevProductfls()" class="btn btn-primary-prev">
+					<i class="fa-solid fa-angle-left fa-xl"
+					   style="color: #000000"></i>
+				</button>
+				<button onclick="nextProductfls()" class="btn btn-primary-next">
+					<i class="fa-solid fa-angle-right fa-xl"
+					   style="color: #0d0d0d"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Sản phẩm hot/ sản phẩm mới -->
+<section class="ad-type" style="margin-top: 30px;" id="hot-new">
+	<img style="width:100%" src="logo/ad-5.png" alt="" />
+</section>
+<div class="new_arrivals">
+	<div class="">
+		<div class="row align-items-center first-box-prd">
+			<div class="col text-center">
+				<div class="new_arrivals_sorting">
+					<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+						<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" onclick="hotprd()">Sản Phẩm Hot</li>
+						<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" onclick="newprd()">Sản Phẩm New</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col" id="prd-hot">
+				<div class="prd-grid" style="">
+					<div class="productContainer" id="productContainer">
+						@await Component.InvokeAsync("View_Hot")
+					</div>
+				</div>
+				<button onclick="prevProducts()" class="btn btn-primary-prev">
+					<i class="fa-solid fa-angle-left fa-xl"
+					   style="color: #000000"></i>
+				</button>
+				<button onclick="nextProducts()" class="btn btn-primary-next">
+					<i class="fa-solid fa-angle-right fa-xl"
+					   style="color: #0d0d0d"></i>
+				</button>
+				<div class="prd-btn">
+					<button class="btn prd-next flct"><a href="@Url.Action("HotProduct","Home")">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+				</div>
+			</div>
+			<div class="col" id="prd-new">
+				<div class="prd-grid" style="">
+					<div class="productContainer" id="productcontainer">
+						@await Component.InvokeAsync("View_New")
+					</div>
+				</div>
+				<button onclick="prevProductsN()" class="btn btn-primary-prev">
+					<i class="fa-solid fa-angle-left fa-xl"
+					   style="color: #000000"></i>
+				</button>
+				<button onclick="nextProductsN()" class="btn btn-primary-next">
+					<i class="fa-solid fa-angle-right fa-xl"
+					   style="color: #0d0d0d"></i>
+				</button>
+				<div class="prd-btn">
+					<button class="btn prd-next flct"><a href="@Url.Action("NewProduct","Home")">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+				</div>
+			</div>
+		</div>
+		<script src="js/swich.js"></script>
+	</div>
+</div>
+<!-- Sản phẩm quần dài -->
+<section class="ad-type" style="margin: 30px 0 10px 0;" id="page1">
+	@await Component.InvokeAsync("View_Ads", new { place = "page1" })
+</section>
+<div class="new_arrivals">
+	<div class="">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_title new_arrivals_title">
+					<h2>Quần Dài</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="prd-grid" style="">
+					<div class="productContainer" id="productContainer">
+						@await Component.InvokeAsync("View_Page1")
+					</div>
+				</div>
+				<div class="prd-btn">
+					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=1">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+				</div>
+			</div>
+			<script src="js/swich.js"></script>
+		</div>
+	</div>
+</div>
+<!-- Sản phẩm quần cộc -->
+<section class="ad-type" style="margin: 30px 0 10px 0;" id="page2">
+	@await Component.InvokeAsync("View_Ads", new { place = "page2" })
+</section>
+<div class="new_arrivals">
+	<div class="">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_title new_arrivals_title">
+					<h2>Quần Short</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="prd-grid" style="">
+					<div class="productContainer" id="productContainer">
+						@await Component.InvokeAsync("View_Page2")
+					</div>
+				</div>
+				<div class="prd-btn">
+					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=5">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+				</div>
+			</div>
+			<script src="js/swich.js"></script>
+		</div>
+	</div>
+</div>
+<!-- Sản phẩm áo -->
+<section class="ad-type" style="margin: 30px 0 10px 0;" id="page3">
+	@await Component.InvokeAsync("View_Ads", new { place = "page3" })
+</section>
+<div class="new_arrivals">
+	<div class="">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_title new_arrivals_title">
+					<h2>Áo Phông</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="prd-grid" style="">
+					<div class="productContainer" id="productContainer">
+						@await Component.InvokeAsync("View_Page3")
+					</div>
+				</div>
+				<div class="prd-btn">
+					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=3">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+				</div>
+			</div>
+			<script src="js/swich.js"></script>
+		</div>
+	</div>
+</div>
+<!-- Sản phẩm áo khoác -->
+<section class="ad-type" style="margin: 30px 0 10px 0;" id="page4">
+	@await Component.InvokeAsync("View_Ads", new { place = "page4" })
+</section>
+<div class="new_arrivals">
+	<div class="">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_title new_arrivals_title">
+					<h2>Áo Khoác</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="prd-grid" style="">
+					<div class="productContainer" id="productContainer">
+						@await Component.InvokeAsync("View_Page4")
+					</div>
+				</div>
+				<div class="prd-btn">
+					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=4">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+				</div>
+			</div>
+			<script src="js/swich.js"></script>
+		</div>
+	</div>
+</div>
+<!-- Deal of the week -->
+
+<div style="background: #f2f2f2;width:100%">
+	<div class="container">
+		<div class="deal_ofthe_week">
+			<div class="deal_ofthe_week_img fljct">
+				<img src="images/deal_ofthe_week.png" alt="">
+			</div>
+			<div class="text-right deal_ofthe_week_col fljct">
+				<div class="deal_ofthe_week_content d-flex flex-column fljct">
+					<div class="section_title">
+						<h2>Deal Of The Week</h2>
+					</div>
+					<ul class="timer fljct">
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="day" class="timer_num">03</div>
+							<div class="timer_unit">Day</div>
+						</li>
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="hour" class="timer_num">15</div>
+							<div class="timer_unit">Hours</div>
+						</li>
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="minute" class="timer_num">45</div>
+							<div class="timer_unit">Mins</div>
+						</li>
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="second" class="timer_num">23</div>
+							<div class="timer_unit">Sec</div>
+						</li>
+					</ul>
+					<div class="fljct">
+						<div class="red_button deal_ofthe_week_button">
+							<a href="@Url.Action("SellProduct", "Home")">shop now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- Benefit -->
+<div class="benefit">
+	<div class="container">
+		<div class="row benefit_row">
+			<div class="col-lg-3 benefit_col">
+				<div class="benefit_item d-flex flex-row align-items-center">
+					<div class="benefit_icon"><i class="fa fa-truck" style="color: #2f3640;" aria-hidden="true"></i></div>
+					<div class="benefit_content">
+						<h6>free shipping</h6>
+						<p>Miễn phí vẫn chuyển </p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 benefit_col">
+				<div class="benefit_item d-flex flex-row align-items-center">
+					<div class="benefit_icon"><i class="fa fa-money" style="color: #2f3640;" aria-hidden="true"></i></div>
+					<div class="benefit_content">
+						<h6>Hình thức thanh toán</h6>
+						<p>Các hình thức thanh toán tiện lợi nhanh gọn</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 benefit_col">
+				<div class="benefit_item d-flex flex-row align-items-center">
+					<div class="benefit_icon"><i class="fa fa-undo" style="color: #2f3640;" aria-hidden="true"></i></div>
+					<div class="benefit_content">
+						<h6>Đổi trả hoàn hàng</h6>
+						<p>Đổi trả miễn phí </p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 benefit_col">
+				<div class="benefit_item d-flex flex-row align-items-center">
+					<div class="benefit_icon"><i class="fa fa-clock-o" style="color: #2f3640;" aria-hidden="true"></i></div>
+					<div class="benefit_content">
+						<h6>Thời gian hoạt động</h6>
+						<p>24/7</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Blogs -->
+
+<div class="blogs">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_title">
+					<h2>Latest Blogs</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row blogs_container">
+			<div class="col-lg-4 blog_item_col">
+				<div class="blog_item">
+					<div class="blog_background" style="background-image:url(images/blog_1.jpg)"></div>
+					<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+						<h4 class="blog_title">Here are the trends I see coming this fall</h4>
+						<span class="blog_meta">by admin | dec 01, 2017</span>
+						<a class="blog_more" href="#">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 blog_item_col">
+				<div class="blog_item">
+					<div class="blog_background" style="background-image:url(images/blog_2.jpg)"></div>
+					<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+						<h4 class="blog_title">Here are the trends I see coming this fall</h4>
+						<span class="blog_meta">by admin | dec 01, 2017</span>
+						<a class="blog_more" href="#">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 blog_item_col">
+				<div class="blog_item">
+					<div class="blog_background" style="background-image:url(images/blog_3.jpg)"></div>
+					<div class="blog_content d-flex flex-column align-items-center justify-content-center text-center">
+						<h4 class="blog_title">Here are the trends I see coming this fall</h4>
+						<span class="blog_meta">by admin | dec 01, 2017</span>
+						<a class="blog_more" href="#">Read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Newsletter -->
+
+<div class="newsletter">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+					<h4>Newsletter</h4>
+					<p>Subscribe to our newsletter and get 20% off your first purchase</p>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<form action="post">
+					<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+						<input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
+						<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../js/product-move.js"></script>
+<script src="../js/productnew-move.js"></script>
+<script src="../js/product-fls.js"></script>
+@section scripts {
+	<script>
+		//Chuyển động mini-map
+		document.querySelectorAll('.mini-map a').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+
+				document.querySelector(this.getAttribute('href')).scrollIntoView({
+					behavior: 'smooth'
+				});
+			});
+		});
+	</script>
+}

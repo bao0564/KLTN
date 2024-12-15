@@ -1,0 +1,70 @@
+﻿@model Data.Models.DbCustomer
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main class="login-body mar_container">
+    <div class="font-login">
+        <div style="display:flex; justify-content:space-around;align-items:center">
+            <div>
+                <h2>REGISTER</h2>
+            </div>
+        </div>
+        <p style="border-top:1px solid #000">With:</p>
+        <div class="title">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+                <form asp-action="ExternalLogin" method="post">
+                    <button type="submit" name="provider" value="Google"><img src="/icon/google.png" alt="" /></button>
+                </form>
+                <button><img src="/icon/Facebook.png" alt="" /></button>
+            </div>
+            <div class="logo-login">
+                <img src="/logo/logo.png" alt="">
+                <p>Luôn mang đến cho bạn nhứng sản phẩm chất lượng</p>
+            </div>
+        </div>
+        <p>Or:</p>
+        @using (Html.BeginForm("Register", "Access", FormMethod.Post, new { }))
+        {
+            <div class="space-address">
+                <div style="display:flex;flex-direction:column;width:50%">
+                    @Html.ValidationMessageFor(model => model.TenKh, "", new { @class = "text-danger" })
+                    <div class="box-address">
+                        <input asp-for="TenKh" type="text" placeholder="Tên..." />
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:column;width:50%">
+                    @Html.ValidationMessageFor(model => model.Sdt, "", new { @class = "text-danger" })
+                    <div class="box-address">
+                        <input asp-for="Sdt" type="text" placeholder="SĐT...">
+                    </div>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <div class="space-address">
+                <div class="inp">
+                    <input asp-for="Email" type="text" placeholder="Email..." />
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.Passwords, "", new { @class = "text-danger" })
+            <div class="space-address">
+                <div class="inp">
+                    <input asp-for="Passwords" type="text" placeholder="Mật Khẩu..." />
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.ConfirmPasswords, "", new { @class = "text-danger" })
+            <div class="space-address">
+                <div class="inp">
+                    <input asp-for="ConfirmPasswords" type="text" placeholder="Nhập lại mật khẩu của bạn..." />
+                </div>
+            </div>
+            <div class="btn-login">
+                <button type="submit" class="btn-login">Đăng Ký</button>
+            </div>
+        }
+        <div style="margin: 25px 0;display: flex;justify-content: space-between;">
+            <a asp-action="Login">Bạn đã có tài khoản</a>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+</main>

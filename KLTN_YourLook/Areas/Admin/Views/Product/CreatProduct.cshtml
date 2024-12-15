@@ -1,338 +1,232 @@
 ﻿@model KLTN_YourLook.Areas.Admin.Models.AddProductViewModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "CreatProduct";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<div class="col-md-12">
-    <div class="menu-cp">
-        <div class="cp0">
-            Thêm / Tạo Sản Phẩm mới
+<div class="menu-cp">
+    <div class="cp0">
+        Thêm / Tạo Sản Phẩm mới
+    </div>
+    <div>
+        <div class="card-header p-2" style="background-color:#d3d3d347">
+            <ul class="nav nav-pills">
+                <a asp-action="Product"><img class="mg-lr" style="height:20px" src="\icon\drop left.svg" /> </a>
+                <li class="nav_item"><a class="nav-link active" href="#page1" data-toggle="tab">Thông Tin Chính</a></li>
+                <li class="nav_item"><a class="nav-link" href="#page2" data-toggle="tab">Danh Sách Ảnh</a></li>
+                <li class="nav_item"><a class="nav-link" href="#page3" data-toggle="tab"> Size / Màu Sắc</a></li>
+            </ul>
         </div>
-        <div class="card">
-            <div class="card-header p-2" style="background-color:#d3d3d347">
-                <ul class="nav nav-pills">
-                    <a asp-action="Product"><img class="mg-lr" style="height:20px" src="\icon\drop left.svg" /> </a>
-                    <li class="nav_item"><a class="nav-link active" href="#page1" data-toggle="tab">Thông Tin Chính</a></li>
-                    <li class="nav_item"><a class="nav-link" href="#page2" data-toggle="tab">Danh Sách Ảnh</a></li>
-                    <li class="nav_item"><a class="nav-link" href="#page3" data-toggle="tab"> Size / Màu Sắc</a></li>
-                </ul>
-            </div>
-            <!-- /.card-header -->
-            @using (Html.BeginForm("CreatProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-                <div class="card_body" style="background-color:#d3d3d347;height:100%">
-                    <div class="tab-content">
-                        <div class="active tab-pane" id="page1">
-                            <div class="fl pd">
-                                <div class="col-4">
-                                    <label class="control-label">Mã Sản Phẩm:</label>
-                                    <input asp-for="MaSp" id="masp" class="form-control"/>
-                                    <span asp-validation-for="MaSp" class="text-danger"></span>
-                                </div>
-                                <div class="col-4">
-                                    <label class="control-label">Tên Sản Phẩm</label>
-                                    <input asp-for="TenSp" class="form-control" />
-                                    <span asp-validation-for="TenSp" class="text-danger"></span>
-                                </div>
-                                <div class="col-4">
-                                    <label class="control-label">Ảnh Đại Diện (330x470)</label>
-                                    <input type="file" asp-for="AnhSp" class="form-control" name="AnhSpFile" accept="image/*" />
-                                    <span asp-validation-for="AnhSp" class="text-danger"></span>
-                                </div>
+        <!-- /.card-header -->
+        @using (Html.BeginForm("CreatProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="card_body" style="background-color:#d3d3d347;height:100%">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="page1">
+                        <div class="fl pd">
+                            <div class="col-4">
+                                <label class="control-label">Mã Sản Phẩm:</label>
+                                <input asp-for="MaSp" id="masp" class="form-control" onkeyup="MaSpLength()" />
+                                <span id="error" style="color: red;"></span>
+                                <span asp-validation-for="MaSp" class="text-danger"></span>
                             </div>
-                            <div class="fl mg">
-                                <div class="col-4 flcl fljct">
-                                    <label class="control-label">Phân Loại</label>
-                                    <select asp-for="IdDm" class="form-control" asp-items="ViewBag.IdDm">
-                                        <option value="">--- Loại ---</option>
-                                    </select>
-                                    <span asp-validation-for="IdDm" class="text-danger"></span>
-                                </div>
-                                <div class="col-4 flcl fljct">
-                                    <label class="control-label">Nhóm </label>
-                                    <select asp-for="NhomId" class="form-control" asp-items="ViewBag.IdNhom">
-                                        <option value="">--- Nhóm ---</option>
-                                    </select>
-                                    <span asp-validation-for="NhomId" class="text-danger"></span>
-                                </div>
-                                <div class="col-4">
-                                    <label class="control-label">Mô Tả</label>
-                                    @* <textarea asp-for="MoTaSp" class="form-control" style="height:150px"></textarea> *@
-                                    <input asp-for="MoTaSp" class="form-control" style="height:150px"/>
-                                    <span asp-validation-for="MoTaSp" class="text-danger"></span>
-                                </div>
+                            <div class="col-4">
+                                <label class="control-label">Tên Sản Phẩm</label>
+                                <input asp-for="TenSp" id="tensp" class="form-control" onkeyup="TenSpLength()" />
+                                <span asp-validation-for="TenSp" class="text-danger"></span>
                             </div>
-                            <div class="fl mg">
-                                <div class="col-4">
-                                    <label class="control-label">Giá Max</label>
-                                    <input asp-for="PriceMax" id="GiaMax" class="form-control format_number" oninput="calculateGiaMin()" />
-                                    <span asp-validation-for="PriceMax" class="text-danger"></span>
-                                </div>
-                                <div class="col-4">
-                                    <label class="control-label">% Giảm Giá (Nếu có)</label>
-                                    <input asp-for="GiamGia" max="70" id="GiamGia" class="form-control " oninput="checkMaxValue(this)" oninput="calculateGiaMin()" />
-                                    <span asp-validation-for="GiamGia" id="GiamGiaError" class="text-danger"></span>
-                                </div>
-                                <div class="col-4">
-                                    <label class="control-label">Giá Đã Giảm</label>
-                                    <input asp-for="PriceMin" id="GiaMin" class="form-control" readonly />
-                                    <span asp-validation-for="PriceMin" class="text-danger"></span>
-                                </div>
+                            <div class="col-4">
+                                <label class="control-label">Ảnh Đại Diện (330x470)</label>
+                                <input type="file" asp-for="AnhSp" class="form-control" name="AnhSpFile" accept="image/*" />
+                                <span asp-validation-for="AnhSp" class="text-danger"></span>
                             </div>
-                            <div class="fl" style="margin-top:40px">
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox talg">
-                                            @Html.CheckBoxFor(x => x.IActive, new { @class = "custom-control-input", @id = "customCheckbox2", @checked = "checked" })
-                                            <label for="customCheckbox2" class="custom-control-label">Hiển thị</label>
-                                        </div>
+                        </div>
+                        <div class="fl mg">
+                            <div class="col-4 flcl fljct">
+                                <label class="control-label">Phân Loại</label>
+                                <select asp-for="IdDm" class="form-control" asp-items="ViewBag.IdDm">
+                                    <option value="">--- Loại ---</option>
+                                </select>
+                                <span asp-validation-for="IdDm" class="text-danger"></span>
+                            </div>
+                            <div class="col-4 flcl fljct">
+                                <label class="control-label">Nhóm </label>
+                                <select asp-for="NhomId" class="form-control" asp-items="ViewBag.IdNhom">
+                                    <option value="">--- Nhóm ---</option>
+                                </select>
+                                <span asp-validation-for="NhomId" class="text-danger"></span>
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label">Mô Tả</label>
+                                <textarea asp-for="MoTaSp" class="form-control" style="height:150px"></textarea>
+                                @* <input asp-for="MoTaSp" class="form-control" style="height:150px"/> *@
+                                <span asp-validation-for="MoTaSp" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="fl mg">
+                            <div class="col-4">
+                                <label class="control-label">Giá Max</label>
+                                <input asp-for="PriceMax" id="GiaMax" class="form-control format_number" oninput="calculateGiaMin()" />
+                                <span asp-validation-for="PriceMax" class="text-danger"></span>
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label">% Giảm Giá (Nếu có)</label>
+                                <input asp-for="GiamGia" max="70" id="GiamGia" class="form-control " oninput="checkMaxValue(this)" oninput="calculateGiaMin()" />
+                                <span asp-validation-for="GiamGia" id="GiamGiaError" class="text-danger"></span>
+                            </div>
+                            <div class="col-4">
+                                <label class="control-label">Giá Đã Giảm</label>
+                                <input asp-for="PriceMin" id="GiaMin" class="form-control" readonly />
+                                <span asp-validation-for="PriceMin" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="fl" style="margin-top:40px">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox talg">
+                                        @Html.CheckBoxFor(x => x.IActive, new { @class = "custom-control-input", @id = "customCheckbox2", @checked = "checked" })
+                                        <label for="customCheckbox2" class="custom-control-label">Hiển thị</label>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox talg">
-                                            @Html.CheckBoxFor(x => x.IHot, new { @class = "custom-control-input", @id = "IsHotCheckbox2" })
-                                            <label for="IsHotCheckbox2" class="custom-control-label">Hot</label>
-                                        </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox talg">
+                                        @Html.CheckBoxFor(x => x.IHot, new { @class = "custom-control-input", @id = "IsHotCheckbox2" })
+                                        <label for="IsHotCheckbox2" class="custom-control-label">Hot</label>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox talg">
-                                            @Html.CheckBoxFor(x => x.IFeature, new { @class = "custom-control-input", @id = "IsFeatureCheckbox" })
-                                            <label for="IsFeatureCheckbox" class="custom-control-label">Nổi bật</label>
-                                        </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox talg">
+                                        @Html.CheckBoxFor(x => x.IFeature, new { @class = "custom-control-input", @id = "IsFeatureCheckbox" })
+                                        <label for="IsFeatureCheckbox" class="custom-control-label">Nổi bật</label>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox talg">
-                                            @Html.CheckBoxFor(x => x.ISale, new { @class = "custom-control-input", @id = "IsSaleCheckbox" })
-                                            <label for="IsSaleCheckbox" class="custom-control-label">Khuyến mãi</label>
-                                        </div>
+                            </div>
+                            <div class="col-3" style="display:none">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox talg">
+                                        @Html.CheckBoxFor(x => x.IFavorite, new { @class = "custom-control-input", @id = "IsFavoriteCheckbox" })
+                                        <label for="IsFavoriteCheckbox" class="custom-control-label">yêu thích</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox talg">
+                                        @Html.CheckBoxFor(x => x.ISale, new { @class = "custom-control-input", @id = "IsSaleCheckbox" })
+                                        <label for="IsSaleCheckbox" class="custom-control-label">Khuyến mãi</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="page2">
-                            <div class="flcl pd">
-                                <div style="color:red">Thêm ít nhất 1 ảnh (330x470)</div>
-                                <div class="col-12" style="display:flex; justify-content:space-between">
-                                    <input type="file" id="fileUpload" multiple />
-                                    <div class="flct col-4">
-                                        <button type="button" id="btnUpload" class="btn btn-primary">Tải lên</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="imagesTable">
-                                    <div class="fl gap" id="tablei">
-                                        <!-- Danh sách ảnh sẽ được thêm vào đây -->
-                                    </div>
-                                </div>
-                                <input type="hidden" id="ddpicId" value="0" />
-                                <input type="hidden" id="Imgs" name="Imgs" />
-                            </div>
-                        </div>
-                        @* <div class="tab-pane" id="page3">
-                            <div class="fljct">
-                                <div class="col-5 flcl bdrdu pd">
-                                    <label class="fljct pd">Chọn Size:</label>
-                                    <div class="fljct gap">
-                                        @foreach (var size in Model.SizeList)
-                                        {
-                                            <input name="SelectedSizes" type="checkbox" value="@size.SizeId" data-namesize="@size.NameSize"/> @size.NameSize
-                                        }
-                                    </div>
-                                </div>
-                                <div class="col-6 flcl bdrdu pd">
-                                    <label class="fljct pd">Chọn Màu Sắc:</label>
-                                    <div class ="fljct gap">
-                                        @foreach (var color in Model.ColorList)
-                                        {
-                                            <input name="SelectedColors" type="checkbox" value="@color.ColorId" data-namecolor="@color.NameColor" /> @color.NameColor
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="fljct mg pd">
-                                <button id="addDetailsBtn">Chọn</button>
-                            </div>
-                            <div>
-                                <table class="table table-bordered mt-3">
-                                    <thead>
-                                        <tr>
-                                            <th>Màu</th>
-                                            <th>Size</th>
-                                            <th>Giá</th>
-                                            <th>Số Lượng</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="detailTableBody">
-                                        @foreach (var detail in Model.Details)
-                                        {
-                                            <tr>
-                                                <td>@detail.ColorId</td>
-                                                <td>@detail.SizeId</td>
-                                                <td><input type="number" name="Details[@detail.SizeId][@detail.ColorId].GiaLoai" value="@detail.GiaLoai" class="form-control" /></td>
-                                                <td><input type="number" name="Details[@detail.SizeId][@detail.ColorId].Quantity" value="@detail.Quantity" class="form-control" /></td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            <input type="hidden" id="detailData" name="DetailData" />
-                        </div> *@
                     </div>
-                    <div class="h-cp-dow fljct">
-                        <div class="mg">
-                            <input type="submit" id="saveDetailsBtn" value="Lưu Thông Tin Sản Phẩm" class="" />
+                    <div class="tab-pane" id="page2">
+                        <div class="flcl pd">
+                            <div style="color:red">Thêm ít nhất 1 ảnh (330x470)</div>
+                            <div class="col-12" style="display:flex; justify-content:space-between">
+                                <input type="file" id="fileUpload" multiple />
+                                <div class="flct col-4">
+                                    <button type="button" id="btnUpload" class="btn btn-primary">Tải lên</button>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-12">
+                            <div id="imagesTable">
+                                <div class="fl gap" id="tablei">
+                                    <!-- Danh sách ảnh sẽ được thêm vào đây -->
+                                </div>
+                            </div>
+                            @* <input  id="ddpicId" value="0" /> *@
+                            <input type="hidden"  id="Imgs" name="Imgs" />
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="page3">
+                        <div class="fljct">
+                            <div class="col-5 flcl bdrdu pd">
+                                <label class="fljct pd">Chọn Size:</label>
+                                <div class="fljct gap">
+                                    @foreach (var size in Model.SizeList)
+                                    {
+                                        <div class="fl gap nw">
+                                            <input type="checkbox" name="SelectedSizes" value="@size.SizeId" data-namesize="@size.NameSize" />
+                                            <div>@size.NameSize</div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-6 flcl bdrdu pd">
+                                <label class="fljct pd">Chọn Màu Sắc:</label>
+                                <div class="gap" style="display:grid;grid-template-columns: repeat(3, 1fr)">
+                                    @foreach (var color in Model.ColorList)
+                                    {
+                                        <div class="flspb">
+                                            <div class="fl gap nw">
+                                                <input type="checkbox" name="SelectedColors" value="@color.ColorId" data-namecolor="@color.NameColor" />
+                                                <div>@color.NameColor</div>
+                                            </div>
+                                            <div style="width:30px;height:auto;background-color:@color.MaColor"></div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fljct mg pd">
+                            <button type="button" id="addDetailsBtn">Chọn</button>
+                        </div>
+                        <div>
+                            <table class="table table-bordered mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>Màu</th>
+                                        <th>Size</th>
+                                        <th>Giá</th>
+                                        <th>Số Lượng</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="detailTableBody">
+                                    @foreach (var detail in Model.Details)
+                                    {
+                                        <tr>
+                                            <td>@detail.ColorId</td>
+                                            <td>@detail.SizeId</td>
+                                            <td><input type="number" name="Details[@detail.SizeId][@detail.ColorId].GiaLoai" value="@detail.GiaLoai" class="form-control" /></td>
+                                            <td><input type="number" name="Details[@detail.SizeId][@detail.ColorId].Quantity" value="@detail.Quantity" class="form-control" /></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="fljct mg pd">
+                                <button type="submit" id="submitBtn" style="display:none;">Submit</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="detailData" name="DetailData" />
                     </div>
                 </div>
-            }
-        </div>
+                <div class="h-cp-dow fljct" style="position:relative;left:0">
+                    <div class="mg">
+                        <input type="submit" id="saveDetailsBtn" value="Lưu Thông Tin Sản Phẩm" class="" />
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>
-@section scripts {   
+@section scripts {
     <script>
-        //kiểm tra mã sp (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
-        document.getElementById("masp").addEventListener("blur", function () {
-            var sp = this.value;
-            fetch(`/admin/productcheck?masp=${sp}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json(); 
-                })
-                .then(data => {
-                    if (data.exists) {
-                        alert("Mã sản phẩm đã tồn tại!");
-                    } 
-                })
-                .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
-        });
-        // //phân tách hàng nghìn trăm chục
-        // document.querySelectorAll('.format_number').forEach(function (input) {
-        //     input.addEventListener('input', function (e) {
-        //         let value = e.target.value.replace(/\./g, '');
-        //         if (!isNaN(value) && value !== "") {
-        //             e.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        //         } else {
-        //             e.target.value = "";
-        //         }
-        //     });
-        // });
-        function checkMaxValue(input) {//kiểm tra mức giảm giá vượt giá trị cho phép
-            const maxValue = parseInt(input.getAttribute("max")); // Lấy giá trị max từ max
-            const currentValue = parseInt(input.value);
-
-            if (currentValue > maxValue) {
-                document.getElementById("GiamGiaError").innerText = `Giảm giá không được vượt quá ${maxValue}.`;
-                input.value = maxValue; // Giới hạn giá trị nhập về max
-            } else {
-                document.getElementById("GiamGiaError").innerText = ""; // Xóa thông báo lỗi
-            }
-            calculateGiaMin();//
-        }
-        function calculateGiaMin() {//tính giá sau khi điền giảm giá
-            var giaMax = parseFloat(document.getElementById('GiaMax').value) || 0;
-            var giamGia = parseFloat(document.getElementById('GiamGia').value) || 0;
-            var giaMin =( giaMax - (giaMax * giamGia / 100) );
-            document.getElementById('GiaMin').value = giaMin.toFixed(0); // Giữ lại 0 chữ số thập phân
-        }
-        //add cột
-        // document.getElementById("addDetailsBtn").addEventListener("click", function (event) {
-        //     event.preventDefault();
-        //     addDetailsToTable();
-        // });
-        // function addDetailsToTable() {
-        //     const selectedSizes = document.querySelectorAll('input[name="SelectedSizes"]:checked');
-        //     const selectedColors = document.querySelectorAll('input[name="SelectedColors"]:checked');
-        //     const tableBody = document.getElementById("detailTableBody");
-
-        //     // Xóa các hàng cũ
-        //     tableBody.innerHTML = "";
-            
-        //         selectedColors.forEach(color => {
-        //             selectedSizes.forEach(size => {
-        //             const row = document.createElement("tr");
-
-        //             // Màu sắc
-        //             const colorCell = document.createElement("td");
-        //             colorCell.textContent = color.getAttribute('data-namecolor'); // Lấy tên màu
-
-        //             // Ẩn ID màu
-        //             const colorIdInput = document.createElement("input");
-        //             //colorIdInput.type = "hidden";
-        //             colorIdInput.name = `Details[${size.value}][${color.value}].IdColor`;
-        //             colorIdInput.value = color.value;
-        //             colorCell.appendChild(colorIdInput);
-
-        //             // Size
-        //             const sizeCell = document.createElement("td");
-        //             sizeCell.textContent = size.getAttribute('data-namesize'); // Lấy tên size
-
-        //             // Ẩn ID size
-        //             const sizeIdInput = document.createElement("input");
-        //             //sizeIdInput.type = "hidden";
-        //             sizeIdInput.name = `Details[${size.value}][${color.value}].IdSize`;
-        //             sizeIdInput.value = size.value;
-        //             sizeCell.appendChild(sizeIdInput);
-
-        //             // Giá
-        //             const priceCell = document.createElement("td");
-        //             const priceInput = document.createElement("input");
-        //             priceInput.type = "number";
-        //             priceInput.name = `Details[${size.value}][${color.value}].GiaLoai`;
-        //             priceInput.className = "form-control";
-        //             priceCell.appendChild(priceInput);
-
-        //             // Số Lượng
-        //             const quantityCell = document.createElement("td");
-        //             const quantityInput = document.createElement("input");
-        //             quantityInput.type = "number";
-        //             quantityInput.name = `Details[${size.value}][${color.value}].Quantity`;
-        //             quantityInput.className = "form-control";
-        //             quantityCell.appendChild(quantityInput);
-
-        //             row.appendChild(colorCell);
-        //             row.appendChild(sizeCell);
-        //             row.appendChild(priceCell);
-        //             row.appendChild(quantityCell);
-
-        //             tableBody.appendChild(row);
-        //         });
-        //     });
-        // }
-        // document.getElementById("productForm").addEventListener("submit", function (event) {
-        //     const rows = document.querySelectorAll("#detailTableBody tr");
-        //     let detailsString = "";
-
-        //     rows.forEach(row => {
-        //         const idColor = row.cells[0].querySelector("input").value;  // ID màu
-        //         const idSize = row.cells[1].querySelector("input").value;   // ID size
-        //         const price = row.cells[2].querySelector("input").value;    // Giá loại
-        //         const quantity = row.cells[3].querySelector("input").value; // Số lượng
-
-        //         // Tạo chuỗi định dạng: idColor,idSize,price,quantity;
-        //         detailsString += `${idColor},${idSize},${price},${quantity};`;
-        //     });
-
-        //     // Gán chuỗi vào input ẩn để gửi về server
-        //     document.getElementById("detailData").value = detailsString;
-        // });
+        /*Thêm Thông tin Ảnh sản phẩm vào bảng DbImg */
+        //tải ảnh
         $(document).ready(function () {
+            var imgUrls = [];
             $('#btnUpload').click(function () {
                 var files = $('#fileUpload').prop('files');
                 var formData = new FormData();
 
-                var picId = parseInt($('#ddpicId').val());
-                var imgUrls = [];
+                //var picId = parseInt($('#ddpicId').val());
 
                 for (var i = 0; i < files.length; i++) {
                     formData.append('files', files[i]);
@@ -347,12 +241,10 @@
                     success: function (response) {
                         if (response.success) {
                             response.filePaths.forEach(function (filePath) {
-                                picId++;
-                                $('#imagesTable #tablei').append('<div id="trow_' + picId + '" class="box"><img src="/img/' + filePath + '"><div class="box_btn"><a href="#" data-id="' + picId + '" class="btnXoaAnh"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></a></div></div>');
+                                $('#imagesTable #tablei').append('<div class="box"><img src="/img/' + filePath + '"><div class="box_btn"><a href="#" class="btnXoaAnh"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></a></div></div>');
                                 imgUrls.push(filePath);
+                                updateImgsInput();
                             });
-                            $('#ddpicId').val(picId);
-                            $('#Imgs').val(imgUrls.join(';'));
                         }
                     },
                     error: function (xhr, status, error) {
@@ -365,14 +257,9 @@
             $('body').on('click', '.btnXoaAnh', function () {
                 var conf = confirm('Bạn có muốn xóa ảnh này không?');
                 if (conf === true) {
-                    var _id = $(this).data('id');
-                    $('#trow_' + _id).fadeTo('fast', 0.5, function () {
-                        $(this).slideUp('fast', function () {
-                            $(this).remove();
-                            updateImgsInput();
-                        });
-                    });
-                }
+                    $(this).closest('.box').remove();
+                    updateImgsInput();
+                };
             });
 
             function updateImgsInput() {
@@ -383,6 +270,7 @@
                 });
                 $('#Imgs').val(imgUrls.join(';'));
             }
-        });       
+        });
     </script>
+    <script src="~/js_admin/admin_creatproduct.js"></script>
 }
