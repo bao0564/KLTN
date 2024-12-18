@@ -3,7 +3,7 @@
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<ShoppingCartItem>
+@model ShoppingCartDetail
 <main class="cart" style="margin-bottom:150px">
     <div class="body-cart body-cart-index">
         <div class="address-cart">
@@ -12,7 +12,7 @@
                     <div class="title">
                         <h3 style="color:#fff">Thông Tin Địa Chỉ </h3>
                     </div>
-                    @if (Context.Session.GetInt32("userid") != null)
+                    @if (Context.Session.GetInt32("userId") != null)
                     {
                         <div>
                             <a onclick="openAD()"><i onclick="openAD()" class="fa-solid fa-plus fa-lg" style="color: #fff;"></i></a>
@@ -23,7 +23,7 @@
                         <div></div>
                     }
                 </div>
-                @* <div id="form-address" class="form-address bdrdu pssf" style="display: none;background-color: #e9e9e9;z-index: 10;min-width:300px">
+                <div id="form-address" class="form-address bdrdu pssf" style="display: none;background-color: #e9e9e9;z-index: 10;min-width:300px">
                     <div class="bdrdu" onclick="closeAD()" style="position:absolute;right:-20px;top:-15px;background-color:#2f3640;color:#fff;cursor:pointer">✕</div>
                     <div class="form-address-user mg">
                         @if (Model.Address != null && Model.Address.Count > 0)
@@ -33,9 +33,9 @@
                                 @foreach (var address in Model.Address)
                                 {
                                     <div class="box-adress-user fljct bdrdu mg" style="background-color:#fff">
-                                        <input type="checkbox" class="address-val" style="margin:0 10px" data-name="@address.TenNguoiNhan" data-phone="@address.Sdt" data-city="@address.City" data-district="@address.QuanHuyen" data-ward="@address.PhuongXa" data-address="@address.Addres" />
+                                        <input type="checkbox" class="address-val" style="margin:0 10px" data-name="@address.TenNguoiNhan" data-phone="@address.Sdt" data-city="@address.City" data-district="@address.QuanHuyen" data-ward="@address.PhuongXa" data-address="@address.Address" />
                                         <div class="pd">
-                                            <h5>@address.TenNguoiNhan- @address.Sdt -@address.PhuongXa,@address.QuanHuyen,@address.City (@address.Addres)</h5>
+                                            <h5>@address.TenNguoiNhan- @address.Sdt -@address.PhuongXa,@address.QuanHuyen,@address.City (@address.Address)</h5>
                                         </div>
                                     </div>
                                 }
@@ -55,7 +55,7 @@
                             </div>
                         }
                     </div>
-                </div> *@
+                </div>
                 <div class="bdrdu" style="padding:0;">
                     <div class="">
                         <div class="space-address">
@@ -93,12 +93,12 @@
                     </div>
                     <div class="bdrdu pay-list" style="">
                         <div class="space-pay">
-                            @* @foreach (var pay in Model.Payments)
+                            @foreach (var pay in Model.Payments)
                             {
                                 <div class="box-pay">
                                     <div class="pay-title">
                                         <span class="check-box">
-                                            <input type="checkbox" class="pay-checked" data-payid="@pay.PaymentId" data-payicon="@Url.Content("/icon/" + @pay.Icon)" data-payname="@pay.PaymentName" />
+                                            <input type="checkbox" class="pay-checked" data-payid="@pay.PaymentId" data-payicon="@pay.Icon" data-payname="@pay.PaymentName" />
                                         </span>
                                         <div class="icon">
                                             <img src="@Url.Content("/icon/"+pay.Icon)" alt="">
@@ -106,7 +106,7 @@
                                         <div class="title">@pay.PaymentName</div>
                                     </div>
                                 </div>
-                            } *@
+                            }
                         </div>
                     </div>
                 </div>
@@ -115,13 +115,13 @@
                         <h3 style="color:#fff">Voucher</h3>
                     </div>
                     <div class="bdrdu voucher-list">
-                       @*  @foreach (var vc in Model.Vouchers)
+                        @foreach (var vc in Model.Vouchers)
                         {
                             <div class="space-pay">
                                 <div class="bdrdu" style="flex-grow:1">
                                     <div class="cart-container flct">
                                         <span class="check-box">
-                                            <input type="checkbox" class="voucher-checked" data-vcvalue="@vc.valueVoucher" data-vcid="@vc.idVoucher" data-mavc="@vc.MaVoucher" />
+                                            <input type="checkbox" class="voucher-checked" data-vcvalue="@vc.valueVoucher" data-vcid="@vc.IdVoucher" data-mavc="@vc.MaVoucher" />
                                         </span>
                                         <div class="box-img flct">
                                             <img src="@Url.Content("/icon/"+vc.IconVoucher)" alt="Product Image" />
@@ -133,7 +133,7 @@
                                     </div>
                                 </div>
                             </div>
-                        } *@
+                        }
                     </div>
                 </div>
             </div>
@@ -144,14 +144,14 @@
                     <h3 style="border-bottom:1px solid">Giỏ Hàng </h3>
                 </div>
                 <div id="List-prd-cart">
-                    @if (Model != null && Model.Any())
+                    @if (Model.Items != null && Model.Items.Any())
                     {
-                        foreach (var prd in Model)
+                        foreach (var prd in Model.Items)
                         {
                             <div class="box-cart" id="sp-@prd.IdSp">
                                 <div class="cart-container flspb">
                                     <div class="check-box">
-                                        <input type="checkbox" class="cart-checkbox" data-id="@prd.IdSp" data-price="@prd.GiaLoai" data-total="@prd.Total" data-sizeid="@prd.SizeId" data-colorid="@prd.ColorId" />
+                                        <input type="checkbox" class="cart-checkbox"data-quantity="@prd.ProductQuantity" data-idsp="@prd.IdSp" data-masp="@prd.MaSp" data-price="@prd.GiaLoai" data-total="@prd.Total" data-sizeid="@prd.SizeId" data-colorid="@prd.ColorId" data-img="@prd.AnhSp" data-name="@prd.TenSp" data-color="@prd.NameColor" data-size="@prd.NameSize" />
                                     </div>
                                     <div class="box-img fl-center">
                                         <img src="@Url.Content("/img/" + prd.AnhSp)" alt="Product Image" />
@@ -159,7 +159,7 @@
                                     <div class="cart-infor">
                                         <div style="max-width:100%">
                                             <div class="infor-colum">
-                                                <p class="cart-name" style="color:#000">@prd.TenSp</p>
+                                                <a class ="cart-name" style="color:#000" asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp">@prd.TenSp</a>
                                                 <div class="flspb">
                                                     <div class="flct" style="white-space:nowrap">
                                                         Phân Loại:
@@ -174,9 +174,9 @@
                                                 </div>
                                                 <div>
                                                     <div class="quantity_selector_cart">
-                                                        <span class="minus-cart" data-id="@prd.IdSp"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                        <span class="minus-cart" data-idsp="@prd.IdSp" data-colorid="@prd.ColorId" data-sizeid="@prd.SizeId"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                                         <span class="quantity_value-cart" id="quantity_@prd.IdSp">@prd.ProductQuantity</span>
-                                                        <span class="plus-cart" data-id="@prd.IdSp"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                        <span class="plus-cart" data-idsp="@prd.IdSp" data-colorid="@prd.ColorId" data-sizeid="@prd.SizeId"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -184,7 +184,7 @@
                                     </div>
                                     <div class="check-box">
                                         <div>
-                                            <input type="button" class="deletebtn" value="xóa" asp-controller="shoppingcart" data-id="@prd.IdSp" />
+                                            <input type="button" class="deletebtn" value="xóa" asp-controller="shoppingcart" data-idsp="@prd.IdSp" data-colorid="@prd.ColorId" data-sizeid="@prd.SizeId" />
                                         </div>
                                     </div>
                                 </div>
@@ -196,41 +196,6 @@
                         <p style="display:flex;justify-content:center">giỏ hàng trống</p>
                     }
 
-                </div>
-            </div>
-        </div>
-        <div id="form-yc-login" class="form-login">
-            <div class="fa-login" id="fa-login" style="z-index:10">
-                <div class="creen-login">
-                    <div class="box-login box" style="width:700px">
-                        <span class="close-login" onclick="ClLable()">✕</span>
-                        <div class="login-left" style="background-color:#2f3640;border-radius:10px">
-                            <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-                                <form action="" id="dangnhap">
-                                    <div class="title">
-                                        <p class="login">Đăng Nhập</p>
-                                    </div>
-                                    <div class="sm-title" style="color:#fff">
-                                        Bạn chưa đăng nhập, hãy đăng nhập tại đây!
-                                    </div>
-                                    <div class="btn-swich btn">
-                                        <a href="@Url.Action("Login","Access")" style="display:flex;align-items:center;background-color:#000;border-radius:5px"><p>Đăng Nhập</p></a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="login-right">
-                            <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-                                <img src="/logo/login.png" alt="" />
-                                <div class="sm-title">
-                                    Bạn chưa có tài khoản.Hãy tạo ở đây!
-                                </div>
-                                <div class="btn-swich btn">
-                                    <a href="@Url.Action("Register","Access")" style="display:flex;align-items:center;background-color:#000;border-radius:5px"><p>Đăng Ký Tài Khoản</p></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -265,13 +230,13 @@
                             </div>
                         </div>
                         <div style="">
-                            @if (Context.Session.GetString("user") != null)
+                            @if (Context.Session.GetString("userId") != null)
                             {
                                 <button class="pay-btn">Đặt Hàng</button>
                             }
                             else
                             {
-                                <button id="pay-btn-none" class="pay-btn-none" onclick="OpLable()">Đặt Hàng</button>
+                                <button id="pay-btn-none" class="pay-btn-none" >Đặt Hàng</button>
                             }
                         </div>
                     </div>
@@ -292,20 +257,20 @@
         }
     </style>
     <script>
-        function OpLable() {
-            document.getElementById("form-yc-login").style.display = "block";
-            document.getElementById("form-register").style.display = "none";
-        }
-        function ClLable() {
-            document.getElementById("form-yc-login").style.display = "none";
-        }
-        //đóng mở form chọn địa chỉ
-        function openAD() {
-            document.getElementById("form-address").style.display = "block";
-        }
-        function closeAD() {
-            document.getElementById("form-address").style.display = "none";
-        }
+        // function OpLable() {
+        //     document.getElementById("form-yc-login").style.display = "block";
+        //     document.getElementById("form-register").style.display = "none";
+        // }
+        // function ClLable() {
+        //     document.getElementById("form-yc-login").style.display = "none";
+        // }
+        // //đóng mở form chọn địa chỉ
+        // function openAD() {
+        //     document.getElementById("form-address").style.display = "block";
+        // }
+        // function closeAD() {
+        //     document.getElementById("form-address").style.display = "none";
+        // }
     </script>
 }
 <script src="../js/addtocart.js"></script>

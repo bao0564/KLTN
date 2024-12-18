@@ -47,5 +47,6 @@ namespace Data.Models
         public virtual ICollection<DbFavoriteProduct> favoriteproducts { get; set; } = new List<DbFavoriteProduct>();// 1 sp có thể xuất hiện nhiều trong bảng sp yêu thích
         public virtual ICollection<DbProductDetail> detailproducts { get; set; } = new List<DbProductDetail>();// 1 sp có thể xuất hiện nhiều trong bảng chi tiết sản phẩm}
         public virtual ICollection<DbCart> carts { get; set; } = new List<DbCart>();//1 sp có thể xuất hiện nhiều trong giỏ hàng
+        public virtual ICollection<DbOrderDetail> orderdetails { get; set; } = new List<DbOrderDetail>();//1 sp có thể xuất hiện nhiều trong ctdh
     }
 }

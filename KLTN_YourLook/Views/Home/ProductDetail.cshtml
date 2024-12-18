@@ -110,10 +110,16 @@
 					</div>
 					<div class="cart-box">
 						<div class="btn flct pd" style="background-color:#2f3640;margin:0 10px">
-							<a class="btnAddToCart" id="btnAddToCart" data-id="@Model.MaSp" style="color:#fff" asp-action="Add" asp-controller="ShoppingCart" asp-route-Id="@Model.MaSp">Thêm vào giỏ hàng</a>
+							@if(Context.Session.GetInt32("userId")!=null){
+								<a class="btnAddToCart" id="btnAddToCart" data-idsp="@Model.IdSp" style="color:#fff">Thêm vào giỏ hàng</a>
+							}
+							else
+							{
+								<a onclick="OpLable()" style="color:#fff">Thêm vào giỏ hàng</a>
+							}
 						</div>
 						<div style="border:1px solid #2f3640;border-radius:10px">
-							<div class="favorite" data-id="@Model.MaSp" style="font-size:20px;position:relative;top:0;left:0;padding:5px 15px">
+							<div class="favorite" data-id="@Model.IdSp" style="font-size:20px;position:relative;top:0;left:0;padding:5px 15px">
 								@if (Model.IsFavorite)
 								{
 									<i class="fa-solid fa-heart" style="color: #2f3640;"></i>
@@ -122,6 +128,41 @@
 								{
 									<i class="fa-regular fa-heart" style="color: #2f3640;"></i>
 								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="form-yc-login" class="form-login">
+				<div class="fa-login" id="fa-login" style="z-index:10">
+					<div class="creen-login">
+						<div class="box-login box" style="width:700px">
+							<span class="close-login" onclick="ClLable()">✕</span>
+							<div class="login-left" style="background-color:#2f3640;border-radius:10px">
+								<div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+									<form action="" id="dangnhap">
+										<div class="title">
+											<p class="login">Đăng Nhập</p>
+										</div>
+										<div class="sm-title" style="color:#fff">
+											Bạn chưa đăng nhập, hãy đăng nhập tại đây!
+										</div>
+										<div class="btn-swich btn">
+											<a href="@Url.Action("Login","Access")" style="display:flex;align-items:center;background-color:#000;border-radius:5px"><p>Đăng Nhập</p></a>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="login-right">
+								<div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+									<img src="/logo/login.png" alt="" />
+									<div class="sm-title">
+										Bạn chưa có tài khoản.Hãy tạo ở đây!
+									</div>
+									<div class="btn-swich btn">
+										<a href="@Url.Action("Register","Access")" style="display:flex;align-items:center;background-color:#000;border-radius:5px"><p>Đăng Ký Tài Khoản</p></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -324,6 +365,22 @@
 			cursor: not-allowed;
 		}
 	</style>
+	<script>
+		function OpLable() {
+			document.getElementById("form-yc-login").style.display = "block";
+			document.getElementById("form-register").style.display = "none";
+		}
+		function ClLable() {
+			document.getElementById("form-yc-login").style.display = "none";
+		}
+		//đóng mở form chọn địa chỉ
+		function openAD() {
+			document.getElementById("form-address").style.display = "block";
+		}
+		function closeAD() {
+			document.getElementById("form-address").style.display = "none";
+		}
+	</script>
 }
 
 @section scripts {

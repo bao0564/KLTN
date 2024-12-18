@@ -83,9 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // Hiển thị giá và số lượng
     function updatePriceAndQuantity() {
-        if (!selectedSize || !selectedColor) {
-
-            QuantityOption.innerText = "chọn màu";
+        if (!selectedColor) {
+            QuantityOption.innerText = "chọn thêm màu";
+            return;
+        }
+        if (!selectedSize) {
+            QuantityOption.innerText = "chọn thêm size";
             return;
         }
         const detail = productDetails.find(d => d.sizeId === parseInt(selectedSize) && d.colorId === parseInt(selectedColor));
@@ -108,13 +111,15 @@ document.addEventListener("DOMContentLoaded", () => {
             button.classList.remove('selected');
         });
         selectedColor = null; // Xóa trạng thái màu sắc đã chọn
+        selectedSize = null; // Xóa trạng thái màu sắc đã chọn
     }
     function resetSizeButtons() {
         sizeOptions.forEach(button => {
             button.disabled = false; // Bật lại tất cả các nút
             button.classList.remove("disabled");
-            button.classList.remove("selected"); // Xóa highlight
+            button.classList.remove("selected"); // Xóa highlight  
         });
+        selectedColor = null; // Xóa trạng thái màu sắc đã chọn
         selectedSize = null; // Xóa trạng thái màu sắc đã chọn
     }
 });

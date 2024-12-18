@@ -15,13 +15,14 @@ namespace KLTN_YourLook.Component
 		}
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
+			int iddm = 2005;//Quần short
 			var idkh = HttpContext.Session.GetInt32("userid");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
 				idFvrPrd = _context.DbFavoriteProducts.Where(x => x.IdKh == idkh.Value).Select(x => x.IdSp).ToList();
 			}
-			var page2lst = await _productRepository.Product_QS_View();
+			var page2lst = await _productRepository.Product_By_Iddm(iddm);
 			foreach (var prd in page2lst)
 			{
 				prd.IFavorite = idFvrPrd.Contains(prd.IdSp);

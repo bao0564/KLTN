@@ -49,7 +49,7 @@ namespace KLTN_YourLook.Models
     //    }
     //}
     //sản phẩm thêm vào giỏ hàng
-    public class ShoppingCartItem
+    public class ShoppingCartItem //để sp dùng hiển thị sp giỏ hàng
     {
         public int IdSp { get; set; }
         public string MaSp { get; set; }
@@ -63,30 +63,41 @@ namespace KLTN_YourLook.Models
         public int ProductQuantity { get; set; }
         public decimal Total {  get; set; }
     }
-    //Địa chỉ người dùng + Sản phẩm thêm vào giỏ hàng + phương thức thanh toán + voucher
-    public class ShoppingCartDetail
+        //lưu thông tin địa chỉ của khách hàng
+    public class addressInforItem
     {
-        public IEnumerable<ShoppingCartItem> Items { get; set; }
-        public List<DbAddress> Address { get; set; }
-        public List<DbPayment> Payments { get; set; }
-        public List<DbVoucher> Vouchers { get; set; }
+        public int MaKh {  get; set; }
+        public string EmailKh { get; set; }
+        public string TenKh { get; set; }
+        public string Sdt { get; set; }
+        public string City { get; set; }
+        public string District { get; set; }
+        public string Ward { get; set; }
+        public string DiaChi { get; set; }
+        public decimal TongTien { get; set; }   // Phí vận chuyển thường là số thập phân
+        public string GhiChu { get; set; }
     }
-    //sản phẩm được chọn thêm vào trang thanh toán
-    public class CheckOutItem
+    public class paymentInforItem
     {
-        public int ProductId { get; set; }
-        public string? CategoryName { get; set; }
-        public string? ProductName { get; set; }
-        public string? ProductImg { get; set; }
-        public int ProductQuantity { get; set; }
-        public decimal ProductPrice { get; set; }
-        public int ColorId { get; set; }
-        public string ColorName { get; set; }
-        public int SizeId { get; set; }
-        public string SizeName { get; set; }
-        public decimal Total { get; set; }
-        
+        public string Icon { get; set; }
+        public int PaymentId { get; set; }
+        public string PayName { get; set; }   // Giảm giá có thể là số thập phân
     }
+    public class voucherInfoItem
+    {
+        public int IdVoucher { get; set; }
+        public string MaVoucher { get; set; }
+        public int ValueVoucher { get; set; } 
+        public decimal Ship { get; set; }
+    }
+    public class CheckoutRequest //chứa các thông tin sản phẩm + khách hàng + ... được người dùng tích chọn (JS:addtocart)
+    {
+        public List<ShoppingCartItem> selectedProducts { get; set; }
+        public addressInforItem selectedInfors { get; set; }
+        public paymentInforItem selectedPayments { get; set; }
+        public voucherInfoItem selectedVouchers { get; set; }
+    }
+
     public class ViewCheckOutItem
     {
         public string? TenKh { get; set; }
@@ -102,33 +113,31 @@ namespace KLTN_YourLook.Models
         public string? GhiChu { get; set; }
         public decimal? GiamGia { get; set; }    // Giảm giá có thể là số thập phân
         public decimal? Ship { get; set; }        // Phí vận chuyển thường là số thập phân
-        public List<CheckOutItem>? CheckOutItems { get; set; }
+        public List<ShoppingCartItem>? CheckOutItems { get; set; }
     }
-        //lưu thông tin địa chỉ của khách hàng
-    public class OrderInforItem
+    //Địa chỉ người dùng + Sản phẩm thêm vào giỏ hàng + phương thức thanh toán + voucher
+    public class ShoppingCartDetail
     {
-        public int MaKh {  get; set; }
-        public string EmailKh { get; set; }
-        public string? TenKh { get; set; }
-        public string? Sdt { get; set; }
-        public string? City { get; set; }
-        public string? District { get; set; }
-        public string? Ward { get; set; }
-        public string? DiaChi { get; set; }
-        public decimal? TongTien { get; set; }
-        public int? PaymentId { get; set; }
-        public string icon {  get; set; }
-        public string payname {  get; set; }
-        public decimal? GiamGia { get; set; }    // Giảm giá có thể là số thập phân
-        public decimal? Ship { get; set; }        // Phí vận chuyển thường là số thập phân
+        public IEnumerable<ShoppingCartItem> Items { get; set; }
+        public List<DbAddress> Address { get; set; }
+        public List<DbPayment> Payments { get; set; }
+        public List<DbVoucher> Vouchers { get; set; }
+    }
+    ////sản phẩm được chọn thêm vào trang thanh toán
+    //public class CheckOutItem
+    //{
+    //    public int ProductId { get; set; }
+    //    public string ProductName { get; set; }
+    //    public string ProductImg { get; set; }
+    //    public int ColorId { get; set; }
+    //    public string ColorName { get; set; }
+    //    public int SizeId { get; set; }
+    //    public string SizeName { get; set; }
+    //    public decimal ProductPrice { get; set; }
+    //    public int ProductQuantity { get; set; }
+    //    public decimal Total { get; set; }
 
-        public string? GhiChu { get; set; }
-    }
-    public class CheckoutRequest
-    {
-        public List<CheckOutItem> selectedProducts { get; set; }
-        public OrderInforItem selectInfors { get; set; }
-    }
+    //}
 }
 
 

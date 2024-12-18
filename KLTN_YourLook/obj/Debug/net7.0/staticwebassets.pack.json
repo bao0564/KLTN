@@ -873,10 +873,6 @@
       "PackagePath": "staticwebassets\\js\\addtocart.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\btnquantity.js",
-      "PackagePath": "staticwebassets\\js\\btnquantity.js"
-    },
-    {
       "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\categories_custom.js",
       "PackagePath": "staticwebassets\\js\\categories_custom.js"
     },
@@ -919,6 +915,10 @@
     {
       "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\move-ad.js",
       "PackagePath": "staticwebassets\\js\\move-ad.js"
+    },
+    {
+      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\payorder.js",
+      "PackagePath": "staticwebassets\\js\\payorder.js"
     },
     {
       "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\product-fls.js",

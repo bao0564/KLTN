@@ -11,7 +11,7 @@ namespace Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PaymentId { get; set; }
         [Required(ErrorMessage = "*")]
-        [StringLength(20)]
+        [StringLength(50)]
         public string? PaymentName { get; set; }
         [StringLength(250)]
         public string? Icon { get; set; }

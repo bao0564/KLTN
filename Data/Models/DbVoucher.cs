@@ -22,7 +22,7 @@ namespace Data.Models
         [StringLength(500)]
         public string MotaVoucher { get; set; }
 
-        public virtual ICollection<DbOrder> dborders { get; set; } = new List<DbOrder>();//1 voucher có thể áp dụng nhiều đơn hàng
+        public virtual ICollection<DbOrder> orders { get; set; } = new List<DbOrder>();//1 voucher có thể áp dụng nhiều đơn hàng
         public virtual ICollection<DbUser_Voucher> user_voucher { get; set; } = new List<DbUser_Voucher>();//1 voucher có thể áp dụng nhiều người dùng/voucher(DbUserVoucher)
     }
 }

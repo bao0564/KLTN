@@ -69,12 +69,9 @@ namespace Data.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int?>("customerIdKh")
-                        .HasColumnType("int");
-
                     b.HasKey("IdAddress");
 
-                    b.HasIndex("customerIdKh");
+                    b.HasIndex("IdKh");
 
                     b.ToTable("DbAddress");
                 });
@@ -497,13 +494,17 @@ namespace Data.Migrations
                     b.Property<bool>("Complete")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("DbPaymentPaymentId")
-                        .HasColumnType("int");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DiaChi")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("District")
                         .IsRequired()
@@ -516,8 +517,7 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("GhiChu")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Giamgia")
                         .HasColumnType("decimal(18,2)");
@@ -529,9 +529,15 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MaDh")
-                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ModifiedBy")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("ODReadly")
                         .HasColumnType("bit");
@@ -572,22 +578,16 @@ namespace Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<int>("customerIdKh")
-                        .HasColumnType("int");
-
                     b.Property<int>("soluong")
-                        .HasColumnType("int");
-
-                    b.Property<int>("voucherIdVoucher")
                         .HasColumnType("int");
 
                     b.HasKey("IdDh");
 
-                    b.HasIndex("DbPaymentPaymentId");
+                    b.HasIndex("IdKh");
 
-                    b.HasIndex("customerIdKh");
+                    b.HasIndex("IdVoucher");
 
-                    b.HasIndex("voucherIdVoucher");
+                    b.HasIndex("PaymentId");
 
                     b.ToTable("DbOrder");
                 });
@@ -600,38 +600,50 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCTDH"));
 
-                    b.Property<string>("AnhSp")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdColor")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdDh")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdProductDetail")
+                    b.Property<int>("IdSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("MaCTDH")
+                    b.Property<int>("IdSp")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaDh")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("MaSp")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
-                    b.Property<int>("ProductDetailIdCTSP")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("SoLuongSp")
                         .HasColumnType("int");
 
-                    b.Property<int>("orderIdDh")
-                        .HasColumnType("int");
-
                     b.HasKey("IdCTDH");
 
-                    b.HasIndex("ProductDetailIdCTSP");
+                    b.HasIndex("IdDh");
 
-                    b.HasIndex("orderIdDh");
+                    b.HasIndex("IdSp");
 
                     b.ToTable("DbOrderDetail");
                 });
@@ -664,8 +676,8 @@ namespace Data.Migrations
 
                     b.Property<string>("PaymentName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("PaymentId");
 
@@ -933,7 +945,9 @@ namespace Data.Migrations
                 {
                     b.HasOne("Data.Models.DbCustomer", "customer")
                         .WithMany("addresses")
-                        .HasForeignKey("customerIdKh");
+                        .HasForeignKey("IdKh")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("customer");
                 });
@@ -1005,44 +1019,47 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbOrder", b =>
                 {
-                    b.HasOne("Data.Models.DbPayment", null)
-                        .WithMany("orders")
-                        .HasForeignKey("DbPaymentPaymentId");
-
                     b.HasOne("Data.Models.DbCustomer", "customer")
                         .WithMany("orders")
-                        .HasForeignKey("customerIdKh")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdKh")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Models.DbVoucher", "voucher")
-                        .WithMany("dborders")
-                        .HasForeignKey("voucherIdVoucher")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("orders")
+                        .HasForeignKey("IdVoucher")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Data.Models.DbPayment", "payment")
+                        .WithMany("orders")
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("customer");
+
+                    b.Navigation("payment");
 
                     b.Navigation("voucher");
                 });
 
             modelBuilder.Entity("Data.Models.DbOrderDetail", b =>
                 {
-                    b.HasOne("Data.Models.DbProductDetail", "ProductDetail")
-                        .WithMany()
-                        .HasForeignKey("ProductDetailIdCTSP")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Data.Models.DbOrder", "order")
                         .WithMany("orderdetails")
-                        .HasForeignKey("orderIdDh")
+                        .HasForeignKey("IdDh")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProductDetail");
+                    b.HasOne("Data.Models.DbProduct", "product")
+                        .WithMany("orderdetails")
+                        .HasForeignKey("IdSp")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("order");
+
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Data.Models.DbProduct", b =>
@@ -1155,6 +1172,8 @@ namespace Data.Migrations
                     b.Navigation("favoriteproducts");
 
                     b.Navigation("imgs");
+
+                    b.Navigation("orderdetails");
                 });
 
             modelBuilder.Entity("Data.Models.DbSize", b =>
@@ -1166,7 +1185,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbVoucher", b =>
                 {
-                    b.Navigation("dborders");
+                    b.Navigation("orders");
 
                     b.Navigation("user_voucher");
                 });
