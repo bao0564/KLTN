@@ -11,7 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\msg.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\admin_ressponsive.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\msg.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +48,10 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Procedure\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\msg.js" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jLci4mjmlv7mATBwd4Ncj6F2Z+HM/7QEGGo/o2UhDGw=",
+  "Hash": "meLP3QMKhbclXoIVLFystD1qKyX8KMGRzLAJ3B2SiCs=",
   "Source": "KLTN_YourLook",
   "BasePath": "_content/KLTN_YourLook",
   "Mode": "Default",
@@ -5280,25 +5280,6 @@
       "OriginalItemSpec": "wwwroot\\js\\addtocart.js"
     },
     {
-      "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\btnquantity.js",
-      "SourceId": "KLTN_YourLook",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\",
-      "BasePath": "_content/KLTN_YourLook",
-      "RelativePath": "js/btnquantity.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\btnquantity.js"
-    },
-    {
       "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\categories_custom.js",
       "SourceId": "KLTN_YourLook",
       "SourceType": "Discovered",
@@ -5563,6 +5544,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\move-ad.js"
+    },
+    {
+      "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\payorder.js",
+      "SourceId": "KLTN_YourLook",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\",
+      "BasePath": "_content/KLTN_YourLook",
+      "RelativePath": "js/payorder.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\payorder.js"
     },
     {
       "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\product-fls.js",

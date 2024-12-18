@@ -137,62 +137,7 @@ namespace KLTN_YourLook.Repository_YL
 			var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("EXEC product_ql_view");
 			return MapToViewAllDetails(lstraw);
 		}
-
-		//sản phẩm quần short
-		public async Task<List<ViewAllDetail>> Product_QS_View()
-		{
-			if (_dbConnection == null)
-			{
-				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-			}
-			var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("EXEC product_qs_view");
-			return MapToViewAllDetails(lstraw);
-		}
-
-		//sản phẩm quần baggy
-		public async Task<List<ViewAllDetail>> Product_QBG_View()
-		{
-			if (_dbConnection == null)
-			{
-				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-			}
-			var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("EXEC product_qbg_view");
-			return MapToViewAllDetails(lstraw);
-		}
-
-		//sản phẩm áo thun
-		public async Task<List<ViewAllDetail>> Product_AT_View()
-		{
-			if (_dbConnection == null)
-			{
-				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-			}
-			var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("EXEC product_at_view");
-			return MapToViewAllDetails(lstraw);
-		}
-
-		//sản phẩm áo dài tay
-		public async Task<List<ViewAllDetail>> Product_ADT_View()
-		{
-			if (_dbConnection == null)
-			{
-				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-			}
-			var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("EXEC product_adt_view");
-			return MapToViewAllDetails(lstraw);
-		}
-
-		//sản phẩm áo khoác
-		public async Task<List<ViewAllDetail>> Product_AK_View()
-		{
-			if (_dbConnection == null)
-			{
-				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-			}
-			var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("EXEC product_ak_view");
-			return MapToViewAllDetails(lstraw);
-		}
-		//
+		//san pham theo danh mục
 		public async Task<List<ViewAllDetail>> Product_By_Iddm(int iddm)
         {
             if (_dbConnection == null)

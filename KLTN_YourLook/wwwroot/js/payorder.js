@@ -1,5 +1,4 @@
-﻿
-$('.checkout-btn').off('click').on('click', function (e) {
+﻿$('.checkout-btn').off('click').on('click', function (e) {
     e.preventDefault();
     $.ajax({
         url: '/shoppingcart/payorder',
@@ -8,11 +7,11 @@ $('.checkout-btn').off('click').on('click', function (e) {
             if (response.success) {
                 window.location.href = '/shoppingcart/payordersuccess';
             } else {
-                alert('Có lỗi xảy ra: ' + response.message);
+                showMess("Có lỗi xảy ra không đặt được hàng.", false);
             }
         },
         error: function (xhr, status, error) {
-            alert('Có lỗi xảy ra: ' + error);
+            showMess("Có lỗi xảy ra khi đặt hàng", false);
         }
     });
 });

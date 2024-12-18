@@ -81,7 +81,7 @@ namespace KLTN_YourLook.Controllers
 		{
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
@@ -100,7 +100,7 @@ namespace KLTN_YourLook.Controllers
 		{
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
@@ -120,7 +120,7 @@ namespace KLTN_YourLook.Controllers
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
 			DateTime prdNew = DateTime.Now.AddDays(-30);
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
@@ -139,7 +139,7 @@ namespace KLTN_YourLook.Controllers
 		{
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
@@ -158,7 +158,7 @@ namespace KLTN_YourLook.Controllers
 		{
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
@@ -177,7 +177,7 @@ namespace KLTN_YourLook.Controllers
 		{
 			int pageSize = 15;
 			int pageNumber = page ?? 1;
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
@@ -196,7 +196,7 @@ namespace KLTN_YourLook.Controllers
 		{
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
@@ -229,7 +229,7 @@ namespace KLTN_YourLook.Controllers
 					await _context.SaveChangesAsync();
 				}
 			};
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			bool isFavorite = false;
 			if (idkh != null)
 			{
