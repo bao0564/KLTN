@@ -1,0 +1,164 @@
+﻿
+@using KLTN_YourLook.Areas.Admin.Models
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model X.PagedList.IPagedList<AllOrderViewModle>
+<div class="cp0">
+    Danh sách đơn hàng
+</div>
+<div class="h-cp1">
+    <div class="h-cp-f">
+        <div class="h-cp-up">
+            <div class="bt-c"><a href="@Url.Action("TaoDonHang","Admin")">Tạo đơn hàng mới</a></div>
+            <div class="bt-c"><a href="">In dữ liệu </a></div>
+            <div class="bt-c"><a href="">Xuất Excel</a></div>
+            <div class="bt-c"><a href="">Xuất PDF</a></div>
+            <div class="bt-c"><a href="">Xóa Tất cả</a></div>
+        </div>
+        <div>
+            @using (Html.BeginForm("Order", "Order", FormMethod.Get))
+            {
+                <div class="flspe">
+                    <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Id, Mã Đơn Hàng/ Người tạo . . .">
+                    <button type="submit">Tìm Kiếm</button>
+                </div>
+            }
+        </div>
+        <div class="fle" style="margin:15px 15px 0 0">
+            <div class="flct mg-lr">
+                <input type="checkbox" id="odsuccess" onchange="applyFilter()" />
+                <div style="padding-top:5px" class="ttu cl000">đã đặt</div>
+            </div>
+            <div class="flct mg-lr">
+                <input type="checkbox" id="odreadly" onchange="applyFilter()" />
+                <div style="padding-top:5px" class="ttu cl000">sẵn sàng</div>
+            </div>
+            <div class="flct mg-lr">
+                <input type="checkbox" id="odtranport" onchange="applyFilter()" />
+                <div style="padding-top:5px" class="ttu cl000">Đang vận chuyển</div>
+            </div>
+            <div class="flct">
+                <input type="checkbox" id="complete" onchange="applyFilter()" />
+                <div style="padding-top:5px" class="ttu cl000">hoàn thành</div>
+            </div>
+        </div>
+        <div class="h-cp-mid">
+            <table class="h-table">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Người Đặt</th>
+                        <th>Người Nhận</th>
+                        <th>Địa Chỉ Nhận</th>
+                        <th>Số Lượng</th>
+                        <th>Tổng tiền</th>
+                        <th>Tổng Thanh toán</th>
+                        <th>Ngày Đặt</th>
+                        <th>Đặt Thành công</th>
+                        <th>Chuẩn bị hàng</th>
+                        <th>Đang vận chuyển</th>
+                        <th>Hoàn Thành</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var prd in Model)
+                        {
+                            <tr>
+                                <td>@prd.MaDh</td>
+                                <td class="nw">@prd.TenKh</td>
+                                <td class="nw">@prd.NguoiNhan</td>
+                                <td>@prd.InforAddress</td>
+                                <td>@prd.soluong</td>
+                                <td class="nw">@prd.TongTien.ToString("N0") VND</td>
+                                <td>@prd.TongTienThanhToan.ToString("N0") VND</td>
+                                <td>@prd.CreateDate.ToString("dd/MM/yyyy")</td>
+                                @if (prd.ODSuccess == true)
+                                {
+                                    <td>
+                                        <div class="check-od"></div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="check-od-none"></div>
+                                    </td>
+                                }
+                                @if (prd.ODReadly == true)
+                                {
+                                    <td>
+                                        <div class="check-od"></div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="check-od-none"></div>
+                                    </td>
+                                }
+                                @if (prd.ODTransported == true)
+                                {
+                                    <td>
+                                        <div class="check-od"></div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="check-od-none"></div>
+                                    </td>
+                                }
+                                @if (prd.Complete == true)
+                                {
+                                    <td>
+                                        <div class="check-od"></div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="check-od-none"></div>
+                                    </td>
+                                }
+                                <td>
+                                    <div style="display:flex;flex-direction:column;gap:10px">
+                                        <a class="btn-ddu btn-dt nw" href="@Url.Action("ChiTietDonHang",new {madh=prd.MaDh})" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
+                                        <div style="display:flex;justify-content:space-between">
+                                            <a class="btn-ddu btn-ud" href="@Url.Action("SuaDonHang",new {madh=prd.MaDh})">Update</a>
+                                            <a class="btn-ddu btn-de" href="@Url.Action("XoaDonHang",new {madh=prd.MaDh})" onclick="deletedh(event)">Xóa</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="13">Trống</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("DonHang", "DonHang", new { page = page }))
+<script src="../js_admin/admin_order.js"></script>
+<script type="text/javascript">
+    function deletedh(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn xóa Đơn Hàng này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>

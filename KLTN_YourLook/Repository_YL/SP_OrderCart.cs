@@ -71,7 +71,7 @@ namespace KLTN_YourLook.Repository_YL
             return result>0;
         }
         //dặt hàng (lưu thông tin vào DbOrder)
-        public async Task<(int NewIdDH, string NewMaDH)> Add_Order(int idkh,string emailkh,string sdt,string city,string district,string ward,string diachi,decimal tongtien,decimal tongtienthanhtoan,
+        public async Task<(int NewIdDH, string NewMaDH)> Add_Order(int idkh,string emailkh,string nguoinhan,string sdt,string city,string district,string ward,string diachi,decimal tongtien,decimal tongtienthanhtoan,
                                         int soluong,int payid,string payname,int? idvoucher,int? valuevoucher,decimal giamgia,decimal ship,string ghichu)
         {
             if (_dbConnection == null)
@@ -82,6 +82,7 @@ namespace KLTN_YourLook.Repository_YL
             //parameters.Add("@madh", madh); madh ko phải truyền vào vì đã để tự tạo theo iddh trong sp
             parameters.Add("@idkh", idkh);
             parameters.Add("@emailkh", emailkh);
+            parameters.Add("@nguoinhan", nguoinhan);
             parameters.Add("@sdt",sdt );
             parameters.Add("@city",city );
             parameters.Add("@district", district);

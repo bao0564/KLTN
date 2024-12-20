@@ -58,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxVcGRhdGVBZHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/ShopYourLook/KLTN_YourLook/KLTN_YourLook/Areas/Admin/Views/Order/Order.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3JkZXJcT3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/ShopYourLook/KLTN_YourLook/KLTN_YourLook/Areas/Admin/Views/Product/CreatProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxDcmVhdFByb2R1Y3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

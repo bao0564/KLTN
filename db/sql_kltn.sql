@@ -262,6 +262,7 @@ GO
 create procedure [dbo].[add_order]
 	 @idkh INT,
     @emailkh NVARCHAR(25),
+    @nguoinhan NVARCHAR(30),
     @sdt NVARCHAR(15),
     @city NVARCHAR(10),
     @district NVARCHAR(10),
@@ -288,8 +289,8 @@ as
 begin
 	declare @GeneratedMaDH nvarchar(500)
 	begin
-		insert into DbOrder(IdKh,EmailKh,Sdt,City,District,Ward,DiaChi,TongTien,TongTienThanhToan,soluong,PaymentId,PaymentName,IdVoucher,ValueVoucher,Giamgia,Ship,GhiChu,ODSuccess, ODReadly, ODTransported, Complete,CreateDate)
-		values (@idkh,@emailkh,@sdt,@city,@district,@ward,@diachi,@tongtien,@tongtienthanhtoan,@soluong,@payid,@payname,@idvoucher,@valuevoucher,@giamgia,@ship,@ghichu,1,0,0,0,GETDATE());
+		insert into DbOrder(IdKh,EmailKh,NguoiNhan,Sdt,City,District,Ward,DiaChi,TongTien,TongTienThanhToan,soluong,PaymentId,PaymentName,IdVoucher,ValueVoucher,Giamgia,Ship,GhiChu,ODSuccess,CreateDate)
+		values (@idkh,@emailkh,@nguoinhan,@sdt,@city,@district,@ward,@diachi,@tongtien,@tongtienthanhtoan,@soluong,@payid,@payname,@idvoucher,@valuevoucher,@giamgia,@ship,@ghichu,1,GETDATE());
 		set @NewIdDH = SCOPE_IDENTITY();
 		set @GeneratedMaDH = CONCAT('DH',FORMAT(@NewIdDH,''));
 		set @NewMaDH = @GeneratedMaDH;
@@ -318,3 +319,4 @@ end;
 
 select * from DbOrder
 select * from DbOrderDetail
+use [KLTN];

@@ -4,6 +4,7 @@ using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(YourlookContext))]
-    partial class YourlookContextModelSnapshot : ModelSnapshot
+    [Migration("20241219082535_u_order_nguoinhan")]
+    partial class u_order_nguoinhan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -491,7 +494,7 @@ namespace Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<bool?>("Complete")
+                    b.Property<bool>("Complete")
                         .HasColumnType("bit");
 
                     b.Property<string>("CreateBy")
@@ -544,13 +547,13 @@ namespace Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<bool?>("ODReadly")
+                    b.Property<bool>("ODReadly")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("ODSuccess")
+                    b.Property<bool>("ODSuccess")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("ODTransported")
+                    b.Property<bool>("ODTransported")
                         .HasColumnType("bit");
 
                     b.Property<int>("PaymentId")

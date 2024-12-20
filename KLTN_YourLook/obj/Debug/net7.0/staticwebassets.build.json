@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "meLP3QMKhbclXoIVLFystD1qKyX8KMGRzLAJ3B2SiCs=",
+  "Hash": "CQuAKHnYTuFAkqCYdGnUgpsPs4OehVJkuu8fiPQuibQ=",
   "Source": "KLTN_YourLook",
   "BasePath": "_content/KLTN_YourLook",
   "Mode": "Default",
@@ -5698,25 +5698,6 @@
       "OriginalItemSpec": "wwwroot\\js\\swich.js"
     },
     {
-      "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\userdetail.js",
-      "SourceId": "KLTN_YourLook",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\",
-      "BasePath": "_content/KLTN_YourLook",
-      "RelativePath": "js/userdetail.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\userdetail.js"
-    },
-    {
       "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_CreatProduct.js",
       "SourceId": "KLTN_YourLook",
       "SourceType": "Discovered",
@@ -5734,6 +5715,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js_admin\\Admin_CreatProduct.js"
+    },
+    {
+      "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Order.js",
+      "SourceId": "KLTN_YourLook",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\",
+      "BasePath": "_content/KLTN_YourLook",
+      "RelativePath": "js_admin/Admin_Order.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js_admin\\Admin_Order.js"
     },
     {
       "Identity": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_UpdateProduct.js",
