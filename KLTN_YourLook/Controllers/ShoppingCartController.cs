@@ -140,12 +140,12 @@ namespace KLTN_YourLook.Controllers
 				decimal tongtiensanpham = GiaCuoi;
 				var emailkh = HttpContext.Session.GetString("userEmail");
                 var checkkh = HttpContext.Session.GetInt32("userId");
-                if(checkkh == null )
+                if(checkkh == null)
                 {
 					return Json(new { success = false, msg = "Bạn chưa đăng nhập" });
 				}
                 int idkh = checkkh.Value;
-                var (newIdDH, newMaDH) = await _orderCart.Add_Order(idkh,emailkh,orderInfor.Sdt,orderInfor.City,orderInfor.District,orderInfor.Ward,orderInfor.DiaChi
+                var (newIdDH, newMaDH) = await _orderCart.Add_Order(idkh,emailkh,orderInfor.TenKh,orderInfor.Sdt,orderInfor.City,orderInfor.District,orderInfor.Ward,orderInfor.DiaChi
                                                            ,tongtien,tongtiensanpham,soluong,orderPayment.PaymentId,orderPayment.PayName,orderVoucher.IdVoucher
                                                            ,orderVoucher.ValueVoucher,giamgia,ship,orderInfor.GhiChu);
                 foreach (var item in order)

@@ -13,6 +13,8 @@ namespace Data.Models
         public string? MaDh { get; set; }
         [ForeignKey("IdKh")]
         public int IdKh { get; set; }
+        [StringLength(30)]
+        public string NguoiNhan { get; set; }
         [StringLength(25)]
         public string EmailKh { get; set; }
         [StringLength(15)]
@@ -37,10 +39,10 @@ namespace Data.Models
         public decimal? Giamgia { get; set; }
         public decimal Ship { get; set; }
         public string? GhiChu { get; set; }
-        public bool ODSuccess { get; set; }
-        public bool ODReadly { get; set; }
-        public bool ODTransported { get; set; }
-        public bool Complete { get; set; }
+        public bool? ODSuccess { get; set; }
+        public bool? ODReadly { get; set; }
+        public bool? ODTransported { get; set; }
+        public bool? Complete { get; set; }
 
         public virtual DbCustomer customer { get; set; }//1 đơn hàng chỉ có 1 khách hàng
         public virtual DbVoucher? voucher { get; set; }//1 đơn hàng chỉ có 1 voucher

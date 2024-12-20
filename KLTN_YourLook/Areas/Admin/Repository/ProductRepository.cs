@@ -27,8 +27,8 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var lst = await _dbConnection.QueryAsync<AllProductViewModel>("EXEC dbo.product_showall");
             return lst.ToList();
         }
-        //lấy all sản phẩm + tìm kiếm
-        public async Task<IEnumerable<AllProductViewModel>> SearchProduct(string keyword=null)
+        //tìm kiếm sp
+        public async Task<IEnumerable<AllProductViewModel>> SearchProduct(string? keyword)
         {
             if (_dbConnection == null)
             {

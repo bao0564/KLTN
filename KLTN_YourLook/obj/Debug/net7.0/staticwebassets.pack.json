@@ -949,12 +949,12 @@
       "PackagePath": "staticwebassets\\js\\swich.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\userdetail.js",
-      "PackagePath": "staticwebassets\\js\\userdetail.js"
-    },
-    {
       "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_CreatProduct.js",
       "PackagePath": "staticwebassets\\js_admin\\Admin_CreatProduct.js"
+    },
+    {
+      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Order.js",
+      "PackagePath": "staticwebassets\\js_admin\\Admin_Order.js"
     },
     {
       "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_UpdateProduct.js",

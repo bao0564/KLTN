@@ -44,6 +44,10 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.fle{
+    display:flex;
+    justify-content:flex-end;
+}
 .flspe {
     display: flex;
     justify-content: space-evenly;
