@@ -36,7 +36,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return await _dbConnection.QueryAsync<AllCategoryViewModel>("category_search",parameters,commandType:CommandType.StoredProcedure);            
         }
         //tạo danh mục
-        public async Task<int> CreateCategory(string madm, string tendm, string anhdaidien, string createby)
+        public async Task<(string msg,string error)> CreateCategory(string tendm, string anhdaidien, string createby)
         {
             if (_dbConnection == null)
             {
@@ -44,49 +44,60 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             }
 
             var parameters = new DynamicParameters();
-            parameters.Add("@madm", madm);
             parameters.Add("@tendm", tendm);
             parameters.Add("@anhdaidien", anhdaidien);
             parameters.Add("@createby", createby);
-            parameters.Add("@createdate", DateTime.Now);
-            parameters.Add("@ret", dbType: DbType.Int32, direction: ParameterDirection.Output); // Thêm tham số OUT
+
+            parameters.Add("@newiddm", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            parameters.Add("@newmadm", dbType: DbType.String,size:10, direction: ParameterDirection.Output);
+            parameters.Add("@msg", dbType: DbType.String,size:500, direction: ParameterDirection.Output); 
+            parameters.Add("@error", dbType: DbType.String,size:500, direction: ParameterDirection.Output); 
 
             // Thực thi stored procedure
             await _dbConnection.ExecuteAsync("category_insert", parameters, commandType: CommandType.StoredProcedure);
 
-            // Lấy kết quả từ tham số OUT
-            int result = parameters.Get<int>("@ret");
-            return result;
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+            return (msg,error);
         }
         //sửa danh mục
-        public async Task<int> UpdateCategory(int iddm, string madm, string tendm, string anhdaidien, string modifiedby)
+        public async Task<(string msg,string error)> UpdateCategory(int iddm, string tendm, string anhdaidien, string modifiedby)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-            var parameters = new
-            {
-                iddm,
-                madm,
-                tendm,
-                anhdaidien,
-                modifiedby,
-                modifieddate = DateTime.Now
-            };
-            var result = await _dbConnection.ExecuteAsync("category_update", parameters, commandType: CommandType.StoredProcedure);
-            return result;
+            var parameters = new DynamicParameters();
+            parameters.Add("@iddm", iddm);
+            parameters.Add("@tendm", tendm);
+            parameters.Add("@anhdaidien", anhdaidien);
+            parameters.Add("@modifiedby", modifiedby);
+
+            parameters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+
+            await _dbConnection.ExecuteAsync("category_update", parameters, commandType: CommandType.StoredProcedure);
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+            return (msg,error);
         }
         //Xóa danh mục
-        public async Task<int> DeleteCategory(int iddm)
+        public async Task<(string msg,string error)> DeleteCategory(int iddm)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-            var parameters = new { iddm };
-            var result = await _dbConnection.ExecuteAsync("category_delete", parameters, commandType: CommandType.StoredProcedure);
-            return result;
+            var parameters = new DynamicParameters();
+            parameters.Add("@iddm", iddm);
+
+            parameters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+
+            await _dbConnection.ExecuteAsync("category_delete", parameters, commandType: CommandType.StoredProcedure);
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+            return (msg,error);
         }
     }
 }

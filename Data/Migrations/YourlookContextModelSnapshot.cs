@@ -544,6 +544,9 @@ namespace Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<bool?>("ODHuy")
+                        .HasColumnType("bit");
+
                     b.Property<bool?>("ODReadly")
                         .HasColumnType("bit");
 

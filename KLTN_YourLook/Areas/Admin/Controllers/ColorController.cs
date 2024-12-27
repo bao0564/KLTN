@@ -3,6 +3,7 @@ using KLTN_YourLook.Areas.Admin.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -46,23 +47,16 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var s = await _colorRepository.CreateColor(
-                        model.MaColor,
-                        model.NameColor,
-                        model.Img ?? "",
-                        "bao"
-                    );
+                var (msg,error) = await _colorRepository.CreateColor(model.NameColor, model.Img ?? "", "bao" );
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"]=error;
+                }
+                TempData["Success"] = msg;
 
-                if (s == 2) //@ret = 2 là thành công
-                {
-                    TempData["SuccessMessage"] = "Color đã được tạo thành công!";
-                    return RedirectToAction("Color");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Không thể tạo color. Vui lòng thử lại.");
-                }
+                return RedirectToAction("color");
             }
+            TempData["Error"] = "dữ liệu không hợp lệ";
             return View(model);
         }
         //sửa color
@@ -79,15 +73,16 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cl =await _colorRepository.UpdateColor(
-                        model.ColorId,
-                        model.MaColor,
-                        model.NameColor,
-                        model.Img ?? "",
-                        "Bao2"
-                    );
-                return RedirectToAction("Color");
+                var (msg,error) =await _colorRepository.UpdateColor(model.ColorId, model.NameColor, model.Img ?? "", "Bao2");
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"] = error;
+                }
+                TempData["Success"] = msg;
+
+                return RedirectToAction("color");
             }
+            TempData["Error"] = "dữ liệu không hợp lệ";
             return View(model);
         }
         //xóa color
@@ -105,19 +100,23 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             var color = _context.DbColors.Find(idcl);
             if (color != null)
             {
-                var s = await _colorRepository.DeleteColor(idcl);
+                var (msg,error) = await _colorRepository.DeleteColor(idcl);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Message"] = error;
+                }
+                TempData["Success"] = msg;
             }
-            TempData["Message"] = "Màu ĐÃ ĐƯỢC XÓA";
             return RedirectToAction("Color");
         }
 
-        //kiểm tra mã trùng lặp trong js
-        [HttpGet]
-        [Route("colorcheck")]
-        public async Task<IActionResult> colorcheck(string macl)
-        {
-            var exists = await _context.DbColors.AnyAsync(x => x.MaColor == macl);
-            return Json(new { exists });
-        }
+        ////kiểm tra mã trùng lặp trong js
+        //[HttpGet]
+        //[Route("colorcheck")]
+        //public async Task<IActionResult> colorcheck(string macl)
+        //{
+        //    var exists = await _context.DbColors.AnyAsync(x => x.MaColor == macl);
+        //    return Json(new { exists });
+        //}
     }
 }

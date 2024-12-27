@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddAllTable_ : Migration
+    public partial class newdatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,8 +37,8 @@ namespace Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaAds = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    Img = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Img = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    Place = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -72,8 +72,8 @@ namespace Data.Migrations
                     ColorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaColor = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    NameColor = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Img = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    NameColor = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Img = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreateBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -96,7 +96,7 @@ namespace Data.Migrations
                     GioiTinh = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
                     Sdt = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Passwords = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    Passwords = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     ConfirmPasswords = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     IsExternalAccount = table.Column<bool>(type: "bit", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -148,7 +148,7 @@ namespace Data.Migrations
                 {
                     PaymentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PaymentName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PaymentName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Icon = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreateBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
@@ -213,17 +213,17 @@ namespace Data.Migrations
                     QuanHuyen = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     PhuongXa = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Idefault = table.Column<bool>(type: "bit", nullable: false),
-                    customerIdKh = table.Column<int>(type: "int", nullable: true)
+                    Idefault = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DbAddress", x => x.IdAddress);
                     table.ForeignKey(
-                        name: "FK_DbAddress_DbCustomer_customerIdKh",
-                        column: x => x.customerIdKh,
+                        name: "FK_DbAddress_DbCustomer_IdKh",
+                        column: x => x.IdKh,
                         principalTable: "DbCustomer",
-                        principalColumn: "IdKh");
+                        principalColumn: "IdKh",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,24 +233,24 @@ namespace Data.Migrations
                     IdSp = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaSp = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    MaDm = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    TenSp = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IdDm = table.Column<int>(type: "int", nullable: false),
+                    TenSp = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     SaoDanhGia = table.Column<int>(type: "int", nullable: true),
                     NhomId = table.Column<int>(type: "int", nullable: false),
                     AnhSp = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     PriceMax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     GiamGia = table.Column<int>(type: "int", nullable: true),
                     PriceMin = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    LuotXem = table.Column<int>(type: "int", nullable: false),
-                    LuotSold = table.Column<int>(type: "int", nullable: false),
+                    LuotXem = table.Column<int>(type: "int", nullable: true),
+                    LuotSold = table.Column<int>(type: "int", nullable: true),
                     MotaSp = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IActive = table.Column<bool>(type: "bit", nullable: false),
                     IFavorite = table.Column<bool>(type: "bit", nullable: false),
                     IFeature = table.Column<bool>(type: "bit", nullable: false),
                     IHot = table.Column<bool>(type: "bit", nullable: false),
                     ISale = table.Column<bool>(type: "bit", nullable: false),
-                    categoryIdDm = table.Column<int>(type: "int", nullable: false),
-                    groupIdNhom = table.Column<int>(type: "int", nullable: false),
+                    categoryIdDm = table.Column<int>(type: "int", nullable: true),
+                    groupIdNhom = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreateBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -263,14 +263,12 @@ namespace Data.Migrations
                         name: "FK_DbProduct_DbCategory_categoryIdDm",
                         column: x => x.categoryIdDm,
                         principalTable: "DbCategory",
-                        principalColumn: "IdDm",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdDm");
                     table.ForeignKey(
                         name: "FK_DbProduct_DbGroup_groupIdNhom",
                         column: x => x.groupIdNhom,
                         principalTable: "DbGroup",
-                        principalColumn: "IdNhom",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdNhom");
                 });
 
             migrationBuilder.CreateTable(
@@ -279,14 +277,15 @@ namespace Data.Migrations
                 {
                     IdDh = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MaDh = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    MaDh = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     IdKh = table.Column<int>(type: "int", nullable: false),
+                    NguoiNhan = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     EmailKh = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Sdt = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     City = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     District = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Ward = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    DiaChi = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    DiaChi = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     TongTien = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TongTienThanhToan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     soluong = table.Column<int>(type: "int", nullable: false),
@@ -296,35 +295,37 @@ namespace Data.Migrations
                     ValueVoucher = table.Column<int>(type: "int", nullable: true),
                     Giamgia = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Ship = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    GhiChu = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    ODSuccess = table.Column<bool>(type: "bit", nullable: false),
-                    ODReadly = table.Column<bool>(type: "bit", nullable: false),
-                    ODTransported = table.Column<bool>(type: "bit", nullable: false),
-                    Complete = table.Column<bool>(type: "bit", nullable: false),
-                    customerIdKh = table.Column<int>(type: "int", nullable: false),
-                    voucherIdVoucher = table.Column<int>(type: "int", nullable: false),
-                    DbPaymentPaymentId = table.Column<int>(type: "int", nullable: true)
+                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ODSuccess = table.Column<bool>(type: "bit", nullable: true),
+                    ODReadly = table.Column<bool>(type: "bit", nullable: true),
+                    ODTransported = table.Column<bool>(type: "bit", nullable: true),
+                    Complete = table.Column<bool>(type: "bit", nullable: true),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreateBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DbOrder", x => x.IdDh);
                     table.ForeignKey(
-                        name: "FK_DbOrder_DbCustomer_customerIdKh",
-                        column: x => x.customerIdKh,
+                        name: "FK_DbOrder_DbCustomer_IdKh",
+                        column: x => x.IdKh,
                         principalTable: "DbCustomer",
                         principalColumn: "IdKh",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DbOrder_DbPayment_DbPaymentPaymentId",
-                        column: x => x.DbPaymentPaymentId,
+                        name: "FK_DbOrder_DbPayment_PaymentId",
+                        column: x => x.PaymentId,
                         principalTable: "DbPayment",
-                        principalColumn: "PaymentId");
+                        principalColumn: "PaymentId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DbOrder_DbVoucher_voucherIdVoucher",
-                        column: x => x.voucherIdVoucher,
+                        name: "FK_DbOrder_DbVoucher_IdVoucher",
+                        column: x => x.IdVoucher,
                         principalTable: "DbVoucher",
                         principalColumn: "IdVoucher",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -353,6 +354,51 @@ namespace Data.Migrations
                         column: x => x.voucherIdVoucher,
                         principalTable: "DbVoucher",
                         principalColumn: "IdVoucher",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DbCart",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdSp = table.Column<int>(type: "int", nullable: false),
+                    IdKh = table.Column<int>(type: "int", nullable: false),
+                    ProductQuantity = table.Column<int>(type: "int", nullable: false),
+                    ColorId = table.Column<int>(type: "int", nullable: false),
+                    SizeId = table.Column<int>(type: "int", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreateBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DbCart", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DbCart_DbColor_ColorId",
+                        column: x => x.ColorId,
+                        principalTable: "DbColor",
+                        principalColumn: "ColorId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DbCart_DbCustomer_IdKh",
+                        column: x => x.IdKh,
+                        principalTable: "DbCustomer",
+                        principalColumn: "IdKh",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DbCart_DbProduct_IdSp",
+                        column: x => x.IdSp,
+                        principalTable: "DbProduct",
+                        principalColumn: "IdSp",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DbCart_DbSize_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "DbSize",
+                        principalColumn: "SizeId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -396,16 +442,14 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdSp = table.Column<int>(type: "int", nullable: false),
                     Img = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
-                    Place = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    productIdSp = table.Column<int>(type: "int", nullable: false)
+                    Place = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DbImg", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DbImg_DbProduct_productIdSp",
-                        column: x => x.productIdSp,
+                        name: "FK_DbImg_DbProduct_IdSp",
+                        column: x => x.IdSp,
                         principalTable: "DbProduct",
                         principalColumn: "IdSp",
                         onDelete: ReferentialAction.Cascade);
@@ -417,12 +461,14 @@ namespace Data.Migrations
                 {
                     IdCTSP = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MaCTSP = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     IdSp = table.Column<int>(type: "int", nullable: false),
                     SizeId = table.Column<int>(type: "int", nullable: false),
+                    NameSize = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ColorId = table.Column<int>(type: "int", nullable: false),
-                    SoLuongTon = table.Column<int>(type: "int", nullable: true),
-                    productIdSp = table.Column<int>(type: "int", nullable: false)
+                    NameColor = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SoLuongBan = table.Column<int>(type: "int", nullable: true),
+                    GiaLoai = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -434,8 +480,8 @@ namespace Data.Migrations
                         principalColumn: "ColorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DbProductDetail_DbProduct_productIdSp",
-                        column: x => x.productIdSp,
+                        name: "FK_DbProductDetail_DbProduct_IdSp",
+                        column: x => x.IdSp,
                         principalTable: "DbProduct",
                         principalColumn: "IdSp",
                         onDelete: ReferentialAction.Cascade);
@@ -453,42 +499,59 @@ namespace Data.Migrations
                 {
                     IdCTDH = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MaCTDH = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     IdDh = table.Column<int>(type: "int", nullable: false),
-                    AnhSp = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    MaDh = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    IdSp = table.Column<int>(type: "int", nullable: false),
+                    MaSp = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    IdColor = table.Column<int>(type: "int", nullable: false),
+                    IdSize = table.Column<int>(type: "int", nullable: false),
                     SoLuongSp = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IdProductDetail = table.Column<int>(type: "int", nullable: false),
-                    ProductDetailIdCTSP = table.Column<int>(type: "int", nullable: false),
-                    orderIdDh = table.Column<int>(type: "int", nullable: false),
-                    DbColorColorId = table.Column<int>(type: "int", nullable: true)
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreateBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DbOrderDetail", x => x.IdCTDH);
                     table.ForeignKey(
-                        name: "FK_DbOrderDetail_DbColor_DbColorColorId",
-                        column: x => x.DbColorColorId,
-                        principalTable: "DbColor",
-                        principalColumn: "ColorId");
-                    table.ForeignKey(
-                        name: "FK_DbOrderDetail_DbOrder_orderIdDh",
-                        column: x => x.orderIdDh,
+                        name: "FK_DbOrderDetail_DbOrder_IdDh",
+                        column: x => x.IdDh,
                         principalTable: "DbOrder",
                         principalColumn: "IdDh",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DbOrderDetail_DbProductDetail_ProductDetailIdCTSP",
-                        column: x => x.ProductDetailIdCTSP,
-                        principalTable: "DbProductDetail",
-                        principalColumn: "IdCTSP",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_DbOrderDetail_DbProduct_IdSp",
+                        column: x => x.IdSp,
+                        principalTable: "DbProduct",
+                        principalColumn: "IdSp",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbAddress_customerIdKh",
+                name: "IX_DbAddress_IdKh",
                 table: "DbAddress",
-                column: "customerIdKh");
+                column: "IdKh");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DbCart_ColorId",
+                table: "DbCart",
+                column: "ColorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DbCart_IdKh",
+                table: "DbCart",
+                column: "IdKh");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DbCart_IdSp",
+                table: "DbCart",
+                column: "IdSp");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DbCart_SizeId",
+                table: "DbCart",
+                column: "SizeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DbFavoriteProduct_customerIdKh",
@@ -501,39 +564,34 @@ namespace Data.Migrations
                 column: "productIdSp");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbImg_productIdSp",
+                name: "IX_DbImg_IdSp",
                 table: "DbImg",
-                column: "productIdSp");
+                column: "IdSp");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbOrder_customerIdKh",
+                name: "IX_DbOrder_IdKh",
                 table: "DbOrder",
-                column: "customerIdKh");
+                column: "IdKh");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbOrder_DbPaymentPaymentId",
+                name: "IX_DbOrder_IdVoucher",
                 table: "DbOrder",
-                column: "DbPaymentPaymentId");
+                column: "IdVoucher");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbOrder_voucherIdVoucher",
+                name: "IX_DbOrder_PaymentId",
                 table: "DbOrder",
-                column: "voucherIdVoucher");
+                column: "PaymentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbOrderDetail_DbColorColorId",
+                name: "IX_DbOrderDetail_IdDh",
                 table: "DbOrderDetail",
-                column: "DbColorColorId");
+                column: "IdDh");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbOrderDetail_orderIdDh",
+                name: "IX_DbOrderDetail_IdSp",
                 table: "DbOrderDetail",
-                column: "orderIdDh");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DbOrderDetail_ProductDetailIdCTSP",
-                table: "DbOrderDetail",
-                column: "ProductDetailIdCTSP");
+                column: "IdSp");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DbProduct_categoryIdDm",
@@ -551,9 +609,9 @@ namespace Data.Migrations
                 column: "ColorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DbProductDetail_productIdSp",
+                name: "IX_DbProductDetail_IdSp",
                 table: "DbProductDetail",
-                column: "productIdSp");
+                column: "IdSp");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DbProductDetail_SizeId",
@@ -584,6 +642,9 @@ namespace Data.Migrations
                 name: "DbAds");
 
             migrationBuilder.DropTable(
+                name: "DbCart");
+
+            migrationBuilder.DropTable(
                 name: "DbFavoriteProduct");
 
             migrationBuilder.DropTable(
@@ -596,22 +657,13 @@ namespace Data.Migrations
                 name: "DbOrderDetail");
 
             migrationBuilder.DropTable(
+                name: "DbProductDetail");
+
+            migrationBuilder.DropTable(
                 name: "DbUser_Voucher");
 
             migrationBuilder.DropTable(
                 name: "DbOrder");
-
-            migrationBuilder.DropTable(
-                name: "DbProductDetail");
-
-            migrationBuilder.DropTable(
-                name: "DbCustomer");
-
-            migrationBuilder.DropTable(
-                name: "DbPayment");
-
-            migrationBuilder.DropTable(
-                name: "DbVoucher");
 
             migrationBuilder.DropTable(
                 name: "DbColor");
@@ -621,6 +673,15 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "DbSize");
+
+            migrationBuilder.DropTable(
+                name: "DbCustomer");
+
+            migrationBuilder.DropTable(
+                name: "DbPayment");
+
+            migrationBuilder.DropTable(
+                name: "DbVoucher");
 
             migrationBuilder.DropTable(
                 name: "DbCategory");

@@ -25,11 +25,12 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             int pageSize = 20;
             int pageNumber = page ?? 1;
             IEnumerable<AllOrderViewModle> order;//khai báo model chứa dữ liệu
-            if (odsuccess.HasValue || odreadly.HasValue || odtranport.HasValue || complete.HasValue )
-            {
-                order = await _orderRepository.GetAllOrderFilter(odsuccess, odreadly, odtranport, complete);
-            }
-            else if (!string.IsNullOrEmpty(keyword))
+            //if (odsuccess.HasValue || odreadly.HasValue || odtranport.HasValue || complete.HasValue )
+            //{
+            //    order = await _orderRepository.GetAllOrderFilter(odsuccess, odreadly, odtranport, complete);
+            //}
+            //else
+            if (!string.IsNullOrEmpty(keyword))
             {
                 order=await _orderRepository.SearchOrder(keyword);
                 ViewBag.keyword = keyword;

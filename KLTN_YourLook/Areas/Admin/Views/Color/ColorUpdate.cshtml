@@ -19,11 +19,11 @@
             <input type="hidden" asp-for="CreateDate" />
             <input type="hidden" asp-for="CreateBy" />
             <div class="h-cp-mid-1">
-                <div class="col-4">
+               @*  <div class="col-4">
                     <label class="control-label">Mã Màu</label>
                     <input asp-for="MaColor" id="macl" class="form-control" />
                     <span asp-validation-for="MaColor" class="text-danger"></span>
-                </div>
+                </div> *@
                 <div class="col-4">
                     <label class="control-label">Tên Màu</label>
                     <input asp-for="NameColor" class="form-control" />
@@ -55,23 +55,23 @@
 </div>
 @section scripts {
     <script>
-        //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
-        document.getElementById("macl").addEventListener("blur", function () {
-            var cl = this.value;
-            fetch(`/admin/colorcheck?macl=${cl}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.exists) {
-                        alert("Mã đã tồn tại!");
-                    }
-                })
-                .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
-        });
+        // //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
+        // document.getElementById("macl").addEventListener("blur", function () {
+        //     var cl = this.value;
+        //     fetch(`/admin/colorcheck?macl=${cl}`)
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Network response was not ok');
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             if (data.exists) {
+        //                 alert("Mã đã tồn tại!");
+        //             }
+        //         })
+        //         .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
+        // });
     </script>
 }
 

@@ -19,11 +19,11 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             <div class="h-cp-mid-1">
-                <div class="col-4">
+                @* <div class="col-4">
                     <label class="control-label">Mã Màu</label>
                     <input asp-for="MaColor" id="macl" value="#" class="form-control" />
                     <span asp-validation-for="MaColor" class="text-danger"></span>
-                </div>
+                </div> *@
                 <div class="col-4">
                     <label class="control-label">Tên Màu</label>
                     <input asp-for="NameColor" class="form-control" />
@@ -54,7 +54,7 @@
     </div>
 </div>
 @section scripts {
-    <script>
+   @*  <script>
         //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
         document.getElementById("macl").addEventListener("blur", function () {
             var cl = this.value;
@@ -72,6 +72,6 @@
                 })
                 .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
         });
-    </script>
+    </script> *@
 }
 
