@@ -17,7 +17,10 @@
             <div class="bt-c"><a href="">Xuất PDF</a></div>
         </div>
         <div class="h-cp-mid">
-            <div class="messages">
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+            <div class="alert alert-danger">
                 @TempData["Message"]
             </div>
             @using (Html.BeginForm("Category","Category",FormMethod.Get))

@@ -18,27 +18,27 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
         listenOptions.UseHttps();
     });
 });
-//login gg
-DotEnv.Load();
-// Lấy giá trị từ biến môi trường
-string googleClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-string googleClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-if (string.IsNullOrEmpty(googleClientId) || string.IsNullOrEmpty(googleClientSecret))
-{
-    throw new InvalidOperationException("Google Client ID or Secret is not set in the environment variables.");
-}
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-})
-.AddCookie()
-.AddGoogle(options =>
-{
-    options.ClientId = googleClientId;
-    options.ClientSecret = googleClientSecret;
-});
+////login gg
+//DotEnv.Load();
+//// Lấy giá trị từ biến môi trường
+//string googleClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+//string googleClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+//if (string.IsNullOrEmpty(googleClientId) || string.IsNullOrEmpty(googleClientSecret))
+//{
+//    throw new InvalidOperationException("Google Client ID or Secret is not set in the environment variables.");
+//}
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+//})
+//.AddCookie()
+//.AddGoogle(options =>
+//{
+//    options.ClientId = googleClientId;
+//    options.ClientSecret = googleClientSecret;
+//});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

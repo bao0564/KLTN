@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Data\**" />
+    <Compile Remove="Procedure\**" />
+    <Content Remove="Areas\Admin\Data\**" />
+    <Content Remove="Procedure\**" />
+    <EmbeddedResource Remove="Areas\Admin\Data\**" />
+    <EmbeddedResource Remove="Procedure\**" />
+    <None Remove="Areas\Admin\Data\**" />
+    <None Remove="Procedure\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Interface\Uploadimg.cs" />
   </ItemGroup>
 
@@ -43,11 +54,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Procedure\" />
   </ItemGroup>
 
   <ItemGroup>

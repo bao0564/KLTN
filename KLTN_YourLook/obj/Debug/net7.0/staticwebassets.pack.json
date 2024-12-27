@@ -1,1508 +1,1512 @@
 {
   "Files": [
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\KLTN_YourLook.bundle.scp.css",
-      "PackagePath": "staticwebassets\\KLTN_YourLook.bundle.scp.css"
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\KLTN_YourLook.bundle.scp.css",
+      "PackagePath": "staticwebassets\\KLTN_YourLook.n7300o737a.bundle.scp.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\admin_ressponsive.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\admin_ressponsive.css",
       "PackagePath": "staticwebassets\\css\\admin_ressponsive.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\adminlte.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\adminlte.min.css",
       "PackagePath": "staticwebassets\\css\\adminlte.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\adminlte.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\adminlte.min.css.map",
       "PackagePath": "staticwebassets\\css\\adminlte.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\all.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\all.min.css",
       "PackagePath": "staticwebassets\\css\\all.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.bundle.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\css\\bootstrap4\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\css\\bootstrap4\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap4\\bootstrap.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\css\\bootstrap4\\bootstrap.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\popper.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\bootstrap4\\popper.js",
       "PackagePath": "staticwebassets\\css\\bootstrap4\\popper.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\categories_responsive.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\categories_responsive.css",
       "PackagePath": "staticwebassets\\css\\categories_responsive.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\categories_styles.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\categories_styles.css",
       "PackagePath": "staticwebassets\\css\\categories_styles.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\contact_responsive.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\contact_responsive.css",
       "PackagePath": "staticwebassets\\css\\contact_responsive.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\contact_styles.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\contact_styles.css",
       "PackagePath": "staticwebassets\\css\\contact_styles.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\cssAdmin.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\cssAdmin.css",
       "PackagePath": "staticwebassets\\css\\cssAdmin.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\main_styles.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\main_styles.css",
       "PackagePath": "staticwebassets\\css\\main_styles.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\responsive.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\responsive.css",
       "PackagePath": "staticwebassets\\css\\responsive.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\single_responsive.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\single_responsive.css",
       "PackagePath": "staticwebassets\\css\\single_responsive.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\single_styles.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\single_styles.css",
       "PackagePath": "staticwebassets\\css\\single_styles.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\css\\site.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\favicon.ico",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\fileupload\\3a738e53-22a2-4903-a1ee-bf4af6e88ed8.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\fileupload\\3a738e53-22a2-4903-a1ee-bf4af6e88ed8.png",
       "PackagePath": "staticwebassets\\fileupload\\3a738e53-22a2-4903-a1ee-bf4af6e88ed8.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\fileupload\\48e795e6-b518-48f9-89b1-5b25bf01836f.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\fileupload\\48e795e6-b518-48f9-89b1-5b25bf01836f.png",
       "PackagePath": "staticwebassets\\fileupload\\48e795e6-b518-48f9-89b1-5b25bf01836f.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\fileupload\\6acfb47c-1fb6-42ee-ab07-56c60079f0a3.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\fileupload\\6acfb47c-1fb6-42ee-ab07-56c60079f0a3.png",
       "PackagePath": "staticwebassets\\fileupload\\6acfb47c-1fb6-42ee-ab07-56c60079f0a3.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\fileupload\\c65e9ccc-3089-4e7a-b626-952bab6ffa15.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\fileupload\\c65e9ccc-3089-4e7a-b626-952bab6ffa15.png",
       "PackagePath": "staticwebassets\\fileupload\\c65e9ccc-3089-4e7a-b626-952bab6ffa15.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\Facebook.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\Facebook.png",
       "PackagePath": "staticwebassets\\icon\\Facebook.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\MoMo.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\MoMo.png",
       "PackagePath": "staticwebassets\\icon\\MoMo.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\cart-shopping.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\cart-shopping.svg",
       "PackagePath": "staticwebassets\\icon\\cart-shopping.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\drop left.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\drop left.svg",
       "PackagePath": "staticwebassets\\icon\\drop left.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\dt.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\dt.svg",
       "PackagePath": "staticwebassets\\icon\\dt.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\email.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\email.svg",
       "PackagePath": "staticwebassets\\icon\\email.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\eye-solid.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\eye-solid.svg",
       "PackagePath": "staticwebassets\\icon\\eye-solid.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\facebook.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\facebook.svg",
       "PackagePath": "staticwebassets\\icon\\facebook.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\google.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\google.png",
       "PackagePath": "staticwebassets\\icon\\google.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\iconvoucher.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\iconvoucher.png",
       "PackagePath": "staticwebassets\\icon\\iconvoucher.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\instagram.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\instagram.svg",
       "PackagePath": "staticwebassets\\icon\\instagram.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\location.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\location.svg",
       "PackagePath": "staticwebassets\\icon\\location.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\phone.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\phone.svg",
       "PackagePath": "staticwebassets\\icon\\phone.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\return-60.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\return-60.svg",
       "PackagePath": "staticwebassets\\icon\\return-60.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\return.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\return.svg",
       "PackagePath": "staticwebassets\\icon\\return.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\star.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\star.svg",
       "PackagePath": "staticwebassets\\icon\\star.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\tiktok.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\tiktok.svg",
       "PackagePath": "staticwebassets\\icon\\tiktok.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\truck-fast.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\truck-fast.svg",
       "PackagePath": "staticwebassets\\icon\\truck-fast.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\vnpay.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\vnpay.jpg",
       "PackagePath": "staticwebassets\\icon\\vnpay.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\youtube.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\youtube.svg",
       "PackagePath": "staticwebassets\\icon\\youtube.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\icon\\zalopay.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\zalopay.png",
       "PackagePath": "staticwebassets\\icon\\zalopay.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\0d7fac4d-0499-4b1b-93e5-045883cf35bc.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\0d7fac4d-0499-4b1b-93e5-045883cf35bc.png",
       "PackagePath": "staticwebassets\\images\\0d7fac4d-0499-4b1b-93e5-045883cf35bc.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\0e299b5d-813b-4c2e-a29e-63170ba9c125.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\0e299b5d-813b-4c2e-a29e-63170ba9c125.jpeg",
       "PackagePath": "staticwebassets\\images\\0e299b5d-813b-4c2e-a29e-63170ba9c125.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\11f06ea3-6155-4559-bf9f-9d1cf1cb9c06.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\11f06ea3-6155-4559-bf9f-9d1cf1cb9c06.png",
       "PackagePath": "staticwebassets\\images\\11f06ea3-6155-4559-bf9f-9d1cf1cb9c06.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\14ed2439-11e3-4d28-8964-30524ff7ae45.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\14ed2439-11e3-4d28-8964-30524ff7ae45.jpeg",
       "PackagePath": "staticwebassets\\images\\14ed2439-11e3-4d28-8964-30524ff7ae45.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\204f9902-b31b-4323-afeb-09844f5c3226.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\204f9902-b31b-4323-afeb-09844f5c3226.png",
       "PackagePath": "staticwebassets\\images\\204f9902-b31b-4323-afeb-09844f5c3226.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\26d5df04-6419-4192-a78f-d26716517088.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\26d5df04-6419-4192-a78f-d26716517088.jpeg",
       "PackagePath": "staticwebassets\\images\\26d5df04-6419-4192-a78f-d26716517088.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\2797683b-92d5-4bb1-b506-17f22487eb20.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\2797683b-92d5-4bb1-b506-17f22487eb20.jpeg",
       "PackagePath": "staticwebassets\\images\\2797683b-92d5-4bb1-b506-17f22487eb20.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\294f1607-59d1-42b9-95f6-900f3071a706.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\294f1607-59d1-42b9-95f6-900f3071a706.jpeg",
       "PackagePath": "staticwebassets\\images\\294f1607-59d1-42b9-95f6-900f3071a706.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\332eb750-22a8-4289-88b0-7f2e684d6d41.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\332eb750-22a8-4289-88b0-7f2e684d6d41.png",
       "PackagePath": "staticwebassets\\images\\332eb750-22a8-4289-88b0-7f2e684d6d41.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\357b170a-a8ad-41a9-87a9-73b1150af6c2.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\357b170a-a8ad-41a9-87a9-73b1150af6c2.jpeg",
       "PackagePath": "staticwebassets\\images\\357b170a-a8ad-41a9-87a9-73b1150af6c2.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\388626b5-b63b-4ce9-a20f-bca50b6bf03d.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\388626b5-b63b-4ce9-a20f-bca50b6bf03d.png",
       "PackagePath": "staticwebassets\\images\\388626b5-b63b-4ce9-a20f-bca50b6bf03d.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\44166508-b4ad-425d-b60c-9d2e2f72a13b.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\44166508-b4ad-425d-b60c-9d2e2f72a13b.png",
       "PackagePath": "staticwebassets\\images\\44166508-b4ad-425d-b60c-9d2e2f72a13b.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\459882a8-bf5c-4da1-b513-36691fe6e5b3.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\459882a8-bf5c-4da1-b513-36691fe6e5b3.png",
       "PackagePath": "staticwebassets\\images\\459882a8-bf5c-4da1-b513-36691fe6e5b3.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\47946822-a3a4-4856-8eff-7d1e38482ee5.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\47946822-a3a4-4856-8eff-7d1e38482ee5.jpeg",
       "PackagePath": "staticwebassets\\images\\47946822-a3a4-4856-8eff-7d1e38482ee5.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\4a7f7e5a-6576-44df-90e4-ecd9e0997047.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\4a7f7e5a-6576-44df-90e4-ecd9e0997047.png",
       "PackagePath": "staticwebassets\\images\\4a7f7e5a-6576-44df-90e4-ecd9e0997047.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\4f711c1b-6c98-425a-8475-9ddc3698746d.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\4f711c1b-6c98-425a-8475-9ddc3698746d.jpeg",
       "PackagePath": "staticwebassets\\images\\4f711c1b-6c98-425a-8475-9ddc3698746d.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\5cc9f11e-2719-4326-9058-e94b8abe5b1d.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\5cc9f11e-2719-4326-9058-e94b8abe5b1d.png",
       "PackagePath": "staticwebassets\\images\\5cc9f11e-2719-4326-9058-e94b8abe5b1d.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\6621f255-a4b7-49c9-9904-3f0c545509f5.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\6621f255-a4b7-49c9-9904-3f0c545509f5.jpeg",
       "PackagePath": "staticwebassets\\images\\6621f255-a4b7-49c9-9904-3f0c545509f5.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\66836838-c26a-4a42-9d08-4d67a31b5fc8.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\66836838-c26a-4a42-9d08-4d67a31b5fc8.png",
       "PackagePath": "staticwebassets\\images\\66836838-c26a-4a42-9d08-4d67a31b5fc8.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\6f82f103-be56-46fe-8932-0f3d774d6734.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\6f82f103-be56-46fe-8932-0f3d774d6734.png",
       "PackagePath": "staticwebassets\\images\\6f82f103-be56-46fe-8932-0f3d774d6734.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\8688f96f-bfb5-4e39-9669-ee2ea3c26386.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\8688f96f-bfb5-4e39-9669-ee2ea3c26386.png",
       "PackagePath": "staticwebassets\\images\\8688f96f-bfb5-4e39-9669-ee2ea3c26386.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\a2c0b792-71a5-448e-93e2-9a99ebf37b11.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\a2c0b792-71a5-448e-93e2-9a99ebf37b11.png",
       "PackagePath": "staticwebassets\\images\\a2c0b792-71a5-448e-93e2-9a99ebf37b11.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\all.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\all.png",
       "PackagePath": "staticwebassets\\images\\all.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\b3ac9b00-5046-463b-be67-49ee820e8a3d.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\b3ac9b00-5046-463b-be67-49ee820e8a3d.jpeg",
       "PackagePath": "staticwebassets\\images\\b3ac9b00-5046-463b-be67-49ee820e8a3d.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\b7d908f0-abb1-457e-b330-17144277fa8d.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\b7d908f0-abb1-457e-b330-17144277fa8d.jpeg",
       "PackagePath": "staticwebassets\\images\\b7d908f0-abb1-457e-b330-17144277fa8d.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\b95a5cb7-8b65-4a77-a2bb-96c18fc6199b.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\b95a5cb7-8b65-4a77-a2bb-96c18fc6199b.png",
       "PackagePath": "staticwebassets\\images\\b95a5cb7-8b65-4a77-a2bb-96c18fc6199b.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\banner_1.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\banner_1.jpg",
       "PackagePath": "staticwebassets\\images\\banner_1.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\banner_2.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\banner_2.jpg",
       "PackagePath": "staticwebassets\\images\\banner_2.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\banner_3.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\banner_3.jpg",
       "PackagePath": "staticwebassets\\images\\banner_3.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\blog_1.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\blog_1.jpg",
       "PackagePath": "staticwebassets\\images\\blog_1.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\blog_2.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\blog_2.jpg",
       "PackagePath": "staticwebassets\\images\\blog_2.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\blog_3.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\blog_3.jpg",
       "PackagePath": "staticwebassets\\images\\blog_3.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\c3e89240-c718-4973-915f-698596ab6bdc.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\c3e89240-c718-4973-915f-698596ab6bdc.png",
       "PackagePath": "staticwebassets\\images\\c3e89240-c718-4973-915f-698596ab6bdc.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\deal_ofthe_week.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\deal_ofthe_week.png",
       "PackagePath": "staticwebassets\\images\\deal_ofthe_week.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\desc_1.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\desc_1.jpg",
       "PackagePath": "staticwebassets\\images\\desc_1.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\desc_2.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\desc_2.jpg",
       "PackagePath": "staticwebassets\\images\\desc_2.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\desc_3.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\desc_3.jpg",
       "PackagePath": "staticwebassets\\images\\desc_3.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\dl.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\dl.png",
       "PackagePath": "staticwebassets\\images\\dl.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\e2533846-a258-41a0-bf68-83a44cdfa417.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\e2533846-a258-41a0-bf68-83a44cdfa417.png",
       "PackagePath": "staticwebassets\\images\\e2533846-a258-41a0-bf68-83a44cdfa417.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\e59ef8c3-d3c6-449c-a7c5-f1f7d1e7b42e.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\e59ef8c3-d3c6-449c-a7c5-f1f7d1e7b42e.png",
       "PackagePath": "staticwebassets\\images\\e59ef8c3-d3c6-449c-a7c5-f1f7d1e7b42e.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\e99cf835-2d7c-4105-a1f3-7dd9fd3ab6bf.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\e99cf835-2d7c-4105-a1f3-7dd9fd3ab6bf.jpeg",
       "PackagePath": "staticwebassets\\images\\e99cf835-2d7c-4105-a1f3-7dd9fd3ab6bf.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\f61b59e5-698e-4852-b5f2-990c7aee5eb3.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\f61b59e5-698e-4852-b5f2-990c7aee5eb3.png",
       "PackagePath": "staticwebassets\\images\\f61b59e5-698e-4852-b5f2-990c7aee5eb3.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\fd9c4c11-e8c9-4434-971a-9979a6087da5.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\fd9c4c11-e8c9-4434-971a-9979a6087da5.png",
       "PackagePath": "staticwebassets\\images\\fd9c4c11-e8c9-4434-971a-9979a6087da5.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\map_marker.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\map_marker.png",
       "PackagePath": "staticwebassets\\images\\map_marker.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\pk.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\pk.png",
       "PackagePath": "staticwebassets\\images\\pk.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_1.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_1.png",
       "PackagePath": "staticwebassets\\images\\product_1.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_10.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_10.png",
       "PackagePath": "staticwebassets\\images\\product_10.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_2.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_2.png",
       "PackagePath": "staticwebassets\\images\\product_2.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_3.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_3.png",
       "PackagePath": "staticwebassets\\images\\product_3.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_4.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_4.png",
       "PackagePath": "staticwebassets\\images\\product_4.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_5.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_5.png",
       "PackagePath": "staticwebassets\\images\\product_5.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_6.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_6.png",
       "PackagePath": "staticwebassets\\images\\product_6.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_7.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_7.png",
       "PackagePath": "staticwebassets\\images\\product_7.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_8.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_8.png",
       "PackagePath": "staticwebassets\\images\\product_8.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\product_9.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\product_9.png",
       "PackagePath": "staticwebassets\\images\\product_9.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\single_1.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\single_1.jpg",
       "PackagePath": "staticwebassets\\images\\single_1.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\single_1_thumb.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\single_1_thumb.jpg",
       "PackagePath": "staticwebassets\\images\\single_1_thumb.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\single_2.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\single_2.jpg",
       "PackagePath": "staticwebassets\\images\\single_2.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\single_2_thumb.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\single_2_thumb.jpg",
       "PackagePath": "staticwebassets\\images\\single_2_thumb.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\single_3.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\single_3.jpg",
       "PackagePath": "staticwebassets\\images\\single_3.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\single_3_thumb.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\single_3_thumb.jpg",
       "PackagePath": "staticwebassets\\images\\single_3_thumb.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\images\\slider_1.jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\slider_1.jpg",
       "PackagePath": "staticwebassets\\images\\slider_1.jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\00f078c7-6c35-40d4-89c6-552ac34adb9d.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\00f078c7-6c35-40d4-89c6-552ac34adb9d.png",
       "PackagePath": "staticwebassets\\img\\00f078c7-6c35-40d4-89c6-552ac34adb9d.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\02dd365a-c1aa-498b-b016-ccb5e38d6a99.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\02dd365a-c1aa-498b-b016-ccb5e38d6a99.png",
       "PackagePath": "staticwebassets\\img\\02dd365a-c1aa-498b-b016-ccb5e38d6a99.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\05a1ddbf-b2c2-49a7-a3f5-8d28c472e72c.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\05a1ddbf-b2c2-49a7-a3f5-8d28c472e72c.png",
       "PackagePath": "staticwebassets\\img\\05a1ddbf-b2c2-49a7-a3f5-8d28c472e72c.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\09bdbc0a-6d2f-4519-aa3b-0b0a5fcada1b.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\09bdbc0a-6d2f-4519-aa3b-0b0a5fcada1b.png",
       "PackagePath": "staticwebassets\\img\\09bdbc0a-6d2f-4519-aa3b-0b0a5fcada1b.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\0ab7d2f9-d654-4bfd-97a4-f70ec4ffe81f.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\0ab7d2f9-d654-4bfd-97a4-f70ec4ffe81f.png",
       "PackagePath": "staticwebassets\\img\\0ab7d2f9-d654-4bfd-97a4-f70ec4ffe81f.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\0eff61a3-f66c-4672-b767-c9fd0f209bc3.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\0eff61a3-f66c-4672-b767-c9fd0f209bc3.png",
       "PackagePath": "staticwebassets\\img\\0eff61a3-f66c-4672-b767-c9fd0f209bc3.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\0fe12824-f4dc-48bd-b306-33d2b83b38a7.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\0fe12824-f4dc-48bd-b306-33d2b83b38a7.png",
       "PackagePath": "staticwebassets\\img\\0fe12824-f4dc-48bd-b306-33d2b83b38a7.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\1047d0f7-a08e-4aa9-8f05-5fb8a0e6fbfd.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\1047d0f7-a08e-4aa9-8f05-5fb8a0e6fbfd.png",
       "PackagePath": "staticwebassets\\img\\1047d0f7-a08e-4aa9-8f05-5fb8a0e6fbfd.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\115aac29-90f6-4561-a3d3-e9a77e53751c.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\115aac29-90f6-4561-a3d3-e9a77e53751c.png",
       "PackagePath": "staticwebassets\\img\\115aac29-90f6-4561-a3d3-e9a77e53751c.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\123c01b3-8035-4bfd-8531-4f28e957f0f6.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\123c01b3-8035-4bfd-8531-4f28e957f0f6.png",
       "PackagePath": "staticwebassets\\img\\123c01b3-8035-4bfd-8531-4f28e957f0f6.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\133ba23e-0341-4036-b4c2-e9ce50d1230a.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\133ba23e-0341-4036-b4c2-e9ce50d1230a.png",
       "PackagePath": "staticwebassets\\img\\133ba23e-0341-4036-b4c2-e9ce50d1230a.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\1a1ffe13-789e-4a83-a8aa-901bd90844fc.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\1a1ffe13-789e-4a83-a8aa-901bd90844fc.png",
       "PackagePath": "staticwebassets\\img\\1a1ffe13-789e-4a83-a8aa-901bd90844fc.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\1bfe9766-c7d1-4577-a7e0-cbab2fbed113.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\1bfe9766-c7d1-4577-a7e0-cbab2fbed113.png",
       "PackagePath": "staticwebassets\\img\\1bfe9766-c7d1-4577-a7e0-cbab2fbed113.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\219d8769-319e-4176-b766-313e0b039c27.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\219d8769-319e-4176-b766-313e0b039c27.png",
       "PackagePath": "staticwebassets\\img\\219d8769-319e-4176-b766-313e0b039c27.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\23d2e4a6-fa4e-49f0-b6ab-93c057de5c77.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\23d2e4a6-fa4e-49f0-b6ab-93c057de5c77.png",
       "PackagePath": "staticwebassets\\img\\23d2e4a6-fa4e-49f0-b6ab-93c057de5c77.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\2401acef-1afc-4d08-997c-b0e2be5b95a7.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\2401acef-1afc-4d08-997c-b0e2be5b95a7.png",
       "PackagePath": "staticwebassets\\img\\2401acef-1afc-4d08-997c-b0e2be5b95a7.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\2528853b-7498-49ce-ba55-92b4b4948a91.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\2528853b-7498-49ce-ba55-92b4b4948a91.png",
       "PackagePath": "staticwebassets\\img\\2528853b-7498-49ce-ba55-92b4b4948a91.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\26d80acf-a30c-429b-8a00-c6b837cddc13.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\26d80acf-a30c-429b-8a00-c6b837cddc13.png",
       "PackagePath": "staticwebassets\\img\\26d80acf-a30c-429b-8a00-c6b837cddc13.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\27b51d72-4c3c-40f5-a17b-36ae6dab1656.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\27b51d72-4c3c-40f5-a17b-36ae6dab1656.png",
       "PackagePath": "staticwebassets\\img\\27b51d72-4c3c-40f5-a17b-36ae6dab1656.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\27f5ea25-51b2-40b8-bb94-4e93dd867769.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\27f5ea25-51b2-40b8-bb94-4e93dd867769.png",
       "PackagePath": "staticwebassets\\img\\27f5ea25-51b2-40b8-bb94-4e93dd867769.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\2c5ec746-fb46-4f39-8754-6c58dceddd27.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\2c5ec746-fb46-4f39-8754-6c58dceddd27.png",
       "PackagePath": "staticwebassets\\img\\2c5ec746-fb46-4f39-8754-6c58dceddd27.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\3375f137-4ee4-4aee-a412-5814308aa122.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3375f137-4ee4-4aee-a412-5814308aa122.png",
       "PackagePath": "staticwebassets\\img\\3375f137-4ee4-4aee-a412-5814308aa122.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\376101d9-fcc5-4bd7-a998-65df9ed5f55d.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\376101d9-fcc5-4bd7-a998-65df9ed5f55d.png",
       "PackagePath": "staticwebassets\\img\\376101d9-fcc5-4bd7-a998-65df9ed5f55d.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\37ffe5c3-0983-4d69-af33-b387d52f05e2.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\37ffe5c3-0983-4d69-af33-b387d52f05e2.png",
       "PackagePath": "staticwebassets\\img\\37ffe5c3-0983-4d69-af33-b387d52f05e2.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\39f25e4a-89d5-4f5f-9058-4403a56b4629.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\39f25e4a-89d5-4f5f-9058-4403a56b4629.png",
       "PackagePath": "staticwebassets\\img\\39f25e4a-89d5-4f5f-9058-4403a56b4629.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\3aa076ae-8109-41f9-a6e0-66755c0b7d6b.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3aa076ae-8109-41f9-a6e0-66755c0b7d6b.png",
       "PackagePath": "staticwebassets\\img\\3aa076ae-8109-41f9-a6e0-66755c0b7d6b.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\3eba63b8-dd25-4d8a-9e15-e5e3d3de5670.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3eba63b8-dd25-4d8a-9e15-e5e3d3de5670.png",
       "PackagePath": "staticwebassets\\img\\3eba63b8-dd25-4d8a-9e15-e5e3d3de5670.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\3ebe27b4-560b-4fdb-b20e-840d3b838461.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3ebe27b4-560b-4fdb-b20e-840d3b838461.png",
       "PackagePath": "staticwebassets\\img\\3ebe27b4-560b-4fdb-b20e-840d3b838461.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\3f8aaebe-7ef5-4353-920f-b25812e0c7ba.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3f8aaebe-7ef5-4353-920f-b25812e0c7ba.png",
       "PackagePath": "staticwebassets\\img\\3f8aaebe-7ef5-4353-920f-b25812e0c7ba.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\4167fba9-af21-45f7-a002-2158b8691532.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\4167fba9-af21-45f7-a002-2158b8691532.png",
       "PackagePath": "staticwebassets\\img\\4167fba9-af21-45f7-a002-2158b8691532.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\41852f9d-a733-4bcf-a99a-f1e7698bd0d2.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\41852f9d-a733-4bcf-a99a-f1e7698bd0d2.png",
       "PackagePath": "staticwebassets\\img\\41852f9d-a733-4bcf-a99a-f1e7698bd0d2.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\4913e6fa-2af0-486e-959a-64fdc15cd6e0.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\4913e6fa-2af0-486e-959a-64fdc15cd6e0.png",
       "PackagePath": "staticwebassets\\img\\4913e6fa-2af0-486e-959a-64fdc15cd6e0.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\4a3abd8c-9885-4064-bd20-08b2fb1ddd14.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\4a3abd8c-9885-4064-bd20-08b2fb1ddd14.png",
       "PackagePath": "staticwebassets\\img\\4a3abd8c-9885-4064-bd20-08b2fb1ddd14.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\4e20bcc5-060a-4413-b5dc-6334164d2758.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\4e20bcc5-060a-4413-b5dc-6334164d2758.png",
       "PackagePath": "staticwebassets\\img\\4e20bcc5-060a-4413-b5dc-6334164d2758.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\4fd4e408-9626-411c-9d24-5b7360b9e99b.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\4fd4e408-9626-411c-9d24-5b7360b9e99b.png",
       "PackagePath": "staticwebassets\\img\\4fd4e408-9626-411c-9d24-5b7360b9e99b.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\509055c8-a084-4da5-8763-65dd2081f623.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\509055c8-a084-4da5-8763-65dd2081f623.png",
       "PackagePath": "staticwebassets\\img\\509055c8-a084-4da5-8763-65dd2081f623.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\50bf6e39-6099-47a4-980a-f7f26f7560f0.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\50bf6e39-6099-47a4-980a-f7f26f7560f0.png",
       "PackagePath": "staticwebassets\\img\\50bf6e39-6099-47a4-980a-f7f26f7560f0.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\5372a96e-c063-479d-8a27-3e023f9086b5.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\5372a96e-c063-479d-8a27-3e023f9086b5.png",
       "PackagePath": "staticwebassets\\img\\5372a96e-c063-479d-8a27-3e023f9086b5.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\5416d6d7-ab89-4910-9bd1-242be93c6ecb.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\5416d6d7-ab89-4910-9bd1-242be93c6ecb.png",
       "PackagePath": "staticwebassets\\img\\5416d6d7-ab89-4910-9bd1-242be93c6ecb.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\54dd52d3-91a6-4266-9b3a-3a0b71c9f4fd.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\54dd52d3-91a6-4266-9b3a-3a0b71c9f4fd.png",
       "PackagePath": "staticwebassets\\img\\54dd52d3-91a6-4266-9b3a-3a0b71c9f4fd.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\5e27f92a-8d68-428d-b9ee-ae0dd4a0a70c.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\5e27f92a-8d68-428d-b9ee-ae0dd4a0a70c.png",
       "PackagePath": "staticwebassets\\img\\5e27f92a-8d68-428d-b9ee-ae0dd4a0a70c.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\5ff04bd7-acb1-4d69-92da-2e2d95556efd.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\5ff04bd7-acb1-4d69-92da-2e2d95556efd.png",
       "PackagePath": "staticwebassets\\img\\5ff04bd7-acb1-4d69-92da-2e2d95556efd.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\6534beae-53a4-4402-ba7e-71a26b24bad6.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\6534beae-53a4-4402-ba7e-71a26b24bad6.png",
       "PackagePath": "staticwebassets\\img\\6534beae-53a4-4402-ba7e-71a26b24bad6.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\6948d975-265f-4ed1-9c44-b86efcff9cbc.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\6948d975-265f-4ed1-9c44-b86efcff9cbc.png",
       "PackagePath": "staticwebassets\\img\\6948d975-265f-4ed1-9c44-b86efcff9cbc.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\6e453604-c425-4bb6-9050-eeb4d984f336.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\6e453604-c425-4bb6-9050-eeb4d984f336.png",
       "PackagePath": "staticwebassets\\img\\6e453604-c425-4bb6-9050-eeb4d984f336.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\6f5cda02-0409-4639-a2f8-670a0a84abd5.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\6f5cda02-0409-4639-a2f8-670a0a84abd5.png",
       "PackagePath": "staticwebassets\\img\\6f5cda02-0409-4639-a2f8-670a0a84abd5.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\6f88811f-a268-4c37-ae0c-0580460d0842.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\6f88811f-a268-4c37-ae0c-0580460d0842.png",
       "PackagePath": "staticwebassets\\img\\6f88811f-a268-4c37-ae0c-0580460d0842.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\6fd9c150-b59e-400f-a8bb-4faf7a4009f5.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\6fd9c150-b59e-400f-a8bb-4faf7a4009f5.png",
       "PackagePath": "staticwebassets\\img\\6fd9c150-b59e-400f-a8bb-4faf7a4009f5.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\728ec077-cb0b-4981-ac2b-92289b49b377.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\728ec077-cb0b-4981-ac2b-92289b49b377.png",
       "PackagePath": "staticwebassets\\img\\728ec077-cb0b-4981-ac2b-92289b49b377.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\72e3ae23-839f-4b2b-a32e-8aef36b6c9cc.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\72e3ae23-839f-4b2b-a32e-8aef36b6c9cc.png",
       "PackagePath": "staticwebassets\\img\\72e3ae23-839f-4b2b-a32e-8aef36b6c9cc.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\7381fe83-00c3-4b72-be0e-abe469280f9d.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\7381fe83-00c3-4b72-be0e-abe469280f9d.png",
       "PackagePath": "staticwebassets\\img\\7381fe83-00c3-4b72-be0e-abe469280f9d.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\7c3bea85-0de7-4d92-9528-3dd337585f34.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\7c3bea85-0de7-4d92-9528-3dd337585f34.png",
       "PackagePath": "staticwebassets\\img\\7c3bea85-0de7-4d92-9528-3dd337585f34.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\7d87db9d-2088-4755-a7af-927e01a279c3.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\7d87db9d-2088-4755-a7af-927e01a279c3.png",
       "PackagePath": "staticwebassets\\img\\7d87db9d-2088-4755-a7af-927e01a279c3.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\7debcee2-d4cd-467c-9285-9cb3c82eff7a.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\7debcee2-d4cd-467c-9285-9cb3c82eff7a.png",
       "PackagePath": "staticwebassets\\img\\7debcee2-d4cd-467c-9285-9cb3c82eff7a.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\7fedec7d-d1d3-4248-a727-b742159a83a1.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\7fedec7d-d1d3-4248-a727-b742159a83a1.png",
       "PackagePath": "staticwebassets\\img\\7fedec7d-d1d3-4248-a727-b742159a83a1.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\81cc8829-9c2b-47f2-a3bc-d5892cf1a69f.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\81cc8829-9c2b-47f2-a3bc-d5892cf1a69f.png",
       "PackagePath": "staticwebassets\\img\\81cc8829-9c2b-47f2-a3bc-d5892cf1a69f.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\85e8c700-063f-4378-939e-50a80b0d9b44.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\85e8c700-063f-4378-939e-50a80b0d9b44.png",
       "PackagePath": "staticwebassets\\img\\85e8c700-063f-4378-939e-50a80b0d9b44.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\85fe9e83-4972-4fa5-bb30-47b7eef0623c.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\85fe9e83-4972-4fa5-bb30-47b7eef0623c.png",
       "PackagePath": "staticwebassets\\img\\85fe9e83-4972-4fa5-bb30-47b7eef0623c.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\8b568ef0-4950-4485-ab04-64accd092000.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\8b568ef0-4950-4485-ab04-64accd092000.png",
       "PackagePath": "staticwebassets\\img\\8b568ef0-4950-4485-ab04-64accd092000.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\8d1fb6b0-cdf4-41f3-a491-2348ce74fede.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\8d1fb6b0-cdf4-41f3-a491-2348ce74fede.png",
       "PackagePath": "staticwebassets\\img\\8d1fb6b0-cdf4-41f3-a491-2348ce74fede.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\8df8112e-5b0d-492e-bc57-3cd844271274.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\8df8112e-5b0d-492e-bc57-3cd844271274.png",
       "PackagePath": "staticwebassets\\img\\8df8112e-5b0d-492e-bc57-3cd844271274.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\8e1af587-7117-47ab-b31e-d9a1e365a312.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\8e1af587-7117-47ab-b31e-d9a1e365a312.png",
       "PackagePath": "staticwebassets\\img\\8e1af587-7117-47ab-b31e-d9a1e365a312.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\8fea1f00-aeb7-4931-ac46-077c9c1a5590.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\8fea1f00-aeb7-4931-ac46-077c9c1a5590.png",
       "PackagePath": "staticwebassets\\img\\8fea1f00-aeb7-4931-ac46-077c9c1a5590.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\97260af0-7466-4b92-9450-8272080dbd74.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\97260af0-7466-4b92-9450-8272080dbd74.png",
       "PackagePath": "staticwebassets\\img\\97260af0-7466-4b92-9450-8272080dbd74.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\982200c4-eabc-4105-8ff1-6374cb34335c.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\982200c4-eabc-4105-8ff1-6374cb34335c.png",
       "PackagePath": "staticwebassets\\img\\982200c4-eabc-4105-8ff1-6374cb34335c.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\98b50f8d-d7ad-4226-94ec-37e14d0a08c9.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\98b50f8d-d7ad-4226-94ec-37e14d0a08c9.png",
       "PackagePath": "staticwebassets\\img\\98b50f8d-d7ad-4226-94ec-37e14d0a08c9.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\9c90acd6-a42c-4376-ad56-26057d592571.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9c90acd6-a42c-4376-ad56-26057d592571.png",
       "PackagePath": "staticwebassets\\img\\9c90acd6-a42c-4376-ad56-26057d592571.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\9e845efb-8aba-49f9-a6a7-c1e9e423842a.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9e845efb-8aba-49f9-a6a7-c1e9e423842a.png",
       "PackagePath": "staticwebassets\\img\\9e845efb-8aba-49f9-a6a7-c1e9e423842a.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\9f512529-ff8c-4d3a-bcdd-ded74d701aac.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9f512529-ff8c-4d3a-bcdd-ded74d701aac.png",
       "PackagePath": "staticwebassets\\img\\9f512529-ff8c-4d3a-bcdd-ded74d701aac.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\a284a73c-dbe2-45f2-b110-e5e8d41e0e00.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a284a73c-dbe2-45f2-b110-e5e8d41e0e00.png",
       "PackagePath": "staticwebassets\\img\\a284a73c-dbe2-45f2-b110-e5e8d41e0e00.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\a41d07b0-45dd-4c83-9650-28b2bdfc7fbd.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a41d07b0-45dd-4c83-9650-28b2bdfc7fbd.png",
       "PackagePath": "staticwebassets\\img\\a41d07b0-45dd-4c83-9650-28b2bdfc7fbd.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\a574b580-e075-4c05-b1d8-09d0e150c635.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a574b580-e075-4c05-b1d8-09d0e150c635.png",
       "PackagePath": "staticwebassets\\img\\a574b580-e075-4c05-b1d8-09d0e150c635.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\a9543645-8a00-428c-ac5b-e65bf6922761.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a9543645-8a00-428c-ac5b-e65bf6922761.png",
       "PackagePath": "staticwebassets\\img\\a9543645-8a00-428c-ac5b-e65bf6922761.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\a998b5da-dcbe-4c96-9e95-1c35519c318b.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a998b5da-dcbe-4c96-9e95-1c35519c318b.png",
       "PackagePath": "staticwebassets\\img\\a998b5da-dcbe-4c96-9e95-1c35519c318b.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\a9b7ce0b-baa7-4321-8c1e-8d0d941fad7e.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a9b7ce0b-baa7-4321-8c1e-8d0d941fad7e.png",
       "PackagePath": "staticwebassets\\img\\a9b7ce0b-baa7-4321-8c1e-8d0d941fad7e.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\ac25e856-5f47-4299-8a4f-019466dd659e.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\ac25e856-5f47-4299-8a4f-019466dd659e.png",
       "PackagePath": "staticwebassets\\img\\ac25e856-5f47-4299-8a4f-019466dd659e.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\ac5d030d-3de7-4dd5-9831-e453d5c322ce.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\ac5d030d-3de7-4dd5-9831-e453d5c322ce.png",
       "PackagePath": "staticwebassets\\img\\ac5d030d-3de7-4dd5-9831-e453d5c322ce.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\b22e93ed-998a-4aa5-8e5c-5326ce18285d.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\b22e93ed-998a-4aa5-8e5c-5326ce18285d.png",
       "PackagePath": "staticwebassets\\img\\b22e93ed-998a-4aa5-8e5c-5326ce18285d.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\b4a09b54-ad0a-48c2-8f20-76edb0d9ae4f.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\b4a09b54-ad0a-48c2-8f20-76edb0d9ae4f.png",
       "PackagePath": "staticwebassets\\img\\b4a09b54-ad0a-48c2-8f20-76edb0d9ae4f.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\ba980202-ed73-4d92-93bb-5ab847fdef3b.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\ba980202-ed73-4d92-93bb-5ab847fdef3b.png",
       "PackagePath": "staticwebassets\\img\\ba980202-ed73-4d92-93bb-5ab847fdef3b.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\bad5a759-319d-4a15-90da-9a8eeb9f8207.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\bad5a759-319d-4a15-90da-9a8eeb9f8207.png",
       "PackagePath": "staticwebassets\\img\\bad5a759-319d-4a15-90da-9a8eeb9f8207.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\c52e9880-6deb-4e8a-ade4-e792a8de6774.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\c52e9880-6deb-4e8a-ade4-e792a8de6774.png",
       "PackagePath": "staticwebassets\\img\\c52e9880-6deb-4e8a-ade4-e792a8de6774.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\c5bb871c-01e7-4df3-9ade-afabd0afcb25.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\c5bb871c-01e7-4df3-9ade-afabd0afcb25.png",
       "PackagePath": "staticwebassets\\img\\c5bb871c-01e7-4df3-9ade-afabd0afcb25.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\c8471cb5-7c4b-4eec-b229-ad058bb4de01.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\c8471cb5-7c4b-4eec-b229-ad058bb4de01.png",
       "PackagePath": "staticwebassets\\img\\c8471cb5-7c4b-4eec-b229-ad058bb4de01.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\cadf296e-6414-4999-9024-696f4fe43a94.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\cadf296e-6414-4999-9024-696f4fe43a94.png",
       "PackagePath": "staticwebassets\\img\\cadf296e-6414-4999-9024-696f4fe43a94.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\cb9fa08f-6e62-4e8c-98aa-6e65b8e79b06.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\cb9fa08f-6e62-4e8c-98aa-6e65b8e79b06.png",
       "PackagePath": "staticwebassets\\img\\cb9fa08f-6e62-4e8c-98aa-6e65b8e79b06.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\cc88de61-4c90-446f-9cdf-ab9df61b6066.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\cc88de61-4c90-446f-9cdf-ab9df61b6066.png",
       "PackagePath": "staticwebassets\\img\\cc88de61-4c90-446f-9cdf-ab9df61b6066.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\cfa4df22-a0fb-4c26-9f84-4e0b05125f75.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\cfa4df22-a0fb-4c26-9f84-4e0b05125f75.png",
       "PackagePath": "staticwebassets\\img\\cfa4df22-a0fb-4c26-9f84-4e0b05125f75.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\d0544536-4f14-4e0e-8b28-4c9f945ab4f8.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\d0544536-4f14-4e0e-8b28-4c9f945ab4f8.png",
       "PackagePath": "staticwebassets\\img\\d0544536-4f14-4e0e-8b28-4c9f945ab4f8.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\d15d3cf4-e78d-4431-b6fa-e170061e2934.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\d15d3cf4-e78d-4431-b6fa-e170061e2934.png",
       "PackagePath": "staticwebassets\\img\\d15d3cf4-e78d-4431-b6fa-e170061e2934.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\d2e924a9-7158-424d-9a38-2b56aaeaefe0.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\d2e924a9-7158-424d-9a38-2b56aaeaefe0.png",
       "PackagePath": "staticwebassets\\img\\d2e924a9-7158-424d-9a38-2b56aaeaefe0.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\d72bbf4e-3280-436b-b2f6-1e0f16827b28.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\d72bbf4e-3280-436b-b2f6-1e0f16827b28.png",
       "PackagePath": "staticwebassets\\img\\d72bbf4e-3280-436b-b2f6-1e0f16827b28.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\d9b188bb-008e-4a53-ba2a-0c88b8b36d5d.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\d9b188bb-008e-4a53-ba2a-0c88b8b36d5d.png",
       "PackagePath": "staticwebassets\\img\\d9b188bb-008e-4a53-ba2a-0c88b8b36d5d.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\deeae651-1a71-4952-86a0-2ac9137a159a.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\deeae651-1a71-4952-86a0-2ac9137a159a.png",
       "PackagePath": "staticwebassets\\img\\deeae651-1a71-4952-86a0-2ac9137a159a.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\e1864f2f-2d55-4502-95f0-1995ea322b15.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\e1864f2f-2d55-4502-95f0-1995ea322b15.png",
       "PackagePath": "staticwebassets\\img\\e1864f2f-2d55-4502-95f0-1995ea322b15.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\e2fdcfbe-9943-4553-b2b5-a51854a3d4c0.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\e2fdcfbe-9943-4553-b2b5-a51854a3d4c0.png",
       "PackagePath": "staticwebassets\\img\\e2fdcfbe-9943-4553-b2b5-a51854a3d4c0.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\e73d92dc-9e82-43fd-aa8f-9d9ddda5d751.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\e73d92dc-9e82-43fd-aa8f-9d9ddda5d751.png",
       "PackagePath": "staticwebassets\\img\\e73d92dc-9e82-43fd-aa8f-9d9ddda5d751.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\e9131445-0304-4133-bbd0-d96a7a403bc7.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\e9131445-0304-4133-bbd0-d96a7a403bc7.png",
       "PackagePath": "staticwebassets\\img\\e9131445-0304-4133-bbd0-d96a7a403bc7.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\eacf6676-f7dc-43cb-8a32-d95043819d26.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\eacf6676-f7dc-43cb-8a32-d95043819d26.png",
       "PackagePath": "staticwebassets\\img\\eacf6676-f7dc-43cb-8a32-d95043819d26.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\ebffd962-0477-4923-a28d-d80729d9ce75.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\ebffd962-0477-4923-a28d-d80729d9ce75.png",
       "PackagePath": "staticwebassets\\img\\ebffd962-0477-4923-a28d-d80729d9ce75.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\effe9314-db7f-4bab-8968-a08f93c601c0.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\effe9314-db7f-4bab-8968-a08f93c601c0.png",
       "PackagePath": "staticwebassets\\img\\effe9314-db7f-4bab-8968-a08f93c601c0.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\f453ca87-e675-4052-8a74-f95668f37c5f.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\f453ca87-e675-4052-8a74-f95668f37c5f.png",
       "PackagePath": "staticwebassets\\img\\f453ca87-e675-4052-8a74-f95668f37c5f.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\f957780e-cf33-4758-8a82-ec93a12ddafa.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\f957780e-cf33-4758-8a82-ec93a12ddafa.png",
       "PackagePath": "staticwebassets\\img\\f957780e-cf33-4758-8a82-ec93a12ddafa.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\fc7211fe-e88d-4b09-b6cd-b408536332f9.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\fc7211fe-e88d-4b09-b6cd-b408536332f9.png",
       "PackagePath": "staticwebassets\\img\\fc7211fe-e88d-4b09-b6cd-b408536332f9.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\img\\ff836623-85c1-491f-baa6-d1ef7778be66.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\ff836623-85c1-491f-baa6-d1ef7778be66.png",
       "PackagePath": "staticwebassets\\img\\ff836623-85c1-491f-baa6-d1ef7778be66.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\ChoosColorSize.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\ChoosColorSize.js",
       "PackagePath": "staticwebassets\\js\\ChoosColorSize.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\FavoriteProduct.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\FavoriteProduct.js",
       "PackagePath": "staticwebassets\\js\\FavoriteProduct.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\Map.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\Map.js",
       "PackagePath": "staticwebassets\\js\\Map.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\address.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\address.js",
       "PackagePath": "staticwebassets\\js\\address.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\addtocart.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\addtocart.js",
       "PackagePath": "staticwebassets\\js\\addtocart.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\categories_custom.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\categories_custom.js",
       "PackagePath": "staticwebassets\\js\\categories_custom.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\contact_custom.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\contact_custom.js",
       "PackagePath": "staticwebassets\\js\\contact_custom.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\custom.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\custom.js",
       "PackagePath": "staticwebassets\\js\\custom.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\demo.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\demo.js",
       "PackagePath": "staticwebassets\\js\\demo.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\findprd.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\findprd.js",
       "PackagePath": "staticwebassets\\js\\findprd.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\findprd2.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\findprd2.js",
       "PackagePath": "staticwebassets\\js\\findprd2.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\imgmove.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\imgmove.js",
       "PackagePath": "staticwebassets\\js\\imgmove.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\jquery-3.2.1.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\jquery-3.2.1.min.js",
       "PackagePath": "staticwebassets\\js\\jquery-3.2.1.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\jquery.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\jquery.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\jquery.min.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\jquery.min.map",
       "PackagePath": "staticwebassets\\js\\jquery.min.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\move-ad.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\move-ad.js",
       "PackagePath": "staticwebassets\\js\\move-ad.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\payorder.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\payorder.js",
       "PackagePath": "staticwebassets\\js\\payorder.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\product-fls.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\product-fls.js",
       "PackagePath": "staticwebassets\\js\\product-fls.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\product-move.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\product-move.js",
       "PackagePath": "staticwebassets\\js\\product-move.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\productnew-move.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\productnew-move.js",
       "PackagePath": "staticwebassets\\js\\productnew-move.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\selectColol-Size.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\selectColol-Size.js",
       "PackagePath": "staticwebassets\\js\\selectColol-Size.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\single_custom.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\single_custom.js",
       "PackagePath": "staticwebassets\\js\\single_custom.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\site.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js\\swich.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\swich.js",
       "PackagePath": "staticwebassets\\js\\swich.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_CreatProduct.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_CreatProduct.js",
       "PackagePath": "staticwebassets\\js_admin\\Admin_CreatProduct.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Order.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Order.js",
       "PackagePath": "staticwebassets\\js_admin\\Admin_Order.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_UpdateProduct.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_UpdateProduct.js",
       "PackagePath": "staticwebassets\\js_admin\\Admin_UpdateProduct.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\js_admin\\get _date.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\get _date.js",
       "PackagePath": "staticwebassets\\js_admin\\get _date.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\71ce9d50-1a6b-40be-badf-0bf38a5cff70.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\71ce9d50-1a6b-40be-badf-0bf38a5cff70.jpeg",
       "PackagePath": "staticwebassets\\logo\\71ce9d50-1a6b-40be-badf-0bf38a5cff70.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\Screenshot_3.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\Screenshot_3.png",
       "PackagePath": "staticwebassets\\logo\\Screenshot_3.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\Untitled_Export_V4.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\Untitled_Export_V4.jpeg",
       "PackagePath": "staticwebassets\\logo\\Untitled_Export_V4.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\abus.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\abus.png",
       "PackagePath": "staticwebassets\\logo\\abus.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-1.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-1.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-1.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-10.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-10.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-10.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-11.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-11.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-11.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-12.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-12.png",
       "PackagePath": "staticwebassets\\logo\\ad-12.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-2.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-2.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-2.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-3.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-3.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-3.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-5.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-5.png",
       "PackagePath": "staticwebassets\\logo\\ad-5.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-6.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-6.png",
       "PackagePath": "staticwebassets\\logo\\ad-6.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-7.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-7.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-7.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-8.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-8.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-8.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-9.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-9.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-9.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-ql.jpeg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\ad-ql.jpeg",
       "PackagePath": "staticwebassets\\logo\\ad-ql.jpeg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\doitra.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\doitra.png",
       "PackagePath": "staticwebassets\\logo\\doitra.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\gif.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\gif.png",
       "PackagePath": "staticwebassets\\logo\\gif.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\hot-product.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\hot-product.png",
       "PackagePath": "staticwebassets\\logo\\hot-product.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\images (11).jpg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\images (11).jpg",
       "PackagePath": "staticwebassets\\logo\\images (11).jpg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\login.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\login.png",
       "PackagePath": "staticwebassets\\logo\\login.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\logo.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\logo.png",
       "PackagePath": "staticwebassets\\logo\\logo.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\logo1.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\logo1.png",
       "PackagePath": "staticwebassets\\logo\\logo1.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\logo2.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\logo2.png",
       "PackagePath": "staticwebassets\\logo\\logo2.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\new-product.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\new-product.png",
       "PackagePath": "staticwebassets\\logo\\new-product.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\logo\\voucher.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\voucher.png",
       "PackagePath": "staticwebassets\\logo\\voucher.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\Isotope\\isotope.pkgd.min.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\Isotope\\isotope.pkgd.min.js",
       "PackagePath": "staticwebassets\\plugins\\Isotope\\isotope.pkgd.min.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\ajax-loader.gif",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\ajax-loader.gif",
       "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\ajax-loader.gif"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\animate.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\animate.css",
       "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\animate.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.css",
       "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.js",
       "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.carousel.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.theme.default.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.theme.default.css",
       "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.theme.default.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.video.play.png",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\OwlCarousel2-2.2.1\\owl.video.play.png",
       "PackagePath": "staticwebassets\\plugins\\OwlCarousel2-2.2.1\\owl.video.play.png"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\easing\\easing.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\easing\\easing.js",
       "PackagePath": "staticwebassets\\plugins\\easing\\easing.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\HELP-US-OUT.txt",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\HELP-US-OUT.txt",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\HELP-US-OUT.txt"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\css\\font-awesome.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\css\\font-awesome.css",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\css\\font-awesome.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\css\\font-awesome.min.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\css\\font-awesome.min.css",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\css\\font-awesome.min.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\FontAwesome.otf",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\FontAwesome.otf",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\FontAwesome.otf"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.eot",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.eot",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.eot"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.svg",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.ttf",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.ttf",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.ttf"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.woff",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.woff",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.woff"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.woff2",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.woff2",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\fonts\\fontawesome-webfont.woff2"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\animated.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\animated.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\animated.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\bordered-pulled.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\bordered-pulled.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\bordered-pulled.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\core.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\core.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\core.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\fixed-width.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\fixed-width.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\fixed-width.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\font-awesome.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\font-awesome.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\font-awesome.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\icons.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\icons.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\icons.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\larger.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\larger.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\larger.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\list.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\list.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\list.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\mixins.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\mixins.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\mixins.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\path.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\path.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\path.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\rotated-flipped.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\rotated-flipped.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\rotated-flipped.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\screen-reader.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\screen-reader.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\screen-reader.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\stacked.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\stacked.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\stacked.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\variables.less",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\less\\variables.less",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\less\\variables.less"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_animated.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_animated.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_animated.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_bordered-pulled.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_bordered-pulled.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_bordered-pulled.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_core.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_core.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_core.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_fixed-width.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_fixed-width.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_fixed-width.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_icons.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_icons.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_icons.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_larger.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_larger.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_larger.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_list.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_list.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_list.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_mixins.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_mixins.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_mixins.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_path.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_path.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_path.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_rotated-flipped.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_rotated-flipped.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_rotated-flipped.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_screen-reader.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_screen-reader.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_screen-reader.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_stacked.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_stacked.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_stacked.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_variables.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\_variables.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\_variables.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\font-awesome.scss",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\font-awesome-4.7.0\\scss\\font-awesome.scss",
       "PackagePath": "staticwebassets\\plugins\\font-awesome-4.7.0\\scss\\font-awesome.scss"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\jquery-ui-1.12.1.custom\\jquery-ui.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\jquery-ui-1.12.1.custom\\jquery-ui.css",
       "PackagePath": "staticwebassets\\plugins\\jquery-ui-1.12.1.custom\\jquery-ui.css"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\jquery-ui-1.12.1.custom\\jquery-ui.js",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\jquery-ui-1.12.1.custom\\jquery-ui.js",
       "PackagePath": "staticwebassets\\plugins\\jquery-ui-1.12.1.custom\\jquery-ui.js"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.eot",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.eot",
       "PackagePath": "staticwebassets\\plugins\\themify-icons\\fonts\\themify.eot"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.svg",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.svg",
       "PackagePath": "staticwebassets\\plugins\\themify-icons\\fonts\\themify.svg"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.ttf",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.ttf",
       "PackagePath": "staticwebassets\\plugins\\themify-icons\\fonts\\themify.ttf"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.woff",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\fonts\\themify.woff",
       "PackagePath": "staticwebassets\\plugins\\themify-icons\\fonts\\themify.woff"
     },
     {
-      "Id": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\themify-icons.css",
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\plugins\\themify-icons\\themify-icons.css",
       "PackagePath": "staticwebassets\\plugins\\themify-icons\\themify-icons.css"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.KLTN_YourLook.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.KLTN_YourLook.Microsoft.AspNetCore.StaticWebAssets.props",

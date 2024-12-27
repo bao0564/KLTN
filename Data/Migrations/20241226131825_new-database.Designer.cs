@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(YourlookContext))]
-    [Migration("20241207055527_up_dbads-1")]
-    partial class up_dbads1
+    [Migration("20241226131825_new-database")]
+    partial class newdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,12 +72,9 @@ namespace Data.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<int?>("customerIdKh")
-                        .HasColumnType("int");
-
                     b.HasKey("IdAddress");
 
-                    b.HasIndex("customerIdKh");
+                    b.HasIndex("IdKh");
 
                     b.ToTable("DbAddress");
                 });
@@ -146,9 +143,63 @@ namespace Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<string>("Place")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.HasKey("Id");
 
                     b.ToTable("DbAds");
+                });
+
+            modelBuilder.Entity("Data.Models.DbCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdKh")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdSp")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColorId");
+
+                    b.HasIndex("IdKh");
+
+                    b.HasIndex("IdSp");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("DbCart");
                 });
 
             modelBuilder.Entity("Data.Models.DbCategory", b =>
@@ -281,6 +332,7 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Passwords")
+                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
@@ -442,16 +494,20 @@ namespace Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<bool>("Complete")
+                    b.Property<bool?>("Complete")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("DbPaymentPaymentId")
-                        .HasColumnType("int");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DiaChi")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("District")
                         .IsRequired()
@@ -464,8 +520,7 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("GhiChu")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Giamgia")
                         .HasColumnType("decimal(18,2)");
@@ -477,17 +532,28 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MaDh")
-                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ModifiedBy")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.Property<bool>("ODReadly")
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NguoiNhan")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<bool?>("ODReadly")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("ODSuccess")
+                    b.Property<bool?>("ODSuccess")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("ODTransported")
+                    b.Property<bool?>("ODTransported")
                         .HasColumnType("bit");
 
                     b.Property<int>("PaymentId")
@@ -520,22 +586,16 @@ namespace Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<int>("customerIdKh")
-                        .HasColumnType("int");
-
                     b.Property<int>("soluong")
-                        .HasColumnType("int");
-
-                    b.Property<int>("voucherIdVoucher")
                         .HasColumnType("int");
 
                     b.HasKey("IdDh");
 
-                    b.HasIndex("DbPaymentPaymentId");
+                    b.HasIndex("IdKh");
 
-                    b.HasIndex("customerIdKh");
+                    b.HasIndex("IdVoucher");
 
-                    b.HasIndex("voucherIdVoucher");
+                    b.HasIndex("PaymentId");
 
                     b.ToTable("DbOrder");
                 });
@@ -548,38 +608,50 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCTDH"));
 
-                    b.Property<string>("AnhSp")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdColor")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdDh")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdProductDetail")
+                    b.Property<int>("IdSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("MaCTDH")
+                    b.Property<int>("IdSp")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MaDh")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("MaSp")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
-                    b.Property<int>("ProductDetailIdCTSP")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("SoLuongSp")
                         .HasColumnType("int");
 
-                    b.Property<int>("orderIdDh")
-                        .HasColumnType("int");
-
                     b.HasKey("IdCTDH");
 
-                    b.HasIndex("ProductDetailIdCTSP");
+                    b.HasIndex("IdDh");
 
-                    b.HasIndex("orderIdDh");
+                    b.HasIndex("IdSp");
 
                     b.ToTable("DbOrderDetail");
                 });
@@ -612,8 +684,8 @@ namespace Data.Migrations
 
                     b.Property<string>("PaymentName")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("PaymentId");
 
@@ -881,15 +953,52 @@ namespace Data.Migrations
                 {
                     b.HasOne("Data.Models.DbCustomer", "customer")
                         .WithMany("addresses")
-                        .HasForeignKey("customerIdKh");
+                        .HasForeignKey("IdKh")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("customer");
+                });
+
+            modelBuilder.Entity("Data.Models.DbCart", b =>
+                {
+                    b.HasOne("Data.Models.DbColor", "color")
+                        .WithMany("carts")
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbCustomer", "customer")
+                        .WithMany("carts")
+                        .HasForeignKey("IdKh")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbProduct", "product")
+                        .WithMany("carts")
+                        .HasForeignKey("IdSp")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbSize", "size")
+                        .WithMany("carts")
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("color");
+
+                    b.Navigation("customer");
+
+                    b.Navigation("product");
+
+                    b.Navigation("size");
                 });
 
             modelBuilder.Entity("Data.Models.DbFavoriteProduct", b =>
                 {
                     b.HasOne("Data.Models.DbCustomer", "customer")
-                        .WithMany("favoritepr")
+                        .WithMany("favorites")
                         .HasForeignKey("customerIdKh")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -918,44 +1027,47 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbOrder", b =>
                 {
-                    b.HasOne("Data.Models.DbPayment", null)
-                        .WithMany("orders")
-                        .HasForeignKey("DbPaymentPaymentId");
-
                     b.HasOne("Data.Models.DbCustomer", "customer")
                         .WithMany("orders")
-                        .HasForeignKey("customerIdKh")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdKh")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Models.DbVoucher", "voucher")
-                        .WithMany("dborders")
-                        .HasForeignKey("voucherIdVoucher")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany("orders")
+                        .HasForeignKey("IdVoucher")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Data.Models.DbPayment", "payment")
+                        .WithMany("orders")
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("customer");
+
+                    b.Navigation("payment");
 
                     b.Navigation("voucher");
                 });
 
             modelBuilder.Entity("Data.Models.DbOrderDetail", b =>
                 {
-                    b.HasOne("Data.Models.DbProductDetail", "ProductDetail")
-                        .WithMany()
-                        .HasForeignKey("ProductDetailIdCTSP")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Data.Models.DbOrder", "order")
                         .WithMany("orderdetails")
-                        .HasForeignKey("orderIdDh")
+                        .HasForeignKey("IdDh")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProductDetail");
+                    b.HasOne("Data.Models.DbProduct", "product")
+                        .WithMany("orderdetails")
+                        .HasForeignKey("IdSp")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("order");
+
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Data.Models.DbProduct", b =>
@@ -1026,6 +1138,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbColor", b =>
                 {
+                    b.Navigation("carts");
+
                     b.Navigation("productdetails");
                 });
 
@@ -1033,7 +1147,9 @@ namespace Data.Migrations
                 {
                     b.Navigation("addresses");
 
-                    b.Navigation("favoritepr");
+                    b.Navigation("carts");
+
+                    b.Navigation("favorites");
 
                     b.Navigation("orders");
 
@@ -1057,21 +1173,27 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.DbProduct", b =>
                 {
+                    b.Navigation("carts");
+
                     b.Navigation("detailproducts");
 
                     b.Navigation("favoriteproducts");
 
                     b.Navigation("imgs");
+
+                    b.Navigation("orderdetails");
                 });
 
             modelBuilder.Entity("Data.Models.DbSize", b =>
                 {
+                    b.Navigation("carts");
+
                     b.Navigation("productdetails");
                 });
 
             modelBuilder.Entity("Data.Models.DbVoucher", b =>
                 {
-                    b.Navigation("dborders");
+                    b.Navigation("orders");
 
                     b.Navigation("user_voucher");
                 });

@@ -5,6 +5,7 @@ using KLTN_YourLook.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -65,23 +66,17 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhDaiDien = await _uploadimg.uploadOnePhotosAsync(FileAnh, "images");
                 }
-                var cate = await _categoryRepository.CreateCategory(
-                    model.MaDm,
-                    model.TenDm,
-                    model.AnhDaiDien ?? "",
-                    "Bao"
-                    );
+                var (msg,error) = await _categoryRepository.CreateCategory(model.TenDm, model.AnhDaiDien ?? "","Bao");
 
-                if (cate == 2) //@ret = 2 là thành công
+                if (!string.IsNullOrEmpty(error))
                 {
-                    TempData["SuccessMessage"] = "Danh mục đã được tạo thành công!";
-                    return RedirectToAction("Category"); 
+                    TempData["Error"] = error; // báo lỗi về View
+                    return View(model);
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Không thể tạo danh mục. Vui lòng thử lại.");
-                }
+                TempData["Success"] = msg;
+                return RedirectToAction("category");
             }
+            TempData["Error"] = "model it not valid: dữ liệu không hợp lệ";
             return View(model);
         }
         //Sửa Danh Mục
@@ -109,14 +104,13 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhDaiDien = img;
                 }
-                var cate = await _categoryRepository.UpdateCategory(
-                        model.IdDm,
-                        model.MaDm,
-                        model.TenDm,
-                        model.AnhDaiDien,
-                        "bao2"
-                    );
-                return RedirectToAction("Category");
+                var (msg,error) = await _categoryRepository.UpdateCategory(model.IdDm, model.TenDm, model.AnhDaiDien, "bao2" );
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"] = error;
+                }
+                TempData["Success"] = msg;
+                return RedirectToAction("category");
             }
             return View(model);
         }
@@ -125,7 +119,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteCategory(int iddm)
         {
-            TempData["Message"] = "";
+            //TempData["Message"] = "";
             var prd = _context.DbProducts.Any(x => x.IdDm == iddm);
             if (prd)
             {
@@ -135,19 +129,23 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             var danhmuc = _context.DbCategorys.Find(iddm);
             if (danhmuc != null)
             {
-                var cate=await _categoryRepository.DeleteCategory(iddm);
-            }            
-            TempData["Message"] = "DANH MỤC ĐÃ ĐƯỢC XÓA";
-            return RedirectToAction("Category");
+                var (msg,error)=await _categoryRepository.DeleteCategory(iddm);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Message"] = error;
+                }
+                TempData["Success"] = msg;
+            }        
+            return RedirectToAction("Category");    
         }
 
-        //kiểm tra mã sp trùng lặp trong js
-        [HttpGet]
-        [Route("categorycheck")]
-        public async Task<IActionResult> categorycheck(string madm)
-        {
-            var exists = await _context.DbCategorys.AnyAsync(x => x.MaDm == madm);
-            return Json(new { exists });
-        }
+        ////kiểm tra mã sp trùng lặp trong js
+        //[HttpGet]
+        //[Route("categorycheck")]
+        //public async Task<IActionResult> categorycheck(string madm)
+        //{
+        //    var exists = await _context.DbCategorys.AnyAsync(x => x.MaDm == madm);
+        //    return Json(new { exists });
+        //}
     }
 }

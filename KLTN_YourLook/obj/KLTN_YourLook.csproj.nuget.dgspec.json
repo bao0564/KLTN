@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\KLTN_YourLook.csproj": {}
+    "C:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook.csproj": {}
   },
   "projects": {
-    "E:\\ShopYourLook\\KLTN_YourLook\\Data\\Data.csproj": {
+    "C:\\ShopYourLook\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ShopYourLook\\KLTN_YourLook\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\ShopYourLook\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "E:\\ShopYourLook\\KLTN_YourLook\\Data\\Data.csproj",
+        "projectPath": "C:\\ShopYourLook\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\ShopYourLook\\KLTN_YourLook\\Data\\obj\\",
+        "outputPath": "C:\\ShopYourLook\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net7.0": {
@@ -98,18 +98,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\KLTN_YourLook.csproj": {
+    "C:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\KLTN_YourLook.csproj",
+        "projectUniqueName": "C:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook.csproj",
         "projectName": "KLTN_YourLook",
-        "projectPath": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\KLTN_YourLook.csproj",
+        "projectPath": "C:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\ShopYourLook\\KLTN_YourLook\\KLTN_YourLook\\obj\\",
+        "outputPath": "C:\\ShopYourLook\\KLTN_YourLook\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -124,15 +124,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\ShopYourLook\\KLTN_YourLook\\Data\\Data.csproj": {
-                "projectPath": "E:\\ShopYourLook\\KLTN_YourLook\\Data\\Data.csproj"
+              "C:\\ShopYourLook\\Data\\Data.csproj": {
+                "projectPath": "C:\\ShopYourLook\\Data\\Data.csproj"
               }
             }
           }
@@ -146,7 +145,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net7.0": {
@@ -228,7 +228,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

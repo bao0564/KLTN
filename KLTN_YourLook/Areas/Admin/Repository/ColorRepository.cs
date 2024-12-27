@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System.Data;
+using static Azure.Core.HttpHeader;
 
 namespace KLTN_YourLook.Areas.Admin.Repository
 {
@@ -11,7 +12,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             _dbConnection = dbConnection;
         }
         //tạo màu
-        public async Task<int> CreateColor(string macl, string tencl, string img, string createby)
+        public async Task<(string msg,string error)> CreateColor(string namecl, string img, string createby)
         {
             if (_dbConnection == null)
             {
@@ -19,49 +20,62 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             }
 
             var parameters = new DynamicParameters();
-            parameters.Add("@macl", macl);
-            parameters.Add("@tencl", tencl);
+            parameters.Add("@namecl", namecl);
             parameters.Add("@img", img);
             parameters.Add("@createby", createby);
-            parameters.Add("@createdate", DateTime.Now);
-            parameters.Add("@ret", dbType: DbType.Int32, direction: ParameterDirection.Output); // Thêm tham số OUT
+
+            parameters.Add("@newidcl", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            parameters.Add("@newmacl", dbType: DbType.String, size: 10, direction: ParameterDirection.Output);
+            parameters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
 
             // Thực thi stored procedure
             await _dbConnection.ExecuteAsync("color_insert", parameters, commandType: CommandType.StoredProcedure);
 
-            // Lấy kết quả từ tham số OUT
-            int result = parameters.Get<int>("@ret");
-            return result;
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+
+            return (msg,error);
         }
         //sửa color
-        public async Task<int> UpdateColor(int idcl, string macl, string tencl, string img, string modifiedby)
+        public async Task<(string msg, string error)> UpdateColor(int idcl, string namecl, string img, string modifiedby)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-            var parameters = new
-            {
-                idcl,
-                macl,
-                tencl,
-                img,
-                modifiedby,
-                modifieddate = DateTime.Now
-            };
-            var result = await _dbConnection.ExecuteAsync("color_update", parameters, commandType: CommandType.StoredProcedure);
-            return result;
+            var parameters = new DynamicParameters();
+            parameters.Add("@idcl", idcl);
+            parameters.Add("@namecl", namecl);
+            parameters.Add("@img", img);
+            parameters.Add("@modifiedby", modifiedby);
+
+            parameters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+
+            await _dbConnection.ExecuteAsync("color_update", parameters, commandType: CommandType.StoredProcedure);
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+            return (msg,error);
         }
         //Xóa color
-        public async Task<int> DeleteColor(int idcl)
+        public async Task<(string msg,string error)> DeleteColor(int idcl)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-            var parameters = new { idcl };
-            var result = await _dbConnection.ExecuteAsync("color_delete", parameters, commandType: CommandType.StoredProcedure);
-            return result;
+            var parameters = new DynamicParameters();
+            parameters.Add("@idcl", idcl);
+
+            parameters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+
+            await _dbConnection.ExecuteAsync("color_delete", parameters, commandType: CommandType.StoredProcedure);
+
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+            return (msg, error);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public bool ODReadly { get; set; }
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
+        public bool ODHuy { get; set; }
     }
     public class OrderDetailViewModel
     {
