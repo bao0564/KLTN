@@ -109,6 +109,7 @@ GO
 --drop procedure color_insert
 create procedure [dbo].[color_insert]
 	@namecl nvarchar(50),
+	@mahex nvarchar(20),
 	@img nvarchar(250),
 	@createby nvarchar(25),
 
@@ -121,8 +122,8 @@ begin
 	declare @GeneratedMaCl nvarchar(10)
 	begin try
 		--tạo mới
-		insert into DbColor(NameColor,Img,CreateBy,CreateDate) 
-		values (@namecl,@img,@createby,GETDATE())
+		insert into DbColor(NameColor,MaHex,Img,CreateBy,CreateDate) 
+		values (@namecl,@mahex,@img,@createby,GETDATE())
 
 		set @newidcl=SCOPE_IDENTITY();
 		set @GeneratedMaCl= CONCAT('CL',FORMAT(@newidcl,''));
@@ -144,6 +145,7 @@ GO
 create procedure [dbo].[color_update]
 	@idcl int,
 	@namecl nvarchar(50),
+	@mahex nvarchar(20),
 	@img nvarchar(250),
 	@modifiedby nvarchar(25),
 	@msg nvarchar(500) output,
@@ -151,7 +153,7 @@ create procedure [dbo].[color_update]
 as
 begin
 	begin try
-		update DbColor set NameColor=@namecl,Img=@img,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
+		update DbColor set NameColor=@namecl,MaHex=@mahex,Img=@img,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
 		where ColorId=@idcl;
 		set @msg = N'Sửa màu thành công.';
 	end try
@@ -173,6 +175,73 @@ begin
 	begin try
 		delete DbColor where ColorId=@idcl;
 		set @msg = N'Xóa màu thành công.';
+	end try
+	begin catch
+		set @error= ERROR_MESSAGE();
+	end catch
+end
+--size
+SET QUOTED_IDENTIFIER ON
+GO
+--thêm size
+--drop procedure color_insert
+create procedure [dbo].[size_insert]
+	@namesz nvarchar(5),
+	@masz nvarchar(5),
+	@createby nvarchar(25),
+	@msg nvarchar(500) output,
+	@error nvarchar(500) output
+as
+begin
+	declare @GeneratedMaCl nvarchar(10)
+	begin try
+		--tạo mới
+		insert into DbSize(NameSize,MaSize,CreateBy,CreateDate) 
+		values (@namesz,@masz,@createby,GETDATE())
+
+		set @msg = N' thêm Size thành công.';
+	end try
+	begin catch
+		set @error =ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--sửa size
+--drop procedure size_update
+create procedure [dbo].[size_update]
+	@idsz int,
+	@namesz nvarchar(5),
+	@masz nvarchar(5),
+	@modifiedby nvarchar(25),
+	@msg nvarchar(500) output,
+	@error nvarchar(500) output
+as
+begin
+	begin try
+		update DbSize set NameSize=@namesz,MaSize=@masz,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
+		where SizeId=@idsz;
+		set @msg = N'Sửa size thành công.';
+	end try
+	begin catch
+		set @error= ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--xóa size
+--drop procedure size_delete
+create procedure [dbo].[size_delete]
+	@idsz int,
+	@msg nvarchar(500) output,
+	@error nvarchar(500) output
+as
+begin
+	begin try
+		delete DbSize where SizeId=@idsz;
+		set @msg = N'Xóa size thành công.';
 	end try
 	begin catch
 		set @error= ERROR_MESSAGE();
@@ -231,3 +300,123 @@ begin
 	 where od.MaDh= @iddh
 end;
 /*Product*/
+
+SET QUOTED_IDENTIFIER ON
+GO
+--tất cả sản phẩm
+--drop procedure product_showall
+create procedure [dbo].[product_showall]
+as
+begin
+	select p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,p.LuotSold,SUM(pd.Quantity) as Quantity,
+			p.IActive,p.IHot,p.ISale,p.IFeature
+	from DbProduct p
+	join DbCategory c on p.IdDm=c.IdDm
+	join DbGroup g on p.NhomId=g.IdNhom
+	join DbProductDetail pd on p.IdSp=pd.IdSp
+	group by p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,p.LuotSold,
+			p.IActive,p.IHot,p.ISale,p.IFeature
+	order by p.IdSp desc
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--tìm kiếm sản phẩm
+--drop procedure product_search
+create procedure [dbo].[product_search]
+	@keyword nvarchar(50)
+as
+begin
+	select p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,p.LuotSold,SUM(pd.Quantity) as Quantity,
+			p.IActive,p.IHot,p.ISale,p.IFeature
+	from DbProduct p
+	join DbCategory c on p.IdDm=c.IdDm
+	join DbGroup g on p.NhomId=g.IdNhom
+	join DbProductDetail pd on p.IdSp=pd.IdSp
+	where p.MaSp like '%'+@keyword+'%' or p.TenSp like '%'+@keyword+'%' or c.TenDm like '%'+@keyword+'%' 
+	group by p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,p.LuotSold,
+			p.IActive,p.IHot,p.ISale,p.IFeature
+	order by p.IdSp desc
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--thêm sản phẩm
+--drop procedure product_insert
+create procedure [dbo].[product_insert]
+	@iddm int,
+	@tensp nvarchar(100),
+	@nhomid int,
+	@anhsp nvarchar(500),
+	@pricemax decimal,
+	@giamgia int,
+	@pricemin decimal,
+	@motasp nvarchar,
+	@iactive bit,
+	@ifeature bit,
+	@ifavorite bit,
+	@ihot bit,
+	@isale bit,
+	@createby nvarchar(25),
+	@newidsp int out,
+	@newmasp nvarchar(10) out,
+	@error nvarchar(500) out
+as
+begin
+	declare @GeneratedMaSp nvarchar(8);
+	begin try
+		insert into DbProduct (IdDm,TenSp,NhomId,AnhSp,PriceMax,GiamGia,PriceMin,MotaSp,IActive,IFeature,IFavorite,IHot,ISale,CreateBy,CreateDate) 
+		values (@iddm,@tensp,@nhomid,@anhsp,@pricemax,@giamgia,@pricemin,@motasp,@iactive,@ifeature,@ihot,@isale,@ifavorite,@createby,GETDATE())
+
+		set @newidsp=SCOPE_IDENTITY();
+		set @GeneratedMaSp= CONCAT('SP',FORMAT(@newidsp,''));
+		set @newmasp = @GeneratedMaSp;
+			
+		update DbProduct set MaSp=@newmasp where IdSp=@newidsp;
+	end try
+	begin catch
+		set @error=N'Lỗi thêm các thông tin vào bảng DbProduct'+ ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--thêm chi tiết ảnh sản phẩm
+--drop procedure img_insert
+create procedure [dbo].[img_insert]
+	@idsp int,
+	@img nvarchar(250),
+	@error nvarchar(500) out
+as 
+begin
+	begin try
+		insert into DbImg (IdSp,Img) values (@idsp,@img)
+	end try
+	begin catch
+		set @error=N'lỗi không thêm đc các chi tiết ảnh vào bảng DbImg'+ ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--thêm thông tin chi tiết sản phẩm
+--drop procedure productdetail_insert
+create procedure [dbo].[productdetail_insert]
+	@idsp int,
+	@colorid int,
+	@namecolor nvarchar(50),
+	@sizeid int,
+	@namesize nvarchar(50),
+	@gialoai decimal,
+	@soluong int,
+	@error nvarchar(500) out
+as 
+begin
+	begin try
+		insert into DbProductDetail (IdSp,ColorId,NameColor,SizeId,NameSize,GiaLoai,Quantity)
+		values (@idsp,@colorid,@namecolor,@sizeid,@namesize,@gialoai,@soluong)
+	end try
+	begin catch
+		set @error=N'lỗi không thêm đc các thông tin chi tiết ảnh vào bảng DbProductDetail'+ ERROR_MESSAGE();
+	end catch
+end;

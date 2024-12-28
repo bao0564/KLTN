@@ -10,6 +10,18 @@
 <div class="cp0">
     Danh sách đơn hàng
 </div>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Message"]
+    </div>
+}
 <div class="h-cp1">
     <div class="h-cp-f">
         <div class="h-cp-up">

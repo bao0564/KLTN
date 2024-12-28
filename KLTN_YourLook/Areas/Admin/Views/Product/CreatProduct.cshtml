@@ -16,6 +16,13 @@
                 <li class="nav_item"><a class="nav-link" href="#page3" data-toggle="tab"> Size / Màu Sắc</a></li>
             </ul>
         </div>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
         <!-- /.card-header -->
         @using (Html.BeginForm("CreatProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
@@ -25,12 +32,12 @@
                 <div class="tab-content">
                     <div class="active tab-pane" id="page1">
                         <div class="fl pd">
-                            <div class="col-4">
+                           @*  <div class="col-4">
                                 <label class="control-label">Mã Sản Phẩm:</label>
                                 <input asp-for="MaSp" id="masp" class="form-control" onkeyup="MaSpLength()" />
                                 <span id="error" style="color: red;"></span>
                                 <span asp-validation-for="MaSp" class="text-danger"></span>
-                            </div>
+                            </div> *@
                             <div class="col-4">
                                 <label class="control-label">Tên Sản Phẩm</label>
                                 <input asp-for="TenSp" id="tensp" class="form-control" onkeyup="TenSpLength()" />
@@ -58,9 +65,8 @@
                                 <span asp-validation-for="NhomId" class="text-danger"></span>
                             </div>
                             <div class="col-4">
-                                <label class="control-label">Mô Tả</label>
-                                <textarea asp-for="MoTaSp" class="form-control" style="height:150px"></textarea>
-                                @* <input asp-for="MoTaSp" class="form-control" style="height:150px"/> *@
+                                <label class="control-label">Mô Tả <div style="color: red;">(không để trống)</div></label>
+								<textarea asp-for="MoTaSp" id="mota" class="form-control" style="height:150px"></textarea>
                                 <span asp-validation-for="MoTaSp" class="text-danger"></span>
                             </div>
                         </div>
@@ -270,6 +276,13 @@
                 });
                 $('#Imgs').val(imgUrls.join(';'));
             }
+            // //kiểm tra tí
+            // function Length() {
+            //    const input = document.getElementById('mota').value;
+            //    const error = document.getElementById('error');
+
+            //    error.textContent = input.length < 1 ? 'không được để trống' : '';
+            // }
         });
     </script>
     <script src="~/js_admin/admin_creatproduct.js"></script>

@@ -112,6 +112,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 TempData["Success"] = msg;
                 return RedirectToAction("category");
             }
+            TempData["Error"] = "dữ liệu khoog hợp lệ";
             return View(model);
         }
         //Xóa Danh Mục

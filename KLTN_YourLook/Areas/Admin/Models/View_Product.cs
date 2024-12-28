@@ -25,10 +25,8 @@ namespace KLTN_YourLook.Areas.Admin.Models
     public class AddProductViewModel:DbAbstract //view thêm sản phẩm
     {
         public int IdSp { get; set; }
-
-        [Required(ErrorMessage = "Mã sản phẩm không được để trống")]
         [StringLength(10)]
-        public string MaSp { get; set; }
+        public string? MaSp { get; set; }
         [Required(ErrorMessage = "Tên sản phẩm không được để trống")]
         [StringLength(100)]
         public string TenSp { get; set; }
@@ -64,7 +62,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public int Quantity { get; set; }
 
     }
-    public class ProductDetailViewModel
+    public class ProductDetailViewModel //view hiển thị thông tin chi tiết của sp
     {
         public DbProduct Product { get; set; }
         public List<DbImg> Imgs { get; set; }
@@ -73,7 +71,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
     public class View_SP_ProductDetail
     {
         public string NameColor { get; set; }
-        public string MaColor { get; set; }
+        public string MaHex { get; set; }
         public string NameSize { get; set; }
         public decimal GiaLoai { get; set; }
         public int Quantity { get; set; }

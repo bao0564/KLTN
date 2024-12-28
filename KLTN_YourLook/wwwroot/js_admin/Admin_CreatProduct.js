@@ -1,40 +1,40 @@
 ﻿/*thêm thông tin sản phẩm vào bảng sản phẩm DbProduct*/
-//kiểm tra mã sp tối thiểu 5 ký tự
-function MaSpLength() {
-    const input = document.getElementById('masp').value;
-    const error = document.getElementById('error');
+////kiểm tra mã sp tối thiểu 5 ký tự
+//function MaSpLength() {
+//    const input = document.getElementById('masp').value;
+//    const error = document.getElementById('error');
 
-    error.textContent = input.length < 7 ? 'Mã Sp ít nhất 7 ký tự! ký tự đầu là viết tắt của phân loại' : '';
-}
-//kiểm tra tên sp dưới 100 ký tự
-function TenSpLength() {
-    const input = document.getElementById('tensp').value;
-    const error = document.getElementById('error');
+//    error.textContent = input.length < 7 ? 'Mã Sp ít nhất 7 ký tự! ký tự đầu là viết tắt của phân loại' : '';
+//}
+////kiểm tra tên sp dưới 100 ký tự
+//function TenSpLength() {
+//    const input = document.getElementById('tensp').value;
+//    const error = document.getElementById('error');
 
-    error.textContent = input.length >100 ? 'Tên Sản Phẩm tối đa 100 ký tự' : '';
-}
-//kiểm tra mã sp (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
-document.getElementById("masp").addEventListener("blur", function () {
-    var sp = this.value;
-    var idsp = document.getElementById("idsp") ? document.getElementById("idsp").value : null; // Lấy ID sản phẩm (nếu có)
-    var url = `/admin/productcheck?masp=${encodeURIComponent(sp)}`;
-    if (idsp) {
-        url += `&idsp=${encodeURIComponent(idsp)}`;
-    }
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.exists) {
-                alert("Mã sản phẩm đã tồn tại!");
-            }
-        })
-        .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
-});
+//    error.textContent = input.length >100 ? 'Tên Sản Phẩm tối đa 100 ký tự' : '';
+//}
+////kiểm tra mã sp (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
+//document.getElementById("masp").addEventListener("blur", function () {
+//    var sp = this.value;
+//    var idsp = document.getElementById("idsp") ? document.getElementById("idsp").value : null; // Lấy ID sản phẩm (nếu có)
+//    var url = `/admin/productcheck?masp=${encodeURIComponent(sp)}`;
+//    if (idsp) {
+//        url += `&idsp=${encodeURIComponent(idsp)}`;
+//    }
+//    fetch(url)
+//        .then(response => {
+//            if (!response.ok) {
+//                throw new Error('Network response was not ok');
+//            }
+//            return response.json();
+//        })
+//        .then(data => {
+//            if (data.exists) {
+//                alert("Mã sản phẩm đã tồn tại!");
+//            }
+//        })
+//        .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
+//});
 
 
 //

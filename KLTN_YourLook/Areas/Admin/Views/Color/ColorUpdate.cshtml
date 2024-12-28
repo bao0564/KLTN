@@ -10,7 +10,7 @@
     <div class="h-cp1">
         <div class="h-cp-up">
             <div style="display:flex;align-items:center;padding-top:15px">
-                <a asp-action="Size"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+                <a asp-action="Color"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -19,11 +19,11 @@
             <input type="hidden" asp-for="CreateDate" />
             <input type="hidden" asp-for="CreateBy" />
             <div class="h-cp-mid-1">
-               @*  <div class="col-4">
-                    <label class="control-label">Mã Màu</label>
-                    <input asp-for="MaColor" id="macl" class="form-control" />
-                    <span asp-validation-for="MaColor" class="text-danger"></span>
-                </div> *@
+                <div class="col-4">
+                    <label class="control-label">Mã hex</label>
+                    <input asp-for="MaHex" class="form-control" />
+                    <span asp-validation-for="MaHex" class="text-danger"></span>
+                </div>
                 <div class="col-4">
                     <label class="control-label">Tên Màu</label>
                     <input asp-for="NameColor" class="form-control" />

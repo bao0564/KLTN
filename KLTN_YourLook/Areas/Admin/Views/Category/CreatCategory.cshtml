@@ -13,9 +13,12 @@
                 <a asp-action="Category"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
-        <div class="alert alert-danger">
-            @TempData["Error"]
-        </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
         @using (Html.BeginForm("CreatCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()

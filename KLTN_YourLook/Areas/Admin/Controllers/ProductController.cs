@@ -12,6 +12,7 @@ using System.Data;
 using System.Data.Common;
 using X.PagedList;
 using X.PagedList.Extensions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -78,7 +79,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [Route("productcreat")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatProduct(AddProductViewModel model, string Imgs,string DetailData, IFormFile AnhSpFile)//name trong 2 input tải ảnh
+        public async Task<IActionResult> CreatProduct(AddProductViewModel model, string? Imgs,string DetailData, IFormFile? AnhSpFile)//name trong 2 input tải ảnh
         {
             if (ModelState.IsValid)
             {
@@ -86,23 +87,13 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhSp = await _uploadimg.uploadOnePhotosAsync(AnhSpFile,"img");
                 }
-                var prd = await _productRepository.CreateProduct(
-                        model.MaSp,
-                        model.IdDm,
-                        model.TenSp,
-                        model.NhomId,
-                        model.AnhSp,
-                        model.PriceMax,
-                        model.GiamGia ?? 0,
-                        model.PriceMin ?? 0,
-                        model.MoTaSp,
-                        model.IActive,
-                        model.IFeature,
-                        model.IFavorite,
-                        model.IHot,
-                        model.ISale,
-                        "bao"
-                    );               
+                var (newIdSp, error) = await _productRepository.CreateProduct(model.IdDm,model.TenSp,model.NhomId,model.AnhSp,model.PriceMax,
+                        model.GiamGia ?? 0,model.PriceMin ?? 0,model.MoTaSp,model.IActive,model.IFeature,model.IFavorite,model.IHot, model.ISale, "bao" );
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"]=error;
+                    return View(model);
+                }
                 //ảnh
                 if (!string.IsNullOrEmpty(Imgs))
                 {
@@ -110,9 +101,9 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                     foreach (var imagePath in imagePaths)
                     {
                         await _productRepository.CreateImg(
-                                prd,
-                                imagePath
-                            );
+                                    newIdSp,
+                                    imagePath
+                                );
                     }
                 }
                 //chi tiết size,color,price,quantity
@@ -123,21 +114,22 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                     {
                         var parts = detail.Split(',');
                         await _productRepository.CreateProductDetail(
-                            prd,
-                            int.Parse(parts[0]),
-                            parts[1],
-                            int.Parse(parts[2]),
-                            parts[3],
-                            decimal.Parse(parts[4]),
-                            int.Parse(parts[5])
-                        );
+                                newIdSp,
+                                int.Parse(parts[0]),
+                                parts[1],
+                                int.Parse(parts[2]),
+                                parts[3],
+                                decimal.Parse(parts[4]),
+                                int.Parse(parts[5])
+                            );
                     }
                 }
+                TempData["Success"] = "Thêm sản phẩm thành công";
                 return RedirectToAction("Product");
             }            
             else
             {
-                //ModelState.AddModelError("", "Không thể tạo sản phẩm.");
+                TempData["Error"] = "LỖI DỮ LIỆU";
                 foreach (var state in ModelState)
                 {
                     foreach (var error in state.Value.Errors)
@@ -234,24 +226,8 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhSp = img;
                 }
-                var prd = await _productRepository.UpdateProduct(
-                        model.IdSp,
-                        model.MaSp,
-                        model.IdDm,
-                        model.TenSp,
-                        model.NhomId,
-                        model.AnhSp,
-                        model.PriceMax,
-                        model.GiamGia ?? 0,
-                        model.PriceMin ?? 0,
-                        model.MoTaSp,
-                        model.IActive,
-                        model.IFeature,
-                        model.IFavorite,
-                        model.IHot,
-                        model.ISale,
-                        "bao2"
-                    );
+                var prd = await _productRepository.UpdateProduct(model.IdSp, model.IdDm, model.TenSp, model.NhomId, model.AnhSp, model.PriceMax, model.GiamGia ?? 0,//SP
+                                                                 model.PriceMin ?? 0, model.MoTaSp, model.IActive, model.IFeature, model.IFavorite, model.IHot, model.ISale, "bao2" );
                 //ảnh
                 if (!string.IsNullOrEmpty(Imgs))
                 {
@@ -264,10 +240,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                     var imagePaths = Imgs.Split(';');
                     foreach (var imagePath in imagePaths)
                     {
-                        await _productRepository.CreateImg(
-                                model.IdSp,
-                                imagePath
-                            );
+                        await _productRepository.CreateImg(model.IdSp, imagePath );//SP
                     }
                 }
                 //chi tiết size,color,price,quantity
@@ -283,7 +256,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                     foreach (var detail in details)
                     {
                         var parts = detail.Split(',');
-                        await _productRepository.CreateProductDetail(
+                        await _productRepository.CreateProductDetail(//SP
                             model.IdSp,
                             int.Parse(parts[0]),
                             parts[1],
@@ -294,6 +267,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                         );
                     }
                 }
+                TempData["Success"] = "Sửa sản phẩm thành công";
                 return RedirectToAction("Product");
             }
             return View(model);
@@ -320,7 +294,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 _context.DbProducts.Remove(sanpham);
                 _context.SaveChanges();
             }
-            TempData["Message"] = "Sản Phẩm Đã Được Xóa";
+            TempData["Success"] = "Sản Phẩm Đã Được Xóa";
             return RedirectToAction("Product");
         }
         //dùng cho ajax tải ảnh trong js

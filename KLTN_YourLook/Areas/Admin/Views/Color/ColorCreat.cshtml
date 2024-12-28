@@ -14,16 +14,22 @@
                 <a asp-action="Color"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form asp-action="ColorCreat" method="post">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             <div class="h-cp-mid-1">
-                @* <div class="col-4">
-                    <label class="control-label">Mã Màu</label>
-                    <input asp-for="MaColor" id="macl" value="#" class="form-control" />
-                    <span asp-validation-for="MaColor" class="text-danger"></span>
-                </div> *@
+                <div class="col-4">
+                    <label class="control-label">Mã Hex</label>
+                    <input asp-for="MaHex" value="#" class="form-control" />
+                    <span asp-validation-for="MaHex" class="text-danger"></span>
+                </div>
                 <div class="col-4">
                     <label class="control-label">Tên Màu</label>
                     <input asp-for="NameColor" class="form-control" />

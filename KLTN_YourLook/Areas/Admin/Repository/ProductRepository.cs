@@ -41,7 +41,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
         }
         //tạo sản phẩm mới
         //lưu vào bảng sản phẩm
-        public async Task<int> CreateProduct(string masp, int iddm, string tensp, int nhomid, string anhsp, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string createby)
+        public async Task<(int newIdSp,string error)> CreateProduct(int iddm, string tensp, int nhomid, string anhsp, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string createby)
         {
             if (_dbConnection == null)
             {
@@ -49,7 +49,6 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             }
 
             var parameters = new DynamicParameters();
-            parameters.Add("@masp", masp);
             parameters.Add("@iddm", iddm);
             parameters.Add("@tensp", tensp);
             parameters.Add("@nhomid", nhomid);
@@ -64,15 +63,18 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             parameters.Add("@ihot", ihot);
             parameters.Add("@isale", isale);
             parameters.Add("@createby", createby);
-            parameters.Add("@createdate", DateTime.Now);
-            parameters.Add("@NewProductId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            parameters.Add("@newidsp", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            parameters.Add("@newmasp", dbType: DbType.String,size:10, direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String,size:500, direction: ParameterDirection.Output);
 
             await _dbConnection.ExecuteAsync("product_insert", parameters, commandType: CommandType.StoredProcedure);
-            int newProductId = parameters.Get<int>("@NewProductId");
-            return newProductId;
+            int newIdSp = parameters.Get<int>("@newidsp");
+            var error = parameters.Get<string>("@error");
+            return (newIdSp,error);
         }
         //lưu ảnh vào bảng ảnh
-        public async Task<int> CreateImg(int idsp, string img)
+        public async Task<string> CreateImg(int idsp, string img)
         {
             if (_dbConnection == null)
             {
@@ -81,11 +83,15 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@idsp", idsp);
             parameters.Add("@img", img);
-            int i = await _dbConnection.ExecuteAsync("img_insert", parameters, commandType: CommandType.StoredProcedure);
-            return i;
+
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            
+            await _dbConnection.ExecuteAsync("img_insert", parameters, commandType: CommandType.StoredProcedure);
+            var error = parameters.Get<string>("@error");
+            return error;
         }
         //lưu chi tiết sản phẩm vào bảng chi tiết sản phẩm
-        public async Task<int> CreateProductDetail(int idsp, int colorid,string namecolor, int sizeid,string namesize, decimal gialoai, int soluong)
+        public async Task<string> CreateProductDetail(int idsp, int colorid,string namecolor, int sizeid,string namesize, decimal gialoai, int soluong)
         {
             if (_dbConnection == null)
             {
@@ -99,8 +105,11 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             parameters.Add("@namesize", namesize);
             parameters.Add("@gialoai", gialoai);
             parameters.Add("@soluong", soluong);
-            int ctsp = await _dbConnection.ExecuteAsync("productdetail_insert", parameters, commandType: CommandType.StoredProcedure);
-            return ctsp;
+
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            await _dbConnection.ExecuteAsync("productdetail_insert", parameters, commandType: CommandType.StoredProcedure);
+            var error = parameters.Get<string>("@error");
+            return error;
         }
         //hiển thị thông tin sản phẩm 
         public async Task<DbProduct> Product_Find(int idsp)
@@ -131,68 +140,64 @@ namespace KLTN_YourLook.Areas.Admin.Repository
 
         }
         //Sửa thông tin sản phẩm trên bảng Dbproduct
-        public async Task<int> UpdateProduct(int idsp, string masp, int iddm, string tensp, int nhomid, string anhsp, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string modifiedby)
+        public async Task<int> UpdateProduct(int idsp, int iddm, string tensp, int nhomid, string anhsp, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string modifiedby)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-            var parameters = new
-            {
-                idsp,
-                masp,
-                iddm,
-                tensp,
-                nhomid,
-                anhsp,
-                pricemax,
-                giamgia,
-                pricemin,
-                motasp,
-                iactive,
-                ifeature,
-                ifavorite,
-                ihot,
-                isale,
-                modifiedby,
-                modifieddate=DateTime.Now
-            };
+            var parameters = new DynamicParameters();
+            parameters.Add("@idsp", idsp);
+            parameters.Add("@iddm", iddm);
+            parameters.Add("@tensp", tensp);
+            parameters.Add("@nhomid", nhomid);
+            parameters.Add("@anhsp", anhsp);
+            parameters.Add("@pricemax", pricemax);
+            parameters.Add("@giamgia", giamgia);
+            parameters.Add("@pricemin", pricemin);
+            parameters.Add("@motasp", motasp);
+            parameters.Add("@iactive", iactive);
+            parameters.Add("@ifeature", ifeature);
+            parameters.Add("@ifavorite", ifavorite);
+            parameters.Add("@ihot", ihot);
+            parameters.Add("@isale", isale);
+            parameters.Add("@modifiedby", modifiedby);
             var result=await _dbConnection.ExecuteAsync("product_update",parameters, commandType: CommandType.StoredProcedure);
             return result;
         }
-        //sửa thông tin ảnh sản phẩm trên bảng DbImg
-        public async Task<int> UpdateImg(int idsp,string img)
-        {
-            if (_dbConnection == null)
-            {
-                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-            }
-            var parameters = new
-            {
-                idsp,
-                img
-            };
-            var result=await _dbConnection.ExecuteAsync("img_update",parameters,commandType: CommandType.StoredProcedure);
-            return result;
-        }
-        //Sửa thông tin chi tiết Sản phẩm trong bảng Dbproductdetail
-        public async Task<int> UpdateProductDetail(int idsp,int colorid,int sizeid,decimal gialoai,int soluong)
-        {
-            if( _dbConnection == null)
-            {
-                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-            }
-            var parameters = new
-            {
-                idsp,
-                colorid,
-                sizeid,
-                gialoai,
-                soluong
-            };
-            var result = await _dbConnection.ExecuteAsync("productdetail_update", parameters, commandType: CommandType.StoredProcedure);
-            return result;
-        }
+        ////không dùng vì chọn cách xóa hết ảnh sp cũ và ấy lại 
+        ////sửa thông tin ảnh sản phẩm trên bảng DbImg
+        //public async Task<int> UpdateImg(int idsp,string img)
+        //{
+        //    if (_dbConnection == null)
+        //    {
+        //        throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+        //    }
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("@idsp", idsp);
+        //    parameters.Add("@img", img);
+        //    var result=await _dbConnection.ExecuteAsync("img_update",parameters,commandType: CommandType.StoredProcedure);
+        //    return result;
+        //}
+        ////không dùng vì chọn cách xóa hết chi tiết sp cũ và ấy lại 
+        ////Sửa thông tin chi tiết Sản phẩm trong bảng Dbproductdetail
+        //public async Task<int> UpdateProductDetail(int idsp,int colorid,string namecolor,int sizeid,string namesize,decimal gialoai,int soluong)
+        //{
+        //    if( _dbConnection == null)
+        //    {
+        //        throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+        //    }
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("@idsp", idsp);
+        //    parameters.Add("@colorid", colorid);
+        //    parameters.Add("@namecolor", namecolor);
+        //    parameters.Add("@sizeid", sizeid);
+        //    parameters.Add("@namesize", namesize);
+        //    parameters.Add("@gialoai", gialoai);
+        //    parameters.Add("@soluong", soluong);
+        //    var result = await _dbConnection.ExecuteAsync("productdetail_update", parameters, commandType: CommandType.StoredProcedure);
+        //    return result;
+        //}
         
     }
 }
