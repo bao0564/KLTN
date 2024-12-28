@@ -9,12 +9,12 @@ namespace Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ColorId { get; set; }
-        [Required(ErrorMessage = "không được trống")]
         [StringLength(10)]
-        public string MaColor { get; set; }
-        [Required(ErrorMessage = "không được trống")]
+        public string? MaColor { get; set; }
         [StringLength(50)]
         public string NameColor { get; set; }
+        [StringLength(20)]
+        public string? MaHex { get; set; }
         [StringLength(250)]
         public string? Img { get; set; }
 

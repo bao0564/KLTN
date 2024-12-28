@@ -9,10 +9,8 @@ namespace Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdDm { get; set; }
-        [Required(ErrorMessage = "không được trống")]
         [StringLength(10)]
-        public string MaDm { get; set; }
-        [Required(ErrorMessage = "tên danh mục không được trống")]
+        public string? MaDm { get; set; }
         [StringLength(10)]
         public string TenDm { get; set; }
         [StringLength(250)]

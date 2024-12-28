@@ -13,6 +13,12 @@
                 <a asp-action="Size"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form asp-action="SizeCreat">
             <div class="h-cp-mid-1">

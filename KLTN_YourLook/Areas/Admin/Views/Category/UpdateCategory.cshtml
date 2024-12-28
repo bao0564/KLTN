@@ -13,17 +13,23 @@
                 <a asp-action="Category"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
         @using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <input type="hidden" asp-for="IdDm" />
             <input type="hidden" asp-for="CreateDate" />
             <input type="hidden" asp-for="CreateBy" />
             <div class="h-cp-mid-1">
-                <div class="mid-c">
+                @* <div class="mid-c">
                     <label class="control-label">Mã danh Mục</label>
                     <input asp-for="MaDm" id="madm" class="form-control" />
                     <span asp-validation-for="MaDm" class="text-danger"></span>
-                </div>
+                </div> *@
                 <div class="mid-c">
                     <label class="control-label">Tên danh Mục</label>
                     <input asp-for="TenDm" class="form-control" />
@@ -44,7 +50,7 @@
     </div>
 </div>
 @section scripts {
-    <script>
+   @*  <script>
         //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
         document.getElementById("madm").addEventListener("blur", function () {
             var dm = this.value;
@@ -62,5 +68,5 @@
                 })
                 .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
         });
-    </script>
+    </script> *@
 }

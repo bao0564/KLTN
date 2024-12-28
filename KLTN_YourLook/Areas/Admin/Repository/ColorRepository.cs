@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System.Data;
+using System.Threading;
 using static Azure.Core.HttpHeader;
 
 namespace KLTN_YourLook.Areas.Admin.Repository
@@ -12,7 +13,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             _dbConnection = dbConnection;
         }
         //tạo màu
-        public async Task<(string msg,string error)> CreateColor(string namecl, string img, string createby)
+        public async Task<(string msg,string error)> CreateColor(string namecl,string mahex, string img, string createby)
         {
             if (_dbConnection == null)
             {
@@ -21,6 +22,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
 
             var parameters = new DynamicParameters();
             parameters.Add("@namecl", namecl);
+            parameters.Add("@mahex", mahex);
             parameters.Add("@img", img);
             parameters.Add("@createby", createby);
 
@@ -38,7 +40,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return (msg,error);
         }
         //sửa color
-        public async Task<(string msg, string error)> UpdateColor(int idcl, string namecl, string img, string modifiedby)
+        public async Task<(string msg, string error)> UpdateColor(int idcl, string namecl,string mahex, string img, string modifiedby)
         {
             if (_dbConnection == null)
             {
@@ -47,6 +49,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@idcl", idcl);
             parameters.Add("@namecl", namecl);
+            parameters.Add("@mahex", mahex);
             parameters.Add("@img", img);
             parameters.Add("@modifiedby", modifiedby);
 

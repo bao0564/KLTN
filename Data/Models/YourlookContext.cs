@@ -17,6 +17,12 @@ namespace Data.Models
             // 1 sp có thể có nhiều trong DbCart(vì idkh khác nhau) và ngc lại //nếu sp bị xóa thì toàn bộ sp đó trong dbcart sẽ bị xóa
             modelBuilder.Entity<DbProduct>().HasMany(p => p.carts).WithOne(cart => cart.product).HasForeignKey(cart => cart.IdSp)
                 .OnDelete(DeleteBehavior.Cascade);
+            // 1 sp có 1 danh mục và ngc lại 
+            modelBuilder.Entity<DbProduct>().HasOne(p=>p.category).WithMany(c=>c.products).HasForeignKey(p=>p.IdDm)
+                .OnDelete(DeleteBehavior.Cascade);
+            // 1 sp có 1 nhóm và ngc lại 
+            modelBuilder.Entity<DbProduct>().HasOne(p => p.group).WithMany(c => c.products).HasForeignKey(p => p.NhomId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // 1 ctsp có 1 sp và 1 sp có thể có nhiều ctsp(cùng sp nhưng khác color,size) //nếu sp bị xóa thì ctsp của sp đó sẽ bị xóa
             modelBuilder.Entity<DbProductDetail>().HasOne(ctsp => ctsp.product).WithMany(sp => sp.detailproducts).HasForeignKey(ctsp => ctsp.IdSp)

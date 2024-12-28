@@ -17,14 +17,23 @@
             <div class="bt-c"><a href="">Xuất PDF</a></div>
         </div>
         <div class="h-cp-mid">
-            <div class="talg ttu">
-                 @TempData["Message"]
-            </div>
             @using (Html.BeginForm("Product", "Product", FormMethod.Get))
             {
                 <div class="flspe">
                     <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Mã Sản phẩm/ Tên sản phẩm . . .">
                     <button type="submit">Tìm Kiếm</button>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Success"]
+                </div>
+            }
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["Message"]
                 </div>
             }
             <table class="h-table">
@@ -38,13 +47,13 @@
                         <th>Giá áp dụng</th>
                         <th>% Giảm giá</th>
                         <th>Phân loại</th>
-                        <th>Nhóm</th>
+						<th style="width:40px">Nhóm</th>
                         <th>Số Lượng</th>
                         <th>Đã Bán</th>
                         <th style="width:20px">Hiển Thị</th>
                         <th style="width:20px">Nổi bật</th>
-                        <th style="width:20px">Mục Hot</th>
-                        <th style="width:20px">Mục Sale</th>
+                        <th style="width:20px">Hot</th>
+                        <th style="width:20px">Sale</th>
                         <th>Chọn</th>
                     </tr>
                 </thead>

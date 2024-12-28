@@ -17,18 +17,29 @@
             <div class="bt-c"><a href="">Xuất PDF</a></div>
         </div>
         <div class="h-cp-mid">
-            <div class="messages">
-                @TempData["Message"]
-            </div>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Success"]
+                </div>
+            }
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["Message"]
+                </div>
+            }
             <div>
                 <input class="form-search" type="text" placeholder="Tìm Kiếm Size/ Tên Size . . .">
             </div>
             <table class="h-table">
                 <thead>
                     <tr>
-                        <th class="hidden">id</th>
-                        <th>Tên màu</th>
-                        <th>Mã Màu</th>
+						<th class="hidden">id</th>
+						<th>Mã Màu</th>
+						<th>Tên màu</th>
+						<th>Mã Hex</th>
                         <th></th>
                         <th>Ngày Tạo </th>
                         <th>Tạo Bởi</th>
@@ -43,17 +54,18 @@
                         foreach (var prd in Model)
                         {
                             <tr>
-                                <td class="hidden">@prd.ColorId</td>
+								<td class="hidden">@prd.ColorId</td>
+								<td>@prd.MaColor</td>
                                 <td>@prd.NameColor</td>
-                                <td>@prd.MaColor</td>
+                                <td>@prd.MaHex</td>
                                 @if (prd.Img != null && prd.Img.Length>2)
                                 {
                                     <td>@prd.Img</td>
                                 }
                                 else
                                 {
-                                    <td style="position:relative">
-                                        <div class="" style="background-color:@prd.MaColor;width:80%;height:20px;position:absolute;top:25%"></div>
+                                    <td>
+                                        <button class="bdrdu pd" style="background-color:@prd.MaHex"></button>
                                     </td>
                                 }
                                 <td>@prd.CreateDate</td>

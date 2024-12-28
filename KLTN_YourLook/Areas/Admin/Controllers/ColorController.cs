@@ -47,7 +47,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var (msg,error) = await _colorRepository.CreateColor(model.NameColor, model.Img ?? "", "bao" );
+                var (msg,error) = await _colorRepository.CreateColor(model.NameColor,model.MaHex, model.Img ?? "", "bao" );
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"]=error;
@@ -73,7 +73,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var (msg,error) =await _colorRepository.UpdateColor(model.ColorId, model.NameColor, model.Img ?? "", "Bao2");
+                var (msg,error) =await _colorRepository.UpdateColor(model.ColorId, model.NameColor,model.MaHex, model.Img ?? "", "Bao2");
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"] = error;

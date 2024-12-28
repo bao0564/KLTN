@@ -48,22 +48,16 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var s = await _sizeRepository.CreateSize(
-                        model.MaSize,
-                        model.NameSize,
-                        "bao"
-                    );
+                var (msg,error) = await _sizeRepository.CreateSize(model.MaSize,model.NameSize,"bao");
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"] = error;
+                }
+                TempData["Success"] = msg;
 
-                if (s == 2) //@ret = 2 là thành công
-                {
-                    TempData["SuccessMessage"] = "Size đã được tạo thành công!";
-                    return RedirectToAction("Size");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Không thể tạo size. Vui lòng thử lại.");
-                }
+                return RedirectToAction("size");
             }
+            TempData["Error"] = "dữ liệu không hợp lệ";
             return View(model);
         }
         //sửa size
@@ -80,14 +74,20 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var s = await _sizeRepository.UpdateSize(
+                var (msg, error)= await _sizeRepository.UpdateSize(
                         model.SizeId,
                         model.MaSize,
                         model.NameSize,
                         "Bao2"
                     );
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"] = error;
+                }
+                TempData["Success"] = msg;
                 return RedirectToAction("Size");
             }
+            TempData["Error"] = "dữ liệu không hợp lệ";
             return View(model);
         }
         //xóa size
@@ -105,19 +105,23 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             var size = _context.DbSizes.Find(idsize);
             if (size != null)
             {
-                var s= await _sizeRepository.DeleteSize(idsize);
+                var (msg, error) = await _sizeRepository.DeleteSize(idsize);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Message"] = error;
+                }
+                TempData["Success"] = msg;
             }
-            TempData["Message"] = "Size ĐÃ ĐƯỢC XÓA";
             return RedirectToAction("Size");
         }
 
-        //kiểm tra mã sp trùng lặp trong js
-        [HttpGet]
-        [Route("sizecheck")]
-        public async Task<IActionResult> sizecheck(string masize)
-        {
-            var exists = await _context.DbSizes.AnyAsync(x => x.MaSize == masize);
-            return Json(new { exists });
-        }
+        ////kiểm tra mã sp trùng lặp trong js
+        //[HttpGet]
+        //[Route("sizecheck")]
+        //public async Task<IActionResult> sizecheck(string masize)
+        //{
+        //    var exists = await _context.DbSizes.AnyAsync(x => x.MaSize == masize);
+        //    return Json(new { exists });
+        //}
     }
 }

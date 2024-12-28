@@ -9,10 +9,8 @@ namespace Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdSp { get; set; }
-
-        [Required(ErrorMessage = "Mã sản phẩm không được để trống")]
         [StringLength(10)]
-        public string MaSp { get; set; }
+        public string? MaSp { get; set; }
         public int IdDm { get; set; }
 
         [Required(ErrorMessage = "Tên sản phẩm không được để trống")]
