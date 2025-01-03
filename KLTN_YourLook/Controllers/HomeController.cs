@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq;
 using X.PagedList;
-using yourlook.Models;
 
 namespace KLTN_YourLook.Controllers
 {
@@ -32,7 +31,7 @@ namespace KLTN_YourLook.Controllers
 		{
 			var prdCart = HttpContext.Session.GetJson<List<ShoppingCartItem>>("Cart") ?? new List<ShoppingCartItem>();
 			ViewBag.CartItemCount = prdCart.Sum(i => i.ProductQuantity);
-			var email = HttpContext.Session.GetString("user");
+			var email = HttpContext.Session.GetString("userEmail");
 			if (email != null)
 			{
 				var user = GetEmailKhachHang(email);

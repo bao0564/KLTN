@@ -14,7 +14,7 @@ namespace Data.Models
         [ForeignKey("DbCustomer")]// ko cần cũng ok
         public int IdKh { get; set; }
 
-        public virtual DbProduct product { get; set; } // ngược lại với quan hệ ở bảng DbProduct
-        public virtual DbCustomer customer { get; set; } // ngược lại với quan hệ ở bảng DbCustomer
+        public virtual DbProduct? product { get; set; } // ngược lại với quan hệ ở bảng DbProduct
+        public virtual DbCustomer? customer { get; set; } // ngược lại với quan hệ ở bảng DbCustomer
     }
 }

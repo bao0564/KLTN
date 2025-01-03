@@ -93,7 +93,7 @@
 						@foreach (var color in Model.Detail.DistinctBy(c=>c.ColorId))
 						{
 							<button style="padding:5px 10px;margin-left:10px;" type="button" class="color-option bdrdu" data-color="@color.ColorId">
-								<i class="fa-solid fa-certificate" style="color:@color.MaColor"></i>@color.NameColor
+								<i class="fa-solid fa-certificate" style="color:@color.MaHex"></i>@color.NameColor
 							</button>
 						}
 					</div>

@@ -14,7 +14,7 @@ namespace Data.Models
         public int IdDm { get; set; }
 
         [Required(ErrorMessage = "Tên sản phẩm không được để trống")]
-        [StringLength(100)]
+        [StringLength(250)]
         public string TenSp { get; set; }
         public int? SaoDanhGia { get; set; }
         public int NhomId { get; set; }

@@ -13,5 +13,5 @@
         setTimeout(function () {
             toast.remove();
         }, 500); // Đợi hiệu ứng mờ hoàn tất
-    }, 3000);
+    }, 1000);
 }

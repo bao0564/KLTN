@@ -141,7 +141,7 @@
                                 }
                                 <td>
                                     <div style="display:flex;flex-direction:column;gap:10px">
-                                        <a class="btn-ddu btn-dt nw" href="@Url.Action("ChiTietDonHang",new {madh=prd.MaDh})" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
+                                        <a class="btn-ddu btn-dt nw" href="@Url.Action("orderdetail", new { iddh = prd.IdDh })" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
                                         <div style="display:flex;justify-content:space-between">
                                             <a class="btn-ddu btn-ud" href="@Url.Action("SuaDonHang",new {madh=prd.MaDh})">Update</a>
                                             <a class="btn-ddu btn-de" href="@Url.Action("XoaDonHang",new {madh=prd.MaDh})" onclick="deletedh(event)">Xóa</a>

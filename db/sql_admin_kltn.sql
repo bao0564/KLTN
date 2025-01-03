@@ -256,7 +256,7 @@ GO
 create procedure [dbo].[order_showall]
 as
 begin
-	select od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
+	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
 			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
 	from DbOrder od
 	join DbCustomer cus on od.IdKh=cus.IdKh
@@ -288,17 +288,18 @@ create procedure [dbo].[show_orderdetail]
 as
 begin
 	select od.MaDh,
-			(select string_agg(concat(odd.MaSp,',',p.TenSp,',',p.AnhSp,',',cl.NameColor,',',sz.NameSize,',',odd.SoLuongSp,','),';') 
+			(select string_agg(concat(odd.MaSp,'"',p.TenSp,'"',p.AnhSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.SoLuongSp,'"',pd.GiaLoai),';')  
 			from DbOrderDetail odd
 			 join DbProduct p on odd.IdSp=p.IdSp
 			 join DbColor cl on cl.ColorId= odd.IdColor
 			 join DbSize sz on odd.IdSize=sz.SizeId
-			where odd.IdSp= p.IdSp) as MaSp,			
+			 join DbProductDetail pd  on p.IdSp=pd.IdSp and odd.IdColor=pd.ColorId and odd.IdSize= pd.SizeId
+			where odd.IdDh= od.IdDh) as InForSp,			
 			od.IdKh,cus.TenKh,od.NguoiNhan,od.DiaChi,od.GhiChu,
 			od.TongTien,od.Giamgia,od.Ship,od.TongTienThanhToan
 	 from DbOrder od
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
-	 where od.MaDh= @iddh
+	 where od.IdDh= @iddh
 end;
 /*Product*/
 

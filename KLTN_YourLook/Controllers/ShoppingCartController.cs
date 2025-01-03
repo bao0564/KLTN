@@ -6,7 +6,6 @@ using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using yourlook.Models;
 
 namespace KLTN_YourLook.Controllers
 {
@@ -144,13 +143,17 @@ namespace KLTN_YourLook.Controllers
                 {
 					return Json(new { success = false, msg = "Bạn chưa đăng nhập" });
 				}
+                if (emailkh == null)
+                {
+                    return Json(new { success = false, msg = "Bạn chưa đăng nhập" });
+                }
                 int idkh = checkkh.Value;
                 var (newIdDH, newMaDH) = await _orderCart.Add_Order(idkh,emailkh,orderInfor.TenKh,orderInfor.Sdt,orderInfor.City,orderInfor.District,orderInfor.Ward,orderInfor.DiaChi
                                                            ,tongtien,tongtiensanpham,soluong,orderPayment.PaymentId,orderPayment.PayName,orderVoucher.IdVoucher
                                                            ,orderVoucher.ValueVoucher,giamgia,ship,orderInfor.GhiChu);
                 foreach (var item in order)
                 {
-                    var add_orderdetail = await _orderCart.Add_OrderDetail(newIdDH, newMaDH, item.IdSp, item.MaSp, item.ColorId, item.SizeId, item.ProductQuantity);
+                    var add_orderdetail = await _orderCart.Add_OrderDetail(newIdDH, newMaDH, item.IdSp, item.MaSp, item.ColorId, item.SizeId,item.GiaLoai, item.ProductQuantity);
                     //trừ số lượng tồn ,tăng số lượng bán
                     var slprd = _context.DbProductDetails.FirstOrDefault(pd=>pd.IdSp==item.IdSp && pd.ColorId==item.ColorId && pd.SizeId==item.SizeId);
                     if (slprd != null)

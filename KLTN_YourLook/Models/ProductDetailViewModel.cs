@@ -52,6 +52,7 @@ namespace KLTN_YourLook.Models
 		public int ColorId { get; set; }
 		public string NameColor { get; set; }
 		public string MaColor { get; set; }
+		public string MaHex { get; set; }
 		public decimal GiaLoai { get; set; }
 		public int Quantity { get; set; }
 	}

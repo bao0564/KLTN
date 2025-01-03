@@ -177,7 +177,7 @@
 									<li class="checkout">
 										<a href="@Url.Action("Cart","ShoppingCart")">
 											<i class="fa fa-shopping-cart" style="color:var(--White-1);position:relative" aria-hidden="true"></i>
-											@await Component.InvokeAsync("ViewProductInCart")
+											@* @await Component.InvokeAsync("ViewProductInCart") *@
 										</a>
 									</li>
 								</ul>
@@ -369,8 +369,8 @@
 			</div>
 		</div>
 		<main class="mar150_container customer" style="background-color:#bdc3c7;margin-bottom:0">
-			<div class="img-ad" style="padding: 0">
-				<img src="/logo/Untitled_Export_V4.jpeg" style="background-color: #2f3640" alt="" />
+			<div class="img-ad" style="padding:25px 0">
+				@* <img src="/logo/Untitled_Export_V4.jpeg" style="background-color: #2f3640" alt="" /> *@
 			</div>
 			<div class="body-customer" style="align-items:center">
 				<div class="address-customer" >
@@ -385,10 +385,10 @@
 						</div>
 						<div class="space-address" style="justify-content:space-between;background-color:#fff">
 							<div>
-                                <a href="@Url.Action("UserAddress","UserAddress")"><i class="fa-solid fa-location-dot" style="color: #121212;"></i><span>Thông Tin </span>Địa Chỉ</a>
+                                <a href="@Url.Action("UserAddress","User")"><i class="fa-solid fa-location-dot" style="color: #121212;"></i><span>Thông Tin </span>Địa Chỉ</a>
 							</div>
 							<div class="ctm-icon">
-								<a href="@Url.Action("UserAddress", "UserAddress")"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								<a href="@Url.Action("UserAddress", "User")"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 							</div>
 						</div>
 						<div class="space-address" style="justify-content:space-between;background-color:#fff">

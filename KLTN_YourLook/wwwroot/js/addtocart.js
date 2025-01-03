@@ -12,7 +12,7 @@
         var selectedColor = $('.color-option.selected').data('color');
 
         if (!selectedSize || !selectedColor) {
-            alert("Vui lòng chọn size và màu sắc");
+            showMess("Vui lòng chọn size và màu sắc",false);
             return;
         }
         $.ajax({
@@ -140,7 +140,7 @@
             });
         });
         if (selectedProduct.length === 0) {
-            alert('Vui lòng chọn một sản phẩm để thanh toán');
+            showMess('Vui lòng chọn một sản phẩm để thanh toán',false);
             return;
         }
         //lấy thông tin địa chỉ được điền           
@@ -155,20 +155,21 @@
         }; 
         for (var key in addressInfo) {
             if (addressInfo[key] === '' || addressInfo[key] === null) {
-                alert(key + ' không được để trống');
+                showMess(key + ' không được để trống',false);
                 return;
             }
         }
         //lấy thông tin thanh toán đc chọn
         var selectedPayment = $('.pay-checked:checked');
         if (selectedPayment.length === 0) {
-            alert("Vui lòng chọn phương thức thanh toán.");
+            showMess("Vui lòng chọn phương thức thanh toán.",false);
             return;
         }
         var paymentInfo = {
             PaymentId : selectedPayment.data('payid'),
             PayName: selectedPayment.data('payname'),
-            Icon:selectedPayment.data('payicon')
+            Icon:selectedPayment.data('payicon'),
+            Ship: 0//chưa tính free trc:))
         }
         //lấy thoongt in voucher đc chọn
         var selectedVoucher = $('.voucher-checked:checked');
@@ -176,15 +177,13 @@
             var voucherInfo = {
                 IdVoucher:selectedVoucher.data('vcid'),
                 MaVoucher: selectedVoucher.data('mavc'),
-                ValueVoucher : selectedVoucher.data('vcvalue'),
-                Ship: 0//chưa tính free trc:))
+                ValueVoucher : selectedVoucher.data('vcvalue')
             }
         }
         else {
             var voucherInfo = {
                 MaVoucher:"",
-                GiamGia :0,
-                Ship: 0//chưa tính free trc:))
+                GiamGia :0
             }
         }
         //gộp các thông tin vaod chung 1 biến (CheckoutRequest)

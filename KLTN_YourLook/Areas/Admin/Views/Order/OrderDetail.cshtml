@@ -1,0 +1,77 @@
+﻿@using KLTN_YourLook.Areas.Admin.Models
+@model OrderDetailViewModel
+@{
+    ViewData["Title"] = "OrderDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="h-cp1">
+    <div class="fl">
+        <div class="pd flalg">
+            <a href="@Url.Action("order","admin")"><img style="height:20px" src="\icon\drop left.svg"> </a>
+		</div>
+		<div class="cp0" style="width:100%;font-size:1.5rem">
+			Thông tin đơn hàng
+		</div>
+    </div>
+    <div class="pd" style="width:100%;display:flex">
+        <div class="pd" style="width:60%">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ảnh Sản Phẩm</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Phân loại</th>
+                        <th>Size</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var prd in Model.InForSp){
+                        <tr>
+                            <td class="box-img"><img style="height:100px" src="@Url.Content("/img/"+prd.AnhSp)"></td>
+                            <td>@prd.TenSp </td>
+                            <td>@prd.NameColor</td>
+                            <td>@prd.NameSize</td>
+                            <td>@prd.SoLuongSp</td>
+                            <td>@string.Format("{0:N0}", prd.GiaLoai) VNĐ</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="pd" style="width:40%">
+            <div class="flspb">
+                <p class ="ttu">Tài Khoản Đặt Hàng: </p>
+                <p> @Model.IdKh </p>
+            </div>
+            <div class="flspb">
+                <p class="ttu">Địa chỉ nhận hàng:</p>
+                <p>@Model.NguoiNhan - @Model.DiaChi</p>
+            </div>
+            <div class="flspb">
+                <p class="ttu">Ghi chú:</p>
+				<p>@Model.GhiChu</p>
+            </div>
+            <div style="border-top:1px solid #000;padding-top:10px"></div>
+            <div class="" style="padding:10px 100px" >
+                <div class="flspb">
+					<p class="ttu">Tổng tiền Sản phẩm :</p>
+					<p> @string.Format("{0:N0}", Model.TongTien) VNĐ</p>
+                </div>
+                <div class="flspb">
+					<p class="ttu">voucher:</p>
+					<p>- @string.Format("{0:N0}", Model.GiamGia) VNĐ</p>
+                </div>
+                <div class="flspb">
+					<p class="ttu">Phí vận chuyển: </p>
+					<p>+ @string.Format("{0:N0}", Model.Ship) VNĐ</p>
+                </div>
+                <div class="flspb">
+					<p class="ttu">Tổng tiền: </p>
+					<p>@string.Format("{0:N0}", Model.TongTienThanhToan) VNĐ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

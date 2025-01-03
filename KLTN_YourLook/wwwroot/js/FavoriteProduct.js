@@ -5,21 +5,23 @@
         $.ajax({
             url: '/User/FavoriteProduct/',
             type: 'POST',
-            data: { masp: prdid },
+            data: { idsp: prdid },
             success: function (response) {
                 if (response.success) {
-                    if (icon.hasClass('fa-regular')) {
+                    if (icon.hasClass('fa-regular fa-heart')) {
                         icon.removeClass('fa-regular fa-heart').addClass('fa-solid fa-heart');
                     } else {
                         icon.removeClass('fa-solid fa-heart').addClass('fa-regular fa-heart');
                     }
-                    alert(response.message);
-                }else {
-                    alert(response.message);
+                    showMess(response.message,true);
+                    //alert(response.message);
+                } else {
+                    showMess(response.message,true);
+                    //alert(response.message);
                 }
             },
             error: function () {
-                alert('Có lỗi xảy ra khi thêm sản phẩm vào yêu thích.');
+                showMess('Có lỗi xảy ra khi thêm sản phẩm vào yêu thích.');
             }
         });
     });

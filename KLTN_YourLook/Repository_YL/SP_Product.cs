@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using Data.Models;
 using KLTN_YourLook.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace KLTN_YourLook.Repository_YL
@@ -8,13 +10,15 @@ namespace KLTN_YourLook.Repository_YL
 	public class SP_Product : Controller
 	{
 		private readonly IDbConnection _dbConnection;//dùng như dbcontext
-		public SP_Product(IDbConnection dbConnection)
-		{
-			_dbConnection = dbConnection;
-		}
-		
-		//hiển thị các sản phẩm trên giao diện 
-		private List<ViewAllDetail> MapToViewAllDetails(IEnumerable<ViewAllDetailRaw> lstraw)
+        private readonly YourlookContext _context;
+        public SP_Product(IDbConnection dbConnection, YourlookContext context)
+        {
+            _dbConnection = dbConnection;
+            _context = context;
+        }
+
+        //hiển thị các sản phẩm trên giao diện 
+        private List<ViewAllDetail> MapToViewAllDetails(IEnumerable<ViewAllDetailRaw> lstraw)
 		{
 			return lstraw.Select(x => new ViewAllDetail
 			{
@@ -46,7 +50,8 @@ namespace KLTN_YourLook.Repository_YL
 							{
 								ColorId = int.Parse(c[0]),
 								NameColor = c[1],
-								MaColor = c[2]
+								MaColor = c[2],
+								MaHex = c[3]
 							};
 						}).DistinctBy(c => c.ColorId)
 						.ToList()
@@ -90,8 +95,9 @@ namespace KLTN_YourLook.Repository_YL
 							{
 								ColorId = int.Parse(c[0]),
 								NameColor = c[1],
-								MaColor = c[2]
-							};
+								MaColor = c[2],
+                                MaHex = c[3]
+                            };
 						}).DistinctBy(c => c.ColorId)
 						.ToList()
 			});
@@ -155,7 +161,8 @@ namespace KLTN_YourLook.Repository_YL
 				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
 			}
 			var lstraw = await _dbConnection.QueryAsync<ProductDetailViewModelRaw>("product_detail",new {idsp=idsp},commandType: CommandType.StoredProcedure);
-			var lst = lstraw.Select(x => new ViewProductDetail
+            
+            var lst = lstraw.Select(x => new ViewProductDetail
 			{
 				IdSp = idsp,
 				MaSp = x.MaSp,
@@ -186,8 +193,9 @@ namespace KLTN_YourLook.Repository_YL
 									ColorId = int.Parse(s[2]),
 									NameColor = s[3],
 									MaColor = s[4],
-									GiaLoai = decimal.Parse(s[5]),
-									Quantity = int.Parse(s[6])
+									MaHex = s[5],
+									GiaLoai = decimal.Parse(s[6]),
+									Quantity = int.Parse(s[7])
 								};
 							}).ToList()
 			});

@@ -265,13 +265,13 @@ E:\ShopYourLook\KLTN_YourLook\KLTN_YourLook\obj\Debug\net7.0\refint\KLTN_YourLoo
 E:\ShopYourLook\KLTN_YourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_YourLook.pdb
 E:\ShopYourLook\KLTN_YourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_YourLook.genruntimeconfig.cache
 E:\ShopYourLook\KLTN_YourLook\KLTN_YourLook\obj\Debug\net7.0\ref\KLTN_YourLook.dll
-C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\appsettings.Development.json
-C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\appsettings.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Data.deps.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Data.runtimeconfig.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Data.staticwebassets.runtime.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Data.staticwebassets.endpoints.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Data.exe
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\appsettings.Development.json
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\appsettings.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\KLTN_YourLook.staticwebassets.runtime.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\KLTN_YourLook.staticwebassets.endpoints.json
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\KLTN_YourLook.exe

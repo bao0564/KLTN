@@ -3,15 +3,20 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Data.Models;
+using KLTN_YourLook.Repository_YL;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using KLTN_YourLook.Models;
 
 namespace KLTN_YourLook.Controllers
 {
 	public class AccessController : Controller
 	{
 		private readonly YourlookContext _context;
-		public AccessController(YourlookContext context)
+		private readonly SP_User _user;
+		public AccessController(YourlookContext context,SP_User sp_user)
 		{
 			_context = context;
+			_user = sp_user;
 		}
 		[HttpGet]
 		public IActionResult Login()
@@ -50,23 +55,29 @@ namespace KLTN_YourLook.Controllers
 			return View();
 		}
 		[HttpPost]
-		public IActionResult Register(DbCustomer user)
+		public async Task<IActionResult> Register(View_Register model)
 		{
 			if (ModelState.IsValid)
 			{
-				var emailexit = _context.DbCustomers.FirstOrDefault(x => x.Email == user.Email);
-				if (emailexit != null)
+				////Kiểm tra email 
+				//var emailexit = _context.DbCustomers.FirstOrDefault(x => x.Email == model.Email);
+				//if (emailexit != null)
+				//{
+				//	ModelState.AddModelError("Email", "Email đã được sử dụng.");
+				//	return View(model);
+				//}
+                var (msg, error) = await _user.Create_User(model.TenKh, model.Sdt, model.Email, model.Passwords, model.ConfirmPasswords, false);
+
+				if (!string.IsNullOrEmpty(error))
 				{
-					ModelState.AddModelError("Email", "Email đã được sử dụng.");
-					return View(user);
-				}
-				user.CreateDate = DateTime.Now;
-				user.IsExternalAccount = false;
-				_context.DbCustomers.Add(user);
-				_context.SaveChanges();
+					TempData["Error"]= error;
+                    return View(model);
+                }
+				TempData["Success"] = msg;
 				return RedirectToAction("Login", "Access");
-			}
-			return View(user);
+            }
+            TempData["Error"] = "thông tin không hợp lệ";
+            return View(model);
 		}
 		//đăng ký bằng gg
 		[HttpPost]
@@ -101,16 +112,17 @@ namespace KLTN_YourLook.Controllers
 				ModelState.AddModelError(string.Empty, "Email not received from external provider.");
 				return RedirectToAction(nameof(Login));
 			}
-
+			
 			var user = _context.DbCustomers.FirstOrDefault(x => x.Email == email);
 			if (user == null)
 			{
+				//var (msg, error) = await _user.Create_User(name,"",email,"","",true);
 				user = new DbCustomer
 				{
-					MaKh = googleUserId ?? "",
+					MaKh = googleUserId ?? "kh",
 					Email = email,
 					TenKh = name ?? "",
-					Passwords= "",
+					Passwords = "",
 					IsExternalAccount = true,
 					CreateDate = DateTime.Now
 				};

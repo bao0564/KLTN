@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "User";
+    Layout = "~/Views/Shared/_LayoutUD.cshtml";
+}
+@model Data.Models.DbCustomer
+<div class="inf-customer" style="position:relative">
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-success" style="position:absolute;top:10px;left:40%">
+            @TempData["Success"]
+        </div>
+    }
+    <div class="box-customer" style="background-color:#fff">
+        <div class="title" style="padding-bottom:20px">
+            @if(Model.Img != null){
+                <div class="img-customer" style="">
+                    <img style="" src="@Url.Content("/fileupload/"+Model.Img)">
+                </div>
+            }
+            else{
+                <div class="img-customer" style="">
+                    <img style="" src="@Url.Content("/logo/images (11).jpg")">
+                </div>
+            }
+            <div>
+                <h4>Thông Tin Khách Hàng</h4>
+                <h5 class="customer-name" style="">@Model.TenKh</h5>
+            </div>
+        </div>
+        <div class="dpf jcc" style="">
+            <div class="box-inforcustomer">
+                <div class="customer-title"><h5>Họ Tên :</h5>@Model.TenKh</div>
+                <div class="customer-title"><h5>Ngày sinh :</h5>trống</div>
+                <div class="customer-title"><h5>Giới Tính :</h5>@Model.GioiTinh</div>
+                <div class="customer-title"><h5>Email :</h5>@Model.Email</div>
+                <div class="customer-title"><h5>Số điện thoại:</h5>@Model.Sdt</div>
+            </div>
+        </div>
+        <div class="new-inf" style="">
+            <a class="pd" asp-action="UpdateUserDetail" asp-route-idkh="@Model.IdKh">Sửa thông tin</a>
+        </div>
+    </div>
+</div>
