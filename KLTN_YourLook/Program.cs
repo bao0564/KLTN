@@ -18,27 +18,28 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
         listenOptions.UseHttps();
     });
 });
-////login gg
-//DotEnv.Load();
-//// Lấy giá trị từ biến môi trường
-//string googleClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-//string googleClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-//if (string.IsNullOrEmpty(googleClientId) || string.IsNullOrEmpty(googleClientSecret))
-//{
-//    throw new InvalidOperationException("Google Client ID or Secret is not set in the environment variables.");
-//}
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-//    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-//})
-//.AddCookie()
-//.AddGoogle(options =>
-//{
-//    options.ClientId = googleClientId;
-//    options.ClientSecret = googleClientSecret;
-//});
+//login gg
+DotEnv.Load();
+// Lấy giá trị từ biến môi trường
+string googleClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+string googleClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+
+if (string.IsNullOrEmpty(googleClientId) || string.IsNullOrEmpty(googleClientSecret))
+{
+    throw new InvalidOperationException("Google Client ID or Secret is not set in the environment variables.");
+}
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+.AddCookie()
+.AddGoogle(options =>
+{
+    options.ClientId = googleClientId;
+    options.ClientSecret = googleClientSecret;
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -58,12 +59,13 @@ builder.Services.AddScoped<Isanpham, Product>();
 builder.Services.AddScoped<IDbConnection>(sp =>
     new SqlConnection(builder.Configuration.GetConnectionString("DbConnected")));
 builder.Services.AddScoped<ProductRepository>(); 
-builder.Services.AddScoped<SP_Product>(); 
-builder.Services.AddScoped<SP_OrderCart>(); 
 builder.Services.AddScoped<CategoryRepository>(); 
 builder.Services.AddScoped<SizeRepository>(); 
 builder.Services.AddScoped<ColorRepository>(); 
 builder.Services.AddScoped<OrderRepository>(); 
+builder.Services.AddScoped<SP_Product>(); 
+builder.Services.AddScoped<SP_OrderCart>(); 
+builder.Services.AddScoped<SP_User>(); 
 //chuỗi kết nối (dbcontext)
 builder.Services.AddDbContext<YourlookContext>(options =>
 {
@@ -75,7 +77,7 @@ var app = builder.Build();
 
 //Environment
 builder.Configuration.AddEnvironmentVariables();
-builder.Environment.EnvironmentName = "Development";  // Thi?t l?p môi tr??ng thành Production
+//builder.Environment.EnvironmentName = "Development";  // Thi?t l?p môi tr??ng thành Production
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

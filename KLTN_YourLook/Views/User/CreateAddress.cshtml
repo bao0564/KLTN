@@ -1,0 +1,99 @@
+﻿@model Data.Models.DbAddress
+
+@{
+    ViewData["Title"] = "CreateAddress";
+    Layout = "~/Views/Shared/_LayoutUD.cshtml";
+}
+
+<div class="inf-customer" style="">
+    <div class="box-customer" style="background-color:#fff">
+        <div class="fl">
+            <div style="display:flex;align-items:center">
+                <a href="/User/UserDetail"><img style="height:15px" src="\icon\drop left.svg"></a>
+            </div>
+            <div style="width:100%">
+                <div class="fljct">
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger" style="margin:0">
+                            @TempData["Error"]
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <form asp-action="CreateAddress">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="box-adr col-12" style="display:flex">
+                <div class="col-6">
+                    <label asp-for="IdAddress" class="control-label"></label>
+                    <input asp-for="IdAddress" class="form-control" />
+                    <span asp-validation-for="IdAddress" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label asp-for="IdKh" class="control-label"></label>
+                    <input asp-for="IdKh" class="form-control" />
+                    <span asp-validation-for="IdKh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="box-adr col-12" style="display:flex">
+                <div class="col-6">
+                    <label asp-for="TenNguoiNhan" class="control-label"></label>
+                    <input asp-for="TenNguoiNhan" class="form-control" />
+                    <span asp-validation-for="TenNguoiNhan" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label asp-for="Sdt" class="control-label"></label>
+                    <input asp-for="Sdt" class="form-control" />
+                    <span asp-validation-for="Sdt" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="box-adr col-12" style="display:flex">
+                <div class="col-6">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="box-adr col-12" style="display:flex">
+                <div class="col-6">
+                    <label asp-for="QuanHuyen" class="control-label"></label>
+                    <input asp-for="QuanHuyen" class="form-control" />
+                    <span asp-validation-for="QuanHuyen" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label asp-for="PhuongXa" class="control-label"></label>
+                    <input asp-for="PhuongXa" class="form-control" />
+                    <span asp-validation-for="PhuongXa" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="box-adr col-12" style="display:flex">
+                <div class="col-6">
+                    <label asp-for="GhiChu" class="control-label"></label>
+                    <input asp-for="GhiChu" class="form-control" />
+                    <span asp-validation-for="GhiChu" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Idefault" /> @Html.DisplayNameFor(model => model.Idefault)
+                    </label>
+                </div>
+            </div>
+            <div class="col-12" style="display:flex;justify-content:center">
+                <div style="border:1px solid #000;border-radius:10px">
+                    <input type="submit" value="Tạo" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

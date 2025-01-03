@@ -10,7 +10,7 @@ namespace Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdKh { get; set; }
         [StringLength(20)]
-        public string MaKh { get; set; }
+        public string? MaKh { get; set; }
         [Required(ErrorMessage = "Tên không được để trống")]
         [StringLength(25)]
         public string TenKh { get; set; }
@@ -20,12 +20,13 @@ namespace Data.Models
         public string? GioiTinh { get; set; }
         [StringLength(15)]
         public string? Sdt { get; set; }
+        public DateTime? Birth { get; set; } 
         [Required(ErrorMessage = "*")]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Email { get; set; }
         [DataType(DataType.Password)]
         [StringLength(25)]
-        public string Passwords { get; set; }
+        public string? Passwords { get; set; }
         [Display(Name = "Confirm password")]
         [Compare("Passwords", ErrorMessage = "Mật khẩu không đúng.")]
         [StringLength(25)]

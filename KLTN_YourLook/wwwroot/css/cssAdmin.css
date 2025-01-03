@@ -39,7 +39,10 @@ body {
     display: flex;
     justify-content: center;
 }
-
+.flalg{
+    display:flex;
+    align-items:center;
+}
 .flspb {
     display: flex;
     justify-content: space-between;

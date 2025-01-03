@@ -1,4 +1,4 @@
-﻿using Data.Models;
+﻿ using Data.Models;
 using KLTN_YourLook.Areas.Admin.Models;
 using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
@@ -41,6 +41,14 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             }
             PagedList<AllOrderViewModle> lstorder = new PagedList<AllOrderViewModle>(order, pageNumber, pageSize);
             return View(lstorder);
+        }
+        [Route("orderdetail")]
+        [HttpGet]
+        public async Task<IActionResult> OrderDetail(int iddh)
+        {
+            var lst= await _orderRepository.ShowOrderDetail(iddh);
+            var result = lst.FirstOrDefault();
+            return View(result);
         }
     }
 }

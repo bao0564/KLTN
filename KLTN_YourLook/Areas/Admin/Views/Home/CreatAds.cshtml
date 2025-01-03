@@ -35,7 +35,18 @@
                 </div> 
                 <div class="col-3">
                     <label class="control-label"> vị trí</label>
-                    <input asp-for="Place" class="form-control" value="." />
+                    <select asp-for="Place" class="form-control" value=".">
+                        <option value="ads">Chạy đầu Trang Web</option>
+                        <option value="page1">Danh Mục Quần Dài</option>
+                        <option value="page2">Danh Mục Quần Short</option>
+                        <option value="page3">Danh Mục Áo Phông</option>
+                        <option value="page4">Danh Mục Áo Khoác</option>
+                        <option value="All">Page ALL</option>
+                        <option value="Hot">Page Hot</option>
+                        <option value="New">Page New</option>
+                        <option value="Sale">Page Sale</option>
+                        <option value="Under">Page Under</option>
+                    </select> 
                     <span asp-validation-for="Place" class="text-danger"></span>
                 </div>
                 <div class="col-3">

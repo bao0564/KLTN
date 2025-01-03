@@ -1,4 +1,4 @@
-﻿@using yourlook.Models;
+﻿@using KLTN_YourLook.Models;
 @using X.PagedList.Mvc.Core;
 @{
     ViewData["Title"] = "ProductCategory";
@@ -38,7 +38,7 @@
                                 <div class="flscr">
                                     @foreach (var cl in prd.Colors)
                                     {
-                                        <button style="background-color:@cl.MaColor" title="@cl.NameColor"></button>
+                                        <button style="background-color:@cl.MaHex" title="@cl.NameColor"></button>
                                         <div class="in-color-item" style="display:none;">@cl.NameColor</div>//để lọc theo color (categories_custom.js)
                                     }
                                 </div>

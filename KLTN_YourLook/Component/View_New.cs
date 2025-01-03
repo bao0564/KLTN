@@ -16,7 +16,7 @@ namespace KLTN_YourLook.Component
 		}
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			var idkh = HttpContext.Session.GetInt32("userid");
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{

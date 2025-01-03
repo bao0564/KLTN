@@ -37,8 +37,8 @@ namespace Data.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("GhiChu")
                         .HasColumnType("nvarchar(max)");
@@ -51,13 +51,13 @@ namespace Data.Migrations
 
                     b.Property<string>("PhuongXa")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("QuanHuyen")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Sdt")
                         .IsRequired()
@@ -291,6 +291,9 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdKh"));
 
+                    b.Property<DateTime?>("Birth")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ConfirmPasswords")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
@@ -304,8 +307,8 @@ namespace Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("GioiTinh")
                         .HasMaxLength(5)
@@ -319,7 +322,6 @@ namespace Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("MaKh")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -331,7 +333,6 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Passwords")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
@@ -377,17 +378,11 @@ namespace Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("customerIdKh")
-                        .HasColumnType("int");
-
-                    b.Property<int>("productIdSp")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
-                    b.HasIndex("customerIdKh");
+                    b.HasIndex("IdKh");
 
-                    b.HasIndex("productIdSp");
+                    b.HasIndex("IdSp");
 
                     b.ToTable("DbFavoriteProduct");
                 });
@@ -646,6 +641,9 @@ namespace Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal>("PriceBy")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("SoLuongSp")
                         .HasColumnType("int");
 
@@ -769,8 +767,8 @@ namespace Data.Migrations
 
                     b.Property<string>("TenSp")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.HasKey("IdSp");
 
@@ -994,13 +992,13 @@ namespace Data.Migrations
                 {
                     b.HasOne("Data.Models.DbCustomer", "customer")
                         .WithMany("favorites")
-                        .HasForeignKey("customerIdKh")
+                        .HasForeignKey("IdKh")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Data.Models.DbProduct", "product")
                         .WithMany("favoriteproducts")
-                        .HasForeignKey("productIdSp")
+                        .HasForeignKey("IdSp")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

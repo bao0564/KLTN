@@ -82,13 +82,13 @@ namespace KLTN_YourLook.Models
         public string Icon { get; set; }
         public int PaymentId { get; set; }
         public string PayName { get; set; }   // Giảm giá có thể là số thập phân
+        public decimal Ship { get; set; }
     }
     public class voucherInfoItem
     {
         public int IdVoucher { get; set; }
         public string MaVoucher { get; set; }
         public int ValueVoucher { get; set; } 
-        public decimal Ship { get; set; }
     }
     public class CheckoutRequest //chứa các thông tin sản phẩm + khách hàng + ... được người dùng tích chọn (JS:addtocart)
     {

@@ -108,7 +108,7 @@ namespace KLTN_YourLook.Repository_YL
 			return (newIdDH,newMaDH);
         }
         //đặthàng (Lưu thông tin vào DbOrderDetail)
-        public async Task<int> Add_OrderDetail(int iddh,string madh,int idsp,string masp,int colorid,int sizeid,int soluongsp)
+        public async Task<int> Add_OrderDetail(int iddh,string madh,int idsp,string masp,int colorid,int sizeid,decimal priceby,int soluongsp)
         {
 
 			if (_dbConnection == null)
@@ -122,6 +122,7 @@ namespace KLTN_YourLook.Repository_YL
             parameters.Add("@masp", masp);
             parameters.Add("@colorid", colorid);
             parameters.Add("@sizeid", sizeid);
+            parameters.Add("@priceby", priceby);
             parameters.Add("@soluongsp", soluongsp);
 
             return await _dbConnection.ExecuteAsync("add_orderdetail",parameters, commandType: CommandType.StoredProcedure);

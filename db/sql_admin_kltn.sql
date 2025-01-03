@@ -10,6 +10,7 @@ begin
 	from DbCategory c
 	left join DbProduct p on c.IdDm=p.IdDm
 	group by c.IdDm,c.MaDm,c.TenDm,c.AnhDaiDien,c.CreateDate,c.ModifiedDate,c.CreateBy
+	order by c.IdDm desc
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -255,7 +256,7 @@ GO
 create procedure [dbo].[order_showall]
 as
 begin
-	select od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
+	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
 			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
 	from DbOrder od
 	join DbCustomer cus on od.IdKh=cus.IdKh
@@ -287,17 +288,18 @@ create procedure [dbo].[show_orderdetail]
 as
 begin
 	select od.MaDh,
-			(select string_agg(concat(odd.MaSp,',',p.TenSp,',',p.AnhSp,',',cl.NameColor,',',sz.NameSize,',',odd.SoLuongSp,','),';') 
+			(select string_agg(concat(odd.MaSp,'"',p.TenSp,'"',p.AnhSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.SoLuongSp,'"',pd.GiaLoai),';')  
 			from DbOrderDetail odd
 			 join DbProduct p on odd.IdSp=p.IdSp
 			 join DbColor cl on cl.ColorId= odd.IdColor
 			 join DbSize sz on odd.IdSize=sz.SizeId
-			where odd.IdSp= p.IdSp) as MaSp,			
+			 join DbProductDetail pd  on p.IdSp=pd.IdSp and odd.IdColor=pd.ColorId and odd.IdSize= pd.SizeId
+			where odd.IdDh= od.IdDh) as InForSp,			
 			od.IdKh,cus.TenKh,od.NguoiNhan,od.DiaChi,od.GhiChu,
 			od.TongTien,od.Giamgia,od.Ship,od.TongTienThanhToan
 	 from DbOrder od
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
-	 where od.MaDh= @iddh
+	 where od.IdDh= @iddh
 end;
 /*Product*/
 
@@ -351,7 +353,7 @@ create procedure [dbo].[product_insert]
 	@pricemax decimal,
 	@giamgia int,
 	@pricemin decimal,
-	@motasp nvarchar,
+	@motasp nvarchar(Max),
 	@iactive bit,
 	@ifeature bit,
 	@ifavorite bit,
@@ -419,4 +421,91 @@ begin
 	begin catch
 		set @error=N'lỗi không thêm đc các thông tin chi tiết ảnh vào bảng DbProductDetail'+ ERROR_MESSAGE();
 	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--hiển thị thông tin chi tiết sản phẩm
+	--drop procedure product_find
+create procedure [dbo].[product_find]
+	@idsp int
+as
+begin
+	select * from DbProduct where IdSp=@idsp
+end;
+SET QUOTED_IDENTIFIER ON
+GO
+	--drop procedure product_img_find
+create procedure [dbo].[product_img_find]
+	@idsp int
+as
+begin
+	select * from DbImg where IdSp=@idsp
+end;
+SET QUOTED_IDENTIFIER ON
+GO
+	--drop procedure product_productdetail_find
+create procedure [dbo].[product_productdetail_find]
+	@idsp int
+as
+begin
+	select cl.NameColor,cl.MaHex,sz.NameSize,pd.GiaLoai,pd.Quantity,pd.SoLuongBan
+	from DbProductDetail pd
+	join DbColor cl on pd.ColorId=cl.ColorId
+	join DbSize sz on pd.SizeId=sz.SizeId
+	where IdSp=@idsp
+end;
+SET QUOTED_IDENTIFIER ON
+GO
+--sửa thông tin sản phẩm
+--drop procedure product_update
+create procedure [dbo].[product_update]
+	@idsp int,
+	@iddm int,
+	@tensp nvarchar(100),
+	@nhomid int,
+	@anhsp nvarchar(500),
+	@pricemax decimal,
+	@giamgia int,
+	@pricemin decimal,
+	@motasp nvarchar(Max),
+	@iactive bit,
+	@ifeature bit,
+	@ifavorite bit,
+	@ihot bit,
+	@isale bit,
+	@modifiedby nvarchar(25)
+as
+begin
+	update DbProduct set IdDm=@iddm,TenSp=@tensp,NhomId=@nhomid,AnhSp=@anhsp,PriceMax=@pricemax,GiamGia=@giamgia,PriceMin=@pricemin,
+						MotaSp=@motasp,IActive=@iactive,IFeature=@ifeature,IFavorite=@ifavorite,IHot=@ihot,ISale=@isale,ModifiedBy=@modifiedby,ModifiedDate=GETDATE()
+	where IdSp=@idsp
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--drop procedure img_update
+create procedure [dbo].[img_update]
+	@idsp int,
+	@img nvarchar(500)
+as
+begin
+	update DbImg set Img=@img where IdSp=@idsp
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--drop procedure productdetail_update
+create procedure [dbo].[productdetail_update]
+	@idsp int,
+	@colorid int,
+	@namecolor nvarchar(50),
+	@sizeid int,
+	@namesize nvarchar(50),
+	@gialoai decimal,
+	@soluong int
+as
+begin
+	update DbProductDetail set ColorId=@colorid,NameColor=@namecolor,SizeId=@sizeid,NameSize=@namesize,GiaLoai=@gialoai,Quantity=@soluong
+	where IdSp=@idsp
 end;

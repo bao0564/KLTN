@@ -15,8 +15,8 @@ namespace KLTN_YourLook.Component
 		}
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			int iddm = 2005;//Quần short
-			var idkh = HttpContext.Session.GetInt32("userid");
+			int iddm = 8;//Quần short
+			var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{

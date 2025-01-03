@@ -49,6 +49,42 @@ namespace KLTN_YourLook.Areas.Admin.Repository
         //    return lst.ToList();
         //}
         //lấy ra chi tiết đơn hàng 
-        //public async Task<OrderDetailViewModel>
+        public async Task<List<OrderDetailViewModel>> ShowOrderDetail(int iddh)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var lstRaw =await _dbConnection.QueryAsync<OrderDetailViewModelRaw>("show_orderdetail", new { iddh = iddh }, commandType: CommandType.StoredProcedure);
+            var lst = lstRaw.Select(x => new OrderDetailViewModel
+            {
+                MaDh = x.MaDh,
+                InForSp = x.InForSp.Split(';')
+                            .Select(y =>
+                            {
+                                var s = y.Split('"');
+                                return new ViewInForSP
+                                {
+                                    MaSp = s[0],
+                                    TenSp = s[1],
+                                    AnhSp = s[2],
+                                    NameColor = s[3],
+                                    NameSize = s[4],
+                                    SoLuongSp = int.Parse(s[5]),
+                                    GiaLoai=decimal.Parse(s[6])
+                                };
+                            }).DistinctBy(x=>x.MaSp).ToList(),
+                IdKh=x.IdKh,
+                TenKh=x.TenKh,
+                NguoiNhan=x.NguoiNhan,
+                DiaChi=x.DiaChi,
+                GhiChu=x.GhiChu,
+                TongTien=x.TongTien,
+                GiamGia=x.GiamGia,
+                Ship=x.Ship,
+                TongTienThanhToan=x.TongTienThanhToan
+            });
+            return lst.ToList();
+        }
     }
 }

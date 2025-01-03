@@ -1,0 +1,145 @@
+﻿@using KLTN_YourLook.Models
+@{
+    ViewData["Title"] = "HistoryOrder";
+    Layout = "~/Views/Shared/_LayoutUD.cshtml";
+}
+@model IEnumerable<ViewCustomerHistoryOrder>
+<div class="inf-customer" style="padding:0">
+    <div class="box-customer" style="background-color:#fff">
+        <div class="order-history flcl" style="max-height:500px">
+               @foreach(var od in Model){
+                <div class="bdrdu" style="background-color:#bdc3c7">
+                    <div class="flspb flct">
+                        <div class="date-order">Ngày Đặt: 10/6/2024 7:26:54 PM</div>
+                        <div class="payment-name">COD - Thanh Toán Khi Nhận Hàng</div>
+                        <div class="" style="display:flex">
+                            @if(od.ODSuccess){
+                                <div class="flcl" style="margin:0 5px 0 0">
+                                    <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i>
+                                    <div class="nw">
+                                        <i class="fa-regular fa-circle-check" style="color: #00fa2a;"></i>
+                                        <i class="fa-solid fa-minus" style="color: #00fa2a;"></i>
+                                    </div>
+                                </div>
+                            }
+                            else{
+                                <div class="flcl" style="margin:0 5px 0 0">
+                                    <i class="fa-solid fa-bag-shopping" style="color: #000000;"></i>
+                                    <div class="nw">
+                                        <i class="fa-regular fa-circle-check" style="color: #000000;"></i>
+                                        <i class="fa-solid fa-minus" style="color: #000000;"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if(od.ODReadly){
+                                <div class="flcl" style="margin:0 5px 0 0">
+                                    <i class="fa-solid fa-person-rifle" style="color: #000000;"></i>
+                                    <div class="nw">
+                                        <i class="fa-regular fa-circle-check" style="color: #00fa2a;"></i>
+                                        <i class="fa-solid fa-minus" style="color: #00fa2a;"></i>
+                                    </div>
+                                </div>
+                            }
+                            else{
+                                <div class="flcl" style="margin:0 5px 0 0">
+                                    <i class="fa-solid fa-person-rifle" style="color: #000000;"></i>
+                                    <div class="nw">
+                                        <i class="fa-regular fa-circle-check" style="color: #000000;"></i>
+                                        <i class="fa-solid fa-minus" style="color: #000000;"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if (od.ODTransported)
+                            {
+                                <div class="flcl" style="margin:0 5px 0 0">
+                                    <i class="fa-solid fa-truck-fast" style="color: #000000;"></i>
+                                    <div class="nw">
+                                        <i class="fa-solid fa-circle-check" style="color: #00fa2a;"></i>
+                                        <i class="fa-solid fa-minus" style="color: #00fa2a;"></i>
+                                    </div>
+                                </div>
+                            }
+                            else{
+
+                                <div class="flcl" style="margin:0 5px 0 0">
+                                    <i class="fa-solid fa-truck-fast" style="color: #000000;"></i>
+                                    <div class="nw">
+                                        <i class="fa-solid fa-circle-check" style="color: #000000;"></i>
+                                        <i class="fa-solid fa-minus" style="color: #000000;"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if(od.Complete== false && od.ODHuy){
+                                <div class="flcl" style="margin:0 20px 0 0">                                    
+                                    <div>
+                                        <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                    </div>
+                                </div>
+                            }
+                            else if (od.Complete && od.ODHuy == false)
+                            {
+                                <div class="flcl" style="margin:0 20px 0 0">
+                                    <i class="fa-solid fa-street-view" style="color: #000000;"></i>
+                                    <div>
+                                        <i class="fa-solid fa-circle-check" style="color: #00fa2a;"></i>
+                                    </div>
+                                </div>
+                            }
+                            else{
+
+                                <div class="flcl" style="margin:0 20px 0 0">
+                                    <i class="fa-solid fa-street-view" style="color: #000000;"></i>
+                                    <div>
+                                        <i class="fa-solid fa-circle-check" style="color: #000000;"></i>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="flcl" style="">
+                        @foreach (var prd in od.InforSP)
+                        {
+                            <div class="box-cart">
+                                <div class="cart-container flspb">
+                                    <div class="box-img fl-center">
+                                        <img src="@Url.Content("/img/"+prd.AnhSp)" alt="Product Image">
+                                    </div>
+                                    <div class="cart-infor">
+                                        <div style="max-width:100%">
+                                            <div class="infor-colum">
+                                                <p class="cart-name" style="color:#000">@prd.TenSp</p>
+                                                <div class="flspb">
+                                                    <div class="flct">
+                                                        <p class="flct" style="white-space:nowrap">Phân Loại:</p>
+                                                        <p class="bdrdu">@prd.NameColor</p>
+                                                        <p class="bdrdu">@prd.NameSize</p>
+                                                    </div>
+                                                    <div style="flct">
+                                                        <p>x @prd.SoLuongSp</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flct nw">
+                                                    <div class="infor-colum flct" style="justify-content:end">
+                                                        <div class="flct" style="flex-direction:column">
+                                                            <div>@string.Format("{0:N0}", prd.PriceBy) VNĐ</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="" style="display:flex;justify-content:end">
+                        <div class="flcl" style="gap:0">
+                            @* <div class="ship flspb"></div> *@
+							<div class="product_price flspb">(Tổng Sản Phẩm:@od.soluong):<div>@string.Format("{0:N0}", @od.TongTienThanhToan) VNĐ</div></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

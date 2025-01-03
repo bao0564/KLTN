@@ -2,6 +2,7 @@
 SET QUOTED_IDENTIFIER ON
 GO
 --all sản phẩm
+-- drop procedure product_view
 create procedure [dbo].[product_view]
 as
 begin
@@ -9,7 +10,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -19,6 +20,7 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --sản phẩm sale
+-- drop procedure product_sale_view
 create procedure [dbo].[product_sale_view]
 as
 begin
@@ -26,7 +28,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -45,7 +47,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -64,7 +66,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -84,7 +86,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -105,7 +107,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor),';')
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -124,7 +126,7 @@ begin
 		(select string_agg(i.Img,';')
 		from DbImg i
 		where i.IdSp=p.IdSp)as ImgDetail,
-		(select string_agg(concat(pd.SizeId,',',pd.NameSize,',',pd.ColorId,',',pd.NameColor,',',c.MaColor,',',pd.GiaLoai,',',pd.Quantity),';')
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize,',',pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex,',',pd.GiaLoai,',',pd.Quantity),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp=p.IdSp)as Detail
@@ -310,13 +312,188 @@ create procedure [dbo].[add_orderdetail]
 	@masp nvarchar(10),
 	@colorid int,
 	@sizeid int,
+	@priceby decimal,
 	@soluongsp int
 as
 begin
-	insert into DbOrderDetail(IdDh,MaDh,IdSp,MaSp,IdColor,IdSize,SoLuongSp,CreateDate)
-	values(@iddh,@madh,@idsp,@masp,@colorid,@sizeid,@soluongsp,GETDATE())
+	insert into DbOrderDetail(IdDh,MaDh,IdSp,MaSp,IdColor,IdSize,PriceBy,SoLuongSp,CreateDate)
+	values(@iddh,@madh,@idsp,@masp,@colorid,@sizeid,@priceby,@soluongsp,GETDATE())
 end;
 
-select * from DbOrder
-select * from DbOrderDetail
+
+SET QUOTED_IDENTIFIER ON
+GO
+--tạo tài khoản khách hàng
+--drop procedure create_user
+--select * from DbCustomer
+--delete DbCustomer where IdKh=25;
+create procedure [dbo].[create_user]
+	@tenkh nvarchar(25),
+	@sdt nvarchar(15),
+	@email nvarchar(50),
+	@pass nvarchar(25),
+	@confirmpass nvarchar(25),
+	@IsExternalAccount bit,
+	@newidkh int output,
+	@newmakh nvarchar(10) OUTPUT,
+    @msg NVARCHAR(500) OUTPUT,
+    @error NVARCHAR(500) OUTPUT
+as
+begin 
+	declare @GeneratedMaKH nvarchar(10);
+	begin try
+		IF EXISTS (SELECT 1 FROM DbCustomer WHERE Sdt = @sdt)
+        BEGIN
+            SET @error = N'Số điện thoại này đã được sử dụng!';
+            RETURN;
+        END
+		if Exists(select 1 from DbCustomer where Email=@email)		
+			begin
+				set @error=N'Email này đã được sử dụng!';
+				return;
+			end;
+		insert into DbCustomer (TenKh,Sdt,Email,Passwords,ConfirmPasswords,IsExternalAccount,CreateDate)
+		values (@tenkh,@sdt,@email,@pass,@confirmpass,@IsExternalAccount,GETDATE())
+
+		set @newidkh= SCOPE_IDENTITY();
+		set @GeneratedMaKH=CONCAT('KH',FORMAT(@newidkh,''));
+		set @newmakh=@GeneratedMaKH;
+		set @msg=N'Tạo tài khoản thành công bạn có thể đăng nhập !';
+
+		update DbCustomer set MaKh=@newmakh where IdKh=@newidkh
+	end try
+	begin catch
+		set @error=N'Lỗi không tạo được tài khoản'+ERROR_MESSAGE();
+	end catch
+end;
+SET QUOTED_IDENTIFIER ON
+GO
+--sửa thông tin khách hàng
+--drop procedure update_user
+create procedure [dbo].[update_user]
+	@idkh int,
+	@tenkh nvarchar(25),
+	@img nvarchar(250),
+	@sex nvarchar(5),
+	@sdt nvarchar(15),
+	@email nvarchar(50),
+	@pass nvarchar(25),
+	@confirmpass nvarchar(25),
+    @msg NVARCHAR(500) OUTPUT,
+    @error NVARCHAR(500) OUTPUT
+as
+begin
+	begin try
+		IF EXISTS (SELECT 1 FROM DbCustomer WHERE Sdt = @sdt)
+			BEGIN
+				SET @error = N'Số điện thoại này đã được sử dụng!';
+				RETURN;
+			END
+		begin
+			update DbCustomer set MaKh='KH'+CAST(@idkh as nvarchar),TenKh=@tenkh,Img=@img,GioiTinh=@sex,Sdt=@sdt,Email=@email,Passwords=@pass,ConfirmPasswords=@confirmpass
+			where IdKh=@idkh
+			set @msg=N'Cập nhật thông tin thành công';
+		end
+	end try
+	begin catch
+		set @error=N'Cập nhật thông tin không thành công'+ ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Hiển thị sản phẩm yêu thích của khách hàng
+--drop procedure favorite_product_showall
+--select * from DbFavoriteProduct
+create procedure [dbo].[favorite_product_showall]
+	@idkh int
+as
+begin
+	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	join DbFavoriteProduct fvrp on p.IdSp=fvrp.IdSp where fvrp.IdKh=@idkh
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--lưu sản phẩm yêu thích vào bảng yêu thích
+--drop procedure create_favorite_product
+--select * from DbFavoriteProduct
+create procedure [dbo].[create_favorite_product]
+	@idsp int,
+	@idkh int
+as
+begin
+	insert into DbFavoriteProduct (IdSp,IdKh) values (@idsp,@idkh)
+end;
+
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Hiển thị Các đơn hàng của khách hàng
+--drop procedure customer_order_showall
+create procedure [dbo].[customer_order_showall]
+	@idkh int
+as
+begin
+	select od.IdDh,od.MaDh,od.PaymentName,od.soluong,od.TongTienThanhToan
+		,STRING_AGG(CONCAT(p.AnhSp,'"',p.TenSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.PriceBy,'"',odd.SoLuongSp),';')as InforSP
+		,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+	from DbOrder od
+	join DbOrderDetail odd on odd.IdDh=od.IdDh
+	join DbProduct p on odd.IdSp=p.IdSp
+	join DbColor cl on cl.ColorId= odd.IdColor
+	join DbSize sz on odd.IdSize=sz.SizeId
+	where od.IdKh= @idkh
+	group by od.IdDh,od.MaDh,od.PaymentName,od.soluong,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+	order by od.CreateDate desc
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Hiển thị Các địa chỉ của khách hàng
+--drop procedure adress_showall
+create procedure [dbo].[adress_showall]
+	@idkh int
+as
+begin
+	select * from DbAddress
+	where IdKh=@idkh
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--tạo địa chỉ cho khách hàng
+--drop procedure create_customer_adress
+create procedure [dbo].[create_customer_adress]
+	@idkh int,
+	@tennguoinhan nvarchar(25),
+	@sdt nvarchar(15),
+	@adress nvarchar(500),
+	@city nvarchar(10),
+	@quanhuyen nvarchar(10),
+	@phuongxa nvarchar(10),
+	@ghichu nvarchar(max),
+	@idefault bit,
+	@msg nvarchar(500) out,
+	@error nvarchar(500) out
+as
+begin
+	begin try
+		insert into DbAddress (IdKh,TenNguoiNhan,Sdt,Address,City,QuanHuyen,PhuongXa,GhiChu,Idefault)
+		values(@idkh,@tennguoinhan,@sdt,@adress,@city,@quanhuyen,@phuongxa,@ghichu,@idefault)
+
+		set @msg=N'Tạo địa chỉ thành công';
+	end try
+	begin catch
+		set @error=N'Lỗi - Tạo địa chỉ không thành công';
+	end catch
+end;
 use [KLTN];

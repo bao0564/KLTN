@@ -23,6 +23,9 @@ namespace Data.Models
             // 1 sp có 1 nhóm và ngc lại 
             modelBuilder.Entity<DbProduct>().HasOne(p => p.group).WithMany(c => c.products).HasForeignKey(p => p.NhomId)
                 .OnDelete(DeleteBehavior.Cascade);
+            // 1 sp có thể có nhiều trong bảng sản phẩm yêu thích và ngược lại// nếu sp bị xóa thì sp trong bảng yêu thichs cũng sẽ bị xóa
+            modelBuilder.Entity<DbProduct>().HasMany(p=>p.favoriteproducts).WithOne(fvrp=>fvrp.product).HasForeignKey(p=>p.IdSp)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // 1 ctsp có 1 sp và 1 sp có thể có nhiều ctsp(cùng sp nhưng khác color,size) //nếu sp bị xóa thì ctsp của sp đó sẽ bị xóa
             modelBuilder.Entity<DbProductDetail>().HasOne(ctsp => ctsp.product).WithMany(sp => sp.detailproducts).HasForeignKey(ctsp => ctsp.IdSp)
@@ -39,6 +42,9 @@ namespace Data.Models
                 .OnDelete(DeleteBehavior.Cascade);
             // 1 khách hàng có 1 địa chỉ và ngược lại //xóa khách hàng thì địa chỉ của khách hàng sẽ bị xóa
             modelBuilder.Entity<DbCustomer>().HasMany(cus => cus.addresses).WithOne(adr => adr.customer).HasForeignKey(adr => adr.IdKh)
+                .OnDelete(DeleteBehavior.Cascade);
+            //1 khách hàng có thể có nhiều sp yêu thích và ngc lại //tài khoản khách hàng bị xóa thì sp yêu thích trong tk đó cũng sẽ bị xóa
+            modelBuilder.Entity<DbCustomer>().HasMany(cus=>cus.favorites).WithOne(fvrp=>fvrp.customer).HasForeignKey(cus=>cus.IdKh)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // 1 sp trong giỏ chỉ có 1 color và 1 color có thể xuất hiện nhiều trong giỏ(vì khác sp) //nếu màu bị xóa thì sp có color trong giỏ sẽ bị xóa

@@ -2870,6 +2870,7 @@ section {
 .inf-customer .box-customer {
 	background-color: #fff;
 	max-height: 750px;
+	min-height: 400px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
