@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Data.Common;
 
 namespace Data.Models
@@ -26,6 +27,9 @@ namespace Data.Models
             // 1 sp có thể có nhiều trong bảng sản phẩm yêu thích và ngược lại// nếu sp bị xóa thì sp trong bảng yêu thichs cũng sẽ bị xóa
             modelBuilder.Entity<DbProduct>().HasMany(p=>p.favoriteproducts).WithOne(fvrp=>fvrp.product).HasForeignKey(p=>p.IdSp)
                 .OnDelete(DeleteBehavior.Cascade);
+            // 1 sp có thể có nhiều Đánh giá và ngược lại// nếu sp bị xóa thì đánh giá của sp đó trong bảng đánh giá cũng sẽ bị xóa
+            modelBuilder.Entity<DbProduct>().HasMany(p => p.ratings).WithOne(rt => rt.product).HasForeignKey(p => p.IdSp)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // 1 ctsp có 1 sp và 1 sp có thể có nhiều ctsp(cùng sp nhưng khác color,size) //nếu sp bị xóa thì ctsp của sp đó sẽ bị xóa
             modelBuilder.Entity<DbProductDetail>().HasOne(ctsp => ctsp.product).WithMany(sp => sp.detailproducts).HasForeignKey(ctsp => ctsp.IdSp)
@@ -46,6 +50,7 @@ namespace Data.Models
             //1 khách hàng có thể có nhiều sp yêu thích và ngc lại //tài khoản khách hàng bị xóa thì sp yêu thích trong tk đó cũng sẽ bị xóa
             modelBuilder.Entity<DbCustomer>().HasMany(cus=>cus.favorites).WithOne(fvrp=>fvrp.customer).HasForeignKey(cus=>cus.IdKh)
                 .OnDelete(DeleteBehavior.Cascade);
+            //1 khách hàng có thể có nhiều đánh giá và ngc lại //khách hàng bị xóa thì các đánh giá thuộc kh đó cũng bị xóa
 
             // 1 sp trong giỏ chỉ có 1 color và 1 color có thể xuất hiện nhiều trong giỏ(vì khác sp) //nếu màu bị xóa thì sp có color trong giỏ sẽ bị xóa
             modelBuilder.Entity<DbCart>().HasOne(cr => cr.color).WithMany(cl => cl.carts).HasForeignKey(cr => cr.ColorId)
@@ -90,10 +95,16 @@ namespace Data.Models
         public virtual DbSet<DbVoucher> DbVouchers { get; set; }//bảng mã giảm giá
         public virtual DbSet<DbFavoriteProduct> DbFavoriteProducts { get; set; }// bảng sản phẩm yêu thích
         public virtual DbSet<DbCart> DbCarts { get; set; }// bảng sản phẩm Giỏ hàng 
+        public virtual DbSet<DbRating> DbRatings { get; set; }// bảng đánh giá nhận sét sp 
+        public virtual DbSet<DbNotification> DbNotifications { get; set; }// bảng đánh giá nhận sét sp 
 
 
         //chuỗi kết nối
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlServer("Data Source=DESKTOP-DB0RLVI;Initial Catalog=KLTN;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+
+        ////chuỗi kết nối
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //    => optionsBuilder.UseSqlServer("Data Source=SQL1001.site4now.net;Initial Catalog=db_ab14b1_db;User Id=db_ab14b1_db_admin;Password=Thanhmi@123");
     }
 }

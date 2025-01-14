@@ -201,5 +201,16 @@ namespace KLTN_YourLook.Repository_YL
 			});
 			return lst.ToList();
 		}
-	}
+
+		//Sản phẩm gợi ý
+		public async Task<List<ViewAllDetail>> Product_Suggest(int idsp)
+		{
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("view_product_suggest", new {idsp=idsp},commandType:CommandType.StoredProcedure);
+            return MapToViewAllDetails(lstraw);
+        }
+    }
 }

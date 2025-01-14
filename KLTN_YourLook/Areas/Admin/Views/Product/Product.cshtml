@@ -47,7 +47,7 @@
                         <th>Giá áp dụng</th>
                         <th>% Giảm giá</th>
                         <th>Phân loại</th>
-						<th style="width:40px">Nhóm</th>
+                        <th style="width:40px">Nhóm</th>
                         <th>Số Lượng</th>
                         <th>Đã Bán</th>
                         <th style="width:20px">Hiển Thị</th>
@@ -151,8 +151,15 @@
                                             <a class="cl000 ttu" href="@Url.Action("ProductDetail", new { idsp = prd.IdSp })">Chi Tiết Sản Phẩm</a>
                                         </div>
                                         <div class="flspe">
-                                            <a class="bd pd-lr cl000 ttu" href="@Url.Action("DeleteProduct", new { idsp = prd.IdSp })" onclick="deletesp(event)">Xóa</a>
+                                            @if (Context.Session.GetString("Role") == "Admin")
+                                            {
+                                                <a class="bd pd-lr cl000 ttu" href="@Url.Action("DeleteProduct", new { idsp = prd.IdSp })" onclick="deletesp(event)">Xóa</a>
+                                            }
+
+                                            @if (Context.Session.GetString("Role") != "Staff")
+                                            {
                                             <a class="bd pd-lr cl000 ttu" asp-action="UpdateProduct" asp-route-idsp="@prd.IdSp">Sửa</a>
+                                            }
                                         </div>
                                     </div>
                                 </td>

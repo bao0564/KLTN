@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿//import { error } from "jquery";
+
+$(document).ready(function () {
     $('.favorite').click(function () {
         var prdid = $(this).data('id');
         var icon = $(this).find('i');
@@ -16,7 +18,7 @@
                     showMess(response.message,true);
                     //alert(response.message);
                 } else {
-                    showMess(response.message,true);
+                    showMess(response.message,false);
                     //alert(response.message);
                 }
             },

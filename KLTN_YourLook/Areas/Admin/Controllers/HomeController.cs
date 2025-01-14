@@ -5,6 +5,11 @@ using X.PagedList;
 using KLTN_YourLook.Interface;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
+using KLTN_YourLook.Areas.Admin.Models;
+using KLTN_YourLook.Areas.Admin.Repository;
+using Microsoft.AspNetCore.Identity;
+using KLTN_YourLook.Models;
+using KLTN_YourLook.Repository_YL;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -14,32 +19,53 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
     {
         private readonly YourlookContext _context;
         private readonly Iuploadimg _uploadimg;
-        public HomeController(YourlookContext context,Iuploadimg uploadimg)
+        private readonly HomeRespository _homeRespository;
+        public HomeController(YourlookContext context,Iuploadimg uploadimg, HomeRespository homeRespository)
         {
             _context = context;
             _uploadimg = uploadimg;
+            _homeRespository = homeRespository;
         }
 
-        //
+        //trang chủ admin
         [Route("")]
         [Route("index")]
         public IActionResult Index()
         {
-            //var name = HttpContext.Session.GetString("NameAdmin");
-            //if (name == null)
-            //{
-            //    return RedirectToAction("Login", "HomeAdmin");
-            //}
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
-        //
+        //tài khoản admin
+        [Route("viewaccounts")]
+        [HttpGet]
+        public IActionResult ViewAccounts()
+        {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            var role = HttpContext.Session.GetString("Role");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (role != "Admin" && role != "Manager")
+            {
+                TempData["Error"] = "Bạn không có quyền truy cập trang này";
+                return RedirectToAction("Error", "Admin");
+            }
+            var acc = _context.DbAdmins.OrderByDescending(x=>x.Id);
+            return View(acc);
+        }
+        //đăng nhập 
         [Route("login")]
         [HttpGet]
         public IActionResult Login()
         {
             if (HttpContext.Session.GetString("NameAdmin") != null)
             {
-                return RedirectToAction("Index", "HomeAdmin");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -49,46 +75,92 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [Route("login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(DbAdmin admin)
+        public IActionResult Login(DbAdmin admin,string name)
         {
             if (HttpContext.Session.GetString("NameAdmin") == null)
             {
                 //tìm 
-                var e = _context.DbAdmins.Where(x => x.EmailDn.Equals(admin.EmailDn) && (x.PasswordDn.Equals(admin.PasswordDn))).FirstOrDefault();
-                var n = _context.DbAdmins.Where(x => x.NameDn.Equals(admin.NameDn) && (x.PasswordDn.Equals(admin.PasswordDn))).FirstOrDefault();
+                var e = _context.DbAdmins.Where(x => x.EmailDn.Equals(name) && (x.PasswordDn.Equals(admin.PasswordDn))).FirstOrDefault();
+                var n = _context.DbAdmins.Where(x => x.NameDn.Equals(name) && (x.PasswordDn.Equals(admin.PasswordDn))).FirstOrDefault();
                 if (e != null)
                 {
                     HttpContext.Session.SetString("NameAdmin", e.NameDn.ToString());
-                    return RedirectToAction("Index", "HomeAdmin");
+                    HttpContext.Session.SetString("Role", e.Quyen.ToString());
+                    TempData["Success"] = "Đăng nhập thành công";
+                    return RedirectToAction("Index", "Admin");
                 }
                 else if (n != null)
                 {
                     HttpContext.Session.SetString("NameAdmin", n.NameDn.ToString());
-                    return RedirectToAction("Index", "HomeAdmin");
+                    HttpContext.Session.SetString("Role", n.Quyen.ToString());
+                    TempData["Success"] = "Đăng nhập thành công";
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không chính xác");
+                    //ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không chính xác");
+                    TempData["Error"] = "Thông tin đăng nhập không chính xác";
                 }
             }
             return View(admin);
         }
+        [Route("register")]
+        [HttpGet]
+        public IActionResult Register()
+        {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            var role = HttpContext.Session.GetString("Role");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if(role != "Admin" && role != "Manager")
+            {
+                TempData["Error"] = "Bạn không có quyền truy cập trang này";
+                return RedirectToAction("Error", "Admin");
+            }
+            return View();
+        }
+        [Route("register")]
+        [HttpPost]
+        public async Task<IActionResult> Register(DbAdmin model)
+        {
+            if (ModelState.IsValid)
+            {
+                var (msg,error)= await _homeRespository.CreateAdmin(model.EmailDn, model.NameDn, model.PasswordDn,model.ChucVu, model.Quyen);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"]=error;
+                    return View(model);
+                }
+                TempData["Success"] = msg;
+                return RedirectToAction("ViewAccounts", "Admin");
+            }
+            TempData["Error"] = "thông tin không hợp lệ";
+            return View(model);
+        }
+        //đăng xuất
         [Route("logout")]
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("EmailAdmin");
             HttpContext.Session.Remove("NameAdmin");
-            return RedirectToAction("Login", "HomeAdmin");
+            return RedirectToAction("Login", "Admin");
+        }
+        //view error
+        [Route("error")]
+        public IActionResult Error()
+        {
+            return View();
         }
         //ads
         [Route("ads")]
         public IActionResult Ads(int? page)
         {
-            //var name = HttpContext.Session.GetString("NameAdmin");
-            //if (name == null)
-            //{
-            //    return RedirectToAction("Login", "HomeAdmin");
-            //}
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             int pageSize = 20;
             int pageNumber = page ?? 1;
             var lstAds = _context.DbAdss.OrderByDescending(x => x.IsActive==true);
@@ -96,11 +168,15 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             return View(lst);
         }
         //Thêm Ads
-
         [Route("creatads")]
         [HttpGet]
         public IActionResult CreatAds()
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
         [Route("creatads")]
@@ -158,6 +234,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult XoaAds(int id)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             TempData["Message"] = "";
             var ads = _context.DbAdss.Find(id);
             if (ads != null)
@@ -168,5 +249,47 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             TempData["Message"] = "ĐÃ XÓA";
             return RedirectToAction("ads");
         }
+        //tài khoản khách hàng
+        [Route("customer")]
+        public async Task<IActionResult> Customer(int? page, string keyword)
+        {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            int pageSize = 20;
+            int pageNumber = page ?? 1;
+            IEnumerable<DbCustomer> lstcus;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                lstcus = await _homeRespository.SearchCustomer(keyword);
+                ViewBag.keyword = keyword;
+            }
+            else
+            {
+                lstcus = _context.DbCustomers.OrderByDescending(x => x.CreateDate);
+            }
+            PagedList<DbCustomer> lst = new PagedList<DbCustomer>(lstcus, pageNumber, pageSize);
+            return View(lst);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNotification(string title, string message)
+        {
+            var notification = new DbNotification
+            {
+                Title = title,
+                Message = message,
+            };
+
+            _context.DbNotifications.Add(notification);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Thông báo đã được gửi!";
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

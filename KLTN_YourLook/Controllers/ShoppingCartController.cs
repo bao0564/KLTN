@@ -131,9 +131,10 @@ namespace KLTN_YourLook.Controllers
 				//tính tiền đã trừ đi mã giảm giá
 				var tongtien = order.Sum(X => X.Total);
 				int soluong = order.Sum(Y => Y.ProductQuantity);
-				int giamgiavalue = orderVoucher.ValueVoucher;
-				decimal giamgia = (tongtien * giamgiavalue / 100);
-				var Giam = giamgia.ToString("N0") + "VND";
+                var idVoucher = orderVoucher.IdVoucher.HasValue ? orderVoucher.IdVoucher : null;
+                int giamgiavalue = orderVoucher?.ValueVoucher ?? 0;
+				decimal giamgia = giamgiavalue > 0 ? (tongtien * giamgiavalue / 100) : 0; ;
+				var Giam = giamgia>0 ? giamgia.ToString("N0") + "VND" :"0";
 				decimal GiaCuoi = tongtien - giamgia + 20000;
                 decimal ship = 20000;
 				decimal tongtiensanpham = GiaCuoi;
@@ -148,9 +149,10 @@ namespace KLTN_YourLook.Controllers
                     return Json(new { success = false, msg = "Bạn chưa đăng nhập" });
                 }
                 int idkh = checkkh.Value;
+
                 var (newIdDH, newMaDH) = await _orderCart.Add_Order(idkh,emailkh,orderInfor.TenKh,orderInfor.Sdt,orderInfor.City,orderInfor.District,orderInfor.Ward,orderInfor.DiaChi
-                                                           ,tongtien,tongtiensanpham,soluong,orderPayment.PaymentId,orderPayment.PayName,orderVoucher.IdVoucher
-                                                           ,orderVoucher.ValueVoucher,giamgia,ship,orderInfor.GhiChu);
+                                                           ,tongtien,tongtiensanpham,soluong,orderPayment.PaymentId,orderPayment.PayName, idVoucher
+                                                           ,giamgiavalue, giamgia,ship,orderInfor.GhiChu);
                 foreach (var item in order)
                 {
                     var add_orderdetail = await _orderCart.Add_OrderDetail(newIdDH, newMaDH, item.IdSp, item.MaSp, item.ColorId, item.SizeId,item.GiaLoai, item.ProductQuantity);

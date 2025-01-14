@@ -86,9 +86,9 @@ namespace KLTN_YourLook.Models
     }
     public class voucherInfoItem
     {
-        public int IdVoucher { get; set; }
-        public string MaVoucher { get; set; }
-        public int ValueVoucher { get; set; } 
+        public int? IdVoucher { get; set; }
+        public string? MaVoucher { get; set; }
+        public int? ValueVoucher { get; set; } 
     }
     public class CheckoutRequest //chứa các thông tin sản phẩm + khách hàng + ... được người dùng tích chọn (JS:addtocart)
     {

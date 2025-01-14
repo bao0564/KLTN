@@ -46,5 +46,6 @@ namespace Data.Models
         public virtual ICollection<DbProductDetail> detailproducts { get; set; } = new List<DbProductDetail>();// 1 sp có thể xuất hiện nhiều trong bảng chi tiết sản phẩm}
         public virtual ICollection<DbCart> carts { get; set; } = new List<DbCart>();//1 sp có thể xuất hiện nhiều trong giỏ hàng
         public virtual ICollection<DbOrderDetail> orderdetails { get; set; } = new List<DbOrderDetail>();//1 sp có thể xuất hiện nhiều trong ctdh
+        public virtual ICollection<DbRating> ratings { get; set; }=new List<DbRating>();//1 sp có nhiều đánh giá
     }
 }

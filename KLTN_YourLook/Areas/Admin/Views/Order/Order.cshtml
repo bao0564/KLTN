@@ -73,7 +73,7 @@
                         <th>Đặt Thành công</th>
                         <th>Chuẩn bị hàng</th>
                         <th>Đang vận chuyển</th>
-                        <th>Hoàn Thành</th>
+                        <th>Trạng Thái</th>
                         <th>Chọn</th>
                     </tr>
                 </thead>
@@ -94,57 +94,67 @@
                                 @if (prd.ODSuccess == true)
                                 {
                                     <td>
-                                        <div class="check-od"></div>
+                                        <i class="fa-solid fa-check fa-xl" style="color: #07ed2e;"></i>
                                     </td>
                                 }
                                 else
                                 {
                                     <td>
-                                        <div class="check-od-none"></div>
+                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
                                     </td>
                                 }
                                 @if (prd.ODReadly == true)
                                 {
                                     <td>
-                                        <div class="check-od"></div>
+                                        <i class="fa-solid fa-check fa-xl" style="color: #07ed2e;"></i>
                                     </td>
                                 }
                                 else
                                 {
                                     <td>
-                                        <div class="check-od-none"></div>
+                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
                                     </td>
                                 }
                                 @if (prd.ODTransported == true)
                                 {
                                     <td>
-                                        <div class="check-od"></div>
+                                        <i class="fa-solid fa-check fa-xl" style="color: #07ed2e;"></i>
                                     </td>
                                 }
                                 else
                                 {
                                     <td>
-                                        <div class="check-od-none"></div>
+                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
                                     </td>
                                 }
-                                @if (prd.Complete == true)
+                                @if (prd.Complete && !prd.ODHuy)
                                 {
                                     <td>
-                                        <div class="check-od"></div>
+                                        <i class="fa-solid fa-circle-check fa-xl" style="color: #07ed2e;"></i>
+                                    </td>
+                                }
+                                else if (!prd.Complete && prd.ODHuy)
+                                {
+                                    <td>
+                                        <i class="fa-solid fa-xmark fa-xl" style="color: #e30d0d;"></i>
                                     </td>
                                 }
                                 else
                                 {
                                     <td>
-                                        <div class="check-od-none"></div>
+                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
                                     </td>
                                 }
                                 <td>
                                     <div style="display:flex;flex-direction:column;gap:10px">
                                         <a class="btn-ddu btn-dt nw" href="@Url.Action("orderdetail", new { iddh = prd.IdDh })" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
                                         <div style="display:flex;justify-content:space-between">
-                                            <a class="btn-ddu btn-ud" href="@Url.Action("SuaDonHang",new {madh=prd.MaDh})">Update</a>
-                                            <a class="btn-ddu btn-de" href="@Url.Action("XoaDonHang",new {madh=prd.MaDh})" onclick="deletedh(event)">Xóa</a>
+                                            <a class="btn-ddu btn-ud" href="@Url.Action("orderupdate",new {iddh=prd.IdDh})">Update</a>
+
+                                            @if (Context.Session.GetString("Role") != "Staff")
+                                            {
+                                            <a class="btn-ddu btn-de" href="@Url.Action("XoaDonHang",new {iddh=prd.IdDh})" onclick="deletedh(event)">Xóa</a>
+                                            }
                                         </div>
                                     </div>
                                 </td>

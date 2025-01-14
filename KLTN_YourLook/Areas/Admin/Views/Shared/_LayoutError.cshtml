@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/cssAdmin.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap4/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="~/css/adminlte.min.css" rel="stylesheet" />
+    <link href="~/css/admin_ressponsive.css" rel="stylesheet" />
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/css/bootstrap4/bootstrap.bundle.min.js"></script>
+    <script src="~/js/demo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container-0">
+        <div class="head_top">
+            <div id="header">
+                <div id="logo" class="logo">
+                    <a href="@Url.Action("index","admin")">
+                        <img src="~/logo/logo.png" />
+                    </a>
+                </div>
+                @if (Context.Session.GetString("EmailAdmin") != null)
+                {
+                    <div class="account">
+                        Xin Chào: @Context.Session.GetString("EmailAdmin")
+                    </div>
+                }
+                else if (Context.Session.GetString("NameAdmin") != null)
+                {
+                    <div class="account">
+                        Xin Chào: @Context.Session.GetString("NameAdmin")
+                    </div>
+                }
+                else
+                {
+                    <div class="account">
+                        Tài khoản đăng nhập!
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="menu">
+            <div class="menu_ct">
+                <ul style="padding: 0;">
+                    <li><a href="@Url.Action("Index","Admin")"><i class="fa-solid fa-house" style="color: #ffffff;"></i>Trang chủ</a></li>
+                    <li><a href="@Url.Action("Order","Admin")"><i class="fa-brands fa-shopify" style="color: #ffffff;"></i>Đơn Hàng</a></li>
+                    <li><a href="@Url.Action("Product","Admin")"><i class="fa-solid fa-shirt" style="color: #ffffff;"></i>Sản Phẩm</a></li>
+                    <li><a href="@Url.Action("Category","Admin")"><i class="fa-solid fa-clipboard" style="color: #ffffff;"></i> Danh Mục</a></li>
+                    <li><a href="@Url.Action("Group","Admin")"><i class="fa-solid fa-layer-group" style="color: #ffffff;"></i>Nhóm</a></li>
+                    <li><a href="@Url.Action("Size","Admin")"><i class="fa-solid fa-window-restore" style="color: #ffffff;"></i>Kích cỡ</a></li>
+                    <li><a href="@Url.Action("Color","Admin")"><i class="fa-solid fa-brush" style="color: #f5f5f5;"></i>Màu</a></li>
+                    <li><a href="@Url.Action("Customer","Admin")"><i class="fa-solid fa-user-group" style="color: #fcfcfc;"></i>Khách Hàng</a> </li>
+                    <li><a href="@Url.Action("Ads","Admin")"><i class="fa-solid fa-audio-description" style="color: #ffffff;"></i>Ads</a></li>
+                    <li><a href="@Url.Action("ViewAccounts","Admin")"><i class="fa-solid fa-user" style="color: #ffffff;"></i>Admin</a></li>
+                    <li><a href="@Url.Action("logout","Admin")" onclick="logout(event)"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>Đăng Xuất</a></li>
+                </ul>
+            </div>
+			<div class="menu_cp">
+				@if (TempData["Error"] != null)
+				{
+					<div class="alert alert-danger">
+						@TempData["Error"]
+					</div>
+				}
+                @* @RenderBody() *@
+            </div>
+        </div>
+    </div>
+    <script src="~/js_admin/get _date.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<script type="text/javascript">
+    function logout(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn chắc chắn muốn đăng xuất?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>
+

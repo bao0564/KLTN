@@ -30,11 +30,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [Route("category")]
         public async Task<IActionResult> Category(int? page,string keyword)
         {
-            //var name = HttpContext.Session.GetString("NameAdmin");
-            //if (name == null)
-            //{
-            //    return RedirectToAction("Login", "HomeAdmin");
-            //}
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             int pageSize = 20;
             int pageNumber = page ?? 1;
             IEnumerable<AllCategoryViewModel> lstDanhMuc;
@@ -54,6 +54,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> CreatCategory()
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
         [Route("categorycreat")]
@@ -84,6 +89,17 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult UpdateCategory(int iddm)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            var role = HttpContext.Session.GetString("Role");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (role != "Admin" && role != "Manager")
+            {
+                TempData["Error"] = "Bạn không có quyền truy cập trang này";
+                return RedirectToAction("Error", "Admin");
+            }
             var DanhMuc = _context.DbCategorys.Find(iddm);
             return View(DanhMuc);
         }

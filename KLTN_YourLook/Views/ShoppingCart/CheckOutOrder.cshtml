@@ -6,7 +6,7 @@
 @{
     var TongTien = Model.selectedProducts.Sum(X => X.Total);
     var TongSanPham = Model.selectedProducts.Sum(Y => Y.ProductQuantity).ToString();
-    decimal Giamgia = Model.selectedVouchers.ValueVoucher;
+    decimal Giamgia = Model.selectedVouchers.ValueVoucher ?? 0;
     decimal giamGiaValue = (TongTien * Giamgia / 100);
     var Giam = giamGiaValue.ToString("N0") + "VND";
     decimal GiaCuoi = TongTien - giamGiaValue + 20000;
@@ -80,8 +80,8 @@
                         <div style="margin:0">@TongSanPham</div>
                     </div>
                     <div class="flex2-cart flex-cart">
-                        <h5 style="margin:0 10px">Tổng Thanh Toán:</h5>
-                        <p style="margin:0;color:#000;font-weight:600">@TongTien.ToString("N0") VND</p>
+                        <h5 style="margin:0 10px">Tổng Tiền Sản Phẩm:</h5>
+                        <p style="margin:0;color:#000">@TongTien.ToString("N0") VND</p>
                     </div>
                 </div>
             </div>

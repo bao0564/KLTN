@@ -9,91 +9,72 @@
     <div class="box-customer" style="background-color:#fff">
         <div class="fl">
             <div style="display:flex;align-items:center">
-                <a href="/User/UserDetail"><img style="height:15px" src="\icon\drop left.svg"></a>
-            </div>
-            <div style="width:100%">
-                <div class="fljct">
-                    @if (TempData["Error"] != null)
-                    {
-                        <div class="alert alert-danger" style="margin:0">
-                            @TempData["Error"]
-                        </div>
-                    }
-                </div>
-            </div>
+                <a href="@Url.Action("UserAddress")"><img style="height:15px" src="\icon\drop left.svg"></a>
+			</div> 
+            <div class="fl-center" style="width:100%">
+				<h4 class="ttu" style="margin:0">Tạo Địa chỉ</h4>
+			</div>
         </div>
-        <form asp-action="CreateAddress">
+        <form asp-action="CreateAddress" method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="box-adr col-12" style="display:flex">
-                <div class="col-6">
-                    <label asp-for="IdAddress" class="control-label"></label>
-                    <input asp-for="IdAddress" class="form-control" />
-                    <span asp-validation-for="IdAddress" class="text-danger"></span>
+            <div style="max-height:320px;overflow-x:hidden;overflow-y:auto">
+                <div class="box-adr col-12" style="display:flex">
+                    <div class="col-6">
+                        <label class="ttu control-label">Khách hàng (người nhận):</label>
+                        <input asp-for="TenNguoiNhan" class="form-control" />
+                        <span asp-validation-for="TenNguoiNhan" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label class="ttu control-label">Số điện thoại:</label>
+                        <input asp-for="Sdt" class="form-control" />
+                        <span asp-validation-for="Sdt" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <label asp-for="IdKh" class="control-label"></label>
-                    <input asp-for="IdKh" class="form-control" />
-                    <span asp-validation-for="IdKh" class="text-danger"></span>
+                <div class="box-adr col-12" style="display:flex">
+                    <div class="col-6">
+                        <label class="ttu control-label">Địa chỉ chi tiết:</label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label class="ttu control-label">Thành Phố:</label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="box-adr col-12" style="display:flex">
-                <div class="col-6">
-                    <label asp-for="TenNguoiNhan" class="control-label"></label>
-                    <input asp-for="TenNguoiNhan" class="form-control" />
-                    <span asp-validation-for="TenNguoiNhan" class="text-danger"></span>
+                <div class="box-adr col-12" style="display:flex">
+                    <div class="col-6">
+                        <label class="ttu control-label">Quận Huyện:</label>
+                        <input asp-for="QuanHuyen" class="form-control" />
+                        <span asp-validation-for="QuanHuyen" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label class="ttu control-label">Phường Xã:</label>
+                        <input asp-for="PhuongXa" class="form-control" />
+                        <span asp-validation-for="PhuongXa" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <label asp-for="Sdt" class="control-label"></label>
-                    <input asp-for="Sdt" class="form-control" />
-                    <span asp-validation-for="Sdt" class="text-danger"></span>
+                <div class="box-adr col-12" style="display:flex">
+                    <div class="col-9">
+                        <label class="ttu control-label">Ghi chú:</label>
+                        <input asp-for="GhiChu" class="form-control" />
+                        <span asp-validation-for="GhiChu" class="text-danger"></span>
+                    </div>
+                    <div class="col-3 fljct">
+                        <div class="custom-control custom-checkbox talg flct">
+                            @Html.CheckBoxFor(x => x.Idefault, new { @class = "form-check-input", @id = "customCheckbox2", @checked = "checked" })
+                            <div for="customCheckbox2" class="ttu" style="margin:0">Mặc Định</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="box-adr col-12" style="display:flex">
-                <div class="col-6">
-                    <label asp-for="Address" class="control-label"></label>
-                    <input asp-for="Address" class="form-control" />
-                    <span asp-validation-for="Address" class="text-danger"></span>
-                </div>
-                <div class="col-6">
-                    <label asp-for="City" class="control-label"></label>
-                    <input asp-for="City" class="form-control" />
-                    <span asp-validation-for="City" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="box-adr col-12" style="display:flex">
-                <div class="col-6">
-                    <label asp-for="QuanHuyen" class="control-label"></label>
-                    <input asp-for="QuanHuyen" class="form-control" />
-                    <span asp-validation-for="QuanHuyen" class="text-danger"></span>
-                </div>
-                <div class="col-6">
-                    <label asp-for="PhuongXa" class="control-label"></label>
-                    <input asp-for="PhuongXa" class="form-control" />
-                    <span asp-validation-for="PhuongXa" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="box-adr col-12" style="display:flex">
-                <div class="col-6">
-                    <label asp-for="GhiChu" class="control-label"></label>
-                    <input asp-for="GhiChu" class="form-control" />
-                    <span asp-validation-for="GhiChu" class="text-danger"></span>
-                </div>
-                <div class="col-6">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Idefault" /> @Html.DisplayNameFor(model => model.Idefault)
-                    </label>
-                </div>
-            </div>
+            </div>            
             <div class="col-12" style="display:flex;justify-content:center">
-                <div style="border:1px solid #000;border-radius:10px">
-                    <input type="submit" value="Tạo" class="btn btn-primary">
+                <div style="border-radius:10px">
+                    <input type="submit" value="Lưu Địa Chỉ" class="btn btn-primary">
                 </div>
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

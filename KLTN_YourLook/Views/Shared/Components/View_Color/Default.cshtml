@@ -6,9 +6,9 @@
     @* <li><a asp-controller="Home" asp-action="ProductTipe" asp-route-colorid="@prd.ColorId">@prd.NameColor</a></li>*@
     <li class="flct" style="width:100%;">
         <input class="color-filter mg-lr" type="checkbox" />
-        <div class="box_color flspb flct" style="width:100%;">
+		<div class="box_color flspb flct" style="width:100%;max-width:60%;overflow-x:auto;">
             <p class="fl-center nw" style="color:#000;margin-right:5px">@prd.NameColor</p>
-            <div class="bd" style="background-color:@prd.MaHex;height:10px;width:25px;border-radius:10px"></div>
-        </div>
+		</div>
+        <div class="bd btn_color" style="background-color: @prd.MaHex"></div>
     </li>
 }   

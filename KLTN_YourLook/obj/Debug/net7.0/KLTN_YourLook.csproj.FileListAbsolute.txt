@@ -286,6 +286,9 @@ C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\dotenv.net.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Humanizer.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Facebook.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Build.dll
@@ -309,6 +312,9 @@ C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Des
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Identity.Client.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll

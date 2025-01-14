@@ -36,10 +36,10 @@
             <table class="h-table">
                 <thead>
                     <tr>
-						<th class="hidden">id</th>
-						<th>Mã Màu</th>
-						<th>Tên màu</th>
-						<th>Mã Hex</th>
+                        <th class="hidden">id</th>
+                        <th>Mã Màu</th>
+                        <th>Tên màu</th>
+                        <th>Mã Hex</th>
                         <th></th>
                         <th>Ngày Tạo </th>
                         <th>Tạo Bởi</th>
@@ -54,8 +54,8 @@
                         foreach (var prd in Model)
                         {
                             <tr>
-								<td class="hidden">@prd.ColorId</td>
-								<td>@prd.MaColor</td>
+                                <td class="hidden">@prd.ColorId</td>
+                                <td>@prd.MaColor</td>
                                 <td>@prd.NameColor</td>
                                 <td>@prd.MaHex</td>
                                 @if (prd.Img != null && prd.Img.Length>2)
@@ -73,8 +73,14 @@
                                 <td>@prd.ModifiedDate</td>
                                 <td>@prd.ModifiedBy</td>
                                 <td>
-                                    <a href="@Url.Action("ColorDelete", new { idcl = prd.ColorId })" onclick="deletec(event)" style="color: #000;">Xóa</a>
-                                    <a asp-action="ColorUpdate" asp-route-idcl="@prd.ColorId" style="color: black;">Sửa</a>
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <a href="@Url.Action("ColorDelete", new { idcl = prd.ColorId })" onclick="deletec(event)" style="color: #000;">Xóa</a>
+                                    }
+                                    @if (Context.Session.GetString("Role") !="Staff")
+                                    {
+                                        <a asp-action="ColorUpdate" asp-route-idcl="@prd.ColorId" style="color: black;">Sửa</a>
+                                    }
                                 </td>
                             </tr>
                         }

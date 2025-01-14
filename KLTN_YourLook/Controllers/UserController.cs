@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Data.Models;
+using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
 using KLTN_YourLook.Models;
 using KLTN_YourLook.Repository_YL;
@@ -13,11 +14,13 @@ namespace KLTN_YourLook.Controllers
         private readonly YourlookContext _context;
         private readonly SP_User _spUser;
         private readonly Iuploadimg _uploadimg;
-        public UserController( YourlookContext context, SP_User spuser, Iuploadimg uploadImg)
+        private readonly OrderRepository _orderRepository;
+        public UserController( YourlookContext context, SP_User spuser, Iuploadimg uploadImg,OrderRepository orderRepository)
         {
             _context = context;
             _spUser = spuser;
             _uploadimg = uploadImg;
+            _orderRepository = orderRepository;
         }
         private DbCustomer GetEmailKhachHang(string email)
         {
@@ -132,6 +135,7 @@ namespace KLTN_YourLook.Controllers
             }
         }
         //Lịch sử đơn hàng 
+        [HttpGet]
         public async Task<IActionResult> HistoryOrder()
         {
             var checkkh = HttpContext.Session.GetInt32("userId");
@@ -145,9 +149,24 @@ namespace KLTN_YourLook.Controllers
             return View(lstod);
         }
         //Hủy đơn hàng
-        public IActionResult UpdateOrder()
+        [HttpGet]
+        public async Task<IActionResult> UpdateOrder(int iddh)
         {
-            return View();
+            var checkdh= _context.DbOrders.FirstOrDefault(dh=>dh.IdDh == iddh);
+            var checkkh = HttpContext.Session.GetInt32("userId");
+            if (checkkh == null)
+            {
+                return RedirectToAction("Login", "Access");
+            }
+            bool odsuccess = checkdh.ODSuccess;
+            bool odreadly = checkdh.ODReadly;
+            bool odtransported = checkdh.ODTransported;
+            bool complete = false;
+            bool odhuy = true;
+            var hdh = await _orderRepository.UpdateOrder(iddh, odsuccess, odreadly, odtransported, complete, odhuy);
+
+            TempData["Success"] = "Hủy đơn hàng thành công";
+            return RedirectToAction("HistoryOrder");
         }
         //Địa chỉ người dùng
         [HttpGet]
@@ -164,22 +183,22 @@ namespace KLTN_YourLook.Controllers
         }
         //Tạo địa chỉ mới
         [HttpGet]
-        public IActionResult CreateAddress()
+        public async Task<IActionResult> CreateAddress()
         {
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> CreateAddress(DbAddress model)
         {
-            var checkkh = HttpContext.Session.GetInt32("userId");
-            if (checkkh == null)
+            if(ModelState.IsValid)  
             {
-                return RedirectToAction("Login", "Access");
-            }
-            int idkh = checkkh.Value;
-            if(ModelState.IsValid)
-            {
-                var (msg, error) = await _spUser.Create_Adress(idkh, model.TenNguoiNhan, model.Sdt, model.Address, model.City, model.QuanHuyen, model.PhuongXa, model.Idefault);
+                var checkkh = HttpContext.Session.GetInt32("userId");
+                if (checkkh == null)
+                {
+                    return RedirectToAction("Login", "Access");
+                }
+                int idkh = checkkh.Value;
+                var (msg, error) = await _spUser.Create_Adress(idkh, model.TenNguoiNhan, model.Sdt, model.Address, model.City, model.QuanHuyen, model.PhuongXa,model.GhiChu, model.Idefault);
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"] = error; // báo lỗi về View

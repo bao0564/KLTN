@@ -177,7 +177,7 @@
 									<li class="checkout">
 										<a href="@Url.Action("Cart","ShoppingCart")">
 											<i class="fa fa-shopping-cart" style="color:var(--White-1);position:relative" aria-hidden="true"></i>
-											@* @await Component.InvokeAsync("ViewProductInCart") *@
+											@await Component.InvokeAsync("ViewProductInCart")
 										</a>
 									</li>
 								</ul>
@@ -369,10 +369,26 @@
 			</div>
 		</div>
 		<main class="mar150_container customer" style="background-color:#bdc3c7;margin-bottom:0">
-			<div class="img-ad" style="padding:25px 0">
+			<div class="img-ad">
 				@* <img src="/logo/Untitled_Export_V4.jpeg" style="background-color: #2f3640" alt="" /> *@
 			</div>
-			<div class="body-customer" style="align-items:center">
+			<div class="body-customer" style="align-items:center;position:relative">
+				<div class="msg_error" style="">
+					<div class="fljct">
+						@if (TempData["Success"] != null)
+						{
+							<div class="alert alert-success" style="margin:0;z-index:100">
+								@TempData["Success"]
+							</div>
+						}
+						@if (TempData["Error"] != null)
+						{
+							<div class="alert alert-danger" style="margin:0">
+								@TempData["Error"]
+							</div>
+						}
+					</div>
+				</div>
 				<div class="address-customer" >
 					<div class="box-customer" style="">
 						<div class="space-address " style="justify-content:space-between;background-color:#fff">

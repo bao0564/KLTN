@@ -9,67 +9,74 @@
 	<div class="box-customer" style="background-color:#fff">
         <div class="fl">
             <div style="display:flex;align-items:center">
-                <a href="/User/UserDetail"><img style="height:15px" src="\icon\drop left.svg"></a>
+                <a href="@Url.Action("UserDetail")"><img style="height:15px" src="\icon\drop left.svg"></a>
             </div>
-            <div style="width:100%">
-                <div class="fljct">
-                    @if (TempData["Error"] != null)
-                    {
-                        <div class="alert alert-danger" style="margin:0">
-                            @TempData["Error"]
-                        </div>
-                    }
-                </div>
+            <div class="fl-center" style="width:100%">
+                <h4 class="ttu" style="margin:0">Cập nhật thông tin</h4>
             </div>
         </div>
         <form asp-action="UpdateUserDetail" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
-            <input type="hidden" asp-for="IdKh" class="form-control" />
-            <input type="hidden" asp-for="MaKh" class="form-control" />
-            <input type="hidden" asp-for="Passwords" class="form-control" />
-            <input type="hidden" asp-for="ConfirmPasswords" class="form-control" />
-            <input type="hidden" asp-for="IsExternalAccount" />
-            <input type="hidden" asp-for="CreateDate" class="form-control" />
-            <input type="hidden" asp-for="CreateBy" class="form-control" />
-            <input type="hidden" asp-for="ModifiedDate" class="form-control" />
-            <input type="hidden" asp-for="ModifiedBy" class="form-control" />
-            <div class="box-adr col-12" style="display:flex">
-                <div class="col-6">
-                    <label class="control-label">Tên Khách Hàng</label>
-                    <input asp-for="TenKh" class="form-control" />
-                    <span asp-validation-for="TenKh" class="text-danger"></span>
+
+            <div style="max-height:320px;overflow-x:hidden;overflow-y:auto">
+                <input type="hidden" asp-for="IdKh" class="form-control" />
+                <input type="hidden" asp-for="MaKh" class="form-control" />
+                <input type="hidden" asp-for="Passwords" class="form-control" />
+                <input type="hidden" asp-for="ConfirmPasswords" class="form-control" />
+                <input type="hidden" asp-for="IsExternalAccount" />
+                <input type="hidden" asp-for="CreateDate" class="form-control" />
+                <input type="hidden" asp-for="CreateBy" class="form-control" />
+                <input type="hidden" asp-for="ModifiedDate" class="form-control" />
+                <input type="hidden" asp-for="ModifiedBy" class="form-control" />
+                <div class="box-adr col-12" style="display:flex">
+                    <div class="col-6">
+                        <label class="control-label">Tên Khách Hàng</label>
+                        <input asp-for="TenKh" class="form-control" />
+                        <span asp-validation-for="TenKh" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">Ảnh Đại Diện</label>
+                        <input type="file" asp-for="Img" name="FileAnh" class="form-control" />
+                        <span asp-validation-for="Img" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <label class="control-label">Ảnh Đại Diện</label>
-                    <input type="file" asp-for="Img" name="FileAnh" class="form-control" />
-                    <span asp-validation-for="Img" class="text-danger"></span>
+                <div class="box-adr col-12" style="display:flex">
+                    <div class="col-6">
+                        <label class="control-label">Giới tính</label>
+                        <select asp-for="GioiTinh" class="form-control" >
+                            <option value="">--- Giới tính ---</option>
+                            <option value="Nam" selected="selected">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                        <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">Số Điện Thoại</label>
+                        @if(Model.Sdt !=null){
+                            <input asp-for="Sdt" class="form-control" readonly />
+                        }
+                        else{
+                            <input asp-for="Sdt" class="form-control" />
+                            <span asp-validation-for="Sdt" class="text-danger"></span>
+                        }
+                    </div>
+                </div>
+                <div class="box-adr col-12" style="display:flex">
+                    <div class="col-12">
+                        <label class="control-label">Email</label>
+                        @if(Model.Email !=null){
+                            <input asp-for="Email" class="form-control" readonly/>
+                        }
+                        else{
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger" resource=""></span>
+                        }
+                    </div>
                 </div>
             </div>
-            <div class="box-adr col-12" style="display:flex">
-                <div class="col-4">
-                    <label class="control-label">Giới tính</label>
-                    <select asp-for="GioiTinh" class="form-control" >
-                        <option value="">--- Giới tính ---</option>
-                        <option value="Nam" selected="selected">Nam</option>
-                        <option value="Nữ">Nữ</option>
-                    </select>
-                    <span asp-validation-for="GioiTinh" class="text-danger"></span>
-                </div>
-                <div class="col-4">
-                    <label class="control-label">Số Điện Thoại</label>
-                    <input asp-for="Sdt" class="form-control" />
-                    <span asp-validation-for="Sdt" class="text-danger"></span>
-                </div>
-                <div class="col-6">
-                    <label class="control-label">Email</label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger" resource=""></span>
-                </div>
-            </div>
-            <div class="col-12" style="display:flex;justify-content:center">
-                <div style="border:1px solid #000;border-radius:10px">
-                    <input type="submit" value="Lưu" class="btn btn-primary">
+            <div class="col-12 fljct mg-tb">
+                <div style="border-radius:10px">
+                    <input type="submit" value="Lưu" class="btn ">
                 </div>
             </div>
         </form>

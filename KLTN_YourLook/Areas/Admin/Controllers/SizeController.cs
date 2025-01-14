@@ -24,11 +24,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Size(int? page)
         {
-            //var name = HttpContext.Session.GetString("NameAdmin");
-            //if (name == null)
-            //{
-            //    return RedirectToAction("Login", "HomeAdmin");
-            //}
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             int pageSize = 20;
             int pageNumber = page ?? 1;
             var lstSize = _context.DbSizes.OrderBy(x => x.SizeId);
@@ -40,6 +40,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult SizeCreat()
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
         [Route("creatsize")]
@@ -65,6 +70,17 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult SizeUpdate(int idsize)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            var role = HttpContext.Session.GetString("Role");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (role != "Admin" && role != "Manager")
+            {
+                TempData["Error"] = "Bạn không có quyền truy cập trang này";
+                return RedirectToAction("Error", "Admin");
+            }
             var Size = _context.DbSizes.Find(idsize);
             return View(Size);
         }

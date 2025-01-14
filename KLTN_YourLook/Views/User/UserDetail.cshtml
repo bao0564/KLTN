@@ -5,12 +5,6 @@
 }
 @model Data.Models.DbCustomer
 <div class="inf-customer" style="position:relative">
-    @if (TempData["Error"] != null)
-    {
-        <div class="alert alert-success" style="position:absolute;top:10px;left:40%">
-            @TempData["Success"]
-        </div>
-    }
     <div class="box-customer" style="background-color:#fff">
         <div class="title" style="padding-bottom:20px">
             @if(Model.Img != null){

@@ -101,10 +101,21 @@ COLOR PALETTE
 .scr {
 	overflow: scroll;
 }
-
-.flscr::-webkit-scrollbar, .scr::-webkit-scrollbar {
-	display: none;
+.scr_x{
+	overflow-x:auto;
+	overflow-y:hidden;
 }
+
+.scr_y {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+	.flscr::-webkit-scrollbar, .scr_y::-webkit-scrollbar,
+	.fl::-webkit-scrollbar, .pay-list::-webkit-scrollbar,
+	.order-cart::-webkit-scrollbar, .voucher-list::-webkit-scrollbar,
+	#payname::-webkit-scrollbar {
+		display: none;
+	}
 .bd {
 	border: 1px solid var(--gray-a);
 }
@@ -420,7 +431,7 @@ section {
 
 		.fa-login .box-login.box {
 			min-width: 600px;
-			height: 300px;
+			/*height: 300px;*/
 		}
 
 .close-login {
@@ -869,7 +880,7 @@ section {
 .currency_selection {
 	display: block;
 	position: absolute;
-	right: 0;
+	right: 10px;
 	top: 120%;
 	margin: 0;
 	background: #FFFFFF;
@@ -1537,7 +1548,7 @@ section {
 	}
 
 .btn {
-	background-color: var(--gray-a);
+	/*background-color: var(--gray-a);*/
 	border: none;
 	max-height: 45px;
 }
@@ -1728,12 +1739,16 @@ section {
 	left: -10px;
 	top: 40%;
 	background-color: #ffffff7a;
+	display: flex;
+	align-items: center;
 }
 
 .container-flashsell .btn-primary-next {
 	right: -10px;
 	top: 40%;
 	background-color: #ffffff7a;
+	display:flex;
+	align-items:center;
 }
 
 .btn-primary-prev {
@@ -1744,7 +1759,7 @@ section {
 .btn-primary-next {
 	position: absolute;
 	top: 40%;
-	right: 10px
+	right: 10px;
 }
 
 .product-grid {
@@ -1756,7 +1771,7 @@ section {
 	display: flex;
 	/*overflow-x:scroll;*/
 	/*overflow-y:auto;*/
-	margin: 10px;
+	margin: 10px 0;
 	transition: transform 0.5s ease;
 	width: 100%;
 }
@@ -1798,10 +1813,13 @@ section {
 	}
 
 .product-item {
+	width:20%;
 	height: 380px;
 	cursor: pointer;
 }
-
+.favorite i {
+	font-size: 25px;
+}
 	.product-item::after {
 		display: block;
 		position: absolute;
@@ -1840,11 +1858,11 @@ section {
 }
 
 .product_image-2 {
-	position: relative;
 }
 
 	.product_image-2 img {
 		width: 100%;
+		position: relative;
 	}
 
 .product_image img {
@@ -1852,7 +1870,13 @@ section {
 	width: 100%;
 	position: relative;
 }
-
+.box-inf-cl-s .title{
+	padding:10px;
+}
+.box-inf-cl-s .title_size {
+	padding-left: 5%;
+	margin-bottom: 10px;
+}
 .product_image:hover .box-inf-cl-s {
 	opacity: 1;
 	visibility: visible;
@@ -2074,7 +2098,6 @@ section {
 }
 
 .deal_ofthe_week_img {
-	height: 540px;
 	max-width: 50%;
 	min-width: 50%;
 }
@@ -2854,22 +2877,20 @@ section {
 	justify-content: center;
 	margin-bottom: 50px;
 }
-
 .body-customer {
 	display: flex;
 	flex-wrap: wrap;
 }
-
-	.body-customer .inf-customer {
-		width: 70%;
-		padding: 75px 50px;
-		position: relative;
-		transition: width 0.3s ease;
-	}
+.body-customer .inf-customer {
+	width: 70%;
+	padding: 75px 50px;
+	position: relative;
+	transition: width 0.3s ease;
+}
 
 .inf-customer .box-customer {
 	background-color: #fff;
-	max-height: 750px;
+	max-height: 410px;
 	min-height: 400px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -3001,7 +3022,6 @@ section {
 }
 
 .deal_ofthe_week_img {
-	height: 400px;
 }
 
 .timer {
@@ -3129,21 +3149,21 @@ section {
 	z-index: 1000;
 }
 
-	.toast.success {
-		border: 3px solid #FFFFFF;
-		border-radius: 10px;
-		background: #32ff7e;
-		color: #000;
-		box-shadow: 0 0 0 2px #05c46b;
-	}
+.toast.success {
+	border: 3px solid #FFFFFF;
+	border-radius: 10px;
+	background: #32ff7e;
+	color: #000;
+	box-shadow: 0 0 0 2px #05c46b;
+}
 
-	.toast.error {
-		border: 3px solid #FFFFFF;
-		border-radius: 10px;
-		background: #f44336; /* Màu đỏ cho lỗi */
-		color: #000;
-		box-shadow: 0 0 0 2px #fe4c50;
-	}
+.toast.error {
+	border: 3px solid #FFFFFF;
+	border-radius: 10px;
+	background: #f44336; /* Màu đỏ cho lỗi */
+	color: #000;
+	box-shadow: 0 0 0 2px #fe4c50;
+}
 
 /*ph�n trang*/
 .pagination {
@@ -3181,7 +3201,7 @@ section {
 	margin-top: 5px;
 	margin-bottom: 30px;
 }
-/*l?ch s? mua h�ng*/
+/*lịch sử mua hàng*/
 .order-history {
 	padding-bottom: 20px;
 }
@@ -3189,3 +3209,10 @@ section {
 	.order-history p {
 		color: #000 !important;
 	}
+	/*thông báo lỗi / thành công*/
+.msg_error {
+	position: absolute;
+	top: 20px;
+	left: 45%;
+	z-index: 100
+}

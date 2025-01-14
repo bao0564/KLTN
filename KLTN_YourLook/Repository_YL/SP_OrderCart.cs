@@ -127,5 +127,17 @@ namespace KLTN_YourLook.Repository_YL
 
             return await _dbConnection.ExecuteAsync("add_orderdetail",parameters, commandType: CommandType.StoredProcedure);
 		}
+        ////số lượng sản phẩm trong giỏ hàng
+        //public async Task<Product_Quantity_In_Cart> QuantityProductIncart(int idkh)
+        //{
+        //    if (_dbConnection ==null)
+        //    {
+        //        throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+        //    }
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("@idkh", idkh);
+        //    return await _dbConnection.QueryFirstOrDefault<Product_Quantity_In_Cart>("view_product_in_cart",parameters,commandType: CommandType.StoredProcedure);
+             
+        //}
     }
 }

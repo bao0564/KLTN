@@ -73,7 +73,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
                                     SoLuongSp = int.Parse(s[5]),
                                     GiaLoai=decimal.Parse(s[6])
                                 };
-                            }).DistinctBy(x=>x.MaSp).ToList(),
+                            }).ToList(),
                 IdKh=x.IdKh,
                 TenKh=x.TenKh,
                 NguoiNhan=x.NguoiNhan,
@@ -85,6 +85,29 @@ namespace KLTN_YourLook.Areas.Admin.Repository
                 TongTienThanhToan=x.TongTienThanhToan
             });
             return lst.ToList();
+        }
+        //Cập nhật đơn hàng 
+        public async Task<(string msg,string error)> UpdateOrder(int iddh,bool odsuccess,bool odreadly,bool odtransported,bool complete,bool odhuy)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@iddh", iddh);            
+            parameters.Add("@odsuccess", odsuccess);            
+            parameters.Add("@odreadly", odreadly);            
+            parameters.Add("@odtransported", odtransported);            
+            parameters.Add("@complete", complete);            
+            parameters.Add("@odhuy", odhuy);
+
+            parameters.Add("@msg", dbType: DbType.String, size: 500,direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+
+            await _dbConnection.ExecuteAsync("orderupdate", parameters, commandType: CommandType.StoredProcedure);
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+            return (msg, error);
         }
     }
 }

@@ -1,0 +1,81 @@
+﻿@using Data.Models
+@{
+    ViewData["Title"] = "ViewAccounts";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<DbAdmin>
+<div class="ttu cp0">
+    Danh Sách tài khoản admin
+</div>
+<div class="h-cp1">
+    <div class="h-cp-f">
+        <div class="h-cp-up">
+            <div class="bt-c"><a href="@Url.Action("Register","Admin")">Tạo Mới</a></div>
+            <div class="bt-c"><a href="">In dữ liệu </a></div>
+            <div class="bt-c"><a href="">Xuất Excel</a></div>
+            <div class="bt-c"><a href="">Xuất PDF</a></div>
+        </div>
+        <div class="h-cp-mid">
+            <table class="h-table">
+                <thead>
+                    <tr>
+                        <th style="display:none">Id</th>
+                        <th>Mã NV</th>
+                        <th>Tên NV</th>
+                        @if (Context.Session.GetString("Role") == "Admin")
+                        {
+                        <th>Email NV</th>
+                        <th>Mật Khẩu TK</th>
+                        }
+                        <th>Quyền</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var prd in Model)
+                        {
+                            <tr>
+                                <td style="display:none">@prd.Id</td>
+                                <td>@prd.MaAdmin</td>
+                                <td>@prd.NameDn</td>
+                                @if (Context.Session.GetString("Role") == "Admin")
+                                {
+                                    <td>@prd.EmailDn</td>
+                                    <td>@prd.PasswordDn</td>
+                                }
+                                <td>@prd.Quyen</td>
+                                <td>
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <a href="@Url.Action("", new { id = prd.Id })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
+                                        <a asp-action="" asp-route-id="@prd.Id" style="color: black;">Sửa</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">"trống!"</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@* @Html.PagedListPager(Model, page => Url.Action("Group", "Home", new { page = page })) *@
+<script type="text/javascript">
+    function deletedm(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn Xáo Tài khoản này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>
+
