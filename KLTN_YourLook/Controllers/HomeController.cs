@@ -7,6 +7,7 @@ using KLTN_YourLook.Models;
 using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using X.PagedList;
@@ -81,15 +82,16 @@ namespace KLTN_YourLook.Controllers
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
 			var idkh = HttpContext.Session.GetInt32("userId");
-			var idFvrPrd = new List<int>();
+			var idFvrPrd = new List<int>(); //danh sách yêu thích trống (false)
 			if (idkh != null)
 			{
+				//nếu kh đã đăng nhập lấy thông tin sp yêu thích của kh đưa vào ds
 				idFvrPrd = _context.DbFavoriteProducts.Where(x => x.IdKh == idkh.Value).Select(x => x.IdSp).ToList();
 			}
 			var prdlst = await _productProcedure.Product_View();
 			foreach (var prd in prdlst)
 			{
-				prd.IFavorite = idFvrPrd.Contains(prd.IdSp);
+				prd.IFavorite = idFvrPrd.Contains(prd.IdSp); //đánh dấu sp yêu thích
 			}
 			PagedList<ViewAllDetail> lstsp = new PagedList<ViewAllDetail>(prdlst, pageNumber, pageSize);
 			return View(lstsp);
@@ -229,11 +231,11 @@ namespace KLTN_YourLook.Controllers
 				}
 			};
 			var idkh = HttpContext.Session.GetInt32("userId");
-			bool isFavorite = false;
+			bool isFavorite = false;//vì ctsp không chỉ có 1 sp nên ko cần dùng ds, cũng không cần contain
 			if (idkh != null)
 			{
 				isFavorite = _context.DbFavoriteProducts.Any(x => x.IdKh == idkh.Value && x.IdSp == idsp);
-			}
+			} 
 			return View(SanPham);
 		}
 		//lấy các thông tin trong chi tiết ssanr phẩm 

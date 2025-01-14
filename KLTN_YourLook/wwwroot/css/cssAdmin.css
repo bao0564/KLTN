@@ -802,3 +802,22 @@ input[type=checkbox]{
     border-radius: 50%;
     background-color: red;
 }
+.login-admin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.box-login-admin {
+    border: 1px solid #2f3640;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: #5e565645;
+}
+.box-infor {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

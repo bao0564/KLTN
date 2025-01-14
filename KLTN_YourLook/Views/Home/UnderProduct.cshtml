@@ -10,7 +10,7 @@
 		@await Component.InvokeAsync("View_Ads", new { place = "Under" })
 	</div>
 </div>
-<div class="cate" style="margin:0">
+<div class="" style="margin:0">
 	<div class="row">
 		<div class="col">
 			<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
@@ -28,36 +28,42 @@
 							}
 							<div class="product discount ">
 								<div class="product_image">
-									<a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp"><img src="@Url.Content("/img/"+prd.AnhSp)" alt=""></a>
-									<div class="box-inf-cl-s">
-										<div>
-											<div class="fljct" style="padding:10px">Phân Loại</div>
-											<div class="fljct flct" style="margin-bottom:10px">
-												Size:
-												@foreach (var sz in prd.Sizes)
-												{
-													<button>@sz.NameSize</button>
-												}
-											</div>
-											<div class="fljct flct">
-												Màu:
-												@foreach (var cl in prd.Colors)
-												{
-													<button style="background-color:@cl.MaHex" title="@cl.NameColor"></button>
-												}
+									<div>
+										<a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp"><img src="@Url.Content("/img/"+prd.AnhSp)" alt=""></a>
+										<div class="favorite" data-id="@prd.IdSp">
+											@if (prd.IFavorite == true)
+											{
+												<i class="fa-solid fa-heart" style="color: #2f3640;"></i>
+											}
+											else
+											{
+												<i class="fa-regular fa-heart" style="color: #2f3640;"></i>
+											}
+										</div>
+										<div class="box-inf-cl-s">
+											<div>
+												<div class="fljct title">Phân Loại</div>
+												<div class="flct title_size">
+													<div>Size:</div>
+													<div class="fl" style="max-width:90%;overflow:auto">
+														@foreach (var sz in prd.Sizes)
+														{
+															<button>@sz.NameSize</button>
+														}
+													</div>
+												</div>
+												<div class="flct" style="padding-left:5%">
+													<div>Màu:</div>
+													<div class="fl" style="max-width:90%;overflow:auto">
+														@foreach (var cl in prd.Colors)
+														{
+															<button style="background-color:@cl.MaHex" title="@cl.NameColor"></button>
+														}
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="favorite" data-id="@prd.IdSp" style="font-size:20px">
-									@if (prd.IFavorite == true)
-									{
-										<i class="fa-solid fa-heart" style="color: #2f3640;"></i>
-									}
-									else
-									{
-										<i class="fa-regular fa-heart" style="color: #2f3640;"></i>
-									}
 								</div>
 								<div class="product_info">
 									<h6 class="product_name">

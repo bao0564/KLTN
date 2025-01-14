@@ -31,19 +31,18 @@ namespace Data.Models
         public decimal TongTienThanhToan { get; set; }
         public int soluong { get; set; }
         public int PaymentId { get; set; }
-        [StringLength(10)]
+        [StringLength(50)]
         public string PaymentName { get; set; }
-        [ForeignKey("IdVoucher")]
         public int? IdVoucher { get; set; }
         public int? ValueVoucher { get; set; }
         public decimal? Giamgia { get; set; }
         public decimal Ship { get; set; }
         public string? GhiChu { get; set; }
-        public bool? ODSuccess { get; set; }
-        public bool? ODReadly { get; set; }
-        public bool? ODTransported { get; set; }
-        public bool? Complete { get; set; }
-        public bool? ODHuy { get; set; }
+        public bool ODSuccess { get; set; }
+        public bool ODReadly { get; set; }
+        public bool ODTransported { get; set; }
+        public bool Complete { get; set; }
+        public bool ODHuy { get; set; }
 
         public virtual DbCustomer customer { get; set; }//1 đơn hàng chỉ có 1 khách hàng
         public virtual DbVoucher? voucher { get; set; }//1 đơn hàng chỉ có 1 voucher

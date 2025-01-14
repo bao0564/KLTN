@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="menu-cp">
+    <div class="h-cp1">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+    </div>
+</div>

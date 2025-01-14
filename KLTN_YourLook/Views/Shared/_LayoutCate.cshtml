@@ -179,7 +179,7 @@
 									<li class="checkout">
 										<a href="@Url.Action("Cart","ShoppingCart")">
 											<i class="fa fa-shopping-cart" style="color:var(--White-1);position:relative" aria-hidden="true"></i>
-											@* @await Component.InvokeAsync("ViewProductInCart") *@
+											@await Component.InvokeAsync("ViewProductInCart")
 										</a>
 									</li>
 								</ul>
@@ -389,7 +389,7 @@
 							<div class="sidebar_title">
 								<h4>Loại Sản Phẩm</h4>
 							</div>
-							<ul class="sidebar_categories scr" style="max-height: 200px;">
+							<ul class="sidebar_categories scr_y" style="max-height: 200px">
 								 @await Component.InvokeAsync("View_Category")
 							</ul>
 							<div class="angle_down">
@@ -446,7 +446,7 @@
 								<div class="col">
 									<div class="product_sorting_container product_sorting_container_top">
                                         <ul class="product_sorting">                                            
-											<li class="sidebar_section-box1">
+											<li class="sidebar_section-box1 box_size">
 												<span>Size</span>
                                                 <i class="fa fa-angle-down"></i>
 												<ul class="sorting_num sorting_num_size">
@@ -460,8 +460,8 @@
 													 @await Component.InvokeAsync("View_Color")
 												</ul>
 											</li>
-											<li class="type_sorting_text_box">
-												<span class="type_sorting_text">Lọc Sản Phẩm</span>
+											<li class="type_sorting_text_box box_type">
+												<span class="type_sorting_text">Phân Loại</span>
 												<i class="fa fa-angle-down"></i>
 												<ul class="sorting_type">
 													<li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Mặc Định</span></li>

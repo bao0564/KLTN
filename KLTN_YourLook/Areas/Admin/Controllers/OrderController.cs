@@ -4,6 +4,7 @@ using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -22,6 +23,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Order(int? page,bool? odsuccess,bool? odreadly,bool? odtranport,bool? complete,string? keyword)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             int pageSize = 20;
             int pageNumber = page ?? 1;
             IEnumerable<AllOrderViewModle> order;//khai báo model chứa dữ liệu
@@ -46,9 +52,42 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> OrderDetail(int iddh)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var lst= await _orderRepository.ShowOrderDetail(iddh);
-            var result = lst.FirstOrDefault();
-            return View(result);
+            return View(lst);
+        }
+        [Route("orderupdate")]
+        [HttpGet]
+        public IActionResult OrderUpdate(int iddh)
+        {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var dh= _context.DbOrders.Find(iddh);
+            return View(dh);
+        }
+        [Route("orderupdate")]
+        [HttpPost]
+        public async Task<ActionResult> OrderUpdate(DbOrder model)
+        {
+            if(!ModelState.IsValid)
+            {
+                var (msg,error) = await _orderRepository.UpdateOrder(model.IdDh,model.ODSuccess, model.ODReadly, model.ODTransported, model.Complete, model.ODHuy);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    TempData["Error"] =error;
+                }
+                TempData["Success"] = msg;
+                return RedirectToAction("order");
+            }
+            TempData["Error"] = "dữ liệu không hợp lệ";
+            return View(model);
         }
     }
 }

@@ -170,7 +170,13 @@ namespace KLTN_YourLook.Repository_YL
                                     PriceBy = decimal.Parse(z[4]),
                                     SoLuongSp = int.Parse(z[5])
                                 };
-                            }).ToList()
+                            }).ToList(),
+                CreateDate=x.CreateDate,
+                ODSuccess = x.ODSuccess,
+                ODReadly = x.ODReadly,
+                ODTransported= x.ODTransported,
+                Complete=x.Complete,
+                ODHuy=x.ODHuy
             });
             return lst.ToList();
         }
@@ -193,7 +199,7 @@ namespace KLTN_YourLook.Repository_YL
             return lstraw.ToList();
         }
         //thêm địa chỉ người dùng
-        public async Task<(string msg, string error)> Create_Adress(int idkh, string tennguoinhan, string sdt, string address, string city, string quanhuyen, string phuongxa, bool idefault)
+        public async Task<(string msg, string error)> Create_Adress(int idkh, string tennguoinhan, string sdt, string adress, string city, string quanhuyen, string phuongxa, string ghichu, bool idefault)
         {
             if (_dbConnection == null)
             {
@@ -203,10 +209,11 @@ namespace KLTN_YourLook.Repository_YL
             paramesters.Add("@idkh", idkh);
             paramesters.Add("@tennguoinhan", tennguoinhan);
             paramesters.Add("@sdt", sdt);
-            paramesters.Add("@address", address);
+            paramesters.Add("@adress", adress);
             paramesters.Add("@city", city);
             paramesters.Add("@quanhuyen", quanhuyen);
             paramesters.Add("@phuongxa", phuongxa);
+            paramesters.Add("@ghichu", ghichu);
             paramesters.Add("@idefault", idefault);
 
             paramesters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);

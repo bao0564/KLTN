@@ -5,12 +5,17 @@
 }
 @model IEnumerable<ViewCustomerHistoryOrder>
 <div class="inf-customer" style="padding:0">
-    <div class="box-customer" style="background-color:#fff">
-        <div class="order-history flcl" style="max-height:500px">
+    <div class="box-customer" style="background-color:#fff;max-height:fit-content">
+        <div class="fl">
+            <div class="fl-center" style="width:100%">
+                <h4 class="ttu" style="margin:0">Lịch Sử đơn hàng</h4>
+            </div>
+        </div>
+        <div class="order-history flcl" style="max-height:550px;overflow-x:hidden;overflow-y:auto">
                @foreach(var od in Model){
-                <div class="bdrdu" style="background-color:#bdc3c7">
+                <div class="bdrdu" style="position:relative;background-color:#bdc3c7">
                     <div class="flspb flct">
-                        <div class="date-order">Ngày Đặt: 10/6/2024 7:26:54 PM</div>
+                        <div class="date-order">Ngày Đặt: @od.CreateDate.ToString("dd/MM/yyyy")</div>
                         <div class="payment-name">COD - Thanh Toán Khi Nhận Hàng</div>
                         <div class="" style="display:flex">
                             @if(od.ODSuccess){
@@ -54,7 +59,7 @@
                                 <div class="flcl" style="margin:0 5px 0 0">
                                     <i class="fa-solid fa-truck-fast" style="color: #000000;"></i>
                                     <div class="nw">
-                                        <i class="fa-solid fa-circle-check" style="color: #00fa2a;"></i>
+                                        <i class="fa-regular fa-circle-check" style="color: #00fa2a;"></i>
                                         <i class="fa-solid fa-minus" style="color: #00fa2a;"></i>
                                     </div>
                                 </div>
@@ -64,24 +69,24 @@
                                 <div class="flcl" style="margin:0 5px 0 0">
                                     <i class="fa-solid fa-truck-fast" style="color: #000000;"></i>
                                     <div class="nw">
-                                        <i class="fa-solid fa-circle-check" style="color: #000000;"></i>
+                                        <i class="fa-regular fa-circle-check" style="color: #000000;"></i>
                                         <i class="fa-solid fa-minus" style="color: #000000;"></i>
                                     </div>
                                 </div>
                             }
-                            @if(od.Complete== false && od.ODHuy){
+                            @if(!od.Complete && od.ODHuy){
                                 <div class="flcl" style="margin:0 20px 0 0">                                    
                                     <div>
                                         <i class="fa-solid fa-xmark" style="color: red;"></i>
                                     </div>
                                 </div>
                             }
-                            else if (od.Complete && od.ODHuy == false)
+                            else if (od.Complete && !od.ODHuy)
                             {
                                 <div class="flcl" style="margin:0 20px 0 0">
                                     <i class="fa-solid fa-street-view" style="color: #000000;"></i>
                                     <div>
-                                        <i class="fa-solid fa-circle-check" style="color: #00fa2a;"></i>
+                                        <i class="fa-regular fa-circle-check" style="color: #00fa2a;"></i>
                                     </div>
                                 </div>
                             }
@@ -90,7 +95,7 @@
                                 <div class="flcl" style="margin:0 20px 0 0">
                                     <i class="fa-solid fa-street-view" style="color: #000000;"></i>
                                     <div>
-                                        <i class="fa-solid fa-circle-check" style="color: #000000;"></i>
+                                        <i class="fa-regular fa-circle-check" style="color: #000000;"></i>
                                     </div>
                                 </div>
                             }
@@ -133,13 +138,36 @@
                         }
                     </div>
                     <div class="" style="display:flex;justify-content:end">
-                        <div class="flcl" style="gap:0">
-                            @* <div class="ship flspb"></div> *@
+                        <div class="fl" style="gap:0">
 							<div class="product_price flspb">(Tổng Sản Phẩm:@od.soluong):<div>@string.Format("{0:N0}", @od.TongTienThanhToan) VNĐ</div></div>
+                            @if(!od.ODHuy){
+                                <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="UpdateOrder" asp-route-iddh="@od.IdDh" onclick="huydh(event)">hủy Đơn hàng</a></div>
+                            }
+                            else{
+                                <div></div>
+                            }
                         </div>
                     </div>
-                </div>
+
+                    @if (od.ODHuy)
+                    {
+						<div class="fl-center" style="position:absolute;top:0;bottom:0;left:0;width:100%;z-index:10;background-color:#909f9aa1;border-radius:10px">
+                            <div class="ttu" style="font-size:25px;color:#fff">đơn hàng Đã Hủy</div>
+                        </div>
+                    }
+                </div>                
             }
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function huydh(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn muốn hủy đơn hàng này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>

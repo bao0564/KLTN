@@ -88,12 +88,15 @@
 					</div>
 				</div>
 				<div class="product_color flct">
-					<span>Màu sắc:</span>
-					<div class="color-options">
+					<span class="nw">Màu sắc:</span>
+					<div class="color-options flscr">
 						@foreach (var color in Model.Detail.DistinctBy(c=>c.ColorId))
 						{
 							<button style="padding:5px 10px;margin-left:10px;" type="button" class="color-option bdrdu" data-color="@color.ColorId">
-								<i class="fa-solid fa-certificate" style="color:@color.MaHex"></i>@color.NameColor
+								<div class="fl-center">
+									<i class="fa-solid fa-certificate" style="color:@color.MaHex"></i>
+									<div class="nw">@color.NameColor</div>
+								</div>
 							</button>
 						}
 					</div>
@@ -330,6 +333,10 @@
 	<script src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 	<script src="/js/jquery-3.2.1.min.js"></script>
 </div>
+<div class="fljct">
+	<div class="ttu bdrdu mg">bạn có thể thích</div>
+</div>
+@await Component.InvokeAsync("View_Suggest",new {idsp=Model.IdSp})
 @section styles {
 	<style>
 		.single_product_thumbnails ul {

@@ -20,7 +20,19 @@
             }
             <div class="product discount product_filter">
                 <div class="product_image">
-                    <a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp"><img src="@Url.Content("/img/"+prd.AnhSp)" alt=""></a>
+                    <div>
+                        <a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp"><img src="@Url.Content("/img/"+prd.AnhSp)" alt=""></a>
+                        <div class="favorite" data-id="@prd.IdSp">
+                            @if (prd.IFavorite == true)
+                            {
+                                <i class="fa-solid fa-heart" style="color: #2f3640;"></i>
+                            }
+                            else
+                            {
+                                <i class="fa-regular fa-heart" style="color: #2f3640;"></i>
+                            }
+                        </div>
+                    </div>
                     <div class="box-inf-cl-s">
                         <div>
                             <div class="box-inf-title fljct">Phân Loại</div>
@@ -45,16 +57,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="favorite" data-id="@prd.IdSp" style="font-size:20px">
-                        @if (prd.IFavorite)
-                        {
-                            <i class="fa-solid fa-heart" style="color: #2f3640;"></i>
-                        }
-                        else
-                        {
-                            <i class="fa-regular fa-heart" style="color: #2f3640;"></i>
-                        }
                     </div>
                 </div>
                 <div class="product_info">

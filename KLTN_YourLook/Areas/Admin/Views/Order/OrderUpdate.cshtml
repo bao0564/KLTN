@@ -1,0 +1,106 @@
+﻿@model Data.Models.DbOrder
+
+@{
+    ViewData["Title"] = "OrderUpdate";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="menu-cp">
+    <div class="ttu cp0">
+        Cập Nhật đơn hàng
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div style="display:flex;align-items:center;padding-top:15px">
+                <a asp-action="Order"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+        <form asp-action="OrderUpdate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdDh" class="form-control" />
+            <input type="hidden" asp-for="MaDh" class="form-control" />
+            <input type="hidden" asp-for="IdKh" class="form-control" />
+            <input type="hidden" asp-for="NguoiNhan" class="form-control" />
+            <input type="hidden" asp-for="EmailKh" class="form-control" />
+            <input type="hidden" asp-for="Sdt" class="form-control" />
+            <input type="hidden" asp-for="City" class="form-control" />
+            <input type="hidden" asp-for="District" class="form-control" />
+            <input type="hidden" asp-for="Ward" class="form-control" />
+            <input type="hidden" asp-for="DiaChi" class="form-control" />
+            <input type="hidden" asp-for="TongTien" class="form-control" />
+            <input type="hidden" asp-for="TongTienThanhToan" class="form-control" />
+            <input type="hidden" asp-for="soluong" class="form-control" />
+            <input type="hidden" asp-for="PaymentId" class="form-control" />
+            <input type="hidden" asp-for="PaymentName" class="form-control" />
+            <input type="hidden" asp-for="IdVoucher" class="form-control" />
+            <input type="hidden" asp-for="ValueVoucher" class="form-control" />
+            <input type="hidden" asp-for="Giamgia" class="form-control" />
+            <input type="hidden" asp-for="Ship" class="form-control" />
+            <input type="hidden" asp-for="GhiChu" class="form-control" />
+            <input type="hidden" asp-for="CreateDate" class="form-control" />
+            <input type="hidden" asp-for="CreateBy" class="form-control" />
+            <input type="hidden" asp-for="ModifiedDate" class="form-control" />
+            <input type="hidden" asp-for="ModifiedBy" class="form-control" />
+            <div class="form-group">
+                <div class="custom-control custom-checkbox talg">
+                    @Html.CheckBoxFor(x => x.ODSuccess, new { @class = "odb  custom-control-input", @id = "odCheckbox1", @checked = "checked" })
+                    <label for="odCheckbox1" class="ttu custom-control-label">Đặt hàng thành công</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox talg">
+                    @Html.CheckBoxFor(x => x.ODReadly, new { @class = "odb custom-control-input", @id = "odCheckbox2", @checked = "checked" })
+                    <label for="odCheckbox2" class="ttu custom-control-label">Đơn Hàng đang chuẩn bị</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox talg">
+                    @Html.CheckBoxFor(x => x.ODTransported, new { @class = "odb custom-control-input", @id = "odCheckbox3", @checked = "checked" })
+                    <label for="odCheckbox3" class="ttu custom-control-label">đơn hàng đang vận chuyển</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox talg">
+                    @Html.CheckBoxFor(x => x.Complete, new { @class = "odb custom-control-input", @id = "odCheckbox4", @checked = "checked" })
+                    <label for="odCheckbox4" class="ttu custom-control-label">Đơn hàng hoàn thành</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox talg">
+                    @Html.CheckBoxFor(x => x.ODHuy, new { @class = "custom-control-input", @id = "odCheckbox5", @checked = "checked" })
+                    <label for="odCheckbox5" class="ttu custom-control-label">Đơn hàng đã hủy</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.odb').forEach((checkbox, index, checkboxes) => {
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                // Khi checkbox này được chọn, chọn tất cả các checkbox trước đó
+                for (let i = 0; i <= index; i++) {
+                    checkboxes[i].checked = true;
+                }
+            } 
+        });
+    });
+    const completeCheckbox = document.getElementById("odCheckbox4");
+    const odhuyCheckbox = document.getElementById("odCheckbox5");
+
+    // Khi checkbox "odhuy" được chọn
+    odhuyCheckbox.addEventListener("change", function () {
+        if (this.checked) {
+            completeCheckbox.checked = false; // Bỏ chọn "complete"
+        }
+    });
+</script>

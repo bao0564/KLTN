@@ -38,11 +38,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Product(int? page,string keyword)
         {
-            //var name = HttpContext.Session.GetString("NameAdmin");
-            //if (name == null)
-            //{
-            //    return RedirectToAction("Login", "HomeAdmin");
-            //}
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             int pageSize = 20;
             int pageNumber = page ?? 1;
             IEnumerable<AllProductViewModel> lstSanPham;//khai báo model chứa dữ liệu
@@ -63,6 +63,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet] 
         public async Task<IActionResult> CreatProduct()
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var viewModel = new AddProductViewModel
             {
                 SizeList = _context.DbSizes.ToList(),
@@ -157,6 +162,17 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateProduct(int idsp)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            var role = HttpContext.Session.GetString("Role");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else if (role != "Admin" && role != "Manager")
+            {
+                TempData["Error"] = "Bạn không có quyền truy cập trang này";
+                return RedirectToAction("Error", "Admin");
+            }
             var prd= _context.DbProducts.Include(p=>p.imgs)
                 .Include(p=>p.detailproducts)
                 .ThenInclude(p=>p.size)

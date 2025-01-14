@@ -24,4 +24,8 @@ namespace KLTN_YourLook.Models
         public string ConfirmPasswords { get; set; }
 
     }
+    public class Product_Quantity_In_Cart
+    {
+        public int totalProducts { get; set; }
+    }
 }

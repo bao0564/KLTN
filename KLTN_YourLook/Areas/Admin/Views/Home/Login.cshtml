@@ -1,0 +1,63 @@
+﻿@using Data.Models
+@model DbAdmin
+<div style="position:relative">
+    <div class="login-admin">
+        <div class="box-login-admin">
+			<h2 class="fljct">Admin login</h2>
+			@if (TempData["Error"] != null)
+			{
+				<div class="alert alert-danger fljct" style="color:red">
+					@TempData["Error"]
+				</div>
+			}
+            @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+            {
+                <div class="box-infor">
+                    <label>Tên Đăng Nhập: </label>
+                    @* @Html.TextBoxFor(x => x.NameDn, new { @class = "input", placeholder = "Tên đăng nhập...", type = "text", required = "required", autofocus = "autofocus" }) *@
+                    <input name="name" placeholder="Tên đăng nhập..." type="text" required="required" autofocus="autofocus" />
+                </div>
+                <div class="box-infor">
+                    <label>Mật Khẩu:</label>
+                    @Html.TextBoxFor(x => x.PasswordDn, new { @class = "input", placeholder = "Mật khẩu...", type = "text", required = "required", autofocus = "autofocus" })
+                </div>
+                <div class="fljct">
+                    <button style="padding:5px 10px" type="submit">Đăng Nhập</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<style>
+
+    .login-admin {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .box-login-admin {
+        border: 1px solid #2f3640;
+        padding: 50px;
+        border-radius: 10px;
+        background-color: #5e565645;
+    }
+
+    .box-infor {
+        margin: 10px;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .box-infor input {
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .fljct{
+            display:flex;
+            justify-content:center;
+        }
+</style>

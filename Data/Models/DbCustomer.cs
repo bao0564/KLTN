@@ -38,6 +38,7 @@ namespace Data.Models
         public virtual ICollection<DbUser_Voucher> user_vouchers { get; set; } = new List<DbUser_Voucher>(); // 1 user có thể dùng nhiều voucher(ko phải cùng 1 mã)
         public virtual ICollection<DbFavoriteProduct> favorites { get; set; } = new List<DbFavoriteProduct>(); // 1 user có nhiều sản phẩm yêu thích
         public virtual ICollection<DbCart> carts { get; set; } = new List<DbCart>(); // 1 user có nhiều sản phẩm trong giỏ hàng
+        public virtual ICollection<DbRating> rates { get; set; } = new List<DbRating>(); // 1 user có nhiều đánh giá
 
     }
 }

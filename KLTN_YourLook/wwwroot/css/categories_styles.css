@@ -54,12 +54,14 @@ COLOR PALETTE
 .cate .row{
 	margin:0;
 }
+.favorite_prdlst .row {
+	margin: 0;
+}
 /*********************************
 3.5 Hamburger Menu
 *********************************/
 
 .hamburger_container {
-	display: none;
 	margin-left: 40px;
 }
 
@@ -874,6 +876,34 @@ COLOR PALETTE
 .cate .product_image img {
 	width: 100%;
 	position: relative;
+}
+.favorite_prdlst .product-grid {
+	width: 100%;
+	margin-top: 20px;
+}
+
+.favorite_prdlst .product-item {
+	width: 20%;
+	height: auto;
+	cursor: pointer;
+}
+
+.favorite_prdlst .product_image img {
+	width: 100%;
+	position: relative;
+}
+.box_color::-webkit-scrollbar {
+	display: none;
+}
+.btn_color {
+	height: 10px;
+	width: 25px;
+	border-radius: 10px;
+	margin-left:5px;
+}
+.box-inf-size {
+	padding-left: 5%;
+	margin-bottom: 10px
 }
 /*.product-item::after {
 	display: block;

@@ -86,34 +86,32 @@ namespace Data.Migrations
 
                     b.Property<string>("ChucVu")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("EmailDn")
                         .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("MaAdmin")
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<bool>("IsExternalAccount")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MaAdmin")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
-
                     b.Property<string>("NameDn")
+                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("PasswordDn")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Quyen")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
@@ -475,6 +473,37 @@ namespace Data.Migrations
                     b.ToTable("DbInforShop");
                 });
 
+            modelBuilder.Entity("Data.Models.DbNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Img")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DbNotification");
+                });
+
             modelBuilder.Entity("Data.Models.DbOrder", b =>
                 {
                     b.Property<int>("IdDh")
@@ -488,7 +517,7 @@ namespace Data.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<bool?>("Complete")
+                    b.Property<bool>("Complete")
                         .HasColumnType("bit");
 
                     b.Property<string>("CreateBy")
@@ -541,16 +570,16 @@ namespace Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<bool?>("ODHuy")
+                    b.Property<bool>("ODHuy")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("ODReadly")
+                    b.Property<bool>("ODReadly")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("ODSuccess")
+                    b.Property<bool>("ODSuccess")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("ODTransported")
+                    b.Property<bool>("ODTransported")
                         .HasColumnType("bit");
 
                     b.Property<int>("PaymentId")
@@ -558,8 +587,8 @@ namespace Data.Migrations
 
                     b.Property<string>("PaymentName")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Sdt")
                         .IsRequired()
@@ -824,6 +853,53 @@ namespace Data.Migrations
                     b.HasIndex("SizeId");
 
                     b.ToTable("DbProductDetail");
+                });
+
+            modelBuilder.Entity("Data.Models.DbRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DanhGia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdKh")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdSp")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
+
+                    b.Property<int>("customerIdKh")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdSp");
+
+                    b.HasIndex("customerIdKh");
+
+                    b.ToTable("DbRating");
                 });
 
             modelBuilder.Entity("Data.Models.DbSize", b =>
@@ -1109,6 +1185,25 @@ namespace Data.Migrations
                     b.Navigation("size");
                 });
 
+            modelBuilder.Entity("Data.Models.DbRating", b =>
+                {
+                    b.HasOne("Data.Models.DbProduct", "product")
+                        .WithMany("ratings")
+                        .HasForeignKey("IdSp")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Models.DbCustomer", "customer")
+                        .WithMany("rates")
+                        .HasForeignKey("customerIdKh")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("customer");
+
+                    b.Navigation("product");
+                });
+
             modelBuilder.Entity("Data.Models.DbUser_Voucher", b =>
                 {
                     b.HasOne("Data.Models.DbCustomer", "customer")
@@ -1150,6 +1245,8 @@ namespace Data.Migrations
 
                     b.Navigation("orders");
 
+                    b.Navigation("rates");
+
                     b.Navigation("user_vouchers");
                 });
 
@@ -1179,6 +1276,8 @@ namespace Data.Migrations
                     b.Navigation("imgs");
 
                     b.Navigation("orderdetails");
+
+                    b.Navigation("ratings");
                 });
 
             modelBuilder.Entity("Data.Models.DbSize", b =>

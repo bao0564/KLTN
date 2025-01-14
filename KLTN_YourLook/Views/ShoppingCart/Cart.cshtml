@@ -23,28 +23,30 @@
                         <div></div>
                     }
                 </div>
-                <div id="form-address" class="form-address bdrdu pssf" style="display: none;background-color: #e9e9e9;z-index: 10;min-width:300px">
+                <div id="form-address" class="form-address bdrdu pssf" style="display: none;background-color: #e9e9e9;z-index: 10;min-width:300px;height:500px">
                     <div class="bdrdu" onclick="closeAD()" style="position:absolute;right:-20px;top:-15px;background-color:#2f3640;color:#fff;cursor:pointer">✕</div>
                     <div class="form-address-user mg">
                         @if (Model.Address != null && Model.Address.Count > 0)
                         {
                             <div style="position:relative;height:250px">
                                 <h3 class="fljct mg">Chọn Địa chỉ của bạn</h3>
-                                @foreach (var address in Model.Address)
-                                {
-                                    <div class="box-adress-user fljct bdrdu mg" style="background-color:#fff">
-                                        <input type="checkbox" class="address-val" style="margin:0 10px" data-name="@address.TenNguoiNhan" data-phone="@address.Sdt" data-city="@address.City" data-district="@address.QuanHuyen" data-ward="@address.PhuongXa" data-address="@address.Address" />
-                                        <div class="pd">
-                                            <h5>@address.TenNguoiNhan- @address.Sdt -@address.PhuongXa,@address.QuanHuyen,@address.City (@address.Address)</h5>
+                                <div class="scr_y" style="max-height:250px">
+                                    @foreach (var address in Model.Address)
+                                    {
+                                        <div class="box-adress-user fl bdrdu mg" style="background-color:#fff">
+                                            <input type="checkbox" class="address-val" style="margin:0 10px" data-name="@address.TenNguoiNhan" data-phone="@address.Sdt" data-city="@address.City" data-district="@address.QuanHuyen" data-ward="@address.PhuongXa" data-address="@address.Address" />
+                                            <div class="pd">
+                                                <h5>@address.TenNguoiNhan- @address.Sdt -@address.PhuongXa,@address.QuanHuyen,@address.City (@address.Address)</h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                            </div>
-                            <div class="fljct">
-                                <div class="">
-                                    <a href="@Url.Action("Add","UserAddress")" class="bdrdu">Thêm địa chỉ</a>
-                                    <button class="bdrdu" onclick="closeAD()">Chọn</button>
-                                </div>
+                                    }
+								</div>
+								<div class="fljct">
+									<div class="">
+										<a href="@Url.Action("Add","UserAddress")" class="bdrdu">Thêm địa chỉ</a>
+										<button class="bdrdu" onclick="closeAD()">Chọn</button>
+									</div>
+								</div>
                             </div>
                         }
                         else
@@ -54,7 +56,7 @@
                                 <a class="pd bdrdu mg" href="@Url.Action("Add","UserAddress")">Thêm địa chỉ<i class="fa-solid fa-plus" style="color: #000000;"></i></a>
                             </div>
                         }
-                    </div>
+					</div>
                 </div>
                 <div class="bdrdu" style="padding:0;">
                     <div class="">
@@ -204,19 +206,19 @@
                 <div class="flct">
                     <div class="tipe-choose">
                         <div>
-                            <div class="flspb">
+                            <div class="tamtinh nw flspb">
                                 Tạm tính:
                                 <div style="color:#fff;margin:0 10px" id="TongTien"></div>
                             </div>
-                            <div class="flspb">
+                            <div class="giamgia nw flspb">
                                 Giảm Giá:
                                 <div style="color:#fff;margin:0 10px" id="GiamGia"></div>
                             </div>
-                            <div class="flspb">
+                            <div class="phivanchuyen nw flspb">
                                 Phí Vận Chuyển:
                                 <div style="color:#fff;margin:0 10px" id="ship"></div>
                             </div>
-                            <div class="flspb">
+                            <div class="hinhthucthanhtoan nw flspb">
                                 Phương thức thanh toán:
                                 <p id="payid" style="display:none">...</p>
                                 <div id="payname" style="color:#fff;margin:0 10px"></div>
@@ -225,11 +227,11 @@
                     </div>
                     <div class="price-choose" style="justify-content:flex-end">
                         <div class="fljct" style="flex-direction: column">
-                            <div class="flex-cart title total-price-container">
-                                Tổng: <div class="flct product_price" style="color:#fff;margin:0 10px" id="finaltotal"></div>
+                            <div class="tong flex-cart title total-price-container">
+                                Tổng: <div class="flct product_price nw" style="color:#fff;margin:0 10px" id="finaltotal"></div>
                             </div>
                         </div>
-                        <div style="">
+                        <div class="fljct" style="">
                             @if (Context.Session.GetString("userId") != null)
                             {
                                 <button class="pay-btn">Đặt Hàng</button>
@@ -257,20 +259,15 @@
         }
     </style>
     <script>
-        // function OpLable() {
-        //     document.getElementById("form-yc-login").style.display = "block";
-        //     document.getElementById("form-register").style.display = "none";
-        // }
-        // function ClLable() {
-        //     document.getElementById("form-yc-login").style.display = "none";
-        // }
-        // //đóng mở form chọn địa chỉ
-        // function openAD() {
-        //     document.getElementById("form-address").style.display = "block";
-        // }
-        // function closeAD() {
-        //     document.getElementById("form-address").style.display = "none";
-        // }
+        function openAD(){
+             document.getElementById("form-address").style.display="block";
+        };
+        function closeAD(){
+            document.getElementById("form-address").style.display="none";
+        };
+        $(document).on('click', '#pay-btn-none', function () {
+            showMess('Bạn chưa đăng nhập', false);
+        });
     </script>
 }
 <script src="../js/addtocart.js"></script>

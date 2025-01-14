@@ -1,0 +1,111 @@
+﻿@using Data.Models
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Customer";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model X.PagedList.IPagedList<DbCustomer>
+<div class="ttu cp0">
+    Danh Sách tài khoản khách hàng
+</div>
+<div class="h-cp1">
+    <div class="h-cp-f">
+        <div class="h-cp-up">
+            <div class="bt-c"><a href="">In dữ liệu </a></div>
+            <div class="bt-c"><a href="">Xuất Excel</a></div>
+            <div class="bt-c"><a href="">Xuất PDF</a></div>
+        </div>
+        <div class="h-cp-mid">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Success"]
+                </div>
+            }
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["Message"]
+                </div>
+            }
+            @using (Html.BeginForm("Customer", "Home", FormMethod.Get))
+            {
+                <div class="flspe">
+                    <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Mã Khách Hàng/ Tên Khách Hàng . . .">
+                    <button type="submit">Tìm Kiếm</button>
+                </div>
+            }
+            <table class="h-table">
+                <thead>
+                    <tr>
+						<th style="display:none">Id</th>
+						<th>Mã Khách hàng</th>
+                        <th>Ảnh</th>
+                        <th>Tên Khách hàng</th>
+                        @if(Context.Session.GetString("Role") !="Staff"){
+                            <th>Email</th>
+                            <th>Mật khẩu</th>
+                        }
+                        <th>Ngày Tạo </th>
+                        <th>Ngày Sửa</th>
+                        <th>Đăng nhập GG</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var prd in Model)
+                        {
+                            <tr>
+                                <td style="display:none">@prd.IdKh</td>
+								<td>@prd.MaKh</td>
+                                <td><img src="@Url.Content("/fileupload/"+prd.Img)" alt=""></td>
+                                <td>@prd.TenKh</td>
+                                @if (Context.Session.GetString("Role") != "Staff")
+                                {
+                                <td>@prd.Email</td>
+                                <td>@prd.Passwords</td>
+                                }
+                                <td>@prd.CreateDate</td>
+                                <td>@prd.ModifiedDate</td>
+                                @if(prd.IsExternalAccount){
+                                    <td><i class="fa-solid fa-circle-check fa-xl" style="color: #07ed2e;"></i></td>
+                                }
+                                else{
+                                    <td></td>
+                                }
+                                <td>
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <a href="@Url.Action("", new { idkh = prd.IdKh })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
+                                        <a asp-action="" asp-route-idkh="@prd.IdKh" style="color: black;">Sửa</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="10">"Tài khoản trống!"</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Customer", "Home", new { page = page }))
+<script type="text/javascript">
+    function deletedm(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn Xáo Tài khoản này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>
+
+

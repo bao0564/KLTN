@@ -462,7 +462,7 @@
 @media only screen and (max-width: 539px)
 {
 	.quantity_selector, .quantity_selector_cart {
-		width: 80px;
+		width: 180px;
 	}
 	.quantity_selector span, .quantity_selector_cart span{
 		padding:0;
@@ -499,8 +499,8 @@
 		height: 350px;
 	}
 	.flct a {
-		padding: 0 10px;
-		font-size: 13px;
+		padding:  10px;
+		font-size: 15px;
 	}
 	.cart-box{
 		margin-top:20px;

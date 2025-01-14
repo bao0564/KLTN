@@ -131,16 +131,21 @@
 						@await Component.InvokeAsync("View_Hot")
 					</div>
 				</div>
-				<button onclick="prevProducts()" class="btn btn-primary-prev">
+				<button onclick="prevProducts()" class="btn btn-primary-prev" style="padding:10px">
 					<i class="fa-solid fa-angle-left fa-xl"
 					   style="color: #000000"></i>
 				</button>
-				<button onclick="nextProducts()" class="btn btn-primary-next">
+				<button onclick="nextProducts()" class="btn btn-primary-next" style="padding:10px">
 					<i class="fa-solid fa-angle-right fa-xl"
 					   style="color: #0d0d0d"></i>
 				</button>
 				<div class="prd-btn">
-					<button class="btn prd-next flct"><a href="@Url.Action("HotProduct","Home")">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+					<button class="btn prd-next fl-center">
+						<a class="flct" href="@Url.Action("HotProduct","Home")">
+							<div>Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
 				</div>
 			</div>
 			<div class="col" id="prd-new">
@@ -149,16 +154,21 @@
 						@await Component.InvokeAsync("View_New")
 					</div>
 				</div>
-				<button onclick="prevProductsN()" class="btn btn-primary-prev">
+				<button onclick="prevProductsN()" class="btn btn-primary-prev" style="padding:10px">
 					<i class="fa-solid fa-angle-left fa-xl"
 					   style="color: #000000"></i>
 				</button>
-				<button onclick="nextProductsN()" class="btn btn-primary-next">
+				<button onclick="nextProductsN()" class="btn btn-primary-next" style="padding:10px">
 					<i class="fa-solid fa-angle-right fa-xl"
 					   style="color: #0d0d0d"></i>
 				</button>
 				<div class="prd-btn">
-					<button class="btn prd-next flct"><a href="@Url.Action("NewProduct","Home")">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+					<button class="btn prd-next fl-center">
+						<a class="flct" href="@Url.Action("NewProduct","Home")">
+							<div>Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -186,7 +196,12 @@
 					</div>
 				</div>
 				<div class="prd-btn">
-					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=1">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+					<button class="btn prd-next fl-center">
+						<a class="flct">
+							<div>Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
 				</div>
 			</div>
 			<script src="js/swich.js"></script>
@@ -214,7 +229,12 @@
 					</div>
 				</div>
 				<div class="prd-btn">
-					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=5">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+					<button class="btn prd-next fl-center">
+						<a class="flct">
+							<div>Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
 				</div>
 			</div>
 			<script src="js/swich.js"></script>
@@ -242,7 +262,12 @@
 					</div>
 				</div>
 				<div class="prd-btn">
-					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=3">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+					<button class="btn prd-next fl-center">
+						<a class="flct">
+							<div>Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
 				</div>
 			</div>
 			<script src="js/swich.js"></script>
@@ -270,7 +295,12 @@
 					</div>
 				</div>
 				<div class="prd-btn">
-					<button class="btn prd-next flct"><a href="Home/ProductTipe?madm=4">Xem Thêm<i class="fa-solid fa-angle-right" style="color: #000000;"></i></a></button>
+					<button class="btn prd-next fl-center">
+						<a class="flct">
+							<div>Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
 				</div>
 			</div>
 			<script src="js/swich.js"></script>

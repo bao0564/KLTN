@@ -22,6 +22,7 @@
             success: function (rs) {
                 if (rs.success) {
                     showMess(rs.msg, true);
+                    location.reload();
                     //updateCartCount();
                 } else {
                     showMess("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.", false);
@@ -40,7 +41,8 @@
         quantityElement.text(newquantity);
         updatePrice($(this), newquantity);
         calculateTotal();
-        updateProductQuantity(newidsp, newcolorid, newsizeid, newquantity); // Cập nhật số lượng trong giỏ hàng
+        updateProductQuantity(newidsp, newcolorid, newsizeid, newquantity); // Cập nhật số lượng trong giỏ hàng 
+        location.reload();       
     });
 
     // Sự kiện giảm số lượng
@@ -64,7 +66,9 @@
         }
         quantityElement.text(newquantity);
         updatePrice($(this), newquantity);
+        calculateTotal();
         updateProductQuantity(newidsp, newcolorid, newsizeid, newquantity); // Cập nhật số lượng trong giỏ hàng
+        location.reload();
     });
     // Cập nhật giá tiền
     function updatePrice(element, newquantity) {
@@ -81,10 +85,10 @@
             data: { idsp: uidsp, colorid: ucolorid, sizeid: usizeid, quantity: uquantity },
             success: function (response) {
                 if (response.success) {
-                    showMess(response.msg, true);
+                    //showMess(response.msg, true);
                 }
                 else {
-                    showMess(response.msg, false);
+                    //showMess(response.msg, false);
                 }
             },
             error: function () {
@@ -109,7 +113,6 @@
                     if (rs.success) {
                         $('#sp-' + didsp).remove();
                         calculateTotal();
-                        //location.reload();
                     }
                 }
             });

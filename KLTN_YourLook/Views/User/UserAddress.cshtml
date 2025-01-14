@@ -12,23 +12,15 @@
                 <a href="@Url.Action("CreateAddress","User")"><i class="fa-solid fa-plus" style="color: #000000;"></i></a>
             </div>
 		</div>
-		<div style="width:100%">
-			<div class="fljct">
-				@if (TempData["Error"] != null)
-				{
-					<div class="alert alert-danger" style="margin:0">
-						@TempData["Error"]
-					</div>
-				}
-			</div>
-		</div>
-        <div>
+        <div style="max-height:350px;overflow-x:hidden;overflow-y:auto">
             @foreach(var adr in Model){
                 <div class="lst-address-ct" style="">
                     <div>
-                        <h5>@adr.TenNguoiNhan - @adr.Sdt</h5>
-                        <div>@adr.PhuongXa, @adr.QuanHuyen, @adr.City</div>
-                        <div>@adr.Address</div>
+						<h5>@adr.Sdt - @adr.TenNguoiNhan </h5>
+                        <div class="fl gap">
+                            <div>@adr.PhuongXa, @adr.QuanHuyen, @adr.City</div>
+                            <div>- @adr.Address</div>
+                        </div>
                     </div>
                     <div class="flct" style="">
                         <a href="@Url.Action("DeleteAdress", new { idadress = adr.IdAddress })" onclick="deleteadress(event)" style="color: #000;">Xóa</a>

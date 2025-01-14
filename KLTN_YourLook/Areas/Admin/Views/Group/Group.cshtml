@@ -1,0 +1,94 @@
+﻿@using Data.Models
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "group";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model X.PagedList.IPagedList<DbGroup>
+<div class="ttu cp0">
+    Danh Sách Nhóm sản phẩm
+</div>
+<div class="h-cp1">
+    <div class="h-cp-f">
+        <div class="h-cp-up">
+            @* <div class="bt-c"><a href="@Url.Action("","Admin")">Tạo Nhóm Mới</a></div> *@
+            <div class="bt-c"><a href="">In dữ liệu </a></div>
+            <div class="bt-c"><a href="">Xuất Excel</a></div>
+            <div class="bt-c"><a href="">Xuất PDF</a></div>
+        </div>
+        <div class="h-cp-mid">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Success"]
+                </div>
+            }
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["Message"]
+                </div>
+            }
+            @using (Html.BeginForm("Group", "Home", FormMethod.Get))
+            {
+                <div class="flspe">
+                    <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Mã Khách Hàng/ Tên Khách Hàng . . .">
+                    <button type="submit">Tìm Kiếm</button>
+                </div>
+            }
+            <table class="h-table">
+                <thead>
+                    <tr>
+                        <th style="display:none">Id</th>
+                        <th>Mã Nhóm</th>
+                        <th>Tên Nhóm</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var prd in Model)
+                        {
+                            <tr>
+                                <td style="display:none">@prd.IdNhom</td>
+                                <td>@prd.MaNhom</td>
+                                <td>@prd.GroupName</td>
+                                <td>
+
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <a href="@Url.Action("", new { idkh = prd.IdNhom })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
+                                    }
+                                    @if (Context.Session.GetString("Role") != "Staff")
+                                    {
+                                        <a asp-action="" asp-route-idkh="@prd.IdNhom" style="color: black;">Sửa</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">"Nhóm trống!"</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Group", "Home", new { page = page }))
+<script type="text/javascript">
+    function deletedm(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn Xáo Tài khoản này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>
+
+

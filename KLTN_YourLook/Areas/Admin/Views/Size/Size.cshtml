@@ -61,8 +61,14 @@
                                 <td>@prd.ModifiedDate</td>
                                 <td>@prd.ModifiedBy</td>
                                 <td>
-                                    <a href="@Url.Action("SizeDelete", new { idsize = prd.SizeId })" onclick="deletes(event)" style="color: #000;">Xóa</a>
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <a href="@Url.Action("SizeDelete", new { idsize = prd.SizeId })" onclick="deletes(event)" style="color: #000;">Xóa</a>
+                                    }
+                                    @if (Context.Session.GetString("Role") != "Staff")
+                                    {
                                     <a asp-action="SizeUpdate" asp-route-idsize="@prd.SizeId" style="color: black;">Sửa</a>
+                                    }
                                 </td>
                             </tr>
                         }

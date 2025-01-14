@@ -60,13 +60,19 @@
                                 <td><img src="@Url.Content("/images/"+prd.AnhDaiDien)" alt=""></td>
                                 <td>@prd.TenDm</td>
                                 <td>@prd.MaDm</td>
-                                <td>@prd.Product</td>
+                                <td>@prd.Products</td>
                                 <td>@prd.CreateDate.ToString("dd/MM/yyyy")</td>
                                 <td>@prd.ModifiedDate.ToString("dd/MM/yyyy")</td>
                                 <td>@prd.CreateBy</td>
                                 <td>
-                                    <a href="@Url.Action("DeleteCategory", new { iddm = prd.IdDm })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <a href="@Url.Action("DeleteCategory", new { iddm = prd.IdDm })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
+                                    }
+                                    @if (Context.Session.GetString("Role") != "Staff")
+                                    {
                                     <a asp-action="UpdateCategory" asp-route-iddm="@prd.IdDm" style="color: black;">Sửa</a>
+                                    }
                                 </td>
                             </tr>
                         }

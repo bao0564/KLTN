@@ -9,7 +9,7 @@
         public string MaDm { get; set; }
         public string TenDm { get; set; }
         public string AnhDaiDien { get; set; }
-        public int Product { get; set; }
+        public int Products { get; set; }
         public string CreateBy { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime ModifiedDate { get; set; }

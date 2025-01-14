@@ -5,8 +5,10 @@ using KLTN_YourLook.Interface;
 using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -63,6 +65,7 @@ builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<SizeRepository>(); 
 builder.Services.AddScoped<ColorRepository>(); 
 builder.Services.AddScoped<OrderRepository>(); 
+builder.Services.AddScoped<HomeRespository>(); 
 builder.Services.AddScoped<SP_Product>(); 
 builder.Services.AddScoped<SP_OrderCart>(); 
 builder.Services.AddScoped<SP_User>(); 
@@ -77,7 +80,7 @@ var app = builder.Build();
 
 //Environment
 builder.Configuration.AddEnvironmentVariables();
-//builder.Environment.EnvironmentName = "Development";  // Thi?t l?p môi tr??ng thành Production
+//builder.Environment.EnvironmentName = "Production";  // Thi?t l?p môi tr??ng thành Production
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -85,7 +88,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
