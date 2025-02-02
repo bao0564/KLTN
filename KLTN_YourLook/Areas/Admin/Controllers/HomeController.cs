@@ -29,15 +29,25 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
 
         //trang chủ admin
         [Route("")]
-        [Route("index")]
-        public IActionResult Index()
+        [Route("index ")]
+        public async Task<IActionResult> Index(int month,int year)
         {
             var name = HttpContext.Session.GetString("NameAdmin");
             if (name == null)
             {
                 return RedirectToAction("Login", "Home");
+            }            
+            if (month == 0)
+            {
+                month = DateTime.Now.Month;
             }
-            return View();
+            if (year == 0)
+            {
+                year = DateTime.Now.Year;
+            }
+
+            var result = await _homeRespository.Revenue(month, year);
+            return View(result);
         }
         //tài khoản admin
         [Route("viewaccounts")]
@@ -179,6 +189,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             }
             return View();
         }
+
         [Route("creatads")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -196,7 +207,6 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             }
             return View(model);
         }
-
         //Thêm Ads
         [Route("updateads")]
         [HttpGet]
@@ -273,7 +283,13 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             PagedList<DbCustomer> lst = new PagedList<DbCustomer>(lstcus, pageNumber, pageSize);
             return View(lst);
         }
-
+        [Route("createnotification")]
+        [HttpGet]
+        public IActionResult CreateNotification()
+        {
+            return View();
+        }
+        [Route("createnotification")]
         [HttpPost]
         public async Task<IActionResult> CreateNotification(string title, string message)
         {
@@ -281,8 +297,9 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             {
                 Title = title,
                 Message = message,
+                CreateDate=DateTime.Now
             };
-
+ 
             _context.DbNotifications.Add(notification);
             await _context.SaveChangesAsync();
 

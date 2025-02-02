@@ -25,6 +25,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
     }
     public class OrderDetailViewModelRaw //chi tiết đơn hàng raw
     {
+        public int IdDh { get; set; }
         public string MaDh { get; set; }
         public string InForSp { get; set; }
         public int IdKh { get; set; }
@@ -40,6 +41,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
     }
     public class OrderDetailViewModel//chi tiết đơn hàng
     {
+        public int IdDh { get; set; }
         public string MaDh { get; set; }
         public List<ViewInForSP> InForSp { get; set; }
         public int IdKh { get; set; }

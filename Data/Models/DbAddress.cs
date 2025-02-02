@@ -24,7 +24,6 @@ namespace Data.Models
         public string PhuongXa { get; set; }
         public string? GhiChu { get; set; }
         public bool Idefault { get; set; }
-
         public virtual DbCustomer? customer { get; set; } //1 địa chỉ cho 1 khách hàng
 
     }

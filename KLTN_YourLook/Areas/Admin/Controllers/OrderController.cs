@@ -1,4 +1,4 @@
-﻿ using Data.Models;
+﻿using Data.Models;
 using KLTN_YourLook.Areas.Admin.Models;
 using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
@@ -21,7 +21,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         }
         [Route("order")]
         [HttpGet]
-        public async Task<IActionResult> Order(int? page,bool? odsuccess,bool? odreadly,bool? odtranport,bool? complete,string? keyword)
+        public async Task<IActionResult> Order(int? page,bool? odsuccess,bool? odreadly,bool? odtranport,bool? complete,bool? odhuy,string? keyword,string date ,string todate)
         {
             var name = HttpContext.Session.GetString("NameAdmin");
             if (name == null)
@@ -31,15 +31,28 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             int pageSize = 20;
             int pageNumber = page ?? 1;
             IEnumerable<AllOrderViewModle> order;//khai báo model chứa dữ liệu
-            //if (odsuccess.HasValue || odreadly.HasValue || odtranport.HasValue || complete.HasValue )
-            //{
-            //    order = await _orderRepository.GetAllOrderFilter(odsuccess, odreadly, odtranport, complete);
-            //}
-            //else
-            if (!string.IsNullOrEmpty(keyword))
+            if (odsuccess.HasValue || odreadly.HasValue || odtranport.HasValue || complete.HasValue)
+            {
+                order = await _orderRepository.GetAllOrderFilter(odsuccess, odreadly, odtranport, complete, odhuy);
+            }
+            else if (!string.IsNullOrEmpty(keyword))
             {
                 order=await _orderRepository.SearchOrder(keyword);
                 ViewBag.keyword = keyword;
+            }
+            else if (!string.IsNullOrEmpty(date) && !string.IsNullOrEmpty(todate))
+            {
+                var formattedDate = DateTime.Parse(date);
+                var formattedToDate = DateTime.Parse(todate);
+                order = await _orderRepository.GetAllOrderDateToDate(formattedDate, formattedToDate);                
+                ViewBag.date = date;
+                ViewBag.todate = todate;
+            }
+            else if (!string.IsNullOrEmpty(date))
+            {
+                var formattedDate = DateTime.Parse(date);
+                order = await _orderRepository.GetAllOrderDate(formattedDate);
+                ViewBag.date = date;
             }
             else
             {

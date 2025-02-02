@@ -1,4 +1,4 @@
-
+﻿
 	use [KLTN];
 	select od.MaDh,
 			(select string_agg(concat(odd.MaSp,'"',p.TenSp,'"',p.AnhSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.SoLuongSp,'"',pd.GiaLoai),';')  
@@ -22,6 +22,7 @@
 	select * from DbOrder
 	select * from DbAddress
 	select * from DbCart
+	select * from DbNotification
 	select od.IdDh,od.MaDh,od.PaymentName,od.soluong,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
 		,STRING_AGG(CONCAT(p.AnhSp,'"',p.TenSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.PriceBy,'"',odd.SoLuongSp),';')as InforSP
 	from DbOrder od
@@ -59,3 +60,23 @@ EXEC create_admin
     @error = @error OUTPUT;
 
 SELECT @msg AS Message, @error AS Error;
+--số lượng và doanh thu theo thời gian 
+SELECT 
+    COUNT(od.IdDh) AS CoutDH,
+    SUM(CASE WHEN od.Complete = 1 THEN od.TongTienThanhToan ELSE 0 END) AS DoanhThu,
+    COUNT(CASE WHEN od.ODTransported = 1 THEN 1 ELSE NULL END) AS DHTranpost,
+    COUNT(CASE WHEN od.Complete = 1 THEN 1 ELSE NULL END) AS DHComplete,
+    COUNT(CASE WHEN od.ODHuy = 1 THEN 1 ELSE NULL END) AS DHHuy
+FROM DbOrder od
+WHERE od.CreateDate >= '2024-12-01' 
+  AND od.CreateDate <= '2024-12-12 23:59:59';
+  SELECT MONTH(GETDATE()) AS CurrentMonth, YEAR(GETDATE()) AS CurrentYear;
+   EXEC Revenue @Month = 1, @Year = 2025;
+--lọc đơn hàng theo trạng thái
+select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+	from DbOrder od
+	join DbCustomer cus on od.IdKh=cus.IdKh
+	where od.ODSuccess=0 and od.ODReadly=0 and ODTransported=0 and od.Complete=0 and od.ODHuy=1
+	order by od.CreateDate desc
+--lọc đơn hàng theo khoảng thời gian đặt
