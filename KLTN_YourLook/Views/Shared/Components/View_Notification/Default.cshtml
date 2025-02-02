@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Data.Models.DbNotification>
+
+@foreach(var inf in Model){
+	<div class="fl pd bd-b">
+		<div class="flct" style="width:15%">
+			<div style="height:40px;width:40px;background-color:#2f3640"></div>
+		</div>
+		<div style="width:85%">
+			<div class="fl" style="justify-content:flex-start">@inf.Title</div>
+			<div class=" notification_content fl" style="justify-content:flex-start">
+				<a title="@inf.Message" style="cursor:pointer;font-size:0.7rem">@inf.Message </a>
+			</div>
+			<div class="fl" style="font-size:0.6rem;justify-content:flex-end">
+				@inf.CreateDate
+			</div>
+		</div>
+	</div>
+}

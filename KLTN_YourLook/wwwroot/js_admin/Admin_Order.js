@@ -4,9 +4,10 @@
     let odreadly = document.getElementById("odreadly").checked;
     let odtranport = document.getElementById("odtranport").checked;
     let complete = document.getElementById("complete").checked;
+    let odhuy = document.getElementById("odhuy").checked;
 
     // Tạo URL với query string
-    let url = `order?odsuccess=${odsuccess}&odreadly=${odreadly}&odtranport=${odtranport}&complete=${complete}`;
+    let url = `order?odsuccess=${odsuccess}&odreadly=${odreadly}&odtranport=${odtranport}&complete=${complete}&odhuy=${odhuy}`;
 
     // Điều hướng trang
     window.location.href = url;

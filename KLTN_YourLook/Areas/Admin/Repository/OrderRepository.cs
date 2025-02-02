@@ -33,21 +33,47 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return await _dbConnection.QueryAsync<AllOrderViewModle>("order_search", parameters, commandType: CommandType.StoredProcedure);
 
         }
-        ////lấy all đơn hàng theo trạng thái
-        //public async Task<List<AllOrderViewModle>> GetAllOrderFilter(bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete)
-        //{
-        //    if (_dbConnection == null)
-        //    {
-        //        throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-        //    }
-        //    var parames = new DynamicParameters();
-        //    parames.Add("@odsuccess", odsuccess);
-        //    parames.Add("@odreadly", odreadly);
-        //    parames.Add("@odtranport", odtranport);
-        //    parames.Add("@complete", complete);
-        //    var lst = await _dbConnection.QueryAsync<AllOrderViewModle>("order_showall_filter", parames, commandType: CommandType.StoredProcedure);
-        //    return lst.ToList();
-        //}
+        //lấy all đơn hàng theo trạng thái
+        public async Task<List<AllOrderViewModle>> GetAllOrderFilter(bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete,bool? odhuy)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parames = new DynamicParameters();
+            parames.Add("@odsuccess", odsuccess);
+            parames.Add("@odreadly", odreadly);
+            parames.Add("@odtranport", odtranport);
+            parames.Add("@complete", complete);
+            parames.Add("@odhuy", odhuy);
+            var lst = await _dbConnection.QueryAsync<AllOrderViewModle>("order_showall_filter", parames, commandType: CommandType.StoredProcedure);
+            return lst.ToList();
+        }
+        //lấy all đơn hàng theo khoảng thời gian
+        public async Task<List<AllOrderViewModle>> GetAllOrderDateToDate(DateTime date, DateTime todate)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parames = new DynamicParameters();
+            parames.Add("@date", date);
+            parames.Add("@todate", todate);
+            var lst = await _dbConnection.QueryAsync<AllOrderViewModle>("order_date_todate", parames, commandType: CommandType.StoredProcedure);
+            return lst.ToList();
+        }
+        //lấy all đơn hàng theo ngày
+        public async Task<List<AllOrderViewModle>> GetAllOrderDate(DateTime date)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parames = new DynamicParameters();
+            parames.Add("@date", date);
+            var lst = await _dbConnection.QueryAsync<AllOrderViewModle>("order_date", parames, commandType: CommandType.StoredProcedure);
+            return lst.ToList();
+        }
         //lấy ra chi tiết đơn hàng 
         public async Task<List<OrderDetailViewModel>> ShowOrderDetail(int iddh)
         {
@@ -58,6 +84,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var lstRaw =await _dbConnection.QueryAsync<OrderDetailViewModelRaw>("show_orderdetail", new { iddh = iddh }, commandType: CommandType.StoredProcedure);
             var lst = lstRaw.Select(x => new OrderDetailViewModel
             {
+                IdDh=x.IdDh,
                 MaDh = x.MaDh,
                 InForSp = x.InForSp.Split(';')
                             .Select(y =>

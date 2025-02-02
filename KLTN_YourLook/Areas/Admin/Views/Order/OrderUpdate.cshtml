@@ -6,14 +6,12 @@
 }
 
 <div class="menu-cp">
-    <div class="ttu cp0">
-        Cập Nhật đơn hàng
-    </div>
     <div class="h-cp1">
-        <div class="h-cp-up">
-            <div style="display:flex;align-items:center;padding-top:15px">
-                <a asp-action="Order"><img style="height:20px" src="\icon\drop left.svg" /> </a>
-            </div>
+        <div class="fl">
+            <a class="flct" asp-action="Order"><img class="mg-lr" style="height:20px" src="\icon\drop left.svg" /> </a>
+            <h5 class="cp0" style="width:100%">
+                Cập Nhật đơn hàng
+            </h5>
         </div>
         @if (TempData["Error"] != null)
         {
@@ -47,38 +45,46 @@
             <input type="hidden" asp-for="CreateBy" class="form-control" />
             <input type="hidden" asp-for="ModifiedDate" class="form-control" />
             <input type="hidden" asp-for="ModifiedBy" class="form-control" />
-            <div class="form-group">
-                <div class="custom-control custom-checkbox talg">
-                    @Html.CheckBoxFor(x => x.ODSuccess, new { @class = "odb  custom-control-input", @id = "odCheckbox1", @checked = "checked" })
-                    <label for="odCheckbox1" class="ttu custom-control-label">Đặt hàng thành công</label>
+            <div class="fljct mg-tb">
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox talg">
+                        @Html.CheckBoxFor(x => x.ODSuccess, new { @class = "odb  custom-control-input", @id = "odCheckbox1", @checked = "checked" })
+                        <label for="odCheckbox1" class="ttu custom-control-label">Đặt hàng thành công</label>
+                    </div>
+                </div>
+                <div><i class="fa-solid fa-arrow-right" style="color: #2f3640;"></i></div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox talg">
+                        @Html.CheckBoxFor(x => x.ODReadly, new { @class = "odb custom-control-input", @id = "odCheckbox2", @checked = "checked" })
+                        <label for="odCheckbox2" class="ttu custom-control-label">Đơn Hàng đang chuẩn bị</label>
+                    </div>
+                </div>
+                <div><i class="fa-solid fa-arrow-right" style="color: #2f3640;"></i></div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox talg">
+                        @Html.CheckBoxFor(x => x.ODTransported, new { @class = "odb custom-control-input", @id = "odCheckbox3", @checked = "checked" })
+                        <label for="odCheckbox3" class="ttu custom-control-label">đơn hàng đang vận chuyển</label>
+                    </div>
+                </div>
+                <div><i class="fa-solid fa-arrow-right" style="color: #2f3640;"></i></div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox talg">
+                        @Html.CheckBoxFor(x => x.Complete, new { @class = "odb custom-control-input", @id = "odCheckbox4", @checked = "checked" })
+                        <label for="odCheckbox4" class="ttu custom-control-label">Đơn hàng hoàn thành</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox talg">
+                        @Html.CheckBoxFor(x => x.ODHuy, new { @class = "odb custom-control-input", @id = "odCheckbox5", @checked = "checked" })
+                        <label for="odCheckbox5" class="ttu custom-control-label">Đơn hàng đã hủy</label>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="custom-control custom-checkbox talg">
-                    @Html.CheckBoxFor(x => x.ODReadly, new { @class = "odb custom-control-input", @id = "odCheckbox2", @checked = "checked" })
-                    <label for="odCheckbox2" class="ttu custom-control-label">Đơn Hàng đang chuẩn bị</label>
+
+            <div class=" fljct">
+                <div class="mg">
+					<input type="submit" value="Lưu Thay Đổi" class="btn-primary" />
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="custom-control custom-checkbox talg">
-                    @Html.CheckBoxFor(x => x.ODTransported, new { @class = "odb custom-control-input", @id = "odCheckbox3", @checked = "checked" })
-                    <label for="odCheckbox3" class="ttu custom-control-label">đơn hàng đang vận chuyển</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="custom-control custom-checkbox talg">
-                    @Html.CheckBoxFor(x => x.Complete, new { @class = "odb custom-control-input", @id = "odCheckbox4", @checked = "checked" })
-                    <label for="odCheckbox4" class="ttu custom-control-label">Đơn hàng hoàn thành</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="custom-control custom-checkbox talg">
-                    @Html.CheckBoxFor(x => x.ODHuy, new { @class = "custom-control-input", @id = "odCheckbox5", @checked = "checked" })
-                    <label for="odCheckbox5" class="ttu custom-control-label">Đơn hàng đã hủy</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -87,20 +93,25 @@
     document.querySelectorAll('.odb').forEach((checkbox, index, checkboxes) => {
         checkbox.addEventListener('change', function () {
             if (this.checked) {
-                // Khi checkbox này được chọn, chọn tất cả các checkbox trước đó
-                for (let i = 0; i <= index; i++) {
-                    checkboxes[i].checked = true;
-                }
+                // // Khi checkbox này được chọn, chọn tất cả các checkbox trước đó
+                // for (let i = 0; i <= index; i++) {
+                //     checkboxes[i].checked = true;
+                // }
+                document.querySelectorAll('.odb').forEach(x => {
+                    if (x !== this) {
+                        x.checked = false; // Bỏ chọn các checkbox khác
+                    }
+                });
             } 
         });
     });
-    const completeCheckbox = document.getElementById("odCheckbox4");
-    const odhuyCheckbox = document.getElementById("odCheckbox5");
+    // const completeCheckbox = document.getElementById("odCheckbox4");
+    // const odhuyCheckbox = document.getElementById("odCheckbox5");
 
-    // Khi checkbox "odhuy" được chọn
-    odhuyCheckbox.addEventListener("change", function () {
-        if (this.checked) {
-            completeCheckbox.checked = false; // Bỏ chọn "complete"
-        }
-    });
+    // // Khi checkbox "odhuy" được chọn
+    // odhuyCheckbox.addEventListener("change", function () {
+    //     if (this.checked) {
+    //         completeCheckbox.checked = false; // Bỏ chọn "complete"
+    //     }
+    // });
 </script>

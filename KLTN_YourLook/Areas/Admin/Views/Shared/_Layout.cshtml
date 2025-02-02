@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container-0">
+    <div class="container-0" style="position:relative">
         <div class="head_top">
             <div id="header">
                 <div id="logo" class="logo">
@@ -27,13 +27,13 @@
                 </div>
                 @if (Context.Session.GetString("EmailAdmin")!=null)
                 {
-                    <div class="account">
+                    <div class="account flct">
                         Xin Chào: @Context.Session.GetString("EmailAdmin")
                     </div>                   
                 }
                 else if (Context.Session.GetString("NameAdmin") != null)
                 {
-                    <div class="account">
+                    <div class="account flct">
                         Xin Chào: @Context.Session.GetString("NameAdmin") - (@Context.Session.GetString("Role"))
                     </div>
                 }
@@ -45,12 +45,14 @@
                 }
             </div>
 		</div>
-		@if (TempData["Success"] != null)
-		{
-			<div class="alert alert-success" style="z-index:10">
-				@TempData["Success"]
-			</div>
-		}
+        <div style="position:absolute;top: 5px;left:45%">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success" style="z-index:10">
+                    @TempData["Success"]
+                </div>
+            }
+        </div>
         <div class="menu">
             <div class="menu_ct">
                 <ul style="padding: 0;">
@@ -67,7 +69,7 @@
                     <li><a href="@Url.Action("logout","Admin")" onclick="logout(event)"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>Đăng Xuất</a></li>
                 </ul>
             </div>
-            <div class="menu_cp">
+            <div class="menu_cp" style="position:relative">
                 @RenderBody()
             </div>
         </div>

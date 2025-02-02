@@ -2,41 +2,57 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-}
 
-<div class="cp0">
+    double IDoanhthu = (double)Math.Round(Model.DoanhThu);
+    double IPreDoanhthu = (double)Math.Round(Model.PrevDoanhThu);
+    double PrevRevenue = Math.Round(((IDoanhthu - IPreDoanhthu) / IPreDoanhthu) * 100);
+}
+@using KLTN_YourLook.Areas.Admin.Models
+@model View_Revenue
+<div class="cp0 fs1_5">
     Chào Mừng Đến Với Trang Quản Trị!
 </div>
 <div class="pd" style="background-color:#fff;margin-left:15px">
-    <h5 class="pd-lr ttu" style="">Số liệu tháng 12/2024:</h5>
+    <h5 class="pd-lr ttu" style="">Số liệu tháng @Model.Thang / @Model.Nam:</h5>
     <div class="flspe">
-        <div>
-            <h6 class="ttu">Doanh thu tháng 11</h6>
+        <div class="bdrdu pd">
+            <h6 class="ttu fs1_5" title="@Model.Thangtrc / @Model.NamTrc ">Doanh thu tháng trước</h6>
             <div class="fl_center">
-                <i class="fa-solid fa-sliders" style="color: #2f3640;"></i>
-                <div>11tr+</div>
+                <div class="fs2">@string.Format("{0:N0}", Model.PrevDoanhThu)</div>
             </div>
         </div>
-        <div>
-            <h6 class="ttu">Doanh thu tháng này</h6>
+        <div class="bdrdu pd">
+            <h6 class="ttu fs1_5" title="@Model.Thang / @Model.Nam">Doanh thu tháng này</h6>
             <div class="fl_center">
-                <i class="fa-solid fa-sliders" style="color: #2f3640;"></i>
-                <div>1tr+</div>
+                <div class="fs2 mg-lr">@string.Format("{0:N0}",Model.DoanhThu)</div>
+                @if(Model.DoanhThu > Model.PrevDoanhThu){
+                    <i class="fa-solid fa-arrow-up fa-xl" title="Tăng @PrevRevenue % So với tháng @Model.Thangtrc / @Model.NamTrc" style="color: #00db1a;"></i>
+                    <div style="color: #00db1a" title="Tăng @PrevRevenue % So với tháng @Model.Thangtrc / @Model.NamTrc">@PrevRevenue %</div>
+                }
+                else if (Model.DoanhThu < Model.PrevDoanhThu)
+                {
+                    <i class="fa-solid fa-arrow-down" title="Giảm @PrevRevenue % So với tháng @Model.Thangtrc / @Model.NamTrc" style="color: #da0b0b;"></i>
+                    <div style="color: #da0b0b" title="Giảm @PrevRevenue % So với tháng @Model.Thangtrc / @Model.NamTrc"> @PrevRevenue %</div>
+                }
+                else{
+
+                }
             </div>
-        </div>
-        <div>
-            <h6 class="ttu">Tổng đơn hàng Onl/Off</h6>
-            <div class="fl_center">
-                <div class="fl">
-                    <i class="fa-solid fa-clipboard-list" style="color: #2f3640;"></i>
-                    <div>5</div>
+            </div>
+            <div class="bdrdu pd">
+                <h6 class="ttu fs1_5">đơn hàng thành công</h6>
+				<div class="fl_center">
+					<i class="fa-solid fa-clipboard-list fa-xl" style="color: #2f3640;"></i>
+                    <div class="fs2">@Model.DHComplete</div>
                 </div>
-                <div class="fl">
-                    <i class="fa-solid fa-clipboard" style="color: #d63838;"></i>
-                    <div>5</div>
+            </div>
+            <div class="bdrdu pd">
+                <h6 class="ttu fs1_5"> đơn hàng Hủy</h6>
+                <div class="fl_center">
+                <i class="fa-solid fa-clipboard fa-xl" style="color: #d63838;"></i>
+                    <div class="fs2">@Model.DHHuy</div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 <div class="cp fl">
@@ -48,7 +64,10 @@
             <h3>đánh giá</h3>
         </div>
     </div>
-    <div class="fl_center" style="width:50%">
-        <h3>đơn hàng gần đây</h3>
+    @await Component.InvokeAsync("View_Admin_Order");
+</div>
+<div style="position:fixed;width:150px;bottom:10px; right:10px">
+    <div class="bdrdu pd" style="background-color:#000">
+        <a href="@Url.Action("CreateNotification","Admin")">Tạo thông báo</a>
     </div>
 </div>

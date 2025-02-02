@@ -1,4 +1,4 @@
-﻿use [KLTN];
+﻿ use [KLTN];
 SET QUOTED_IDENTIFIER ON
 GO
 --all danh mục
@@ -271,7 +271,7 @@ create procedure [dbo].[order_search]
 	@keyword nvarchar(50)
 as
 begin
-	select od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
+	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
 			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
 	from DbOrder od
 	join DbCustomer cus on od.IdKh=cus.IdKh
@@ -281,13 +281,65 @@ end;
 
 SET QUOTED_IDENTIFIER ON
 GO
+--lọc đơn hàng 
+--drop procedure order_showall_filter 
+create procedure [dbo].[order_showall_filter]	
+	@odsuccess bit,
+	@odreadly bit,
+	@odtranport bit,
+	@complete bit,
+	@odhuy bit	
+as
+begin
+	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+	from DbOrder od
+	join DbCustomer cus on od.IdKh=cus.IdKh
+	where od.ODSuccess=@odsuccess and od.ODReadly=@odreadly and ODTransported=@odtranport and od.Complete=@complete and od.ODHuy=@odhuy
+	order by od.CreateDate desc
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--lọc Đơn hàng theo ngày
+--drop procedure order_date 
+create procedure [dbo].[order_date]
+	@date datetime
+as
+begin
+	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+	from DbOrder od
+	join DbCustomer cus on od.IdKh=cus.IdKh
+	where CAST(od.CreateDate AS DATE) = @date 
+	order by od.CreateDate desc
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--lọc Đơn hàng theo khoảng thời gian
+--drop procedure order_date_todate
+create procedure [dbo].[order_date_todate]
+	@date datetime,
+	@todate datetime
+as
+begin
+	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+	from DbOrder od
+	join DbCustomer cus on od.IdKh=cus.IdKh
+	where CAST(od.CreateDate AS DATE) >= @date and CAST(od.CreateDate as date) <= @todate
+	order by od.CreateDate desc
+end;
+SET QUOTED_IDENTIFIER ON
+GO
 --tìm chi tiết đơn hàng
 --drop procedure show_orderdetail
 create procedure [dbo].[show_orderdetail]
 	@iddh int
 as
 begin
-	select od.MaDh,
+	select od.IdDh,od.MaDh,
 			(select string_agg(concat(odd.MaSp,'"',p.TenSp,'"',p.AnhSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.SoLuongSp,'"',pd.GiaLoai),';')  
 			from DbOrderDetail odd
 			 join DbProduct p on odd.IdSp=p.IdSp
@@ -588,3 +640,74 @@ begin
 		set @error=N'tạo không thành công'+ ERROR_MESSAGE();
 	end catch
 end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--hiển thị thông tin số liệu bán hàng
+--drop procedure revenue_showall
+--create procedure [dbo].[revenue_showall]
+--	@date datetime,
+--	@todate datetime
+--as
+--begin 
+--	SELECT COUNT(od.IdDh) AS CoutDH,
+--		SUM(CASE WHEN od.Complete = 1 THEN od.TongTienThanhToan ELSE 0 END) AS DoanhThu,
+--		COUNT(CASE WHEN od.ODTransported = 1 THEN 1 ELSE NULL END) AS DHTranpost,
+--		COUNT(CASE WHEN od.Complete = 1 THEN 1 ELSE NULL END) AS DHComplete,
+--		COUNT(CASE WHEN od.ODHuy = 1 THEN 1 ELSE NULL END) AS DHHuy
+--	FROM DbOrder od
+--	WHERE od.CreateDate >= @date AND od.CreateDate <= @todate;
+--end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--hiển thị thông tin số liệu bán hàng
+--drop procedure Revenue
+CREATE PROCEDURE [dbo].[revenue]
+    @Month INT = NULL, 
+    @Year INT = NULL  
+AS
+BEGIN
+    -- Nếu @Month hoặc @Year không được cung cấp, sử dụng giá trị hiện tại
+    SET @Month = ISNULL(@Month, MONTH(GETDATE()));
+    SET @Year = ISNULL(@Year, YEAR(GETDATE()));
+
+    -- Tính ngày bắt đầu và ngày kết thúc của tháng
+    DECLARE @StartDate DATE = DATEFROMPARTS(@Year, @Month, 1);
+    DECLARE @EndDate DATE = EOMONTH(@StartDate);
+	   
+    -- Tính toán tháng và năm của tháng trước
+    DECLARE @PrevMonth INT = @Month - 1;
+    DECLARE @PrevYear INT = @Year;
+
+    -- Nếu tháng trước là tháng 12 của năm trước
+    IF @PrevMonth = 0
+    BEGIN
+        SET @PrevMonth = 12;
+        SET @PrevYear = @Year - 1;
+    END;
+    -- Tính ngày bắt đầu và ngày kết thúc của tháng hiện tại
+    DECLARE @CurrentStartDate DATE = DATEFROMPARTS(@Year, @Month, 1);
+    DECLARE @CurrentEndDate DATE = EOMONTH(@CurrentStartDate);
+
+    -- Tính ngày bắt đầu và ngày kết thúc của tháng trước
+    DECLARE @PrevStartDate DATE = DATEFROMPARTS(@PrevYear, @PrevMonth, 1);
+    DECLARE @PrevEndDate DATE = EOMONTH(@PrevStartDate);
+
+    -- Truy vấn doanh thu và số liệu
+    SELECT 
+		@Month as Thang,
+		@Year as Nam,
+		@PrevMonth as Thangtrc,
+		@PrevYear as NamTrc,
+        COUNT(od.IdDh) AS CoutDH,
+        SUM(CASE WHEN od.Complete = 1 THEN od.TongTienThanhToan ELSE 0 END) AS DoanhThu,
+		(SELECT SUM(CASE WHEN od.Complete = 1 THEN od.TongTienThanhToan ELSE 0 END)
+         FROM DbOrder od
+         WHERE od.CreateDate >= @PrevStartDate AND od.CreateDate <= @PrevEndDate) AS PrevDoanhThu,        
+        COUNT(CASE WHEN od.ODTransported = 1 THEN 1 ELSE NULL END) AS DHTranpost,
+        COUNT(CASE WHEN od.Complete = 1 THEN 1 ELSE NULL END) AS DHComplete,
+        COUNT(CASE WHEN od.ODHuy = 1 THEN 1 ELSE NULL END) AS DHHuy
+    FROM DbOrder od
+    WHERE od.CreateDate >= @StartDate AND od.CreateDate <= @EndDate;
+END;

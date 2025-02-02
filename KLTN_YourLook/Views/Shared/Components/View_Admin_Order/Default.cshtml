@@ -1,0 +1,100 @@
+﻿@using KLTN_YourLook.Areas.Admin.Models
+
+@model IEnumerable<AllOrderViewModle> 
+<div class="" style="width:50%">
+    <h5 class="cp0" style="width:100%">
+        Đơn hàng hôm nay
+    </h5>
+	<div>
+        <table class="h-table" style="margin:0">
+            <thead>
+                <tr>
+                    <th>Mã DH</th>
+                    <th>SL</th>
+                    <th>Thanh toán</th>
+                    <th>Trạng Thái</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var prd in Model)
+                    {
+                        <tr>
+                            <td>@prd.MaDh</td>
+                            <td>@prd.soluong</td>
+                            <td>@prd.TongTienThanhToan.ToString("N0") VND</td>
+                            @if (prd.ODSuccess == true)
+                            {
+								<td>
+                                    <i class="fa-solid fa-clipboard-list fa-xl" style="color: #38ff00;" title="Đặt hàng thành công"></i>
+									<i class="fa-solid fa-arrow-right fa-sm" style="color: #06ac22;"></i>
+                                    <i style="color: #0d0d0d;position:relative" class="fa-solid fa-clipboard-list fa-xl" title="Chưa chuẩn bị hàng">
+                                        <i class="fa-solid fa-check fa-2xs" style="color: #0d0d0d;position:absolute; bottom:-10px;right:-5px"></i>
+                                    </i>
+                                </td>
+                            }
+                            else if (prd.ODReadly == true)
+                            {
+                                <td>
+									<i style="color: #38ff00;position:relative" class="fa-solid fa-clipboard-list fa-xl" title="chuẩn bị hàng thành công">
+										<i class="fa-solid fa-check fa-2xs" style="color: #06ac22;position:absolute; bottom:-10px;right:-5px"></i>
+									</i>
+                                    <i class="fa-solid fa-arrow-right fa-sm" style="color: #06ac22;"></i>
+                                    <i class="fa-solid fa-truck-fast fa-xl" style="color: #0d0d0d;" title="Chưa vận chuyển"></i>
+                                </td>
+                            }
+                            else if (prd.ODTransported == true)
+                            {
+                                <td>
+                                    <i style="color: #38ff00;position:relative" class="fa-solid fa-truck-fast fa-xl" title="đang vận chuyển">
+                                    </i>
+                                    <i class="fa-solid fa-arrow-right fa-sm" style="color: #06ac22;"></i>
+                                    <i class="fa-solid fa-check fa-xl" style="color: #0d0d0d;" title="Chưa Thành công"></i>
+                                </td>
+                            }
+                            else if (prd.Complete == true)
+                            {
+                                <td>
+                                    <i class="fa-solid fa-check fa-xl" style="color: #07ed2e;"></i> Hoàn thành
+                                </td>
+                            }
+                            else if (prd.ODHuy == true)
+                            {
+                                <td>
+                                    <i class="fa-solid fa-xmark fa-xl" style="color: #e30d0d;"></i>Đã hủy
+                                </td>
+                            }
+                            <td>
+                                <div style="display:flex;flex-direction:column;gap:10px">
+                                    <a class="btn-ddu btn-dt nw" href="@Url.Action("orderdetail","admin", new { iddh = prd.IdDh })" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
+                                    <div style="display:flex;justify-content:space-between">
+                                        @if (prd.ODHuy != true)
+                                        {
+                                            <a class="btn-ddu btn-ud" href="@Url.Action("orderupdate","admin",new {iddh=prd.IdDh})">Update</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn-ddu btn-ud" style="text-decoration:line-through" title="đơn hàng đã hủy không thể update">Update</a>
+                                        }
+                                        @if (Context.Session.GetString("Role") != "Staff")
+                                        {
+                                            <a class="btn-ddu btn-de" href="@Url.Action("XoaDonHang",new {iddh=prd.IdDh})" onclick="deletedh(event)">Xóa</a>
+                                        }
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="13">Trống</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+	</div>
+</div>

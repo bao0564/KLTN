@@ -1,0 +1,43 @@
+﻿ @model Data.Models.DbNotification
+
+@{
+    ViewData["Title"] = "CreateNotification";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="menu-cp">
+    <div class="cp0">
+        Tạo thông báo
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div class="flct mg">
+                <a asp-action="index"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+        <form asp-action="CreateNotification">
+            <div class="h-cp-mid-1">
+                <div class="col-6">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input name="title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="col-6">
+                    <label asp-for="Message" class="control-label"></label>
+					<textarea name="message" class="form-control" style="height:400px"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="h-cp-dow fljct">
+                <div class="mg">
+                    <input type="submit" value="Gửi Thông Báo" class="btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
