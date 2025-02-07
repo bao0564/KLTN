@@ -51,6 +51,8 @@ namespace Data.Models
             modelBuilder.Entity<DbCustomer>().HasMany(cus=>cus.favorites).WithOne(fvrp=>fvrp.customer).HasForeignKey(cus=>cus.IdKh)
                 .OnDelete(DeleteBehavior.Cascade);
             //1 khách hàng có thể có nhiều đánh giá và ngc lại //khách hàng bị xóa thì các đánh giá thuộc kh đó cũng bị xóa
+            modelBuilder.Entity<DbCustomer>().HasMany(cus => cus.rates).WithOne(rate => rate.customer).HasForeignKey(cus => cus.IdKh)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // 1 sp trong giỏ chỉ có 1 color và 1 color có thể xuất hiện nhiều trong giỏ(vì khác sp) //nếu màu bị xóa thì sp có color trong giỏ sẽ bị xóa
             modelBuilder.Entity<DbCart>().HasOne(cr => cr.color).WithMany(cl => cl.carts).HasForeignKey(cr => cr.ColorId)
@@ -96,7 +98,7 @@ namespace Data.Models
         public virtual DbSet<DbFavoriteProduct> DbFavoriteProducts { get; set; }// bảng sản phẩm yêu thích
         public virtual DbSet<DbCart> DbCarts { get; set; }// bảng sản phẩm Giỏ hàng 
         public virtual DbSet<DbRating> DbRatings { get; set; }// bảng đánh giá nhận sét sp 
-        public virtual DbSet<DbNotification> DbNotifications { get; set; }// bảng đánh giá nhận sét sp 
+        public virtual DbSet<DbNotification> DbNotifications { get; set; }// bảng thông báo 
 
 
         //chuỗi kết nối

@@ -533,4 +533,50 @@ begin
 	from DbProduct p
 	where IdDm =(select p2.IdDm from DbProduct p2 where p2.IdSp=@idsp) and p.IdSp !=@idsp
 end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Hiển thị sản phẩm cần đánh giá
+--drop procedure view_product_rating
+create procedure [dbo].[view_product_rating]
+	@iddh int
+as
+begin 		
+	WITH OrderedData AS (
+		SELECT 
+			od.IdDh,p.IdSp, p.AnhSp, p.TenSp, 
+			cl.NameColor, sz.NameSize,
+			ROW_NUMBER() OVER (PARTITION BY p.IdSp ORDER BY cl.NameColor) AS ColorRank,
+			ROW_NUMBER() OVER (PARTITION BY p.IdSp ORDER BY sz.NameSize) AS SizeRank
+		FROM DbOrder od
+		JOIN DbOrderDetail odd ON od.IdDh = odd.IdDh
+		JOIN DbProduct p ON odd.IdSp = p.IdSp
+		JOIN DbColor cl ON cl.ColorId = odd.IdColor
+		JOIN DbSize sz ON sz.SizeId = odd.IdSize
+		WHERE od.IdDh = @iddh AND od.Complete = 1
+	)
+	SELECT 
+		IdDh,IdSp, AnhSp, TenSp, 
+		STRING_AGG(CONCAT(NameColor, ' - ', NameSize), ', ') AS ColorSizes
+	FROM OrderedData
+	WHERE ColorRank = SizeRank  -- Chỉ lấy các cặp có cùng số thứ tự
+	GROUP BY IdDh,IdSp, AnhSp, TenSp;
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--lưu đánh giá váo bảng đnahs giá
+--drop procedure creat_rating
+create procedure [dbo].[creat_rating]
+	@iddh int,
+	@idsp int,
+	@idkh int,
+	@rate int,
+	@colorsize nvarchar(500) ,
+	@danhgia nvarchar(500) 
+as
+begin 	
+	insert into DbRating (IdDh,IdSp,IdKh,Rate,ColorSize,DanhGia,CreateDate) 
+		values (@iddh,@idsp,@idkh,@rate,@colorsize,@danhgia,GETDATE())	
+end;
 use [KLTN];

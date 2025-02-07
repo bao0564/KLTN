@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KLTN_YourLook")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bf80293cf0086a44265b732f7f1fb2639768ef0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffbb9e0c181dd1f387311e3262c41c56a01c375f")]
 [assembly: System.Reflection.AssemblyProductAttribute("KLTN_YourLook")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KLTN_YourLook")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

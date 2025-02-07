@@ -5,6 +5,7 @@ using KLTN_YourLook.Interface;
 using KLTN_YourLook.Models;
 using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 
 namespace KLTN_YourLook.Controllers
@@ -136,7 +137,7 @@ namespace KLTN_YourLook.Controllers
         }
         //Lịch sử đơn hàng 
         [HttpGet]
-        public async Task<IActionResult> HistoryOrder()
+        public async Task<IActionResult> HistoryOrder(int iddh)
         {
             var checkkh = HttpContext.Session.GetInt32("userId");
             if (checkkh == null)
@@ -145,7 +146,7 @@ namespace KLTN_YourLook.Controllers
             }
             int idkh = checkkh.Value;
             var lstod = await _spUser.UserHistoryOrder(idkh);
-            //var result = lstod.FirstOrDefault();
+
             return View(lstod);
         }
         //Hủy đơn hàng
@@ -212,5 +213,66 @@ namespace KLTN_YourLook.Controllers
         }
         //Sửa Địa chỉ
         //Xóa Địa chỉ
+        //tạo đánh giá
+        [HttpGet]
+        public async Task<IActionResult> CreateRating(int iddh)
+        {
+            var checkkh = HttpContext.Session.GetInt32("userId");
+            if (checkkh == null)
+            {
+                return RedirectToAction("Login", "Access");
+            }
+            var Israted = _context.DbRatings.Any(x => x.IdDh == iddh);
+            if (Israted)
+            {
+                return RedirectToAction("Error") ;
+            }
+            var result = await _spUser.Product_Rating(iddh);
+            return View(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateRating([FromBody] RateRequest model)
+        {
+            if (model == null || model.Reviews == null || !model.Reviews.Any())
+            {
+                return Json(new { message = "Không có dữ liệu đánh giá!", success = false });
+            }
+
+            var checkkh = HttpContext.Session.GetInt32("userId");
+            if (checkkh == null)
+            {
+                return RedirectToAction("Login", "Access");
+            }
+            int idkh = checkkh.Value;
+
+            try
+            {
+                foreach (var r in model.Reviews)
+                {
+                    //var newReview = new DbRating
+                    //{
+                    //    IdDh = model.IdDh,
+                    //    IdSp = r.IdSp,
+                    //    IdKh = idkh,
+                    //    ColorSize =r.ColorSizes,
+                    //    Rate = r.Rate,
+                    //    DanhGia = r.DanhGia
+                    //};
+
+                    //_context.DbRatings.Add(newReview);
+                    var result = await _spUser.Create_Rating(model.IdDh, r.IdSp, idkh, r.Rate, r.ColorSizes, r.DanhGia);
+                }
+
+                //await _context.SaveChangesAsync();
+                return Json(new { success = true, msg = "Đánh giá sản phẩm thành công!" });
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi để kiểm tra chi tiết
+                return Json(new { success = false, message = "Lỗi server: " + ex.Message });
+            }
+        }
+
+
     }
 }

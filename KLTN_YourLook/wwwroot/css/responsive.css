@@ -204,10 +204,10 @@
 		max-height: 300px;
 	}
 
-	.product_image img {
+	/*.product_image img {
 		width: auto;
 		height: 280px;
-	}
+	}*/
 	.cate .product_image img {
 		width: auto;
 		height: 250px;

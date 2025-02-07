@@ -61,6 +61,9 @@ COLOR PALETTE
 	transform: translate(-53%,-60%);
 }
 
+.talg {
+	text-align: center;
+}
 .fl {
 	display: flex;
 }
@@ -97,6 +100,11 @@ COLOR PALETTE
 	overflow-y: hidden;
 	overflow-x: auto;
 }
+.flscr_y {
+	display: -webkit-flex;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
 
 .scr {
 	overflow: scroll;
@@ -110,12 +118,13 @@ COLOR PALETTE
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-	.flscr::-webkit-scrollbar, .scr_y::-webkit-scrollbar,
-	.fl::-webkit-scrollbar, .pay-list::-webkit-scrollbar,
-	.order-cart::-webkit-scrollbar, .voucher-list::-webkit-scrollbar,
-	#payname::-webkit-scrollbar {
-		display: none;
-	}
+.flscr::-webkit-scrollbar, .flscr_y::-webkit-scrollbar,
+.scr_y::-webkit-scrollbar,
+.fl::-webkit-scrollbar, .pay-list::-webkit-scrollbar,
+.order-cart::-webkit-scrollbar, .voucher-list::-webkit-scrollbar,
+#payname::-webkit-scrollbar {
+	display: none;
+}
 .bd {
 	border: 1px solid var(--gray-a);
 }

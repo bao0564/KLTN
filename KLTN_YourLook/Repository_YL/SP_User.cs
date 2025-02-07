@@ -171,25 +171,40 @@ namespace KLTN_YourLook.Repository_YL
                                     SoLuongSp = int.Parse(z[5])
                                 };
                             }).ToList(),
-                CreateDate=x.CreateDate,
+                CreateDate = x.CreateDate,
                 ODSuccess = x.ODSuccess,
                 ODReadly = x.ODReadly,
-                ODTransported= x.ODTransported,
-                Complete=x.Complete,
-                ODHuy=x.ODHuy
+                ODTransported = x.ODTransported,
+                Complete = x.Complete,
+                ODHuy = x.ODHuy,
+                Israted = _context.DbRatings.Any(r => r.IdDh == x.IdDh)
             });
             return lst.ToList();
         }
-        ////người dùng hủy đơn hàng 
-        //public async Task<(string msg, string error)> Update_Order_ByUser()
-        //{
-        //    if (_dbConnection == null)
-        //    {
-        //        throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-        //    }
-        //}
+        //người dùng đánh giá đơn hàng 
+        public async Task<List<Product_Rating>> Product_Rating(int iddh )
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var lstraw = await _dbConnection.QueryAsync<Product_Rating_Raw>("view_product_rating", new { iddh = iddh }, commandType: CommandType.StoredProcedure);
+            var lst = lstraw.Select(x => new Product_Rating
+            {
+                IdDh = iddh,
+                IdSp= x.IdSp,
+                AnhSp= x.AnhSp,
+                TenSp= x.TenSp,
+                ColorSize=x.ColorSizes.Split(',')
+                        .Select(y=> new Product_Rating_SizeColor
+                        {
+                            ColorSize=y
+                        }).ToList()
+            });
+            return lst.ToList();
+        }
         //Địa chỉ người dùng 
-        public async Task<List<DbAddress>> User_Adress(int idkh)
+        public async Task<List<DbAddress>> User_Adress(int idkh)  
         {
             if (_dbConnection == null)
             {
@@ -223,6 +238,24 @@ namespace KLTN_YourLook.Repository_YL
             string msg = paramesters.Get<string>("@msg");
             string error = paramesters.Get<string>("@error");
             return (msg, error);
+        }
+        //người dùng đánh giá đơn hàng 
+        public async Task<int> Create_Rating(int iddh,int idsp,int idkh,int rate,string colorsize,string danhgia)
+        {
+
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var paramesters = new DynamicParameters();
+            paramesters.Add("@iddh", iddh);
+            paramesters.Add("@idsp", idsp);
+            paramesters.Add("@idkh", idkh);
+            paramesters.Add("@rate", rate);
+            paramesters.Add("@colorsize", colorsize);
+            paramesters.Add("@danhgia", danhgia);
+            
+            return await _dbConnection.ExecuteAsync("creat_rating", paramesters, commandType: CommandType.StoredProcedure);
         }
     }
 }

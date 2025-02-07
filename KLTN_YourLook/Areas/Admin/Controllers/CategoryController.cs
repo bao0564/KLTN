@@ -85,7 +85,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             return View(model);
         }
         //Sửa Danh Mục
-        [Route("updatecategory")]
+        [Route("updatecategory")] 
         [HttpGet]
         public IActionResult UpdateCategory(int iddm)
         {
