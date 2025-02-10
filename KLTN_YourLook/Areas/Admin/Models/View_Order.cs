@@ -37,6 +37,9 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public decimal GiamGia { get; set; }
         public decimal Ship { get; set; }
         public decimal TongTienThanhToan { get; set; }
+        public string Sdt { get; set; }
+        public string PaymentName { get; set; }
+        public DateTime CreateDate { get; set; }
 
     }
     public class OrderDetailViewModel//chi tiết đơn hàng
@@ -53,6 +56,9 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public decimal GiamGia { get; set; }
         public decimal Ship { get; set; }
         public decimal TongTienThanhToan { get; set; }
+        public string Sdt { get; set; }
+        public string PaymentName { get; set; }
+        public DateTime CreateDate { get; set; }
 
     }
     public class ViewInForSP 

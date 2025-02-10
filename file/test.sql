@@ -15,7 +15,7 @@
 	 where od.IdDh= 13
 	select * from DbProduct
 	
-	  delete DbRating 
+	  delete DbRating where Id=72
 	select * from DbGroup
 	select * from DbCustomer
 	select * from DbOrderDetail

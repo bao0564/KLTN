@@ -62,13 +62,17 @@
                         <div class="flct product_price"><h3 id="type_price">@string.Format("{0:N0}", Model.PriceMax)</h3></div>
 					}
 					<div class="flct" style="margin-bottom:8px">
-						<ul class="star_rating ">
+						<ul class="star_rating pd-lr">
+							<li><i class="fa fa-star" aria-hidden="true"></i></li>
+							@* <li><i class="fa fa-star" aria-hidden="true"></i></li>
 							<li><i class="fa fa-star" aria-hidden="true"></i></li>
 							<li><i class="fa fa-star" aria-hidden="true"></i></li>
-							<li><i class="fa fa-star" aria-hidden="true"></i></li>
-							<li><i class="fa fa-star" aria-hidden="true"></i></li>
-							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+							<li><i class="fa fa-star-o" aria-hidden="true"></i></li>  *@
 						</ul>
+						@if (Model.Rate > 0) 
+						{
+							<div>@Model.Rate</div>
+						}
 					</div>
 					<div class="flct" style="margin-bottom:8px">
 						<img src="~/icon/eye-solid.svg" style="height:15px" title="Lượt xem" />: @Model.LuotXem

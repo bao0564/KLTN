@@ -600,15 +600,17 @@ td {
     bottom: 0;
     left: 45%;
 }
-.h-cp-dow input{
+.h-cp-dow input, .h-cp-dow a {
     height: 40px;
     background-color: #d6815d;
     border-radius: 5px;
+    color:#000;
 }
 
-.h-cp-dow input:hover{
+.h-cp-dow input:hover, .h-cp-dow a:hover {
     background-color: #c14008;
     border-radius: 7px;
+    color:#fff;
 }
 
 /* hộp thoại */

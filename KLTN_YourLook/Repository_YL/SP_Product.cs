@@ -165,6 +165,7 @@ namespace KLTN_YourLook.Repository_YL
             var lst = lstraw.Select(x => new ViewProductDetail
 			{
 				IdSp = idsp,
+				Rate=x.Rate,
 				MaSp = x.MaSp,
 				TenDm = x.TenDm,
 				TenSp = x.TenSp,
