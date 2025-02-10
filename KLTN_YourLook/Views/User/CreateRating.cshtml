@@ -68,11 +68,17 @@
 				var idsp = selectElement.name.split("_")[1]; // Lấy ID sản phẩm
 				var rating = selectElement.value; // Lấy số sao
 				var comment = textArea.value; // Lấy bình luận
-
+				if(comment.length <= 10){
+					showMess("đánh giá phải nhiều hơn 10 ký tự", false);
+					return;
+				}
 				ratings.push({ IdSp: idsp,ColorSizes:sizecolor, DanhGia: comment, Rate: rating });
 			}
 			
 		});
+		if (ratings.length === 0) {
+			return;
+		}
 		console.log(JSON.stringify(ratings));
 		$.ajax({
 			url:'/User/CreateRating?iddh=' + orderId,

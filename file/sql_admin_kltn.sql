@@ -348,7 +348,7 @@ begin
 			 join DbProductDetail pd  on p.IdSp=pd.IdSp and odd.IdColor=pd.ColorId and odd.IdSize= pd.SizeId
 			where odd.IdDh= od.IdDh) as InForSp,			
 			od.IdKh,cus.TenKh,od.NguoiNhan,od.DiaChi,od.GhiChu,
-			od.TongTien,od.Giamgia,od.Ship,od.TongTienThanhToan
+			od.TongTien,od.Giamgia,od.Ship,od.TongTienThanhToan,od.Sdt,od.PaymentName,od.CreateDate
 	 from DbOrder od
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
 	 where od.IdDh= @iddh

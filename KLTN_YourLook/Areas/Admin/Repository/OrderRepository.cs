@@ -109,7 +109,10 @@ namespace KLTN_YourLook.Areas.Admin.Repository
                 TongTien=x.TongTien,
                 GiamGia=x.GiamGia,
                 Ship=x.Ship,
-                TongTienThanhToan=x.TongTienThanhToan
+                TongTienThanhToan=x.TongTienThanhToan,
+                Sdt=x.Sdt,
+                PaymentName=x.PaymentName,
+                CreateDate=x.CreateDate
             });
             return lst.ToList();
         }

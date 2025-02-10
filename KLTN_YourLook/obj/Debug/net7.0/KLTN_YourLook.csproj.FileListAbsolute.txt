@@ -543,3 +543,15 @@ C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\refint\KLTN_YourLook.dll
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_YourLook.pdb
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_YourLook.genruntimeconfig.cache
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\ref\KLTN_YourLook.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.barcodes.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.forms.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.io.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.kernel.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.layout.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.pdfa.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.sign.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.styledxmlparser.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.svg.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.commons.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\BouncyCastle.Crypto.dll

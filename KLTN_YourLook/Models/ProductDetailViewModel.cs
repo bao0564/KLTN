@@ -6,6 +6,7 @@ namespace KLTN_YourLook.Models
 	public class ProductDetailViewModelRaw
 	{
 		public int IdSp { get; set; }
+		public decimal Rate { get; set; }
 		public string MaSp { get; set; }
 		public string TenDm { get; set; }
 		public string TenSp { get; set; }
@@ -25,7 +26,8 @@ namespace KLTN_YourLook.Models
 	public class ViewProductDetail
 	{
 		public int IdSp { get; set; }
-		public string MaSp { get; set; }
+        public decimal Rate { get; set; }
+        public string MaSp { get; set; }
 		public string TenDm { get; set; }
 		public string TenSp { get; set; }
 		public int? SaoDanhGia { get; set; }

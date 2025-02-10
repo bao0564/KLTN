@@ -56,6 +56,10 @@
                     <p class="ttu">Ghi chú:</p>
                     <p>@inf.GhiChu</p>
                 </div>
+                <div class="flspb">
+                    <p class="ttu">Ngày đặt:</p>
+                    <p>@inf.CreateDate</p>
+                </div>
                 <div style="border-top:1px solid #000;padding-top:10px"></div>
                 <div class="" style="padding:10px 100px">
                     <div class="flspb">
@@ -78,12 +82,18 @@
             </div>
 		</div>
 		<div class="h-cp-dow fljct" style="left:35%">
-			<div class="mg">
-				<input value="Quay Lại" class="talg"  />
+            <div class="mg flct">
+                <a href="@Url.Action("order")" , class="talg pd">Quay lại</a>
 			</div>
-			<div class="mg">
-				<a href="@Url.Action("orderupdate",new {iddh=inf.IdDh})" class="talg">Cập nhật trạng thái</a>
+			<div class="mg flct">
+                <a href="@Url.Action("orderupdate",new {iddh=inf.IdDh})" class="talg pd">Cập nhật trạng thái</a>
+			</div>
+            <div class="mg flct">
+                <a href="@Url.Action("ExportBillToPDF", "Order", new { iddh = inf.IdDh })" class="talg pd">
+                    Xuất hóa đơn PDF
+                </a>
 			</div>
 		</div>
     }
 </div>
+ 

@@ -122,7 +122,9 @@ create procedure [dbo].[product_detail]
 	@idsp int
 as
 begin
-	select p.IdSp, p.MaSp,ct.TenDm,p.TenSp,p.SaoDanhGia,p.AnhSp,p.PriceMax,p.GiamGia,p.PriceMin,p.LuotXem,p.LuotSold,p.MotaSp,p.Ifavorite,
+	declare @rate DECIMAL(10,1);
+	select @rate=cast(AVG(Cast(r.Rate as float)) AS DECIMAL(10,1)) from DbRating r where r.IdSp=@idsp
+	select p.IdSp,@rate as Rate, p.MaSp,ct.TenDm,p.TenSp,p.SaoDanhGia,p.AnhSp,p.PriceMax,p.GiamGia,p.PriceMin,p.LuotXem,p.LuotSold,p.MotaSp,p.Ifavorite,
 		(select string_agg(i.Img,';')
 		from DbImg i
 		where i.IdSp=p.IdSp)as ImgDetail,
