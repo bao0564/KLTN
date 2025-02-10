@@ -20,9 +20,8 @@ namespace KLTN_YourLook.Models
         public bool ODHuy { get; set; }
         public DateTime CreateDate { get; set; }
     }
-    public class ViewCustomerHistoryOrder
+    public class ViewCustomerHistoryOrder //hiển thị các đơn hàng của khách hàng
     {
-
         public int IdDh { get; set; }
         public string MaDh { get; set; }
         public string PaymentName { get; set; }
@@ -34,6 +33,7 @@ namespace KLTN_YourLook.Models
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
         public bool ODHuy { get; set; }
+        public bool Israted { get; set; } //đánh giá hay chưa
         public DateTime CreateDate { get; set; }
     }
     public class ViewInforOrder //thông tin sp in order

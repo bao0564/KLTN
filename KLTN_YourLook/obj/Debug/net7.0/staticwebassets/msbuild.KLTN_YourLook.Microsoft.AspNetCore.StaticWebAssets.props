@@ -264,8 +264,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>246jzsn6om</Fingerprint>
-      <Integrity>soiY0ylEq8Uh07WV8B+6yWGjS+KndyGnOP1X+GNbtZA=</Integrity>
+      <Fingerprint>ff3neunawg</Fingerprint>
+      <Integrity>5ZhQ2crH3tvsFj5BrpU8052pNPoDfoCtEknJo/LQBfY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\main_styles.css'))</OriginalItemSpec>
@@ -282,8 +282,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>rn4587ta66</Fingerprint>
-      <Integrity>13pc3QsEICJM7XmB3E3w6VVZ/prvJg5ONbTGwr/qyqk=</Integrity>
+      <Fingerprint>rdu8s4zi0q</Fingerprint>
+      <Integrity>MdjJyEQJIvPlggci2SV4ifdhCkv8Vy3YfRUOecz9pgY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\responsive.css'))</OriginalItemSpec>

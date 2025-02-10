@@ -15,7 +15,7 @@
 	 where od.IdDh= 13
 	select * from DbProduct
 	
-	  delete DbAdmin
+	  delete DbRating 
 	select * from DbGroup
 	select * from DbCustomer
 	select * from DbOrderDetail
@@ -23,6 +23,7 @@
 	select * from DbAddress
 	select * from DbCart
 	select * from DbNotification
+	select * from DbRating
 	select od.IdDh,od.MaDh,od.PaymentName,od.soluong,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
 		,STRING_AGG(CONCAT(p.AnhSp,'"',p.TenSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.PriceBy,'"',odd.SoLuongSp),';')as InforSP
 	from DbOrder od
@@ -79,4 +80,23 @@ select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CO
 	join DbCustomer cus on od.IdKh=cus.IdKh
 	where od.ODSuccess=0 and od.ODReadly=0 and ODTransported=0 and od.Complete=0 and od.ODHuy=1
 	order by od.CreateDate desc
---lọc đơn hàng theo khoảng thời gian đặt
+--lọc đơn hàng 
+WITH OrderedData AS (
+    SELECT 
+        od.IdDh,p.IdSp, p.AnhSp, p.TenSp, 
+        cl.NameColor, sz.NameSize,
+        ROW_NUMBER() OVER (PARTITION BY p.IdSp ORDER BY cl.NameColor) AS ColorRank,
+        ROW_NUMBER() OVER (PARTITION BY p.IdSp ORDER BY sz.NameSize) AS SizeRank
+    FROM DbOrder od
+    JOIN DbOrderDetail odd ON od.IdDh = odd.IdDh
+    JOIN DbProduct p ON odd.IdSp = p.IdSp
+    JOIN DbColor cl ON cl.ColorId = odd.IdColor
+    JOIN DbSize sz ON sz.SizeId = odd.IdSize
+    WHERE od.IdDh = 10 AND od.Complete = 1
+)
+SELECT 
+    IdDh,IdSp, AnhSp, TenSp, 
+    STRING_AGG(CONCAT(NameColor, ' - ', NameSize), ', ') AS ColorSizes
+FROM OrderedData
+WHERE ColorRank = SizeRank  -- Chỉ lấy các cặp có cùng số thứ tự
+GROUP BY IdDh,IdSp, AnhSp, TenSp;

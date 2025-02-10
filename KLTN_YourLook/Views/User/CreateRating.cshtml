@@ -1,0 +1,101 @@
+﻿@model IEnumerable<KLTN_YourLook.Models.Product_Rating>
+
+@{
+    ViewData["Title"] = "CreateRating";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="list-ad mar150_container">
+</div>
+<div class="mg-lr" style="">
+	<form id="ratingForm">
+		@foreach (var inf in Model)
+		{
+			<div class="mg-tb fl bdrdu crate_infor"  style="background-color:#2f3640db">
+				<div class="fl" style="width:50%">
+					<div class="fl" style="height:200px">
+						<img src="@Url.Content("/img/"+inf.AnhSp)">
+					</div>
+					<div class="flcl">
+						<div class="pd">@inf.TenSp</div>
+						<div class="fl">
+							@foreach (var cs in inf.ColorSize)
+							{
+								<div class="bdrdu inf_cls">@cs.ColorSize</div>
+							}
+						</div>
+					</div>
+				</div>
+				<div class="bdrdu" style="width:50%;background-color:#fff">
+					<div class="fljct ttu">đánh giá ⭐</div>
+					<div>
+						<label for="rating_@inf.IdSp"> Sao đánh giá:</label>
+						<select name="rating_@inf.IdSp" class="rating">
+							<option class="talg" value="5">5 ⭐</option>
+							<option class="talg" value="4">4 ⭐</option>
+							<option class="talg" value="3">3 ⭐</option>
+							<option class="talg" value="2">2 ⭐</option>
+							<option class="talg" value="1">1 ⭐</option>
+						</select>
+					</div>
+					<label>Đánh giá chi tiết:</label>
+					<div>
+						<textarea name="comment_@inf.IdSp" style="height:100px;width:100%" placeholder="Hãy để lại ý kiến của bạn tại đây"></textarea>
+					</div>
+				</div>
+			</div>
+		}
+		<div class="fljct mg">
+			<button class="bdrdu" type="submit">Gửi đánh giá</button>
+		</div>
+	</form>
+</div>
+<script>	
+	document.getElementById("ratingForm").addEventListener("submit", function (event) {
+		event.preventDefault();
+
+		var ratings = [];
+		var orderId = @Model.First().IdDh;
+
+		document.querySelectorAll(".crate_infor").forEach(product => {
+			var selectElement = product.querySelector("select");
+			var textArea = product.querySelector("textarea");
+			var sizecolor = Array.from(product.querySelectorAll(".inf_cls")) 
+				.map(el => el.textContent.trim()) // Lấy nội dung bỏ khoảng trắng
+				.join(" ; ");
+
+			// Kiểm tra xem selectElement và textArea có tồn tại không
+			if (selectElement && textArea) {
+				var idsp = selectElement.name.split("_")[1]; // Lấy ID sản phẩm
+				var rating = selectElement.value; // Lấy số sao
+				var comment = textArea.value; // Lấy bình luận
+
+				ratings.push({ IdSp: idsp,ColorSizes:sizecolor, DanhGia: comment, Rate: rating });
+			}
+			
+		});
+		console.log(JSON.stringify(ratings));
+		$.ajax({
+			url:'/User/CreateRating?iddh=' + orderId,
+			type: 'POST',
+			contentType: "application/json" ,
+			data:JSON.stringify({IdDh:orderId, Reviews: ratings }),
+			success: function (response) {
+				console.log("Response từ server:", response);//
+				if (response.success) {
+					showMess(response.msg, true);
+					setTimeout(function () {
+						window.location.href = "/User/HistoryOrder"; // Chuyển hướng về trang chủ
+					}, 1500);
+				}
+				else {
+					showMess('lại lỗi'+response.msg, false);
+				}
+			},
+			error: function () {
+				showMess('hãy thử lại', false);  // Kiểm tra nếu có lỗi
+			}
+		});
+	});
+
+</script>
+

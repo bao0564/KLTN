@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="order-history flcl" style="max-height:550px;overflow-x:hidden;overflow-y:auto">
-               @foreach(var od in Model){
+            @foreach(var od in Model){
                 <div class="bdrdu" style="position:relative;background-color:#bdc3c7">
                     <div class="flspb flct">
                         <div class="date-order">Ngày Đặt: @od.CreateDate.ToString("dd/MM/yyyy")</div>
@@ -85,13 +85,20 @@
                     </div>
                     <div class="" style="display:flex;justify-content:end">
                         <div class="fl" style="gap:0">
+                            @{
+                                int iddh = @od.IdDh;
+                            }
 							<div class="product_price flspb">(Tổng Sản Phẩm:@od.soluong):<div>@string.Format("{0:N0}", @od.TongTienThanhToan) VNĐ</div></div>
                             @if(!od.ODHuy && !od.Complete){
                                 <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="UpdateOrder" asp-route-iddh="@od.IdDh" onclick="huydh(event)">hủy Đơn hàng</a></div>
                             }
-                            else if (od.Complete)
+                            else if (od.Complete && !od.Israted)//đơn hàng hoàn thành //chưa đánh giá
                             {
-                                <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu">Đánh giá</a></div>
+                                <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="CreateRating" asp-route-iddh="@od.IdDh">Đánh giá</a></div>
+                            }
+                            else if (od.Complete && od.Israted)//đã đánh giá
+                            {
+                                <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu">Đã Đánh giá</a></div>
                             }
                             else{
                                 <div></div>
