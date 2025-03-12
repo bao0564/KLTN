@@ -5,39 +5,41 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @model X.PagedList.IPagedList<AllProductViewModel>
-<div class="cp0">
+<div id="page_top" class="cp0">
     Danh Sách Sản Phẩm
 </div>
 <div class="h-cp1">
     <div class="h-cp-f">
         <div class="h-cp-up">
-            <div class="bt-c"><a href="@Url.Action("ProductCreat", "Admin")">Tạo sản phẩm mới</a></div>
-            <div class="bt-c"><a href="">In dữ liệu </a></div>
-            <div class="bt-c"><a href="">Xuất Excel</a></div>
-            <div class="bt-c"><a href="">Xuất PDF</a></div>
+			<div class="bt-c"><a href="@Url.Action("productcreat", "Admin")">Thêm sản phẩm</a></div>
+            <div class="bt-c"><a href="@Url.Action("stockup", "Admin")">Nhập hàng</a></div>
+            <div class="bt-c"><a href="">Xuất hàng</a></div>
+            <div class="bt-c">
+                <button type="button" id="exportProductExcel" style="border:none;background-color:#ffffff00">Xuất Excel📥</button>
+            </div>
         </div>
         <div class="h-cp-mid">
-            @using (Html.BeginForm("Product", "Product", FormMethod.Get))
+            @using (Html.BeginForm("Product", "Product", FormMethod.Get ,new { id = "filterForm" }))
             {
                 <div class="flspe">
                     <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Mã Sản phẩm/ Tên sản phẩm . . .">
                     <button type="submit">Tìm Kiếm</button>
                 </div>
-            }
-            @if (TempData["Success"] != null)
+            } 
+			@*@if (TempData["Success"] != null)
             {
                 <div class="alert alert-success">
                     @TempData["Success"]
                 </div>
             }
-            @if (TempData["Message"] != null)
+             @if (TempData["Message"] != null)
             {
                 <div class="alert alert-danger">
                     @TempData["Message"]
                 </div>
-            }
+            } *@
             <table class="h-table">
-                <thead>
+                <thead class="sticky_top">
                     <tr>
                         <th class="hidden">Id</th>
                         <th>Mã SP</th>
@@ -176,9 +178,17 @@
             </table>
         </div>
     </div>
+    @* mini-map *@
+    <div class="mini-map">
+        <ul class="flct">
+            <li>
+                <a href="#page_top"><i class="fa-solid fa-arrow-up" style="color:#000"></i></a>
+            </li>
+        </ul>
+    </div>
 </div>
 @Html.PagedListPager(Model, page => Url.Action("Product", "Product", new { page = page }))
-
+<script src="~/js_admin/admin_product.js"></script>
 <script type="text/javascript">
     function deletesp(event) {
         event.preventDefault();
@@ -187,5 +197,5 @@
             var url = event.currentTarget.getAttribute("href");
             window.location.href = url;
         }
-    }
+    };
 </script>

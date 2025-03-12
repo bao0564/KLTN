@@ -99,6 +99,7 @@ namespace Data.Models
         public virtual DbSet<DbCart> DbCarts { get; set; }// bảng sản phẩm Giỏ hàng 
         public virtual DbSet<DbRating> DbRatings { get; set; }// bảng đánh giá nhận sét sp 
         public virtual DbSet<DbNotification> DbNotifications { get; set; }// bảng thông báo 
+        public virtual DbSet<DbHistory> DbHistories { get; set; }//bảng lịch sử thay đổi
 
 
         //chuỗi kết nối

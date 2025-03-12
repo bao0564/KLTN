@@ -408,6 +408,51 @@ namespace Data.Migrations
                     b.ToTable("DbGroup");
                 });
 
+            modelBuilder.Entity("Data.Models.DbHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NewValue")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("OldValue")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DbHistory");
+                });
+
             modelBuilder.Entity("Data.Models.DbImg", b =>
                 {
                     b.Property<int>("Id")
@@ -573,7 +618,13 @@ namespace Data.Migrations
                     b.Property<bool>("ODHuy")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("ODPrint")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("ODReadly")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ODReprint")
                         .HasColumnType("bit");
 
                     b.Property<bool>("ODSuccess")
@@ -865,7 +916,8 @@ namespace Data.Migrations
 
                     b.Property<string>("ColorSize")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(25)
@@ -876,7 +928,8 @@ namespace Data.Migrations
 
                     b.Property<string>("DanhGia")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("IdDh")
                         .HasColumnType("int");

@@ -18,20 +18,20 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             _dbConnection = dbConnection;
         }
         //lấy all sản phẩm
-        public async Task<List<AllProductViewModel>> GetAllProduct()
-        {
-            if (_dbConnection == null)
-            {
-                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-            }
-            var lst = await _dbConnection.QueryAsync<AllProductViewModel>("EXEC dbo.product_showall");
-            return lst.ToList();
-        }
+        //public async Task<List<AllProductViewModel>> GetAllProduct()
+        //{
+        //    if (_dbConnection == null)
+        //    {
+        //        throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+        //    }
+        //    var lst = await _dbConnection.QueryAsync<AllProductViewModel>("EXEC dbo.product_showall");
+        //    return lst.ToList();
+        //}
         //tìm kiếm sp
         public async Task<IEnumerable<AllProductViewModel>> SearchProduct(string? keyword)
         {
             if (_dbConnection == null)
-            {
+            {   
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
             var parameters = new DynamicParameters();

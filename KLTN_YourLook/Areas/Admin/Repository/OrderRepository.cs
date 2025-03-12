@@ -1,17 +1,62 @@
 ﻿using Dapper;
+using Data.Models;
+using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Wordprocessing;
+using iText.StyledXmlParser.Jsoup.Parser;
 using KLTN_YourLook.Areas.Admin.Models;
+using KLTN_YourLook.Models;
 using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KLTN_YourLook.Areas.Admin.Repository
 {
     public class OrderRepository
     {
         private readonly IDbConnection _dbConnection;//dùng như dbcontext
-        public OrderRepository(IDbConnection dbConnection)
+        private readonly YourlookContext _context;
+        public OrderRepository(IDbConnection dbConnection,YourlookContext context)
         {
             _dbConnection = dbConnection;
+            _context = context;
         }
-        //lấy all đơn hàng
+        private List<OrderDetailViewModel> MapToViewOrderDetails(IEnumerable<OrderDetailViewModelRaw> lstraw)
+        {
+            var lst = lstraw.Select(x => new OrderDetailViewModel
+            {
+                IdDh = x.IdDh,
+                MaDh = x.MaDh,
+                InForSp = x.InForSp.Split(';')
+                            .Select(y =>
+                            {
+                                var s = y.Split('"');
+                                return new ViewInForSP
+                                {
+                                    MaSp = s[0],
+                                    TenSp = s[1],
+                                    AnhSp = s[2],
+                                    NameColor = s[3],
+                                    NameSize = s[4],
+                                    SoLuongSp = int.Parse(s[5]),
+                                    GiaLoai = decimal.Parse(s[6])
+                                };
+                            }).ToList(),
+                IdKh = x.IdKh,
+                TenKh = x.TenKh,
+                NguoiNhan = x.NguoiNhan,
+                DiaChi = x.DiaChi,
+                GhiChu = x.GhiChu,
+                TongTien = x.TongTien,
+                GiamGia = x.GiamGia,
+                Ship = x.Ship,
+                TongTienThanhToan = x.TongTienThanhToan,
+                Sdt = x.Sdt,
+                PaymentName = x.PaymentName,
+                CreateDate = x.CreateDate,
+                error = x.error
+            });
+            return lst.ToList();
+        }
+        ////lấy all đơn hàng
         public async Task<List<AllOrderViewModle>> GetAllOrder()
         {
             if (_dbConnection == null)
@@ -21,46 +66,25 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var lst = await _dbConnection.QueryAsync<AllOrderViewModle>("order_showall", commandType: CommandType.StoredProcedure);
             return lst.ToList();
         }
-        //tìm kiếm dơn hàng
-        public async Task<IEnumerable<AllOrderViewModle>> SearchOrder(string? keyword)
-        {
-            if (_dbConnection == null)
-            {
-                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-            }
-            var parameters = new DynamicParameters();
-            parameters.Add("@keyword", keyword);
-            return await _dbConnection.QueryAsync<AllOrderViewModle>("order_search", parameters, commandType: CommandType.StoredProcedure);
 
-        }
-        //lấy all đơn hàng theo trạng thái
-        public async Task<List<AllOrderViewModle>> GetAllOrderFilter(bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete,bool? odhuy)
+        //tìm kiếm dơn hàng
+        public async Task<IEnumerable<AllOrderViewModle>> SearchOrder(string? keyword, bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete, bool? odhuy, string? date, string? todate)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
             var parames = new DynamicParameters();
+            parames.Add("@keyword", keyword);
             parames.Add("@odsuccess", odsuccess);
             parames.Add("@odreadly", odreadly);
             parames.Add("@odtranport", odtranport);
             parames.Add("@complete", complete);
             parames.Add("@odhuy", odhuy);
-            var lst = await _dbConnection.QueryAsync<AllOrderViewModle>("order_showall_filter", parames, commandType: CommandType.StoredProcedure);
-            return lst.ToList();
-        }
-        //lấy all đơn hàng theo khoảng thời gian
-        public async Task<List<AllOrderViewModle>> GetAllOrderDateToDate(DateTime date, DateTime todate)
-        {
-            if (_dbConnection == null)
-            {
-                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
-            }
-            var parames = new DynamicParameters();
             parames.Add("@date", date);
             parames.Add("@todate", todate);
-            var lst = await _dbConnection.QueryAsync<AllOrderViewModle>("order_date_todate", parames, commandType: CommandType.StoredProcedure);
-            return lst.ToList();
+            return await _dbConnection.QueryAsync<AllOrderViewModle>("order_search", parames, commandType: CommandType.StoredProcedure);
+
         }
         //lấy all đơn hàng theo ngày
         public async Task<List<AllOrderViewModle>> GetAllOrderDate(DateTime date)
@@ -75,16 +99,25 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return lst.ToList();
         }
         //lấy ra chi tiết đơn hàng 
-        public async Task<List<OrderDetailViewModel>> ShowOrderDetail(int iddh)
+        public async Task<List<OrderDetailViewModel>> ShowOrderDetail(int? iddh)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-            var lstRaw =await _dbConnection.QueryAsync<OrderDetailViewModelRaw>("show_orderdetail", new { iddh = iddh }, commandType: CommandType.StoredProcedure);
+            var lstRaw =await _dbConnection.QueryAsync<OrderDetailViewModelRaw>("show_orderdetail", new { iddh = iddh /*?? (int?)null*/ }, commandType: CommandType.StoredProcedure);
+            //bool isPrint = _context.DbOrders //lấy ra đơn hàng đã được in
+            //    .Any(x => x.ODPrint == true && x.IdDh == iddh);
+            //bool rePrint = _context.DbOrders //lấy ra đơn hàng đã được in lại
+            //                .Any(x => x.ODReprint == true && x.IdDh == iddh);
+            var order = _context.DbOrders.FirstOrDefault(x => x.IdDh == iddh);
+
+            bool isPrint = order?.ODPrint ?? false;  // Kiểm tra đã in
+            bool rePrint = order?.ODReprint ?? false;  // Kiểm tra đã in lại
+
             var lst = lstRaw.Select(x => new OrderDetailViewModel
             {
-                IdDh=x.IdDh,
+                IdDh = x.IdDh,
                 MaDh = x.MaDh,
                 InForSp = x.InForSp.Split(';')
                             .Select(y =>
@@ -98,26 +131,153 @@ namespace KLTN_YourLook.Areas.Admin.Repository
                                     NameColor = s[3],
                                     NameSize = s[4],
                                     SoLuongSp = int.Parse(s[5]),
-                                    GiaLoai=decimal.Parse(s[6])
+                                    GiaLoai = decimal.Parse(s[6])
                                 };
                             }).ToList(),
-                IdKh=x.IdKh,
-                TenKh=x.TenKh,
-                NguoiNhan=x.NguoiNhan,
-                DiaChi=x.DiaChi,
-                GhiChu=x.GhiChu,
-                TongTien=x.TongTien,
-                GiamGia=x.GiamGia,
-                Ship=x.Ship,
-                TongTienThanhToan=x.TongTienThanhToan,
-                Sdt=x.Sdt,
-                PaymentName=x.PaymentName,
-                CreateDate=x.CreateDate
+                IdKh = x.IdKh,
+                TenKh = x.TenKh,
+                NguoiNhan = x.NguoiNhan,
+                DiaChi = x.DiaChi,
+                GhiChu = x.GhiChu,
+                TongTien = x.TongTien,
+                GiamGia = x.GiamGia,
+                Ship = x.Ship,
+                TongTienThanhToan = x.TongTienThanhToan,
+                Sdt = x.Sdt,
+                PaymentName = x.PaymentName,
+                CreateDate = x.CreateDate,
+                error = x.error,
+                IsPrint= isPrint,
+                Reprint=rePrint
             });
             return lst.ToList();
+            //return MapToViewOrderDetails(lstRaw);
+        }
+        //in ra chi tiết đơn hàng //QueryMultipleAsync :truy vấn SQL và trả về nhiều tập kết quả 
+        public async Task<(List<OrderDetailViewModel> Orders, string Error)> PrintOrderDetail(int? iddh)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parames = new DynamicParameters();
+            parames.Add("@iddh", iddh);
+            parames.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            using (var multi = await _dbConnection.QueryMultipleAsync("sp_order_print_status", parames, commandType: CommandType.StoredProcedure))
+            {
+                List<OrderDetailViewModelRaw> lstRaw = new List<OrderDetailViewModelRaw>();
+
+                if (!multi.IsConsumed)
+                {
+                    lstRaw = (await multi.ReadAsync<OrderDetailViewModelRaw>()).ToList();
+                }
+                string errorMsg = parames.Get<string>("@error");
+                if (!string.IsNullOrEmpty(errorMsg) || !lstRaw.Any())
+                {
+                    return (new List<OrderDetailViewModel>(), errorMsg ?? "Không có đơn hàng nào hợp lệ.");
+                }
+
+                //var lstRaw = (await multi.ReadAsync<OrderDetailViewModelRaw>()).ToList();
+
+                //string errorMsg = parames.Get<string>("@error");
+
+                var lst = lstRaw.Select(x => new OrderDetailViewModel
+                {
+                    IdDh = x.IdDh,
+                    MaDh = x.MaDh,
+                    InForSp = x.InForSp.Split(';')
+                                .Select(y =>
+                                {
+                                    var s = y.Split('"');
+                                    return new ViewInForSP
+                                    {
+                                        MaSp = s[0],
+                                        TenSp = s[1],
+                                        AnhSp = s[2],
+                                        NameColor = s[3],
+                                        NameSize = s[4],
+                                        SoLuongSp = int.Parse(s[5]),
+                                        GiaLoai = decimal.Parse(s[6])
+                                    };
+                                }).ToList(),
+                    IdKh = x.IdKh,
+                    TenKh = x.TenKh,
+                    NguoiNhan = x.NguoiNhan,
+                    DiaChi = x.DiaChi,
+                    GhiChu = x.GhiChu,
+                    TongTien = x.TongTien,
+                    GiamGia = x.GiamGia,
+                    Ship = x.Ship,
+                    TongTienThanhToan = x.TongTienThanhToan,
+                    Sdt = x.Sdt,
+                    PaymentName = x.PaymentName,
+                    CreateDate = x.CreateDate,
+                    error = x.error
+                }).ToList();
+                return (lst,null);
+            }                
+        }
+        //in lại đơn hàng
+        public async Task<(List<OrderDetailViewModel> Orders, string Error)> RePrintOrderDetail(int iddh)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parames = new DynamicParameters();
+            parames.Add("@iddh", iddh);
+            parames.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            using (var multi = await _dbConnection.QueryMultipleAsync("sp_order_reprint_status", parames, commandType: CommandType.StoredProcedure))
+            {
+                List<OrderDetailViewModelRaw> lstRaw = new List<OrderDetailViewModelRaw>();
+
+                if (!multi.IsConsumed)
+                {
+                    lstRaw = (await multi.ReadAsync<OrderDetailViewModelRaw>()).ToList();
+                }
+                string errorMsg = parames.Get<string>("@error");
+                if (!string.IsNullOrEmpty(errorMsg) || !lstRaw.Any())
+                {
+                    return (new List<OrderDetailViewModel>(), errorMsg ?? "Không có đơn hàng nào hợp lệ.");
+                }
+                var lst = lstRaw.Select(x => new OrderDetailViewModel
+                {
+                    IdDh = x.IdDh,
+                    MaDh = x.MaDh,
+                    InForSp = x.InForSp.Split(';')
+                                .Select(y =>
+                                {
+                                    var s = y.Split('"');
+                                    return new ViewInForSP
+                                    {
+                                        MaSp = s[0],
+                                        TenSp = s[1],
+                                        AnhSp = s[2],
+                                        NameColor = s[3],
+                                        NameSize = s[4],
+                                        SoLuongSp = int.Parse(s[5]),
+                                        GiaLoai = decimal.Parse(s[6])
+                                    };
+                                }).ToList(),
+                    IdKh = x.IdKh,
+                    TenKh = x.TenKh,
+                    NguoiNhan = x.NguoiNhan,
+                    DiaChi = x.DiaChi,
+                    GhiChu = x.GhiChu,
+                    TongTien = x.TongTien,
+                    GiamGia = x.GiamGia,
+                    Ship = x.Ship,
+                    TongTienThanhToan = x.TongTienThanhToan,
+                    Sdt = x.Sdt,
+                    PaymentName = x.PaymentName,
+                    CreateDate = x.CreateDate,
+                    error = x.error
+                }).ToList();
+                return (lst, null);
+            }
         }
         //Cập nhật đơn hàng 
-        public async Task<(string msg,string error)> UpdateOrder(int iddh,bool odsuccess,bool odreadly,bool odtransported,bool complete,bool odhuy)
+        public async Task<(string msg,string error)> UpdateOrder(int iddh,bool odsuccess,bool odreadly,bool odtransported,bool complete,bool odhuy,string modifiedby)
         {
             if (_dbConnection == null)
             {
@@ -130,6 +290,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             parameters.Add("@odtransported", odtransported);            
             parameters.Add("@complete", complete);            
             parameters.Add("@odhuy", odhuy);
+            parameters.Add("@modifiedby", modifiedby);
 
             parameters.Add("@msg", dbType: DbType.String, size: 500,direction: ParameterDirection.Output);
             parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
@@ -139,5 +300,6 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var error = parameters.Get<string>("@error");
             return (msg, error);
         }
+        //cập nhật trạng thái in của đơn hàng 
     }
 }

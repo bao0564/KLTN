@@ -124,6 +124,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"] = error;
+                    return View(model);
                 }
                 TempData["Success"] = msg;
                 return RedirectToAction("category");

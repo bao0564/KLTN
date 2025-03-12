@@ -1,4 +1,4 @@
-﻿ use [KLTN];
+﻿  use [KLTN];
 SET QUOTED_IDENTIFIER ON
 GO
 --all danh mục
@@ -249,6 +249,57 @@ begin
 	end catch
 end
 
+/*DbOrder: Đơn hàng*/
+SET QUOTED_IDENTIFIER ON
+GO
+--lưu thông tin thay đổi khi Cập nhật đơn hàng 
+--drop trigger trg_AfterUpdateOrder
+create trigger trg_AfterUpdateOrder 
+on DbOrder
+after update 
+as
+begin
+	set nocount on;
+	insert into DbHistory(TableName,TableId,OldValue,NewValue,ModifiedDate,ModifiedBy)
+	select 
+		'DbOrder' as TableName,
+		i.IdDh as TableId,
+		(
+            SELECT 
+				Case when d.ODSuccess<>i.ODSuccess then d.ODSuccess else null end as odsuccess,
+				Case when d.ODReadly<>i.ODReadly then d.ODReadly else null end as odreadly,
+				Case when d.ODTransported<>i.ODTransported then d.ODTransported else null end as odtransported,
+				Case when d.Complete<>i.Complete then d.Complete else null end as complete,
+				Case when d.ODHuy <>i.ODHuy then d.ODHuy else null end as odhuy,
+				Case when d.ODPrint <>i.ODPrint then d.ODPrint else null end as odprint,
+				Case when d.ODReprint <>i.ODReprint then d.ODReprint else null end as odreprint
+            FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
+        ) AS OldValue,
+        (
+			select 
+				Case when d.ODSuccess<>i.ODSuccess then i.ODSuccess else null end as odsuccess,
+				Case when d.ODReadly<>i.ODReadly then i.ODReadly else null end as odreadly,
+				Case when d.ODTransported<>i.ODTransported then i.ODTransported else null end as odtransported,
+				Case when d.Complete<>i.Complete then i.Complete else null end as complete,
+				Case when d.ODHuy <>i.ODHuy then i.ODHuy else null end as odhuy,
+				Case when d.ODPrint <>i.ODPrint then i.ODPrint else null end as odprint,
+				Case when d.ODReprint <>i.ODReprint then i.ODReprint else null end as odreprint
+			for json path,WITHOUT_ARRAY_WRAPPER
+		) as NewValue,
+		GETDATE() as ModifiedDate,
+		i.ModifiedBy as ModifiedBy
+	from inserted i
+	inner join deleted d on i.IdDh=d.IdDh
+	where
+		d.ODSuccess <> i.ODSuccess or
+		d.ODReadly <> i.ODReadly or
+		d.ODTransported <> i.ODTransported or
+		d.Complete <> i.Complete or
+		d.ODHuy <> i.ODHuy or
+		d.ODPrint <>i.ODPrint or
+		d.ODReprint <>i.ODReprint
+end;
+
 SET QUOTED_IDENTIFIER ON
 GO
 --all đơn hàng 
@@ -265,38 +316,44 @@ end;
 
 SET QUOTED_IDENTIFIER ON
 GO
---tìm Đơn hàng 
+--tìm /lọc Đơn hàng 
 --drop procedure order_search 
 create procedure [dbo].[order_search]
-	@keyword nvarchar(50)
+	@keyword nvarchar(50)= null,	
+	@odsuccess bit=null,
+	@odreadly bit= null,
+	@odtranport bit= null,
+	@complete bit= null,
+	@odhuy bit= null,
+	@date datetime= null,
+	@todate datetime= null	
 as
 begin
 	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
-			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.PaymentName,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy,od.ODPrint,od.ODReprint
 	from DbOrder od
 	join DbCustomer cus on od.IdKh=cus.IdKh
-	where od.MaDh like '%'+@keyword+'%' or cus.TenKh like '%'+@keyword+'%' or od.NguoiNhan like '%'+@keyword+'%'
-	order by od.CreateDate desc
-end;
+	where (@keyword IS NULL OR od.MaDh LIKE '%' + @keyword + '%' 
+		OR cus.TenKh LIKE '%' + @keyword + '%' 
+		OR od.NguoiNhan LIKE '%' + @keyword + '%')
 
-SET QUOTED_IDENTIFIER ON
-GO
---lọc đơn hàng 
---drop procedure order_showall_filter 
-create procedure [dbo].[order_showall_filter]	
-	@odsuccess bit,
-	@odreadly bit,
-	@odtranport bit,
-	@complete bit,
-	@odhuy bit	
-as
-begin
-	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
-			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
-	from DbOrder od
-	join DbCustomer cus on od.IdKh=cus.IdKh
-	where od.ODSuccess=@odsuccess and od.ODReadly=@odreadly and ODTransported=@odtranport and od.Complete=@complete and od.ODHuy=@odhuy
-	order by od.CreateDate desc
+		AND (@odsuccess IS NULL OR od.ODSuccess = @odsuccess)
+		AND (@odreadly IS NULL OR od.ODReadly = @odreadly)
+		AND (@odtranport IS NULL OR od.ODTransported = @odtranport)
+		AND (@complete IS NULL OR od.Complete = @complete)
+		AND (@odhuy IS NULL OR od.ODHuy = @odhuy)
+		AND (
+            (@date IS NULL AND @todate IS NULL) OR 
+            (@date IS NOT NULL AND @todate IS NULL AND CAST(od.CreateDate AS DATE) = @date) OR
+            (@date IS NULL AND @todate IS NOT NULL AND CAST(od.CreateDate AS DATE) <= @todate) OR
+            (@date IS NOT NULL AND @todate IS NOT NULL AND CAST(od.CreateDate AS DATE) BETWEEN @date AND @todate)
+        )
+	order by
+		CASE 
+            WHEN @date IS NOT NULL AND @todate IS NULL THEN od.soluong
+			ELSE NULL 
+		END ASC,
+	od.CreateDate desc
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -308,34 +365,66 @@ create procedure [dbo].[order_date]
 as
 begin
 	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
-			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy,od.ODPrint,od.ODReprint
 	from DbOrder od
 	join DbCustomer cus on od.IdKh=cus.IdKh
 	where CAST(od.CreateDate AS DATE) = @date 
-	order by od.CreateDate desc
+	order by od.soluong ASC
 end;
 
 SET QUOTED_IDENTIFIER ON
 GO
---lọc Đơn hàng theo khoảng thời gian
---drop procedure order_date_todate
-create procedure [dbo].[order_date_todate]
-	@date datetime,
-	@todate datetime
+--tìm chi tiết đơn hàng// dùng để in đơn hàng//dùng để in tất cả đơn hàng
+--drop procedure show_orderdetail
+--EXEC show_orderdetail @iddh=0
+create procedure [dbo].[show_orderdetail]
+	@iddh int = null
 as
 begin
-	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
-			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
-	from DbOrder od
-	join DbCustomer cus on od.IdKh=cus.IdKh
-	where CAST(od.CreateDate AS DATE) >= @date and CAST(od.CreateDate as date) <= @todate
-	order by od.CreateDate desc
+	select od.IdDh,od.MaDh,
+			(select string_agg(concat(odd.MaSp,'"',p.TenSp,'"',p.AnhSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.SoLuongSp,'"',pd.GiaLoai),';')  
+			from DbOrderDetail odd
+			 join DbProduct p on odd.IdSp=p.IdSp
+			 join DbColor cl on cl.ColorId= odd.IdColor
+			 join DbSize sz on odd.IdSize=sz.SizeId
+			 join DbProductDetail pd  on p.IdSp=pd.IdSp and odd.IdColor=pd.ColorId and odd.IdSize= pd.SizeId
+			where odd.IdDh= od.IdDh) as InForSp,			
+			od.IdKh,cus.TenKh,od.NguoiNhan,od.DiaChi,od.GhiChu,
+			od.TongTien,od.Giamgia,od.Ship,od.TongTienThanhToan,od.Sdt,od.PaymentName,od.CreateDate
+	 from DbOrder od
+	 join DbCustomer cus on od.IdKh= cus.IdKh	 
+	 WHERE (@iddh IS NULL OR @iddh = 0 OR od.IdDh = @iddh) --nếu in nhiều ctdh thì trong code @iddh = 0 nên thêm @iddh =0 vào dkien
 end;
+
+-- cập nhật tình trạng in sau khi in đơn hàng theo id, in tất cả đơn hàng
+--drop procedure sp_print_order
+--EXEC sp_print_order @iddh=10
 SET QUOTED_IDENTIFIER ON
 GO
---tìm chi tiết đơn hàng
---drop procedure show_orderdetail
-create procedure [dbo].[show_orderdetail]
+create procedure [dbo].[sp_print_order]--thông tin đơn đặt hàng của khách hàng
+	@iddh int = null
+as
+begin
+	select od.IdDh,od.MaDh,
+			(select string_agg(concat(odd.MaSp,'"',p.TenSp,'"',p.AnhSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.SoLuongSp,'"',pd.GiaLoai),';')  
+			from DbOrderDetail odd
+			 join DbProduct p on odd.IdSp=p.IdSp
+			 join DbColor cl on cl.ColorId= odd.IdColor
+			 join DbSize sz on odd.IdSize=sz.SizeId
+			 join DbProductDetail pd  on p.IdSp=pd.IdSp and odd.IdColor=pd.ColorId and odd.IdSize= pd.SizeId
+			where odd.IdDh= od.IdDh) as InForSp,			
+			od.IdKh,cus.TenKh,od.NguoiNhan,od.DiaChi,od.GhiChu,
+			od.TongTien,od.Giamgia,od.Ship,od.TongTienThanhToan,od.Sdt,od.PaymentName,od.CreateDate
+	 from DbOrder od
+	 join DbCustomer cus on od.IdKh= cus.IdKh	 
+	 WHERE (@iddh IS NULL OR @iddh = 0 OR od.IdDh = @iddh)and od.ODPrint=0 and od.ODHuy=0 --nếu in nhiều ctdh thì trong code @iddh = 0 nên thêm @iddh =0 vào dkien
+end;
+-- cập nhật tình trạng in sau khi in đơn hàng theo id, in tất cả đơn hàng
+--drop procedure sp_reprint_order
+--EXEC sp_reprint_order @iddh=10
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[sp_reprint_order]--thông tin đơn đặt hàng của khách hàng
 	@iddh int
 as
 begin
@@ -351,7 +440,85 @@ begin
 			od.TongTien,od.Giamgia,od.Ship,od.TongTienThanhToan,od.Sdt,od.PaymentName,od.CreateDate
 	 from DbOrder od
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
-	 where od.IdDh= @iddh
+	 WHERE od.IdDh = @iddh and od.ODPrint=1 and od.ODHuy=0
+end;
+--drop procedure sp_order_print_status
+--DECLARE @error NVARCHAR(500); EXEC sp_order_print_status @iddh=10, @error = @error OUTPUT; PRINT @error;
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_order_print_status]
+    @iddh INT = NULL,
+	@error nvarchar(500) output
+AS
+BEGIN
+	declare @isprint bit;
+	declare @count int;
+
+    SET NOCOUNT ON;
+	IF @iddh IS NOT NULL AND @iddh > 0
+		BEGIN
+			select @isprint = od.ODPrint from DbOrder od where od.IdDh = @iddh
+			if @isprint = 0
+				begin
+					EXEC sp_print_order @iddh
+					UPDATE DbOrder set ODPrint =1,ODSuccess=0,ODReadly=1 WHERE IdDh = @iddh;
+					return;
+				end
+			else
+				begin
+					set @error=N'đơn hàng đã được in trước đó không thể in lại nữa';
+					select @error as error;
+					return;
+				end
+		END
+    --if(@iddh is null or @iddh=0)
+	else
+		BEGIN	
+			create table #table1 (IdDh int,MaDh nvarchar(20),InForSp nvarchar(max),IdKh int,
+								TenKh nvarchar(50),NguoiNhan nvarchar(50),DiaChi nvarchar(100),GhiChu nvarchar(500),
+								TongTien decimal,Giamgia int,Ship decimal,TongTienThanhToan decimal,Sdt nvarchar(20),
+								PaymentName nvarchar(50),CreateDate datetime); --bảng tạm phải đủ các cột vs bảng chính
+			insert into #table1 EXEC sp_print_order @iddh;
+			SELECT @count = COUNT(*) FROM #table1;
+			if @count >0
+				begin
+					EXEC sp_print_order @iddh
+					UPDATE DbOrder set ODPrint = 1,ODSuccess=0,ODReadly=1 WHERE ODPrint = 0;
+					DROP TABLE #table1;
+					return;
+				end
+			else
+				begin					
+					set @error=N'Tất cả đơn hàng đã được in hết';
+					select @error as error;
+				end
+		END
+END;
+
+SET QUOTED_IDENTIFIER ON
+GO
+-- cập nhật tình trạng in lại đơn hàng
+--drop procedure sp_order_reprint_status
+-- DECLARE @error NVARCHAR(500); EXEC sp_order_reprint_status @iddh=11, @error = @error OUTPUT; PRINT @error;
+CREATE PROCEDURE [dbo].[sp_order_reprint_status] 
+    @iddh INT,
+	@error nvarchar(500) output
+AS
+BEGIN
+	declare @isreprint bit;
+	select @isreprint = od.ODReprint from DbOrder od where od.IdDh = @iddh 
+	if @isreprint=0
+		begin
+			EXEC sp_reprint_order @iddh
+			UPDATE DbOrder set ODReprint =1 where IdDh = @iddh;
+			return;
+		end
+	else
+		begin
+			set @error=N'đơn hàng đã được in lại rồi không thể in lại nữa';
+			select @error as error;
+			return;
+		end
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -364,47 +531,113 @@ create procedure [dbo].[orderupdate]
 	@odreadly bit,
 	@odtransported bit,
 	@complete bit,
-	@odhuy bit,	
+	@odhuy bit,
+	@modifiedby nvarchar(50),
 	@msg nvarchar(500) output,
 	@error nvarchar(500) output
 as
 begin
+	declare @isprint bit;
 	begin try	
-		update DbOrder set ODSuccess=@odsuccess,ODReadly=@odreadly,ODTransported=@odtransported,Complete=@complete,ODHuy=@odhuy
-		where IdDh=@iddh
-
-		set @msg=N'Cập nhật đơn hàng thành công';
+		select @isprint=od.ODPrint from DbOrder od where od.IdDh=@iddh;
+		if @isprint=1 and @odsuccess =1
+			begin
+				set @error=N'Đơn hàng đã được in không thể cập nhật về trạng thái này ';
+				return;
+			end
+		else
+			update DbOrder set ODSuccess=@odsuccess,ODReadly=@odreadly,ODTransported=@odtransported,Complete=@complete,ODHuy=@odhuy,ModifiedBy=@modifiedby
+				where IdDh=@iddh
+				if @odhuy=1
+					begin
+						update pd set pd.Quantity= pd.Quantity + odd.SoLuongSp
+							from DbProductDetail pd 
+							join DbOrderDetail odd on pd.IdSp=odd.IdSp
+							where odd.IdDh=@iddh and pd.ColorId=odd.IdColor and pd.SizeId=odd.IdSize
+						set @msg=N'Hủy đơn hàng thành công';
+						return;
+					end
+			set @msg=N'Cập nhật đơn hàng thành công';
 	end try
 	begin catch
 		set @error=N'Cập nhật đơn hàng thất bại'+ERROR_MESSAGE();
 	end catch
 end;
 /*Product*/
-
 SET QUOTED_IDENTIFIER ON
 GO
---tất cả sản phẩm
---drop procedure product_showall
-create procedure [dbo].[product_showall]
+--lưu thông tin thay đổi khi sửa Sản phẩm
+--drop trigger trg_AfterUpdateProduct
+create trigger trg_AfterUpdateProduct
+on DbProduct
+after update
 as
 begin
-	select p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,SUM(pd.SoLuongBan) as LuotSold,SUM(pd.Quantity) as Quantity,
-			p.IActive,p.IHot,p.ISale,p.IFeature
-	from DbProduct p
-	join DbCategory c on p.IdDm=c.IdDm
-	join DbGroup g on p.NhomId=g.IdNhom
-	join DbProductDetail pd on p.IdSp=pd.IdSp
-	group by p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,p.LuotSold,
-			p.IActive,p.IHot,p.ISale,p.IFeature
-	order by p.IdSp desc
+	set nocount on;
+	insert into DbHistory(TableName,TableId,OldValue,NewValue,ModifiedDate,ModifiedBy)
+	select
+		'DbProduct'as TableName,
+		i.IdSp as TableId,
+		(
+            SELECT 
+                CASE WHEN d.IdDm <> i.IdDm THEN d.IdDm ELSE NULL END AS Old_IdDm,
+                CASE WHEN d.TenSp <> i.TenSp THEN d.TenSp ELSE NULL END AS Old_TenSp,
+                CASE WHEN d.AnhSp <> i.AnhSp THEN d.AnhSp ELSE NULL END AS Old_AnhSp,
+                CASE WHEN d.PriceMax <> i.PriceMax THEN d.PriceMax ELSE NULL END AS Old_PriceMax,
+                CASE WHEN d.GiamGia <> i.GiamGia THEN d.GiamGia ELSE NULL END AS Old_GiamGia,
+                CASE WHEN d.PriceMin <> i.PriceMin THEN d.PriceMin ELSE NULL END AS Old_PriceMin,
+                CASE WHEN d.MotaSp <> i.MotaSp THEN d.MotaSp ELSE NULL END AS Old_MotaSp
+            FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
+        ) AS OldValue,
+        (
+            SELECT 
+                CASE WHEN d.IdDm <> i.IdDm THEN i.IdDm ELSE NULL END AS New_IdDm,
+                CASE WHEN d.TenSp <> i.TenSp THEN i.TenSp ELSE NULL END AS New_TenSp,
+                CASE WHEN d.AnhSp <> i.AnhSp THEN i.AnhSp ELSE NULL END AS New_AnhSp,
+                CASE WHEN d.PriceMax <> i.PriceMax THEN i.PriceMax ELSE NULL END AS New_PriceMax,
+                CASE WHEN d.GiamGia <> i.GiamGia THEN i.GiamGia ELSE NULL END AS New_GiamGia,
+                CASE WHEN d.PriceMin <> i.PriceMin THEN i.PriceMin ELSE NULL END AS New_PriceMin,
+                CASE WHEN d.MotaSp <> i.MotaSp THEN i.MotaSp ELSE NULL END AS New_MotaSp
+            FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
+        ) AS NewValue,
+		GETDATE() as ModifiedDate,
+		i.ModifiedBy as ModifiedBy
+	from inserted i
+	INNER JOIN deleted d ON i.IdSp = d.IdSp
+	WHERE 
+        d.IdDm <> i.IdDm OR
+        d.TenSp <> i.TenSp OR
+        d.AnhSp <> i.AnhSp OR
+        d.PriceMax <> i.PriceMax OR
+        d.GiamGia <> i.GiamGia OR
+        d.PriceMin <> i.PriceMin OR
+        d.MotaSp <> i.MotaSp;
 end;
+
+--SET QUOTED_IDENTIFIER ON
+--GO
+--tất cả sản phẩm
+--drop procedure product_showall
+--create procedure [dbo].[product_showall]
+--as
+--begin
+--	select p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,SUM(pd.SoLuongBan) as LuotSold,SUM(pd.Quantity) as Quantity,
+--			p.IActive,p.IHot,p.ISale,p.IFeature
+--	from DbProduct p
+--	join DbCategory c on p.IdDm=c.IdDm
+--	join DbGroup g on p.NhomId=g.IdNhom
+--	join DbProductDetail pd on p.IdSp=pd.IdSp
+--	group by p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,p.LuotSold,
+--			p.IActive,p.IHot,p.ISale,p.IFeature
+--	order by p.IdSp desc
+--end;
 
 SET QUOTED_IDENTIFIER ON
 GO
 --tìm kiếm sản phẩm
 --drop procedure product_search
 create procedure [dbo].[product_search]
-	@keyword nvarchar(50)
+	@keyword nvarchar(50)=null
 as
 begin
 	select p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,SUM(pd.SoLuongBan) as LuotSold,SUM(pd.Quantity) as Quantity,
@@ -413,7 +646,7 @@ begin
 	join DbCategory c on p.IdDm=c.IdDm
 	join DbGroup g on p.NhomId=g.IdNhom
 	join DbProductDetail pd on p.IdSp=pd.IdSp
-	where p.MaSp like '%'+@keyword+'%' or p.TenSp like '%'+@keyword+'%' or c.TenDm like '%'+@keyword+'%' 
+	where @keyword IS NULL OR p.MaSp like '%'+@keyword+'%' or p.TenSp like '%'+@keyword+'%' or c.TenDm like '%'+@keyword+'%'
 	group by p.IdSp,p.MaSp,p.AnhSp,p.TenSp,p.PriceMax,p.PriceMin,p.GiamGia,c.TenDm,g.GroupName,p.LuotSold,
 			p.IActive,p.IHot,p.ISale,p.IFeature
 	order by p.IdSp desc
@@ -559,34 +792,6 @@ begin
 						MotaSp=@motasp,IActive=@iactive,IFeature=@ifeature,IFavorite=@ifavorite,IHot=@ihot,ISale=@isale,ModifiedBy=@modifiedby,ModifiedDate=GETDATE()
 	where IdSp=@idsp
 end;
-
---SET QUOTED_IDENTIFIER ON
---GO
-----drop procedure img_update
---create procedure [dbo].[img_update]
---	@idsp int,
---	@img nvarchar(500)
---as
---begin
---	update DbImg set Img=@img where IdSp=@idsp
---end; 
-
---SET QUOTED_IDENTIFIER ON
---GO
-----drop procedure productdetail_update
---create procedure [dbo].[productdetail_update]
---	@idsp int,
---	@colorid int,
---	@namecolor nvarchar(50),
---	@sizeid int,
---	@namesize nvarchar(50),
---	@gialoai decimal,
---	@soluong int
---as
---begin
---	update DbProductDetail set ColorId=@colorid,NameColor=@namecolor,SizeId=@sizeid,NameSize=@namesize,GiaLoai=@gialoai,Quantity=@soluong
---	where IdSp=@idsp
---end;
 
 
 SET QUOTED_IDENTIFIER ON

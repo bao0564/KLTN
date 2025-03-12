@@ -155,6 +155,7 @@ namespace KLTN_YourLook.Controllers
         {
             var checkdh= _context.DbOrders.FirstOrDefault(dh=>dh.IdDh == iddh);
             var checkkh = HttpContext.Session.GetInt32("userId");
+            var namekh= HttpContext.Session.GetString("userName");
             if (checkkh == null)
             {
                 return RedirectToAction("Login", "Access");
@@ -164,7 +165,7 @@ namespace KLTN_YourLook.Controllers
             bool odtransported = checkdh.ODTransported;
             bool complete = false;
             bool odhuy = true;
-            var hdh = await _orderRepository.UpdateOrder(iddh, odsuccess, odreadly, odtransported, complete, odhuy);
+            var hdh = await _orderRepository.UpdateOrder(iddh, odsuccess, odreadly, odtransported, complete, odhuy, namekh);
 
             TempData["Success"] = "Hủy đơn hàng thành công";
             return RedirectToAction("HistoryOrder");

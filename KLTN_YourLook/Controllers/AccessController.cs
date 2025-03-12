@@ -40,6 +40,7 @@ namespace KLTN_YourLook.Controllers
 				{
 					HttpContext.Session.SetString("userEmail", i.Email.ToString());
 					HttpContext.Session.SetInt32("userId", i.IdKh);
+					HttpContext.Session.SetString("userName", i.TenKh);
 					return RedirectToAction("Index", "Home");
 				}
 				else
@@ -152,7 +153,8 @@ namespace KLTN_YourLook.Controllers
 		{
 			HttpContext.Session.Remove("userEmail");
 			HttpContext.Session.Remove("userId");
-			return RedirectToAction("Index", "Home");
+            HttpContext.Session.Remove("userName");
+            return RedirectToAction("Index", "Home");
 		}
 	}
 }

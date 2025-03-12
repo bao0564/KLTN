@@ -56,7 +56,7 @@
         <div class="menu">
             <div class="menu_ct">
                 <ul style="padding: 0;">
-                    <li><a href="@Url.Action("Index","Admin")"><i class="fa-solid fa-house" style="color: #ffffff;"></i>Trang chủ</a></li>
+                    <li><a href="@Url.Action("Index","Admin")"><i class="fa-solid fa-house" style="color: #ffffff;"></i>Tổng quan</a></li>
                     <li><a href="@Url.Action("Order","Admin")"><i class="fa-brands fa-shopify" style="color: #ffffff;"></i>Đơn Hàng</a></li>
                     <li><a href="@Url.Action("Product","Admin")"><i class="fa-solid fa-shirt" style="color: #ffffff;"></i>Sản Phẩm</a></li>
                     <li><a href="@Url.Action("Category","Admin")"><i class="fa-solid fa-clipboard" style="color: #ffffff;"></i> Danh Mục</a></li>
@@ -75,6 +75,9 @@
         </div>
     </div>
     <script src="~/js_admin/get _date.js"></script>
+	<script src="../js/msg.js"></script>
+	<script src="../js_admin/scrollsmooth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -9,7 +9,7 @@
     decimal Giamgia = Model.selectedVouchers.ValueVoucher ?? 0;
     decimal giamGiaValue = (TongTien * Giamgia / 100);
     var Giam = giamGiaValue.ToString("N0") + "VND";
-    decimal GiaCuoi = TongTien - giamGiaValue + 20000;
+    decimal GiaCuoi = TongTien - giamGiaValue + Model.selectedPayments.Ship;
     var FinalTotal = GiaCuoi.ToString("N0") + "VND";
 }
 <main class="cart cart-order" style="margin-bottom:150px">
@@ -116,7 +116,7 @@
                     <div>Voucher Giảm Giá:</div>-@Giam
                 </div>
                 <div class="flspb ttu bd-b">
-                    <div>Vận Chuyển:</div>20,000 VND
+                    <div>Vận Chuyển:</div>@Model.selectedPayments.Ship.ToString("N0") VND
                 </div>
                 <div class="flspb pd ttu bd-t">
                     <div>Tổng thanh toán:</div>@FinalTotal
