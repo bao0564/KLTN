@@ -3170,17 +3170,17 @@ section {
 	padding-left: 0px;
 }
 /*thoong baos msg*/
-.toast {
+.toastt {
 	position: fixed;
 	top: 10px;
 	right: 40%;
 	padding: 10px 20px;
 	opacity: 1;
 	transition: opacity 0.5s ease;
-	z-index: 1000;
+	z-index: 2000;
 }
 
-.toast.success {
+.toastt.success {
 	border: 3px solid #FFFFFF;
 	border-radius: 10px;
 	background: #32ff7e;
@@ -3188,7 +3188,7 @@ section {
 	box-shadow: 0 0 0 2px #05c46b;
 }
 
-.toast.error {
+.toastt.error {
 	border: 3px solid #FFFFFF;
 	border-radius: 10px;
 	background: #f44336; /* Màu đỏ cho lỗi */
@@ -3196,6 +3196,11 @@ section {
 	box-shadow: 0 0 0 2px #fe4c50;
 }
 
+.alert {
+	position: fixed !important;
+	top: 10px !important;
+	left: 45% !important;
+}
 /*ph�n trang*/
 .pagination {
 	display: flex;

@@ -1,5 +1,8 @@
-﻿using Dapper;
+﻿using ClosedXML.Excel;
+using Dapper;
 using Data.Models;
+using DocumentFormat.OpenXml.Office2021.Drawing.SketchyShapes;
+using DocumentFormat.OpenXml.Spreadsheet;
 using KLTN_YourLook.Areas.Admin.Models;
 using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
@@ -12,6 +15,7 @@ using System.Data;
 using System.Data.Common;
 using X.PagedList;
 using X.PagedList.Extensions;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
@@ -45,16 +49,10 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             }
             int pageSize = 20;
             int pageNumber = page ?? 1;
-            IEnumerable<AllProductViewModel> lstSanPham;//khai báo model chứa dữ liệu
-            if (!string.IsNullOrEmpty(keyword))//kiểm tra người dùng nhập keyword chưa
-            {
-                lstSanPham = await _productRepository.SearchProduct(keyword);
-                ViewBag.keyword = keyword;
-            }
-            else
-            {
-                lstSanPham = await _productRepository.GetAllProduct();
-            }
+            IEnumerable<AllProductViewModel> lstSanPham;
+            lstSanPham = await _productRepository.SearchProduct(keyword);
+            ViewBag.keyword = keyword;
+           
             PagedList<AllProductViewModel> lst = new PagedList<AllProductViewModel>(lstSanPham, pageNumber, pageSize);
             return View(lst);
         }
@@ -156,6 +154,14 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 .Select(c => new { c.IdNhom, Namen = $"{c.GroupName}-({c.MaNhom})" }).ToListAsync();
             ViewBag.IdNhom = new SelectList(nhom, "IdNhom", "Namen");
             return View(model);
+        }
+        
+        //Nhập hàng
+        [Route("stockup")]
+        [HttpGet]
+        public IActionResult Stock()
+        {
+            return View();
         }
         //sửa Sản phẩm
         [Route("updateproduct")]
@@ -313,8 +319,9 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             TempData["Success"] = "Sản Phẩm Đã Được Xóa";
             return RedirectToAction("Product");
         }
-        //dùng cho ajax tải ảnh trong js
+        //api tải ảnh
         [HttpPost]
+        [Route("uploadimg")]
         public async Task<IActionResult> UploadImg(List<IFormFile> files)
         {
             var filePaths = new List<string>();
@@ -352,13 +359,63 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             };
             return View(model);
         }
-        //kiểm tra mã sp trùng lặp trong js
+        //api kiểm tra mã sp trùng lặp 
         [HttpGet]
         [Route("productcheck")]
         public async Task<IActionResult> check(string masp, int? idsp)
         {
             var exists = await _context.DbProducts.AnyAsync(x => x.MaSp == masp && x.IdSp != idsp);
             return Json(new { exists });
+        }
+        [HttpGet]
+        [Route("productexportexcel")]
+        public async Task<IActionResult> ExportProductListToExcel(string keyword)
+        {
+            IEnumerable<AllProductViewModel> lstSanPham;
+            lstSanPham = await _productRepository.SearchProduct(keyword);
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Danh sách sản phẩm");
+                var currentRow = 1;
+                // Tiêu đề cột
+                worksheet.Cell(currentRow, 1).Value = "Mã Sản Phẩm";
+                worksheet.Cell(currentRow, 2).Value = "Tên sản phẩm";
+                worksheet.Cell(currentRow, 3).Value = "Giá sản phẩm";
+                worksheet.Cell(currentRow, 4).Value = "Giảm giá (%)";
+                worksheet.Cell(currentRow, 5).Value = "Giá đã giảm";
+                worksheet.Cell(currentRow, 6).Value = "Danh mục";
+                worksheet.Cell(currentRow, 7).Value = "Nhóm";
+                worksheet.Cell(currentRow, 8).Value = "Đã bán";
+                worksheet.Cell(currentRow, 9).Value = "Tồn kho";
+                worksheet.Cell(currentRow, 10).Value = "";
+                worksheet.Cell(currentRow, 11).Value = "";
+                worksheet.Cell(currentRow, 12).Value = "";
+                worksheet.Cell(currentRow, 13).Value = "";
+                foreach(var prd in lstSanPham)
+                {
+                    currentRow++;
+                    worksheet.Cell(currentRow, 1).Value = prd.MaSp;
+                    worksheet.Cell(currentRow, 2).Value = prd.TenSp;
+                    worksheet.Cell(currentRow, 3).Value = $"{prd.PriceMax:N0} VNĐ";
+                    worksheet.Cell(currentRow, 4).Value = prd.GiamGia +"%";
+                    worksheet.Cell(currentRow, 5).Value = $"{prd.PriceMin:N0} VNĐ";
+                    worksheet.Cell(currentRow, 6).Value = prd.TenDm;
+                    worksheet.Cell(currentRow, 7).Value = prd.GroupName;
+                    worksheet.Cell(currentRow, 8).Value = prd.LuotSold;
+                    worksheet.Cell(currentRow, 9).Value = prd.Quantity;
+                }
+                // Định dạng bảng (tô đậm tiêu đề, căn giữa)
+                worksheet.Range("A1:E1").Style.Font.Bold = true;
+                worksheet.RangeUsed().Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                worksheet.Columns().AdjustToContents(); // Tự động điều chỉnh kích thước cột
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DanhSachSanPham.xlsx");
+                }
+            }
         }
     }
 }

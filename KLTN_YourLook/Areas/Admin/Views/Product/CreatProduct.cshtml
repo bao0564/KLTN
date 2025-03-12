@@ -73,7 +73,7 @@
                         <div class="fl mg">
                             <div class="col-4">
                                 <label class="control-label">Giá Max</label>
-                                <input asp-for="PriceMax" id="GiaMax" class="form-control format_number" oninput="calculateGiaMin()" />
+                                <input asp-for="PriceMax" id="GiaMax" class="form-control" oninput="calculateGiaMin()" value=""/>
                                 <span asp-validation-for="PriceMax" class="text-danger"></span>
                             </div>
                             <div class="col-4">
@@ -222,68 +222,6 @@
         }
     </div>
 </div>
-@section scripts {
-    <script>
-        /*Thêm Thông tin Ảnh sản phẩm vào bảng DbImg */
-        //tải ảnh
-        $(document).ready(function () {
-            var imgUrls = [];
-            $('#btnUpload').click(function () {
-                var files = $('#fileUpload').prop('files');
-                var formData = new FormData();
-
-                //var picId = parseInt($('#ddpicId').val());
-
-                for (var i = 0; i < files.length; i++) {
-                    formData.append('files', files[i]);
-                }
-
-                $.ajax({
-                    url: '@Url.Action("UploadImg", "Product")',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        if (response.success) {
-                            response.filePaths.forEach(function (filePath) {
-                                $('#imagesTable #tablei').append('<div class="box"><img src="/img/' + filePath + '"><div class="box_btn"><a href="#" class="btnXoaAnh"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></a></div></div>');
-                                imgUrls.push(filePath);
-                                updateImgsInput();
-                            });
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error('Lỗi khi tải ảnh lên:', error);
-                    }
-                });
-            });
-
-            // Remove image
-            $('body').on('click', '.btnXoaAnh', function () {
-                var conf = confirm('Bạn có muốn xóa ảnh này không?');
-                if (conf === true) {
-                    $(this).closest('.box').remove();
-                    updateImgsInput();
-                };
-            });
-
-            function updateImgsInput() {
-                var imgUrls = [];
-                $('#imagesTable .box img').each(function () {
-                    var imgSrc = $(this).attr('src');
-                    imgUrls.push(imgSrc);
-                });
-                $('#Imgs').val(imgUrls.join(';'));
-            }
-            // //kiểm tra tí
-            // function Length() {
-            //    const input = document.getElementById('mota').value;
-            //    const error = document.getElementById('error');
-
-            //    error.textContent = input.length < 1 ? 'không được để trống' : '';
-            // }
-        });
-    </script>
+@section scripts {        
     <script src="~/js_admin/admin_creatproduct.js"></script>
 }

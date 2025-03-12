@@ -6,79 +6,74 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @model X.PagedList.IPagedList<AllOrderViewModle>
-<div class="cp0">
+<div id="page_top" class="cp0">
     Danh sách đơn hàng
 </div>
-@* @if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["Success"]
-    </div>
-}
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["Message"]
-    </div>
-} *@
 <div class="h-cp1">
     <div class="h-cp-f">
         <div class="h-cp-up">
             <div class="bt-c"><a href="@Url.Action("TaoDonHang","Admin")">Tạo đơn hàng mới</a></div>
-            <div class="bt-c"><a href="">In dữ liệu </a></div>
-            <div class="bt-c"><a href="">Xuất Excel</a></div>
-            <div class="bt-c"><a href="">Xuất PDF</a></div>
-            <div class="bt-c"><a href="">Xóa Tất cả</a></div>
+            <div class="bt-c">
+                <button type="button" id="exportOrderExcel" style="border:none;background-color:#ffffff00">Xuất Excel📥</button>
+			</div>
+            <div class="bt-c">
+                <a href="@Url.Action("PrintBillToPDF", "Order")" title="xuất pdf tất cả đơn đặt hàng chưa in">Xuất Thông tin đơn đặt hàng (.PDF) </a>
+            </div>            
         </div>
-        <div>
-            @using (Html.BeginForm("Order", "Order", FormMethod.Get))
-            {
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+        @using (Html.BeginForm("Order", "Order", FormMethod.Get, new{id="filterForm"}))
+        {
+            <div>
                 <div class="flspe">
                     <input class="form-search" name="keyword" type="text" value="@ViewBag.keyword" placeholder="Tìm Kiếm Id, Mã Đơn Hàng/ Người tạo . . .">
-                    <button type="submit">Tìm Kiếm</button>
-                </div>
-            }
-        </div>
-        <div class="flspb">
-            <div style="margin:15px 0 0">
-                 @using (Html.BeginForm("Order", "Order", FormMethod.Get))
-                 {
+                    <button type="submit">Tìm Kiếm 🔍</button>
+			    </div>
+		    </div>
+            <div class="flspb">
+                <div style="margin:15px 0 0">
                     <div class="flct">
-					    <div class="ttu nw mg-lr">Từ ngày</div>
+				        <div class="ttu nw mg-lr">Từ ngày</div>
                         <input type="date" name="date" value="@ViewBag.date" />
-					    <div class="ttu nw mg-lr">tới Ngày</div>
+				        <div class="ttu nw mg-lr">tới Ngày</div>
                         <input type="date" name="todate" value="@ViewBag.todate" />
-                        <button class="nw mg-lr" type="submit">Tìm kiếm</button>
+                        <button class="nw mg-lr" type="submit">Tìm kiếm 🔍</button>
                     </div>
-                 }
+                </div>
+                <div class="fl" style="margin:15px 15px 0 0">
+                    <div class="flct mg-lr">
+                        <input type="checkbox" id="odsuccess" name="odsuccess" @(ViewBag.odsuccess == true ? "checked" : "") onchange="applyFilter()" />
+                        <div class="ttu cl000">Chờ xử lý</div>
+                    </div>
+                    <div class="flct mg-lr">
+                        <input type="checkbox" id="odreadly" name="odreadly" @(ViewBag.odreadly == true ? "checked" : "") onchange="applyFilter()" />
+                        <div class="ttu cl000">Chờ vận chuyển</div>
+                    </div>
+                    <div class="flct mg-lr">
+                        <input type="checkbox" id="odtranport" name="odtranport" @(ViewBag.odtranport == true ? "checked" : "") onchange="applyFilter()" />
+                        <div class="ttu cl000">Đang vận chuyển</div>
+                    </div>
+                    <div class="flct mg-lr">
+                        <input type="checkbox" id="complete" name="complete" @(ViewBag.complete == true ? "checked" : "") onchange="applyFilter()" />
+                        <div  class="ttu cl000">hoàn thành</div>
+                    </div>
+                    <div class="flct mg-lr">
+                        <input type="checkbox" id="odhuy" name="odhuy" @(ViewBag.odhuy == true ? "checked" : "") onchange="applyFilter()" />
+                        <div class="ttu cl000">đã hủy</div>
+                    </div>
+                </div>
             </div>
-            <div class="fl" style="margin:15px 15px 0 0">
-                <div class="flct mg-lr">
-                    <input type="checkbox" id="odsuccess" onchange="applyFilter()" />
-                    <div  class="ttu cl000">đã đặt</div>
-                </div>
-                <div class="flct mg-lr">
-                    <input type="checkbox" id="odreadly" onchange="applyFilter()" />
-                    <div  class="ttu cl000">sẵn sàng</div>
-                </div>
-                <div class="flct mg-lr">
-                    <input type="checkbox" id="odtranport" onchange="applyFilter()" />
-                    <div class="ttu cl000">Đang vận chuyển</div>
-                </div>
-                <div class="flct">
-                    <input type="checkbox" id="complete" onchange="applyFilter()" />
-                    <div  class="ttu cl000">hoàn thành</div>
-                </div>
-                <div class="flct">
-                    <input type="checkbox" id="odhuy" onchange="applyFilter()" />
-                    <div class="ttu cl000">đã hủy</div>
-                </div>
-            </div>
-        </div>
+        }
         <div class="h-cp-mid">
             <table class="h-table">
-                <thead>
+                <thead class="sticky_top">
                     <tr>
+                        <th><input type="checkbox" /></th>
                         <th>Mã đơn hàng</th>
                         <th>Người Đặt</th>
                         <th>Người Nhận</th>
@@ -86,10 +81,8 @@
                         <th>Số Lượng</th>
                         <th>Tổng tiền</th>
                         <th>Tổng Thanh toán</th>
+                        <th>Loại thanh toán</th>
                         <th>Ngày Đặt</th>
-                        <th>Đặt Thành công</th>
-                        <th>Chuẩn bị hàng</th>
-                        <th>Đang vận chuyển</th>
                         <th>Trạng Thái</th>
                         <th>Chọn</th>
                     </tr>
@@ -100,6 +93,7 @@
                         foreach (var prd in Model)
                         {
                             <tr>
+                                <td><input type="checkbox"/></td>
                                 <td>@prd.MaDh</td>
                                 <td class="nw">@prd.TenKh</td>
                                 <td class="nw">@prd.NguoiNhan</td>
@@ -107,61 +101,33 @@
                                 <td>@prd.soluong</td>
                                 <td class="nw">@prd.TongTien.ToString("N0") VND</td>
                                 <td>@prd.TongTienThanhToan.ToString("N0") VND</td>
+                                <td>@prd.PaymentName</td>
                                 <td>@prd.CreateDate.ToString("dd/MM/yyyy")</td>
-                                @if (prd.ODSuccess == true || prd.ODReadly == true || prd.ODTransported == true|| prd.Complete == true )
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-check fa-xl" style="color: #07ed2e;"></i>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
-                                    </td>
-                                }
-                                @if (prd.ODReadly == true || prd.ODTransported == true || prd.Complete == true)
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-check fa-xl" style="color: #07ed2e;"></i>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
-                                    </td>
-                                }
-                                @if (prd.ODTransported == true || prd.Complete==true)
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-check fa-xl" style="color: #07ed2e;"></i>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
-                                    </td>
-                                }
-                                @if (prd.Complete && !prd.ODHuy || prd.Complete == true)
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-circle-check fa-xl" style="color: #07ed2e;"></i>
-                                    </td>
-                                }
-                                else if (!prd.Complete && prd.ODHuy)
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-xmark fa-xl" style="color: #e30d0d;"></i>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <i class="fa-solid fa-circle fa-lg" style="color: #c90d0d;"></i>
-                                    </td>
-                                }
+								<td style="position:relative">
+                                    @if(prd.ODPrint == true){
+                                        <div style="position:absolute;top:2px;right:2px" title=" Đơn Hàng Đã In"><i class="fa-solid fa-newspaper fa-sm" style="color: #000000;"></i></div>
+                                    }
+									@if (prd.ODSuccess == true)
+                                    {   
+                                        <div class="bdrdu" style="background-color:#dcdde1;color:#fff">Chờ xử lý</div>
+                                    }
+                                    else if (prd.ODReadly == true)
+                                    {
+									    <div class="bdrdu" style="background-color:#00a8ff;color:#fff">Chờ vận chuyển</div>
+                                    }
+                                    else if (prd.ODTransported == true )
+                                    {
+                                        <div class="bdrdu" style="background-color:#00a8ff;color:#fff">Đang vận chuyển</div>
+                                    }
+                                    else if (prd.Complete == true)
+                                    {
+                                        <div class="bdrdu" style="background-color:#4cd137;color:#fff">Hoàn thành</div>
+                                    }
+                                    else if (prd.ODHuy == true)
+                                    {
+                                        <div class="bdrdu" style="background-color:#eb2f06;color:#fff">Đã hủy</div>
+                                    }
+                                </td>
                                 <td>
                                     <div style="display:flex;flex-direction:column;gap:10px">
                                         <a class="btn-ddu btn-dt nw" href="@Url.Action("orderdetail", new { iddh = prd.IdDh })" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
@@ -192,6 +158,14 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    @* mini-map *@
+    <div class="mini-map">
+        <ul class="flct">
+            <li>
+                <a href="#page_top"><i class="fa-solid fa-arrow-up" style="color:#000"></i></a>
+            </li>
+        </ul>
     </div>
 </div>
 @Html.PagedListPager(Model, page => Url.Action("Order", "Order", new { page = page }))

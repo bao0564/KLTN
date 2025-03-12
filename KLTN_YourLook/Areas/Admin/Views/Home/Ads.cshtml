@@ -6,7 +6,7 @@
 }
 
 @model X.PagedList.IPagedList<DbAds>
-<div class="menu-cp">
+<div id="page_top" class="menu-cp">
     <div class="cp0">
         Danh Sách Ảnh Ads
     </div>
@@ -84,6 +84,15 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    @* mini-map *@
+    <div class="mini-map">
+        <ul class="flct">
+            <li>
+                <a href="#page_top"><i class="fa-solid fa-arrow-up" style="color:#000"></i></a>
+            </li>
+        </ul>
     </div>
 </div>
 @Html.PagedListPager(Model, page => @Url.Action("Ads", "Ads", new { page = page }))

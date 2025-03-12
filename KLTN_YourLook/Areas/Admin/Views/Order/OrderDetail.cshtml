@@ -8,10 +8,10 @@
     <div class="fl">
         <div class="pd flalg">
             <a href="@Url.Action("order","admin")"><img style="height:20px" src="\icon\drop left.svg"> </a>
-		</div>
-		<div class="cp0" style="width:100%;font-size:1.5rem">
-			Thông tin đơn hàng
-		</div>
+        </div>
+        <div class="cp0" style="width:100%;font-size:1.5rem">
+            Thông tin đơn hàng
+        </div>
     </div>
     @foreach(var inf in Model)
     {
@@ -80,20 +80,43 @@
                     </div>
                 </div>
             </div>
-		</div>
-		<div class="h-cp-dow fljct" style="left:35%">
-            <div class="mg flct">
-                <a href="@Url.Action("order")" , class="talg pd">Quay lại</a>
-			</div>
-			<div class="mg flct">
-                <a href="@Url.Action("orderupdate",new {iddh=inf.IdDh})" class="talg pd">Cập nhật trạng thái</a>
-			</div>
-            <div class="mg flct">
-                <a href="@Url.Action("ExportBillToPDF", "Order", new { iddh = inf.IdDh })" class="talg pd">
-                    Xuất hóa đơn PDF
+        </div>
+        <div class="h-cp-dow fljct" style="left:35%">
+            <div class="mg fl-center" title="Quay Lại">
+                <a href="@Url.Action("order")" style="padding:10px 2px 10px 10px">
+                    <i class="fa-solid fa-arrow-left fa-xl" style="color: #000000;"></i>
                 </a>
-			</div>
-		</div>
+            </div>
+            <div class="mg fl-center">
+                <a href="@Url.Action("orderupdate",new {iddh=inf.IdDh})" class="talg pd">Cập nhật trạng thái</a>
+            </div>
+            @if (inf.IsPrint == false && inf.Reprint==false)
+            {
+                <div class="mg fl-center" title="In PDF">
+                    <a href="@Url.Action("PrintBillToPDF", "Order", new { iddh = inf.IdDh })" style="padding:10px 0 10px 10px">
+                        <i class="fa-solid fa-print fa-xl" style="color: #000000;"></i>
+                    </a>
+                </div>
+            }
+            else if(inf.IsPrint==true && inf.Reprint==false)
+            {
+                <div class="mg fl-center" title="In lại PDF">
+                    <a href="@Url.Action("ReprintBillToPDF", "Order", new { iddh = inf.IdDh, inlai=true })" style="padding:10px 0 10px 10px">
+                        In Lại<i class="fa-solid fa-print fa-xl" style="color: #000000;margin-left:5px"></i>
+                    </a>
+                </div>
+            }
+            else{
+                <div class="mg fl-center" style="position:relative" title="Đơn hàng không thể in lại">
+                    <a style="padding:10px 0 10px 10px">
+                        <i class="fa-solid fa-print fa-xl" style="color: #000000;"></i>
+                    </a>
+                    <div class="mg" style="position:absolute;top:-40%;left:-5%">
+                        <i class="fa-solid fa-slash  fa-xl" style="color: #000000;"></i>
+                    </div>
+                </div>
+            }
+        </div>
     }
 </div>
  

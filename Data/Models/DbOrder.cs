@@ -43,6 +43,8 @@ namespace Data.Models
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
         public bool ODHuy { get; set; }
+        public bool ODPrint { get; set; }
+        public bool ODReprint { get; set; }
 
         public virtual DbCustomer customer { get; set; }//1 đơn hàng chỉ có 1 khách hàng
         public virtual DbVoucher? voucher { get; set; }//1 đơn hàng chỉ có 1 voucher

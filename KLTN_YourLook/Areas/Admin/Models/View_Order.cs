@@ -16,12 +16,15 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public int soluong { get; set; }
         public decimal TongTien { get; set; }
         public decimal TongTienThanhToan { get; set; }
+        public string PaymentName { get; set; }
         public DateTime CreateDate { get; set; }
         public bool ODSuccess { get; set; }
         public bool ODReadly { get; set; }
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
         public bool ODHuy { get; set; }
+        public bool ODPrint { get; set; }
+        public bool ODReprint { get; set; }
     }
     public class OrderDetailViewModelRaw //chi tiết đơn hàng raw
     {
@@ -40,6 +43,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public string Sdt { get; set; }
         public string PaymentName { get; set; }
         public DateTime CreateDate { get; set; }
+        public string error { get; set; }
 
     }
     public class OrderDetailViewModel//chi tiết đơn hàng
@@ -59,6 +63,9 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public string Sdt { get; set; }
         public string PaymentName { get; set; }
         public DateTime CreateDate { get; set; }
+        public string error { get; set; }
+        public bool IsPrint { get; set; }
+        public bool Reprint { get; set; }
 
     }
     public class ViewInForSP 
@@ -70,5 +77,14 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public string NameSize { get; set; }
         public int SoLuongSp { get; set; }
         public decimal GiaLoai { get; set; }
+    }
+    public class ViewUpdateOrder
+    {
+        public int IdDh { get; set; }
+        public bool ODSuccess { get; set; }
+        public bool ODReadly { get; set; }
+        public bool ODTransported { get; set; }
+        public bool Complete { get; set; }
+        public bool ODHuy { get; set; }
     }
 }

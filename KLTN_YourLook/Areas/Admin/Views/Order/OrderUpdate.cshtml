@@ -1,5 +1,4 @@
-﻿@model Data.Models.DbOrder
-
+﻿@model KLTN_YourLook.Areas.Admin.Models.ViewUpdateOrder
 @{
     ViewData["Title"] = "OrderUpdate";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -22,29 +21,6 @@
         <form asp-action="OrderUpdate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdDh" class="form-control" />
-            <input type="hidden" asp-for="MaDh" class="form-control" />
-            <input type="hidden" asp-for="IdKh" class="form-control" />
-            <input type="hidden" asp-for="NguoiNhan" class="form-control" />
-            <input type="hidden" asp-for="EmailKh" class="form-control" />
-            <input type="hidden" asp-for="Sdt" class="form-control" />
-            <input type="hidden" asp-for="City" class="form-control" />
-            <input type="hidden" asp-for="District" class="form-control" />
-            <input type="hidden" asp-for="Ward" class="form-control" />
-            <input type="hidden" asp-for="DiaChi" class="form-control" />
-            <input type="hidden" asp-for="TongTien" class="form-control" />
-            <input type="hidden" asp-for="TongTienThanhToan" class="form-control" />
-            <input type="hidden" asp-for="soluong" class="form-control" />
-            <input type="hidden" asp-for="PaymentId" class="form-control" />
-            <input type="hidden" asp-for="PaymentName" class="form-control" />
-            <input type="hidden" asp-for="IdVoucher" class="form-control" />
-            <input type="hidden" asp-for="ValueVoucher" class="form-control" />
-            <input type="hidden" asp-for="Giamgia" class="form-control" />
-            <input type="hidden" asp-for="Ship" class="form-control" />
-            <input type="hidden" asp-for="GhiChu" class="form-control" />
-            <input type="hidden" asp-for="CreateDate" class="form-control" />
-            <input type="hidden" asp-for="CreateBy" class="form-control" />
-            <input type="hidden" asp-for="ModifiedDate" class="form-control" />
-            <input type="hidden" asp-for="ModifiedBy" class="form-control" />
             <div class="fljct mg-tb">
                 <div class="form-group">
                     <div class="custom-control custom-checkbox talg">

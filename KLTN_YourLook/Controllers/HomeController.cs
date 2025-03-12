@@ -215,6 +215,7 @@ namespace KLTN_YourLook.Controllers
 		public async Task<IActionResult> ProductDetail(int idsp)
 		{
 			var lstSanPham = await _productProcedure.Product_Detail(idsp);
+			var idkh = HttpContext.Session.GetInt32("userId");
 			if (lstSanPham == null || !lstSanPham.Any())
 			{
 				return NotFound(); // Nếu không tìm thấy sản phẩm, trả về lỗi 404
@@ -230,12 +231,10 @@ namespace KLTN_YourLook.Controllers
 					await _context.SaveChangesAsync();
 				}
 			};
-			var idkh = HttpContext.Session.GetInt32("userId");
-			bool isFavorite = false;//vì ctsp không chỉ có 1 sp nên ko cần dùng ds, cũng không cần contain
 			if (idkh != null)
 			{
-				isFavorite = _context.DbFavoriteProducts.Any(x => x.IdKh == idkh.Value && x.IdSp == idsp);
-			} 
+				SanPham.IsFavorite = _context.DbFavoriteProducts.Any(x => x.IdKh == idkh.Value && x.IdSp == idsp);
+			}
 			return View(SanPham);
 		}
 		//lấy các thông tin trong chi tiết ssanr phẩm 

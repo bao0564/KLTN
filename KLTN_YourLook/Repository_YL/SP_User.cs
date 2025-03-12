@@ -107,7 +107,7 @@ namespace KLTN_YourLook.Repository_YL
             var lst = lstraw.Select(x => new ViewAllDetail
             {
                 IdSp = x.IdSp,
-                MaSp = x.MaSp,
+                MaSp = x.MaSp, 
                 TenSp = x.TenSp,
                 AnhSp = x.AnhSp,
                 PriceMax = x.PriceMax,

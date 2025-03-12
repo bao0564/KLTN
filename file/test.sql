@@ -1,5 +1,4 @@
-﻿
-	use [KLTN];
+﻿  	use [KLTN];
 	select od.MaDh,
 			(select string_agg(concat(odd.MaSp,'"',p.TenSp,'"',p.AnhSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.SoLuongSp,'"',pd.GiaLoai),';')  
 			from DbOrderDetail odd
@@ -15,15 +14,17 @@
 	 where od.IdDh= 13
 	select * from DbProduct
 	
-	  delete DbRating where Id=72
+	  delete Dbhi where Id=72
 	select * from DbGroup
 	select * from DbCustomer
-	select * from DbOrderDetail
-	select * from DbOrder
+	select * from DbProductDetail 
+	select * from DbOrderDetail  
+	select * from DbOrder where IdDh=13
 	select * from DbAddress
 	select * from DbCart
 	select * from DbNotification
 	select * from DbRating
+	select * from DbHistory
 	select od.IdDh,od.MaDh,od.PaymentName,od.soluong,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
 		,STRING_AGG(CONCAT(p.AnhSp,'"',p.TenSp,'"',cl.NameColor,'"',sz.NameSize,'"',odd.PriceBy,'"',odd.SoLuongSp),';')as InforSP
 	from DbOrder od
@@ -100,3 +101,76 @@ SELECT
 FROM OrderedData
 WHERE ColorRank = SizeRank  -- Chỉ lấy các cặp có cùng số thứ tự
 GROUP BY IdDh,IdSp, AnhSp, TenSp;
+
+update DbOrder set ODHuy=0, ODSuccess=1,ODReadly=0,ODTransported=0,Complete=0 ,ODPrint=0,ODReprint=0
+select *from DbOrder
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_order_print_status]
+    @iddh INT = NULL,
+    @inlai BIT = NULL,  -- Đánh dấu là in lại hay không
+    @error NVARCHAR(500) OUTPUT
+AS
+BEGIN 
+    DECLARE @isprint BIT;
+    DECLARE @reprint BIT;
+
+    -- Nếu có truyền ID đơn hàng
+    IF @iddh IS NOT NULL AND @iddh > 0 
+    BEGIN
+        -- Lấy trạng thái in của đơn hàng
+        SELECT @isprint = ODPrint, @reprint = ODReprint 
+        FROM DbOrder 
+        WHERE IdDh = @iddh;
+
+        -- Nếu không phải in lại (in lần đầu)
+        IF (@inlai IS NULL OR @inlai = 0) 
+        BEGIN
+            IF @isprint = 0
+            BEGIN
+                --PRINT N'In đơn hàng lần đầu...';
+                EXEC sp_reprint_order @iddh;
+                UPDATE DbOrder 
+                SET ODPrint = 1, ODSuccess = 0, ODReadly = 1 
+                WHERE IdDh = @iddh;
+                RETURN;
+            END
+            ELSE
+            BEGIN
+                SET @error = N'Đơn hàng đã được in trước đó. Vui lòng chọn chức năng in lại!';
+                SELECT @error AS error;
+                RETURN;
+            END
+        END
+
+        -- Nếu là in lại (@inlai = 1)
+        IF @inlai IS NOT NULL AND @inlai = 1
+        BEGIN
+            IF @isprint = 1 AND @reprint = 0
+            BEGIN
+                --PRINT N'In lại đơn hàng...';
+                EXEC sp_print_order @iddh;
+                UPDATE DbOrder 
+                SET ODReprint = 1 
+                WHERE IdDh = @iddh;
+                RETURN;
+            END
+            ELSE
+            BEGIN
+                -- Không thể in lại nữa
+                SET @error = N'Đơn hàng đã được in đủ số lần cho phép (2 lần) và không thể in lại nữa';
+                SELECT @error AS error;
+                RETURN;
+            END
+        END
+    END
+    ELSE
+    BEGIN
+        -- In tất cả đơn hàng chưa in
+        --PRINT N'In tất cả đơn hàng chưa in...';
+        EXEC sp_reprint_order NULL;
+        UPDATE DbOrder 
+        SET ODPrint = 1, ODSuccess = 0, ODReadly = 1 
+        WHERE ODPrint = 0;
+    END
+END;

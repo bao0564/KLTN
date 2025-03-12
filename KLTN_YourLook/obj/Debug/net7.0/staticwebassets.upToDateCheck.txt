@@ -18,7 +18,6 @@ wwwroot\css\single_responsive.css
 wwwroot\css\single_styles.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
-wwwroot\fileupload\a413322a-7c18-4e84-b091-384636bf17b3.jpg
 wwwroot\icon\cart-shopping.svg
 wwwroot\icon\drop left.svg
 wwwroot\icon\dt.svg
@@ -144,27 +143,26 @@ wwwroot\js\ChoosColorSize.js
 wwwroot\js\contact_custom.js
 wwwroot\js\custom.js
 wwwroot\js\demo.js
-wwwroot\js\FavoriteProduct.js
 wwwroot\js\findprd.js
 wwwroot\js\findprd2.js
 wwwroot\js\imgmove.js
+wwwroot\js\index.js
 wwwroot\js\jquery.min.js
 wwwroot\js\jquery.min.map
 wwwroot\js\jquery-3.2.1.min.js
 wwwroot\js\Map.js
 wwwroot\js\move-ad.js
 wwwroot\js\payorder.js
-wwwroot\js\product-fls.js
-wwwroot\js\product-move.js
-wwwroot\js\productnew-move.js
-wwwroot\js\selectColol-Size.js
+wwwroot\js\shopingcart.js
 wwwroot\js\single_custom.js
 wwwroot\js\site.js
-wwwroot\js\swich.js
 wwwroot\js_admin\Admin_CreatProduct.js
 wwwroot\js_admin\Admin_Order.js
+wwwroot\js_admin\Admin_Product.js
+wwwroot\js_admin\Admin_Stock.js
 wwwroot\js_admin\Admin_UpdateProduct.js
 wwwroot\js_admin\get _date.js
+wwwroot\js_admin\ScrollSmooth.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css

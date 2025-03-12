@@ -135,8 +135,8 @@ namespace KLTN_YourLook.Controllers
                 int giamgiavalue = orderVoucher?.ValueVoucher ?? 0;
 				decimal giamgia = giamgiavalue > 0 ? (tongtien * giamgiavalue / 100) : 0; ;
 				var Giam = giamgia>0 ? giamgia.ToString("N0") + "VND" :"0";
-				decimal GiaCuoi = tongtien - giamgia + 20000;
-                decimal ship = 20000;
+                decimal ship = 0;
+				decimal GiaCuoi = tongtien - giamgia + ship;
 				decimal tongtiensanpham = GiaCuoi;
 				var emailkh = HttpContext.Session.GetString("userEmail");
                 var checkkh = HttpContext.Session.GetInt32("userId");

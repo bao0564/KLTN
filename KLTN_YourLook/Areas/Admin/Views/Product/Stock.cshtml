@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Stock";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="menu-cp">
+    <div class="cp0 ttu fs1_5">
+        Nhập hàng
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div class="flct mg">
+                <a asp-action="Product"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+        <div class="h-cp-mid-1">
+            <div class="flct">
+                <label class="control-label nw mg-lr" >Tải file:</label>
+                <input class="form-control mg-lr" type="file" id="fileStock" accept=".xlsx" />
+                <button class="nw but" id="uploadstock">Tải lên</button>
+            </div>
+        </div>
+        <div class="h-cp-mid fljct">
+            <table class="h-table" id="previewTable" style="width:95%">
+                <thead>
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Màu</th>
+                        <th>Size</th>
+                        <th>Số lượng</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thead>
+                <tbody id="previewTableBody">
+                </tbody>
+            </table> 
+        </div>
+    </div>
+</div>
+<script src="~/js_admin/admin_stock.js"></script>

@@ -100,7 +100,7 @@
                                 <div class="box-pay">
                                     <div class="pay-title">
                                         <span class="check-box">
-                                            <input type="checkbox" class="pay-checked" data-payid="@pay.PaymentId" data-payicon="@pay.Icon" data-payname="@pay.PaymentName" />
+                                            <input type="checkbox" class="pay-checked" data-payid="@pay.PaymentId" data-payicon="@pay.Icon" data-payname="@pay.PaymentName"/>
                                         </span>
                                         <div class="icon">
                                             <img src="@Url.Content("/icon/"+pay.Icon)" alt="">
@@ -152,8 +152,8 @@
                         {
                             <div class="box-cart" id="sp-@prd.IdSp">
                                 <div class="cart-container flspb">
-                                    <div class="check-box">
-                                        <input type="checkbox" class="cart-checkbox"data-quantity="@prd.ProductQuantity" data-idsp="@prd.IdSp" data-masp="@prd.MaSp" data-price="@prd.GiaLoai" data-total="@prd.Total" data-sizeid="@prd.SizeId" data-colorid="@prd.ColorId" data-img="@prd.AnhSp" data-name="@prd.TenSp" data-color="@prd.NameColor" data-size="@prd.NameSize" />
+                                    <div class="check-box data_checkbox">
+                                        <input type="checkbox" class="cart-checkbox" data-quantity="@prd.ProductQuantity" data-idsp="@prd.IdSp" data-masp="@prd.MaSp" data-price="@prd.GiaLoai" data-total="@prd.Total" data-sizeid="@prd.SizeId" data-colorid="@prd.ColorId" data-img="@prd.AnhSp" data-name="@prd.TenSp" data-color="@prd.NameColor" data-size="@prd.NameSize" />
                                     </div>
                                     <div class="box-img fl-center">
                                         <img src="@Url.Content("/img/" + prd.AnhSp)" alt="Product Image" />
@@ -270,5 +270,5 @@
         });
     </script>
 }
-<script src="../js/addtocart.js"></script>
+<script src="../js/shopingcart.js"></script>
 <script src="../js/address.js"></script>

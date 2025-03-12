@@ -194,9 +194,74 @@ i{
     display: flex;
     justify-content: center
 }
-/**/
-.btnXoaAnh i{
+.but:hover{
+    background-color:#d6815d;
+}
+.sticky_top{
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+/* Mini-map n?i ? g�c ph?i m�n h�nh */
+.mini-map {
+    position: fixed;
+    bottom: 5%;
+    right: 10px;
+    background-color: #00000000;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+    .mini-map ul {
+        list-style: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left:0;
+    }
+
+.mini-map ul li {
+    position: relative;
+    margin: 5px 0;
+    display: flex;
+    justify-content: end;
+}
+.mini-map ul li:hover{
+    background-color:#00000000;
+}
+.mini-map ul li a {
+    padding: 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+.mini-map ul li a i{
     padding:0;
+}
+.mini-map .title {
+    padding: 5px 10px;
+    display: none;
+    white-space: nowrap;
+    position: absolute;
+    left: -100px;
+    top: 0;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.mini-map li:hover .title {
+    display: block;
+}
+
+.mini-map ul li:hover a i {
+    transform: scale(1.5);
+    transition: 0.3s;
+}
+/**/
+.btnXoaAnh i {
+    padding: 0;
 }
 /*header*/
 .head_top {
@@ -832,4 +897,38 @@ input[type=checkbox]{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+/***/
+
+/*thoong baos msg*/
+.toastt {
+    position: fixed;
+    top: 10px;
+    right: 40%;
+    padding: 10px 20px;
+    opacity: 1 ;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.toastt.success {
+    border: 3px solid #FFFFFF;
+    border-radius: 10px;
+    background: #32ff7e;
+    color: #000;
+    box-shadow: 0 0 0 2px #05c46b;
+}
+
+.toastt.error {
+    border: 3px solid #FFFFFF;
+    border-radius: 10px;
+    background: #f44336; /* Màu đỏ cho lỗi */
+    color: #000;
+    box-shadow: 0 0 0 2px #fe4c50;
+    z-index: 1000;
+}
+.alert {
+    position: fixed !important;
+    top: 10px !important;
+    left: 45% !important;
 }
