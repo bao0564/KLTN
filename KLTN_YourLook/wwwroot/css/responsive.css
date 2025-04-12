@@ -82,9 +82,9 @@
 			margin: 5px 0;
 		}
 
-			.box-cart-pay .box-pay .title {
-				font-size: 14px;
-			}
+		.box-cart-pay .box-pay .title {
+			font-size: 14px;
+		}
 
 
 		.cart {
@@ -632,8 +632,6 @@
 }
 	/*7. 959px*/
 @media only screen and (max-width: 959px) {
-
-
 	.product-item {
 		width: 25%
 	}
@@ -697,6 +695,12 @@
 }
 	/*8. 880px*/
 @media only screen and (max-width: 880px) {
+	.goBack{
+		display:none;
+	}
+	.goBack_0{
+		display:block;
+	}
 	.toast {
 		right: 30%;
 	}
@@ -822,6 +826,20 @@
 }
 	/*9. 768px*/
 @media only screen and (max-width: 768px) {
+	
+	.crate_infor {/*trang đánh giá*/
+		display: block;
+	}
+	.crate_infor_right {
+		width: 100%
+	}
+	.crate_infor_left {
+		width: 100%;
+		margin:10px 0;
+	}
+	.crate_infor_img {
+		height: 150px;
+	}
 	.box-inf-cl-s .title_size {
 		padding-left: 3px;
 	}
@@ -1464,108 +1482,110 @@
 /*12. 480px*/
 @media only screen and (max-width: 480px) {
 
-		.order-history .product_price{
-			font-size:14px;
-		}
-		.best_sellers .container-flashsell {
-			max-width: 450px;
-		}
 
-		#List-prd-cart .box-cart {
-			padding: 0;
-		}
-
-		.flex-cart .bdrdu {
-			padding: 5px;
-			margin: 0 5px;
-		}
-
-		.body-cart .address-cart {
-			padding: 0;
-		}
-
-		.body-customer .product-item .product_name a {
-			font-size: 11px;
-		}
-
-		.body-customer .discount .product_info .product_price {
-			font-size: 11px;
-		}
-
-			.body-customer .discount .product_info .product_price span {
-				font-size: 10px;
-			}
-
-		.lst-address-ct h5 {
-			font-size: 12px;
-		}
-
-		.lst-address-ct div {
-			font-size: 11px;
-		}
-
-		.lst-address-ct .flct a {
-			padding: 5px;
-		}
-
-		.space-address {
-			padding: 0;
-		}
-
-		.box-inforcustomer {
-			width: 90%;
-		}
-		.container-flashsell .product_image-2 img {
-			min-height: 165px;
-			max-height: 165px;
-		}
-		.product_image-2 img {
-			min-height: 165px;
-			max-height: 165px;
-		}
-
-		.owl-stage {
-			width: 1400px !important;
-		}
-
-		.owl-item {
-			width: 140px !important;
-		}
-
-		.product_image img {
-			height: 180px;
-		}
-
-
-		.main_content .col {
-			padding: 0;
-		}
-
-		.btn-primary-prev {
-			top: 25%;
-		}
-
-		.btn-primary-next {
-			top: 25%;
-		}
-
-		/*.favorite {
-			font-size: 12px !important;
-			left: 15px;
-		}*/
-
-		.btn-primary-prev {
-			left: 10px;
-		}
-		.btn i{
-			font-size:15px;
-		}
-		/*.btn {
-			padding: 0.2rem 0.5rem
-		}*/
+	.order-history .product_price{
+		font-size:13px;
 	}
+	.best_sellers .container-flashsell {
+		max-width: 450px;
+	}
+
+	#List-prd-cart .box-cart {
+		padding: 0;
+	}
+
+	.flex-cart .bdrdu {
+		padding: 5px;
+		margin: 0 5px;
+	}
+
+	.body-cart .address-cart {
+		padding: 0;
+	}
+
+	.body-customer .product-item .product_name a {
+		font-size: 11px;
+	}
+
+	.body-customer .discount .product_info .product_price {
+		font-size: 11px;
+	}
+
+	.body-customer .discount .product_info .product_price span {
+		font-size: 10px;
+	}
+
+	.lst-address-ct h5 {
+		font-size: 12px;
+	}
+
+	.lst-address-ct div {
+		font-size: 11px;
+	}
+
+	.lst-address-ct .flct a {
+		padding: 5px;
+	}
+
+	.space-address {
+		padding: 0;
+	}
+
+	.box-inforcustomer {
+		width: 90%;
+	}
+	.container-flashsell .product_image-2 img {
+		min-height: 165px;
+		max-height: 165px;
+	}
+	.product_image-2 img {
+		min-height: 165px;
+		max-height: 165px;
+	}
+
+	.owl-stage {
+		width: 1400px !important;
+	}
+
+	.owl-item {
+		width: 140px !important;
+	}
+
+	.product_image img {
+		height: 180px;
+	}
+
+
+	.main_content .col {
+		padding: 0;
+	}
+
+	.btn-primary-prev {
+		top: 25%;
+	}
+
+	.btn-primary-next {
+		top: 25%;
+	}
+
+	/*.favorite {
+		font-size: 12px !important;
+		left: 15px;
+	}*/
+
+	.btn-primary-prev {
+		left: 10px;
+	}
+	.btn i{
+		font-size:15px;
+	}
+	/*.btn {
+		padding: 0.2rem 0.5rem
+	}*/
+}
 /*13. 479px*/
 @media only screen and (max-width: 479px) {
+	
 	.toast {
 		right: 20%;
 	}
@@ -1764,6 +1784,9 @@
 }
 /*14. 400px*/
 @media only screen and (max-width: 400px) {
+	div{
+		font-size:13px;
+	}
 	.new_arrivals_title {
 		padding:5px;
 	}
@@ -1853,6 +1876,13 @@
 		}
 	}
 @media (max-width: 375px) {
+	.order-history .bdrdu {
+		padding: 0px 5px;
+		margin: 0 5px;
+	}
+	.cart-container .box-img {
+		width: auto;
+	}
 	.box-customer h4 {
 		font-size: 17px;
 	}

@@ -174,8 +174,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>amuqu6b1az</Fingerprint>
-      <Integrity>fjwib1Q/w+vloQ5RyASh3wKZDiJ3DiYHOA2RheYkqz0=</Integrity>
+      <Fingerprint>nzugbo72a0</Fingerprint>
+      <Integrity>HcRK062TyX+qKO2NfdsuFdlYdFaOS/zsMSR64SIhmbc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\categories_responsive.css'))</OriginalItemSpec>
@@ -246,8 +246,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>2d2qfao3el</Fingerprint>
-      <Integrity>dqWjfiY8phVp8JfC3Z2FPUuBjgwAlubFX6d6JEQfyvM=</Integrity>
+      <Fingerprint>yjwr3o93ok</Fingerprint>
+      <Integrity>co9FUaQUAESIsYDhCs2pMicXGAFKrskBKAr48yl0bgU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\cssAdmin.css'))</OriginalItemSpec>
@@ -264,8 +264,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>cb9t0k8cyb</Fingerprint>
-      <Integrity>mNsE1YaDIwqHqY20Av9kD5xua1rPZ1E4jF21BXFrxyE=</Integrity>
+      <Fingerprint>5hzxo21ifl</Fingerprint>
+      <Integrity>2SGXuoSk/g5aghQhDj89HEZOM78RRSyM4MVq3F9Ut0o=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\main_styles.css'))</OriginalItemSpec>
@@ -282,8 +282,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>rdu8s4zi0q</Fingerprint>
-      <Integrity>MdjJyEQJIvPlggci2SV4ifdhCkv8Vy3YfRUOecz9pgY=</Integrity>
+      <Fingerprint>ds54vssodc</Fingerprint>
+      <Integrity>s9rf5zWR8OWrSh3DoWHswXxH4DznFlX4kYZ8xZ6BYyU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\responsive.css'))</OriginalItemSpec>
@@ -300,8 +300,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>6hpnxt21n1</Fingerprint>
-      <Integrity>RmqVJtXjXOXy+Sdn35uUaAdQ1XGWq/yR7+a4lNf/+rY=</Integrity>
+      <Fingerprint>cn1gl6o0xy</Fingerprint>
+      <Integrity>WPnnz/x/BdURrXeGN6qtOVuooey8SdFHx7HtdG9KlUM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\single_responsive.css'))</OriginalItemSpec>
@@ -359,6 +359,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\fileupload\cf961b6c-c8f7-4839-8345-a52c71c98099.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>KLTN_YourLook</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/KLTN_YourLook</BasePath>
+      <RelativePath>fileupload/cf961b6c-c8f7-4839-8345-a52c71c98099.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4f0w5jmyre</Fingerprint>
+      <Integrity>4AScP6A78cyYuhlm61JyWK6j2BaB6Ew2b6U0ucJ1gx4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\fileupload\cf961b6c-c8f7-4839-8345-a52c71c98099.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\icon\cart-shopping.svg'))">
       <SourceType>Package</SourceType>
@@ -2538,24 +2556,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\categories_custom.js'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ChoosColorSize.js'))">
-      <SourceType>Package</SourceType>
-      <SourceId>KLTN_YourLook</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/KLTN_YourLook</BasePath>
-      <RelativePath>js/ChoosColorSize.js</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>kx9ta2gtni</Fingerprint>
-      <Integrity>iKn3gP6H69gGGyTzt0Ap9TXvsQS2BI0apK3uAZLJhn0=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ChoosColorSize.js'))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\contact_custom.js'))">
       <SourceType>Package</SourceType>
       <SourceId>KLTN_YourLook</SourceId>
@@ -2591,24 +2591,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom.js'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\demo.js'))">
-      <SourceType>Package</SourceType>
-      <SourceId>KLTN_YourLook</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/KLTN_YourLook</BasePath>
-      <RelativePath>js/demo.js</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7cf2ofi1jj</Fingerprint>
-      <Integrity>2TGrbaUC2DvXbmydrx66wgwSssZcSggufGaHIzRusZQ=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\demo.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\findprd.js'))">
       <SourceType>Package</SourceType>
@@ -2646,23 +2628,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\findprd2.js'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\imgmove.js'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\goback.js'))">
       <SourceType>Package</SourceType>
       <SourceId>KLTN_YourLook</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/KLTN_YourLook</BasePath>
-      <RelativePath>js/imgmove.js</RelativePath>
+      <RelativePath>js/goback.js</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>scm39y660t</Fingerprint>
-      <Integrity>7ORmvKhjXcFuUwBaMKZaVsDfAECSTBUVRpycwPxzv40=</Integrity>
+      <Fingerprint>q4gsp5tekh</Fingerprint>
+      <Integrity>qn1+WdVdnxMrgvsrw039QLFdJz1O/4lQ4RymzjRssVo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\imgmove.js'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\goback.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\index.js'))">
       <SourceType>Package</SourceType>
@@ -2748,8 +2730,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>vjdn1gkrwv</Fingerprint>
-      <Integrity>W4V+YsSTmdY3PWJvWbMyYGJ/UzlQdcRnbB/+dpN9zsI=</Integrity>
+      <Fingerprint>qiqxqgj1q2</Fingerprint>
+      <Integrity>fvGElN8DGary5nl2EQu4aM3j56rQQuf1iFe/OVaQfmE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Map.js'))</OriginalItemSpec>
@@ -2766,8 +2748,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>mmlzir0x2n</Fingerprint>
-      <Integrity>PjY6r7nhbcZFbI7RufBr5D/8K6+A+N/JX2GmfhMf7DE=</Integrity>
+      <Fingerprint>gut5twqath</Fingerprint>
+      <Integrity>WANXFQgu16kVmYDh7Gjls9lyitnb8COBeqFYH4EKvYw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\move-ad.js'))</OriginalItemSpec>
@@ -2790,6 +2772,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\payorder.js'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\productdetail.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>KLTN_YourLook</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/KLTN_YourLook</BasePath>
+      <RelativePath>js/productdetail.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>7kqzh6tyqw</Fingerprint>
+      <Integrity>N0owyaI2z55N1B/6yKNAD8aSeadwEc8d7nyN3AeSOyA=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\productdetail.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\shopingcart.js'))">
       <SourceType>Package</SourceType>
       <SourceId>KLTN_YourLook</SourceId>
@@ -2802,8 +2802,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>saop8ayp8t</Fingerprint>
-      <Integrity>RBfKb7kApp93VAMDNeUcQ9T75Qr+kS1Jk+Ue40HE9z8=</Integrity>
+      <Fingerprint>dqrjz7kyr7</Fingerprint>
+      <Integrity>JVKyotVeTIdZUQxtHRLmqpcV8tmXbDk1v5MK5cmu1Lo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\shopingcart.js'))</OriginalItemSpec>
@@ -2874,8 +2874,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wx5r2wx90u</Fingerprint>
-      <Integrity>1Gg0c5prkMoohFs7nE3W+1/nM4E9nqqw9JiEdAfEpuo=</Integrity>
+      <Fingerprint>cjmg3w58zy</Fingerprint>
+      <Integrity>6Haq1Qu29xaijImya1vb3c6C0f84IZ4cyLKRt9HHU5o=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js_admin\Admin_Order.js'))</OriginalItemSpec>

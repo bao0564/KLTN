@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\fileupload\\cf961b6c-c8f7-4839-8345-a52c71c98099.jpg",
+      "PackagePath": "staticwebassets\\fileupload\\cf961b6c-c8f7-4839-8345-a52c71c98099.jpg"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\Facebook.png",
       "PackagePath": "staticwebassets\\icon\\Facebook.png"
     },
@@ -557,10 +561,6 @@
       "PackagePath": "staticwebassets\\img\\f628cd86-958a-49c7-aa3e-664bc22cf9ae.png"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\ChoosColorSize.js",
-      "PackagePath": "staticwebassets\\js\\ChoosColorSize.js"
-    },
-    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\Map.js",
       "PackagePath": "staticwebassets\\js\\Map.js"
     },
@@ -585,10 +585,6 @@
       "PackagePath": "staticwebassets\\js\\custom.js"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\demo.js",
-      "PackagePath": "staticwebassets\\js\\demo.js"
-    },
-    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\findprd.js",
       "PackagePath": "staticwebassets\\js\\findprd.js"
     },
@@ -597,8 +593,8 @@
       "PackagePath": "staticwebassets\\js\\findprd2.js"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\imgmove.js",
-      "PackagePath": "staticwebassets\\js\\imgmove.js"
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\goback.js",
+      "PackagePath": "staticwebassets\\js\\goback.js"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\index.js",
@@ -623,6 +619,10 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\payorder.js",
       "PackagePath": "staticwebassets\\js\\payorder.js"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\productdetail.js",
+      "PackagePath": "staticwebassets\\js\\productdetail.js"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\shopingcart.js",

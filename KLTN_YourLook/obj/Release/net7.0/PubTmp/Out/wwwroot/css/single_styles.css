@@ -124,7 +124,10 @@ input[type="number"] {
 		border: none;
 		margin-left: 10px;
 	}
-	/*********************************
+	.color-options{
+		
+	}
+/*********************************
 7. Tabs
 *********************************/
 .tabs_section_container {

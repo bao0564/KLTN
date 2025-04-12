@@ -181,7 +181,7 @@ namespace KLTN_YourLook.Repository_YL
             });
             return lst.ToList();
         }
-        //người dùng đánh giá đơn hàng 
+        //những Sản phẩm cần đánh giá trong đơn hàng  
         public async Task<List<Product_Rating>> Product_Rating(int iddh )
         {
             if (_dbConnection == null)

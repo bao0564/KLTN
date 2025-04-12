@@ -386,7 +386,7 @@ create procedure [dbo].[update_user]
 as
 begin
 	begin try
-		IF EXISTS (SELECT 1 FROM DbCustomer WHERE Sdt = @sdt)
+		IF EXISTS (SELECT 1 FROM DbCustomer WHERE Sdt = @sdt AND IdKh <> @idkh)
 			BEGIN
 				SET @error = N'Số điện thoại này đã được sử dụng!';
 				RETURN;
@@ -580,5 +580,20 @@ as
 begin 	
 	insert into DbRating (IdDh,IdSp,IdKh,Rate,ColorSize,DanhGia,CreateDate) 
 		values (@iddh,@idsp,@idkh,@rate,@colorsize,@danhgia,GETDATE())	
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Hiển thị đánh giá sản phẩm trong chi tiết sản phẩm
+--exec sp_rating_product @idsp=28
+--drop procedure sp_rating_product
+create procedure [dbo].[sp_rating_product]
+	@idsp int
+as
+begin
+	select cus.Img, cus.TenKh, rat.CreateDate, rat.DanhGia, rat.Rate, rat.ColorSize
+	from DbRating rat 
+	join DbCustomer cus on rat.IdKh=cus.IdKh
+	where rat.IdSp=@idsp
 end;
 use [KLTN];

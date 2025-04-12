@@ -3,16 +3,15 @@
     ViewData["Title"] = "ProductDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container single_product_container">
 	<div class="row">
 		<div class="col">
 			<div class="breadcrumbs d-flex flex-row align-items-center">
-				@* <ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="categories.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
-				<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Single Product</a></li>
-				</ul> *@
+				<div style="height:40px;position:relative">
+					<div class="" style="position:absolute;bottom:0">
+						<button onclick="goBack()" style="border:none;background-color:#ffffff00"><i class="fa-solid fa-chevron-left" style="color: #111212;"></i></button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -52,7 +51,7 @@
 					@if (Model.PriceMin != Model.PriceMax)
 					{
 						<div class="flct original_price "><h5 id="price">@string.Format("{0:N0}", Model.PriceMax)</h5></div>
-                        <div class="flct product_price"><h3 id="type_price">@string.Format("{0:N0}", Model.PriceMin)</h3>
+                        <div class="flct product_price"><h3 id="type_price" data-price="@Model.PriceMin">@string.Format("{0:N0}", Model.PriceMin)</h3>
 
                         </div>
 					}
@@ -105,7 +104,7 @@
 						}
 					</div>
 				</div>
-				<div id="type_quantity" style="margin-top:20px;text-align:center;color:red"></div>
+				<div id="msg" style="margin-top:20px;text-align:center;color:red"></div>
 				<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 					<div class="quanti-box">
 						<span style="white-space: nowrap;">Số Lượng:</span>
@@ -247,55 +246,13 @@
 				<div id="tab_3" class="tab_container">
 					<div class="row">
 						<div class="col-lg-6 reviews_col">
-							<div class="tab_title reviews_title">
-								<h4>Reviews (2)</h4>
-							</div>
-							<div class="user_review_container d-flex flex-column flex-sm-row">
-								<div class="user">
-									<div class="user_pic"></div>
-									<div class="user_rating">
-										<ul class="star_rating">
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-										</ul>
-									</div>
-								</div>
-								<div class="review">
-									<div class="review_date">27 Aug 2016</div>
-									<div class="user_name">Brandon William</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
-
 							<!-- User Review -->
-
-							<div class="user_review_container d-flex flex-column flex-sm-row">
-								<div class="user">
-									<div class="user_pic"></div>
-									<div class="user_rating">
-										<ul class="star_rating">
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-										</ul>
-									</div>
-								</div>
-								<div class="review">
-									<div class="review_date">27 Aug 2016</div>
-									<div class="user_name">Brandon William</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
+							@await Component.InvokeAsync("View_Reviews", new { idsp = Model.IdSp })
 						</div>
 
 						<!-- Add Review -->
 
-						<div class="col-lg-6 add_review_col">
+						@* <div class="col-lg-6 add_review_col">
 
 							<div class="add_review">
 								<form id="review_form" action="post">
@@ -321,7 +278,7 @@
 								</form>
 							</div>
 
-						</div>
+						</div> *@
 
 					</div>
 				</div>
@@ -376,31 +333,28 @@
 			cursor: not-allowed;
 		}
 	</style>
-	<script>
-		function OpLable() {
-			document.getElementById("form-yc-login").style.display = "block";
-			document.getElementById("form-register").style.display = "none";
-		}
-		function ClLable() {
-			document.getElementById("form-yc-login").style.display = "none";
-		}
-		//đóng mở form chọn địa chỉ
-		function openAD() {
-			document.getElementById("form-address").style.display = "block";
-		}
-		function closeAD() {
-			document.getElementById("form-address").style.display = "none";
-		}
-	</script>
 }
 
 @section scripts {
 	<script>
 		// Dữ liệu chi tiết sản phẩm từ Razor
 		window.productDetails = @Html.Raw(Json.Serialize(Model.Detail));
+		// function OpLable() {
+		// 	document.getElementById("form-yc-login").style.display = "block";
+		// 	document.getElementById("form-register").style.display = "none";
+		// }
+		// function ClLable() {
+		// 	document.getElementById("form-yc-login").style.display = "none";
+		// }
+		// //đóng mở form chọn địa chỉ
+		// function openAD() {
+		// 	document.getElementById("form-address").style.display = "block";
+		// }
+		// function closeAD() {
+		// 	document.getElementById("form-address").style.display = "none";
+		// }
 	</script>
-	<script src="~/js/imgmove.js"></script>
+	<script src="~/js/productdetail.js"></script>
 	<script src="~/js/single_custom.js"></script>
-	<script src="../js/chooscolorsize.js"></script>
 	<script src="../js/addtocart.js"></script>
 }

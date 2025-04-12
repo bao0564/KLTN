@@ -25,12 +25,14 @@ namespace Data.Models
         [StringLength(50)]
         public string Email { get; set; }
         [DataType(DataType.Password)]
-        [StringLength(25)]
+        [StringLength(255)]
         public string? Passwords { get; set; }
         [Display(Name = "Confirm password")]
         [Compare("Passwords", ErrorMessage = "Mật khẩu không đúng.")]
-        [StringLength(25)]
+        [StringLength(255)]
         public string? ConfirmPasswords { get; set; }
+        [StringLength(15)]
+        public string? ForgotPasword { get; set; }
         public bool IsExternalAccount { get; set; }
 
         public virtual ICollection<DbOrder> orders { get; set; } = new List<DbOrder>();//1 user có nhiều đơn hàng

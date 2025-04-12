@@ -14,12 +14,12 @@
                 <a asp-action="Category"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
-        @if (TempData["Error"] != null)
+        @* @if (TempData["Error"] != null)
         {
             <div class="alert alert-danger" >
                 @TempData["Error"]
             </div>
-        }
+        } *@
         @using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <input type="hidden" asp-for="IdDm" />

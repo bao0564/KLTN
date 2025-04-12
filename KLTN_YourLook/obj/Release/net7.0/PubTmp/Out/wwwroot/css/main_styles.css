@@ -54,6 +54,18 @@ COLOR PALETTE
 /*********************************
 2. Body and some general stuff
 *********************************/
+
+.fs1 {
+	font-size: 1rem;
+}
+
+.fs1_5 {
+	font-size: 1.5rem;
+}
+
+.fs2 {
+	font-size: 2rem;
+}
 .pssf {
 	position: fixed;
 	top: 50%;
@@ -61,6 +73,9 @@ COLOR PALETTE
 	transform: translate(-53%,-60%);
 }
 
+.talg {
+	text-align: center;
+}
 .fl {
 	display: flex;
 }
@@ -97,22 +112,40 @@ COLOR PALETTE
 	overflow-y: hidden;
 	overflow-x: auto;
 }
+.flscr_y {
+	display: -webkit-flex;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
 
 .scr {
 	overflow: scroll;
 }
+.scr_x{
+	overflow-x:auto;
+	overflow-y:hidden;
+}
 
-.flscr::-webkit-scrollbar, .scr::-webkit-scrollbar {
+.scr_y {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.flscr::-webkit-scrollbar, .flscr_y::-webkit-scrollbar,
+.scr_y::-webkit-scrollbar,
+.fl::-webkit-scrollbar, .pay-list::-webkit-scrollbar,
+.order-cart::-webkit-scrollbar, .voucher-list::-webkit-scrollbar,
+#payname::-webkit-scrollbar {
 	display: none;
 }
 .bd {
 	border: 1px solid var(--gray-a);
 }
 .bd-t {
-	/*border-bottom:1px solid var(--gray-a);*/
 	border-top: 1px solid var(--gray-a);
 }
-
+.bd-b {
+	border-bottom:1px solid var(--gray-a);
+}
 .bdrdu {
 	padding: 5px 10px;
 	margin: 0 10px;
@@ -151,7 +184,6 @@ COLOR PALETTE
 .ttu {
 	text-transform: uppercase;
 	font-weight: 600;
-	margin-bottom: 10px;
 }
 
 .no-scrollbar {
@@ -420,7 +452,7 @@ section {
 
 		.fa-login .box-login.box {
 			min-width: 600px;
-			height: 300px;
+			/*height: 300px;*/
 		}
 
 .close-login {
@@ -809,14 +841,16 @@ section {
 	padding-right: 10px;
 }
 
-	.top_nav_right ul {
-		float: right;
-	}
+.top_nav_right ul {
+	float: right;
+}
 
-	.top_nav_right a {
-		line-height: 50px;
-	}
-
+.top_nav_right a {
+	line-height: 50px;
+}
+.top_nav_right .notification_list a {
+	line-height: 10px;
+}
 .top_nav_menu {
 	display: flex;
 	height: 50px;
@@ -834,7 +868,7 @@ section {
 	display: inline-block;
 	position: relative;
 	min-width: 50px;
-	padding-right: 20px;
+	padding:0 20px;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -869,7 +903,7 @@ section {
 .currency_selection {
 	display: block;
 	position: absolute;
-	right: 0;
+	right: 10px;
 	top: 120%;
 	margin: 0;
 	background: #FFFFFF;
@@ -959,37 +993,35 @@ section {
 	pointer-events: none; /* Ng?n ch?n s? ki?n chu?t khi kh�ng hover */
 }
 
-	.language_selection li {
-		padding-left: 10px;
-		padding-right: 10px;
-		line-height: 50px;
+.language_selection li {
+	padding-left: 10px;
+	padding-right: 10px;
+	line-height: 50px;
+}
+
+.language_selection li a {
+	display: block;
+	color: #232530;
+	border-bottom: solid 1px #dddddd;
+	font-size: 13px;
+	-webkit-transition: opacity 0.3s ease;
+	-moz-transition: opacity 0.3s ease;
+	-ms-transition: opacity 0.3s ease;
+	-o-transition: opacity 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+	.language_selection li a:hover {
+		color: #b5aec4;
 	}
 
-		.language_selection li a {
-			display: block;
-			color: #232530;
-			border-bottom: solid 1px #dddddd;
-			font-size: 13px;
-			-webkit-transition: opacity 0.3s ease;
-			-moz-transition: opacity 0.3s ease;
-			-ms-transition: opacity 0.3s ease;
-			-o-transition: opacity 0.3s ease;
-			transition: all 0.3s ease;
-		}
-
-			.language_selection li a:hover {
-				color: #b5aec4;
-			}
-
-		.language_selection li:last-child a {
-			border-bottom: none;
-		}
-
+.language_selection li:last-child a {
+	border-bottom: none;
+}
 /*********************************
 3.3 Account
 *********************************/
-
-.account {
+.account, .notification {
 	display: inline-block;
 	position: relative;
 	min-width: 50px;
@@ -998,24 +1030,16 @@ section {
 	vertical-align: middle;
 }
 
-	.account > a {
-		display: block;
-		color: #000000;
-		font-weight: 400;
-		font-size: 13px;
-	}
+.account > a, .notification > a {
+	display: block;
+	color: #000000;
+	font-weight: 400;
+	font-size: 13px;
+}
 
-		.account > a > i {
-			margin-left: 8px;
-		}
-
-	.account:hover .account_selection,
-	.account_selection:hover {
-		visibility: visible;
-		opacity: 1;
-		top: 100%;
-		pointer-events: auto;
-	}
+.account > a > i, .notification > a > i {
+	margin-left: 8px;
+}
 
 .account_selection {
 	display: block;
@@ -1031,37 +1055,67 @@ section {
 	pointer-events: none;
 	transition: all 0.3s ease;
 }
+.notification_list {
+	display: block;
+	position: absolute;
+	background: #FFFFFF;
+	right: -10px;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 1;
+	width:300px;
+	box-shadow: 0 0 25px rgba(63, 78, 100, 0.15);
+	transition: all 0.3s ease;
+}
+.account:hover .account_selection,
+.account_selection:hover {
+	visibility: visible;
+	opacity: 1;
+	top: 100%;
+	pointer-events: auto;
+}
+.notification:hover .notification_list,
+.notification_list:hover {
+	visibility: visible;
+	opacity: 1;
+}
+.account_selection li {
+	padding-left: 10px;
+	padding-right: 10px;
+	line-height: 50px;
+}
+.notification_list .notification_content a {
+	word-break: break-word;
+	display: inline-block; 
+	/*overflow: hidden;
+	text-overflow: ellipsis;*/
+}
+.notification_list li a {
+}
+.account_selection li a {
+	white-space: nowrap;
+	display: block;
+	color: #232530;
+	border-bottom: solid 1px #dddddd;
+	font-size: 14px;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
 
-	.account_selection li {
-		padding-left: 10px;
-		padding-right: 10px;
-		line-height: 50px;
-	}
+.account_selection li a:hover {
+	color: #b5aec4;
+}
 
-		.account_selection li a {
-			white-space: nowrap;
-			display: block;
-			color: #232530;
-			border-bottom: solid 1px #dddddd;
-			font-size: 14px;
-			-webkit-transition: all 0.3s ease;
-			-moz-transition: all 0.3s ease;
-			-ms-transition: all 0.3s ease;
-			-o-transition: all 0.3s ease;
-			transition: all 0.3s ease;
-		}
+.account_selection li:last-child a {
+	border-bottom: none;
+}
 
-			.account_selection li a:hover {
-				color: #b5aec4;
-			}
-
-		.account_selection li:last-child a {
-			border-bottom: none;
-		}
-
-		.account_selection li a i {
-			margin-right: 10px;
-		}
+.account_selection li a i {
+	margin-right: 10px;
+}
 
 /*********************************
 3.4 Main Navigation
@@ -1537,7 +1591,7 @@ section {
 	}
 
 .btn {
-	background-color: var(--gray-a);
+	/*background-color: var(--gray-a);*/
 	border: none;
 	max-height: 45px;
 }
@@ -1728,12 +1782,16 @@ section {
 	left: -10px;
 	top: 40%;
 	background-color: #ffffff7a;
+	display: flex;
+	align-items: center;
 }
 
 .container-flashsell .btn-primary-next {
 	right: -10px;
 	top: 40%;
 	background-color: #ffffff7a;
+	display:flex;
+	align-items:center;
 }
 
 .btn-primary-prev {
@@ -1744,7 +1802,7 @@ section {
 .btn-primary-next {
 	position: absolute;
 	top: 40%;
-	right: 10px
+	right: 10px;
 }
 
 .product-grid {
@@ -1756,7 +1814,7 @@ section {
 	display: flex;
 	/*overflow-x:scroll;*/
 	/*overflow-y:auto;*/
-	margin: 10px;
+	margin: 10px 0;
 	transition: transform 0.5s ease;
 	width: 100%;
 }
@@ -1798,10 +1856,13 @@ section {
 	}
 
 .product-item {
+	width:20%;
 	height: 380px;
 	cursor: pointer;
 }
-
+.favorite i {
+	font-size: 25px;
+}
 	.product-item::after {
 		display: block;
 		position: absolute;
@@ -1840,19 +1901,24 @@ section {
 }
 
 .product_image-2 {
-	position: relative;
 }
 
-	.product_image-2 img {
-		width: 100%;
-	}
-
-.product_image img {
-	/*max-height:370px;*/
+.product_image-2 img {
 	width: 100%;
 	position: relative;
 }
 
+.product_image img {
+	width: 100%;
+	position: relative;
+}
+.box-inf-cl-s .title{
+	padding:10px;
+}
+.box-inf-cl-s .title_size {
+	padding-left: 5%;
+	margin-bottom: 10px;
+}
 .product_image:hover .box-inf-cl-s {
 	opacity: 1;
 	visibility: visible;
@@ -1935,14 +2001,14 @@ section {
 	margin-top: 27px;
 }
 
-	.product_name a {
-		color: #1e1e27;
-		line-height: 20px;
-	}
+.product_name a {
+	color: #1e1e27;
+	line-height: 20px;
+}
 
-	.product_name:hover a {
-		color: #b5aec4;
-	}
+.product_name:hover a {
+	color: #b5aec4;
+}
 
 .discount .product_info .product_price {
 	font-size: 14px;
@@ -1957,14 +2023,19 @@ section {
 	font-family: var(--font-1);
 }
 
-	.product_price span {
-		font-size: 14px;
-		margin-left: 10px;
-		color: #b5aec4;
-		text-decoration: line-through;
-		font-family: var(--font-1);
-	}
+.product_price span {
+	font-size: 14px;
+	margin-left: 10px;
+	color: #b5aec4;
+	text-decoration: line-through;
+	font-family: var(--font-1);
+}
 
+.product_price_od {
+	margin-bottom: 0;
+	display: flex;
+	justify-content: space-between;
+}
 .product_bubble {
 	position: absolute;
 	top: -10px;
@@ -1974,11 +2045,11 @@ section {
 	text-transform: uppercase;
 }
 
-	.product_bubble span {
-		font-size: 13px;
-		font-weight: 600;
-		color: #FFFFFF;
-	}
+.product_bubble span {
+	font-size: 13px;
+	font-weight: 600;
+	color: #FFFFFF;
+}
 
 .product_bubble_right::after {
 	content: ' ';
@@ -2074,7 +2145,6 @@ section {
 }
 
 .deal_ofthe_week_img {
-	height: 540px;
 	max-width: 50%;
 	min-width: 50%;
 }
@@ -2854,22 +2924,20 @@ section {
 	justify-content: center;
 	margin-bottom: 50px;
 }
-
 .body-customer {
 	display: flex;
 	flex-wrap: wrap;
 }
-
-	.body-customer .inf-customer {
-		width: 70%;
-		padding: 75px 50px;
-		position: relative;
-		transition: width 0.3s ease;
-	}
+.body-customer .inf-customer {
+	width: 70%;
+	padding: 75px 50px;
+	position: relative;
+	transition: width 0.3s ease;
+}
 
 .inf-customer .box-customer {
 	background-color: #fff;
-	max-height: 750px;
+	max-height: 410px;
 	min-height: 400px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -2996,12 +3064,8 @@ section {
 	margin-top: 10px;
 }
 
-.product_price {
-	margin-bottom: 0;
-}
 
 .deal_ofthe_week_img {
-	height: 400px;
 }
 
 .timer {
@@ -3119,32 +3183,37 @@ section {
 	padding-left: 0px;
 }
 /*thoong baos msg*/
-.toast {
+.toastt {
 	position: fixed;
 	top: 10px;
 	right: 40%;
 	padding: 10px 20px;
 	opacity: 1;
 	transition: opacity 0.5s ease;
-	z-index: 1000;
+	z-index: 2000;
 }
 
-	.toast.success {
-		border: 3px solid #FFFFFF;
-		border-radius: 10px;
-		background: #32ff7e;
-		color: #000;
-		box-shadow: 0 0 0 2px #05c46b;
-	}
+.toastt.success {
+	border: 3px solid #FFFFFF;
+	border-radius: 10px;
+	background: #32ff7e;
+	color: #000;
+	box-shadow: 0 0 0 2px #05c46b;
+}
 
-	.toast.error {
-		border: 3px solid #FFFFFF;
-		border-radius: 10px;
-		background: #f44336; /* Màu đỏ cho lỗi */
-		color: #000;
-		box-shadow: 0 0 0 2px #fe4c50;
-	}
+.toastt.error {
+	border: 3px solid #FFFFFF;
+	border-radius: 10px;
+	background: #f44336; /* Màu đỏ cho lỗi */
+	color: #000;
+	box-shadow: 0 0 0 2px #fe4c50;
+}
 
+.alert {
+	position: fixed !important;
+	top: 10px !important;
+	left: 45% !important;
+}
 /*ph�n trang*/
 .pagination {
 	display: flex;
@@ -3181,7 +3250,7 @@ section {
 	margin-top: 5px;
 	margin-bottom: 30px;
 }
-/*l?ch s? mua h�ng*/
+/*lịch sử mua hàng*/
 .order-history {
 	padding-bottom: 20px;
 }
@@ -3189,3 +3258,29 @@ section {
 	.order-history p {
 		color: #000 !important;
 	}
+	/*thông báo lỗi / thành công*/
+.msg_error {
+	position: absolute;
+	top: 20px;
+	left: 45%;
+	z-index: 100
+}
+/*trang đánh giá*/
+.crate_infor{
+	display:flex;
+}
+.crate_infor_right {
+	width: 50%
+}
+.crate_infor_left {
+	width: 50%;
+	background-color: #fff
+}
+.crate_infor_img {
+	height: 200px;
+}
+/***/
+
+.goBack_0 {
+	display: none;
+}

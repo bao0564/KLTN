@@ -1,9 +1,0 @@
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.csproj.AssemblyReference.cache
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.GeneratedMSBuildEditorConfig.editorconfig
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.AssemblyInfoInputs.cache
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.AssemblyInfo.cs
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.csproj.CoreCompileInputs.cache
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.MvcApplicationPartsAssemblyInfo.cache
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.RazorAssemblyInfo.cache
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.RazorAssemblyInfo.cs
-C:\ShopYourLook\KLTN_YourLook\obj\Release\net7.0\win-x86\KLTN_YourLook.sourcelink.json

@@ -45,14 +45,23 @@
                 }
             </div>
 		</div>
-        <div style="position:absolute;top: 5px;left:45%">
-            @if (TempData["Success"] != null)
-            {
-                <div class="alert alert-success" style="z-index:10">
+        <!-- thông báo -->
+        @if (TempData["Success"] != null)
+        {
+            <div class="boxmess fljct">
+                <div class="alert alert-success">
                     @TempData["Success"]
                 </div>
-            }
-        </div>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="boxmess fljct">
+                <div class="alert alert-danger">
+                    @TempData["Error"]
+                </div>
+            </div>
+        }
         <div class="menu">
             <div class="menu_ct">
                 <ul style="padding: 0;">

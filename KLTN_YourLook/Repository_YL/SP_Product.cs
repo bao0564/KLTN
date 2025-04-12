@@ -213,5 +213,15 @@ namespace KLTN_YourLook.Repository_YL
             var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("view_product_suggest", new {idsp=idsp},commandType:CommandType.StoredProcedure);
             return MapToViewAllDetails(lstraw);
         }
+		//hiển thị đánh giá của khách hàng cho sản phẩm
+		public async Task<List<ViewRattingProduct>> ViewRattings(int idsp)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+			var lst= await _dbConnection.QueryAsync<ViewRattingProduct>("sp_rating_product", new {idsp=idsp}, commandType:CommandType.StoredProcedure);
+			return lst.ToList();
+        }
     }
 }

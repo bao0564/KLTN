@@ -85,8 +85,8 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\fileupload\\a413322a-7c18-4e84-b091-384636bf17b3.jpg",
-      "PackagePath": "staticwebassets\\fileupload\\a413322a-7c18-4e84-b091-384636bf17b3.jpg"
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\fileupload\\cf961b6c-c8f7-4839-8345-a52c71c98099.jpg",
+      "PackagePath": "staticwebassets\\fileupload\\cf961b6c-c8f7-4839-8345-a52c71c98099.jpg"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\icon\\Facebook.png",
@@ -561,14 +561,6 @@
       "PackagePath": "staticwebassets\\img\\f628cd86-958a-49c7-aa3e-664bc22cf9ae.png"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\ChoosColorSize.js",
-      "PackagePath": "staticwebassets\\js\\ChoosColorSize.js"
-    },
-    {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\FavoriteProduct.js",
-      "PackagePath": "staticwebassets\\js\\FavoriteProduct.js"
-    },
-    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\Map.js",
       "PackagePath": "staticwebassets\\js\\Map.js"
     },
@@ -593,10 +585,6 @@
       "PackagePath": "staticwebassets\\js\\custom.js"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\demo.js",
-      "PackagePath": "staticwebassets\\js\\demo.js"
-    },
-    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\findprd.js",
       "PackagePath": "staticwebassets\\js\\findprd.js"
     },
@@ -605,8 +593,12 @@
       "PackagePath": "staticwebassets\\js\\findprd2.js"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\imgmove.js",
-      "PackagePath": "staticwebassets\\js\\imgmove.js"
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\goback.js",
+      "PackagePath": "staticwebassets\\js\\goback.js"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\index.js",
+      "PackagePath": "staticwebassets\\js\\index.js"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\jquery-3.2.1.min.js",
@@ -629,20 +621,12 @@
       "PackagePath": "staticwebassets\\js\\payorder.js"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\product-fls.js",
-      "PackagePath": "staticwebassets\\js\\product-fls.js"
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\productdetail.js",
+      "PackagePath": "staticwebassets\\js\\productdetail.js"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\product-move.js",
-      "PackagePath": "staticwebassets\\js\\product-move.js"
-    },
-    {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\productnew-move.js",
-      "PackagePath": "staticwebassets\\js\\productnew-move.js"
-    },
-    {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\selectColol-Size.js",
-      "PackagePath": "staticwebassets\\js\\selectColol-Size.js"
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\shopingcart.js",
+      "PackagePath": "staticwebassets\\js\\shopingcart.js"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\single_custom.js",
@@ -653,10 +637,6 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\swich.js",
-      "PackagePath": "staticwebassets\\js\\swich.js"
-    },
-    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_CreatProduct.js",
       "PackagePath": "staticwebassets\\js_admin\\Admin_CreatProduct.js"
     },
@@ -665,8 +645,20 @@
       "PackagePath": "staticwebassets\\js_admin\\Admin_Order.js"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Product.js",
+      "PackagePath": "staticwebassets\\js_admin\\Admin_Product.js"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Stock.js",
+      "PackagePath": "staticwebassets\\js_admin\\Admin_Stock.js"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_UpdateProduct.js",
       "PackagePath": "staticwebassets\\js_admin\\Admin_UpdateProduct.js"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\ScrollSmooth.js",
+      "PackagePath": "staticwebassets\\js_admin\\ScrollSmooth.js"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\get _date.js",

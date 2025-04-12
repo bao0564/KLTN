@@ -17,6 +17,6 @@
 }
 //ẩn thoong báo sau 3s
 setTimeout(() => {    
-    document.querySelector(".alert").style.opacity = "0";
+    document.querySelector(".boxmess").style.opacity = "0";
 }, 3000);
 

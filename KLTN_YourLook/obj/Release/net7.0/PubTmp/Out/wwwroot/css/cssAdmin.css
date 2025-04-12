@@ -51,6 +51,10 @@ body {
     display:flex;
     justify-content:flex-end;
 }
+.fls {
+    display: flex;
+    justify-content: flex-start;
+}
 .flspe {
     display: flex;
     justify-content: space-evenly;
@@ -72,7 +76,15 @@ body {
     overflow-y: hidden;
     overflow-x: auto;
 }
-
+.fs1{
+    font-size:1rem;
+}
+.fs1_5 {
+    font-size: 1.5rem;
+}
+.fs2{
+    font-size:2rem;
+}
 .scr {
     overflow: scroll;
 }
@@ -182,9 +194,74 @@ i{
     display: flex;
     justify-content: center
 }
-/**/
-.btnXoaAnh i{
+.but:hover{
+    background-color:#d6815d;
+}
+.sticky_top{
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+/* Mini-map n?i ? g�c ph?i m�n h�nh */
+.mini-map {
+    position: fixed;
+    bottom: 5%;
+    right: 10px;
+    background-color: #00000000;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+    .mini-map ul {
+        list-style: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left:0;
+    }
+
+.mini-map ul li {
+    position: relative;
+    margin: 5px 0;
+    display: flex;
+    justify-content: end;
+}
+.mini-map ul li:hover{
+    background-color:#00000000;
+}
+.mini-map ul li a {
+    padding: 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+.mini-map ul li a i{
     padding:0;
+}
+.mini-map .title {
+    padding: 5px 10px;
+    display: none;
+    white-space: nowrap;
+    position: absolute;
+    left: -100px;
+    top: 0;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.mini-map li:hover .title {
+    display: block;
+}
+
+.mini-map ul li:hover a i {
+    transform: scale(1.5);
+    transition: 0.3s;
+}
+/**/
+.btnXoaAnh i {
+    padding: 0;
 }
 /*header*/
 .head_top {
@@ -214,10 +291,8 @@ i{
     width: 300px;
 }
 
-#header .account, .flct {
+#header .account{
     color: #ffffff;
-    display: flex;
-    align-items: center;
 }
 
 .menu {
@@ -590,15 +665,17 @@ td {
     bottom: 0;
     left: 45%;
 }
-.h-cp-dow input{
+.h-cp-dow input, .h-cp-dow a {
     height: 40px;
     background-color: #d6815d;
     border-radius: 5px;
+    color:#000;
 }
 
-.h-cp-dow input:hover{
+.h-cp-dow input:hover, .h-cp-dow a:hover {
     background-color: #c14008;
     border-radius: 7px;
+    color:#fff;
 }
 
 /* hộp thoại */
@@ -801,4 +878,57 @@ input[type=checkbox]{
     border: 1px solid #2f3640;
     border-radius: 50%;
     background-color: red;
+}
+.login-admin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.box-login-admin {
+    border: 1px solid #2f3640;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: #5e565645;
+}
+.box-infor {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/***/
+
+/*thoong baos msg*/
+.toastt {
+    position: fixed;
+    top: 10px;
+    right: 40%;
+    padding: 10px 20px;
+    opacity: 1 ;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.toastt.success {
+    border: 3px solid #FFFFFF;
+    border-radius: 10px;
+    background: #32ff7e;
+    color: #000;
+    box-shadow: 0 0 0 2px #05c46b;
+}
+
+.toastt.error {
+    border: 3px solid #FFFFFF;
+    border-radius: 10px;
+    background: #f44336; /* Màu đỏ cho lỗi */
+    color: #000;
+    box-shadow: 0 0 0 2px #fe4c50;
+    z-index: 1000;
+}
+.alert {
+    position: fixed !important;
+    top: 10px !important;
+    left: 45% !important;
 }

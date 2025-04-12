@@ -51,7 +51,7 @@
 
 	DECLARE @msg NVARCHAR(500);
 DECLARE @error NVARCHAR(500);
-
+delete DbCustomer where IdKh=34
 EXEC create_admin 
     @emaildn = 'baokun959@gmail.com',
     @namedn = 'bossbao',

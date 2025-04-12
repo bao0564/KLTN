@@ -50,6 +50,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.20, )"
@@ -171,15 +175,23 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.104.2, )"
+            },
             "Dapper": {
               "target": "Package",
-              "version": "[2.1.35, )"
+              "version": "[2.1.66, )"
             },
             "Microsoft.AspNetCore.Authentication.Facebook": {
               "target": "Package",
               "version": "[7.0.20, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.20, )"
             },
@@ -222,6 +234,10 @@
             "dotenv.net": {
               "target": "Package",
               "version": "[3.2.1, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[7.2.6, )"
             },
             "jQuery": {
               "target": "Package",

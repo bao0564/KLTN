@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Data.Models;
+using BCrypt.Net;
 using KLTN_YourLook.Repository_YL;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using KLTN_YourLook.Models;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Facebook;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace KLTN_YourLook.Controllers
 {
@@ -35,8 +39,13 @@ namespace KLTN_YourLook.Controllers
 		{
 			if (HttpContext.Session.GetString("userEmail") == null && HttpContext.Session.GetInt32("userId") == null)
 			{
-				var i = _context.DbCustomers.Where(x => x.Email.Equals(model.Email) && (x.Passwords.Equals(model.Passwords) || x.IsExternalAccount)).FirstOrDefault();
-				if (i != null)
+				//            var customer = _context.DbCustomers.FirstOrDefault(x => x.Email == model.Email && !x.IsExternalAccount);
+				//            string enteredPassword = model.Passwords;
+				//string storedHash = customer.Passwords;
+
+				//            bool i = BCrypt.Net.BCrypt.Verify(enteredPassword, storedHash);
+				var i = _context.DbCustomers.FirstOrDefault(x => x.Email == model.Email && (x.Passwords != null && x.Passwords == model.Passwords || x.IsExternalAccount == false));
+				if (i !=null)
 				{
 					HttpContext.Session.SetString("userEmail", i.Email.ToString());
 					HttpContext.Session.SetInt32("userId", i.IdKh);
@@ -45,7 +54,8 @@ namespace KLTN_YourLook.Controllers
 				}
 				else
 				{
-					ModelState.AddModelError(string.Empty, "Thông tin đăng nhập không chính xác.");
+					TempData["Error"] = "Email hoặc mật khẩu không đúng";
+					ModelState.AddModelError(string.Empty, "thông tin không hợp lệ");
 				}
 			}
 			return View(model);
@@ -60,16 +70,11 @@ namespace KLTN_YourLook.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				////Kiểm tra email 
-				//var emailexit = _context.DbCustomers.FirstOrDefault(x => x.Email == model.Email);
-				//if (emailexit != null)
-				//{
-				//	ModelState.AddModelError("Email", "Email đã được sử dụng.");
-				//	return View(model);
-				//}
+                //string password = model.Passwords; 
+                //string hashedPassword= BCrypt.Net.BCrypt.HashPassword(password);
+                //var (msg, error) = await _user.Create_User(model.TenKh, model.Sdt, model.Email, hashedPassword, model.ConfirmPasswords, false);
                 var (msg, error) = await _user.Create_User(model.TenKh, model.Sdt, model.Email, model.Passwords, model.ConfirmPasswords, false);
-
-				if (!string.IsNullOrEmpty(error))
+                if (!string.IsNullOrEmpty(error))
 				{
 					TempData["Error"]= error;
                     return View(model);
@@ -117,10 +122,9 @@ namespace KLTN_YourLook.Controllers
 			var user = _context.DbCustomers.FirstOrDefault(x => x.Email == email);
 			if (user == null)
 			{
-				//var (msg, error) = await _user.Create_User(name,"",email,"","",true);
 				user = new DbCustomer
 				{
-					MaKh = googleUserId ?? "kh",
+					MaKh = "gg"+googleUserId ?? "kh",
 					Email = email,
 					TenKh = name ?? "",
 					Passwords = "",
@@ -128,13 +132,14 @@ namespace KLTN_YourLook.Controllers
 					CreateDate = DateTime.Now
 				};
 				_context.DbCustomers.Add(user);
-				_context.SaveChanges();
+				await _context.SaveChangesAsync();
 			}
 
 			HttpContext.Session.SetString("userEmail", user.Email);
 			HttpContext.Session.SetInt32("userId", user.IdKh);
 
-			return RedirectToLocal(returnUrl);
+            return RedirectToAction("Index", "Home");
+            //return RedirectToLocal(returnUrl);
 		}
 
 		private IActionResult RedirectToLocal(string returnUrl)
@@ -147,9 +152,64 @@ namespace KLTN_YourLook.Controllers
 			{
 				return RedirectToAction(nameof(HomeController.Index), "Home");
 			}
+        }
+        //đăng ký bằng Facebook
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult FaceLogin()
+		{
+            var redirectUrl = Url.Action("FaceLoginCallBack", "Access");
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return Challenge(properties, FacebookDefaults.AuthenticationScheme);
+        }
+		public async Task<IActionResult> FaceLoginCallBack()
+		{
+            var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (!authenticateResult.Succeeded)
+                return RedirectToAction("Login");
+
+            var info = authenticateResult.Principal.Identities.FirstOrDefault()?.Claims;
+
+            var facebookId = info.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var fullName = info.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            var email = info.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+
+            var user = _context.DbCustomers.FirstOrDefault(x => x.Email == email);
+			if (user == null)
+			{
+                user = new DbCustomer
+                {
+                    MaKh = "fb"+facebookId ?? "kh",
+                    Email = email,
+                    TenKh = fullName ?? "",
+                    Passwords = "",
+                    IsExternalAccount = true,
+                    CreateDate = DateTime.Now
+                };
+                _context.DbCustomers.Add(user);
+                _context.SaveChanges();
+            }
+
+            HttpContext.Session.SetString("userEmail", user.Email);
+            HttpContext.Session.SetInt32("userId", user.IdKh);
+            return RedirectToAction("Index", "Home");  
+        }
+        // quên mật khẩu
+
+        [HttpGet]
+        public IActionResult ForgotPassword()
+		{
+			return View();
+		}
+		
+        [HttpPost]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+		{
+			return View();
 		}
 
-		public IActionResult LogOut()
+        public IActionResult LogOut()
 		{
 			HttpContext.Session.Remove("userEmail");
 			HttpContext.Session.Remove("userId");

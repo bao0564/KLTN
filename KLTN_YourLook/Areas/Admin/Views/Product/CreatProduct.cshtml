@@ -17,12 +17,12 @@
             </ul>
         </div>
 
-        @if (TempData["Error"] != null)
+       @*  @if (TempData["Error"] != null)
         {
             <div class="alert alert-danger">
                 @TempData["Error"]
             </div>
-        }
+        } *@
         <!-- /.card-header -->
         @using (Html.BeginForm("CreatProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
