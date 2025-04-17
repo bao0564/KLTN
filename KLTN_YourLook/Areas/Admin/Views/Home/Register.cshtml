@@ -15,12 +15,12 @@
                 <a asp-action="ViewAccounts"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
-        @if (TempData["Error"] != null)
+        @* @if (TempData["Error"] != null)
         {
             <div class="alert alert-danger">
                 @TempData["Error"]
             </div>
-        }
+        } *@
         @using (Html.BeginForm("Register", "Home", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
@@ -50,12 +50,13 @@
                         @if (Context.Session.GetString("Role") == "Admin")
                         {
                             <option value="Admin">Quản trị viên</option>
-                        }
-                        @if (Context.Session.GetString("Role") == "Manager" && Context.Session.GetString("Role") == "Admin")
-                        {
                             <option value="Manager">Quản lý</option>
+                            <option value="Staff" selected="selected">Nhân viên</option>
                         }
-                        <option value="Staff" selected="selected">Nhân viên</option>
+                        else if (Context.Session.GetString("Role") == "Manager")
+                        {
+                            <option value="Staff" selected="selected">Nhân viên</option>
+                        }
                     </select>
                     <span asp-validation-for="ChucVu" class="text-danger"></span>
                 </div>
@@ -66,12 +67,13 @@
                         @if (Context.Session.GetString("Role") == "Admin")
                         {
                             <option value="Admin">Quản trị viên</option>
-                        }
-                        @if (Context.Session.GetString("Role") == "Manager" && Context.Session.GetString("Role") == "Admin")
-                        {
                             <option value="Manager">Quản lý</option>
+                            <option value="Staff" selected="selected">Nhân viên</option>
                         }
-                        <option value="Staff" selected="selected">Nhân viên</option>
+                        else if (Context.Session.GetString("Role") == "Manager")
+                        {
+                            <option value="Staff" selected="selected">Nhân viên</option>
+                        }
                     </select>
 					<span asp-validation-for="Quyen" class="text-danger"></span>
 				</div>

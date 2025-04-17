@@ -62,7 +62,7 @@
                                                 <div class="flspb">
                                                     <div class="flct">
                                                         <p class="flct" style="white-space:nowrap">Phân Loại:</p>
-                                                        <p class="bdrdu">@prd.NameColor</p>
+                                                        <p class="bdrdu nw">@prd.NameColor</p>
                                                         <p class="bdrdu">@prd.NameSize</p>
                                                     </div>
                                                     <div style="flct">
@@ -83,12 +83,15 @@
                             </div>
                         }
                     </div>
-                    <div class="" style="display:flex;justify-content:end">
+                    <div class="" style="display:flex;justify-content:end;margin:5px 0">
                         <div class="fl" style="gap:0">
                             @{
                                 int iddh = @od.IdDh;
                             }
-							<div class="product_price flspb">(Tổng Sản Phẩm:@od.soluong):<div>@string.Format("{0:N0}", @od.TongTienThanhToan) VNĐ</div></div>
+							<div class="product_price_od">
+                                <div class="flct nw">(Tổng(@od.soluong):</div>
+                                <div class="flct nw">@string.Format("{0:N0}", @od.TongTienThanhToan) VNĐ</div>
+                            </div>
                             @if(!od.ODHuy && !od.Complete){
                                 <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="UpdateOrder" asp-route-iddh="@od.IdDh" onclick="huydh(event)">hủy Đơn hàng</a></div>
                             }

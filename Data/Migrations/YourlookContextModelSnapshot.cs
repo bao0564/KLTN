@@ -293,8 +293,8 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ConfirmPasswords")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(25)
@@ -307,6 +307,10 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ForgotPasword")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("GioiTinh")
                         .HasMaxLength(5)
@@ -331,8 +335,8 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Passwords")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Sdt")
                         .HasMaxLength(15)

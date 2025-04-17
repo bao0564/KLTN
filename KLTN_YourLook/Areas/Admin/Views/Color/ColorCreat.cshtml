@@ -14,12 +14,12 @@
                 <a asp-action="Color"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
-        @if (TempData["Error"] != null)
+        @* @if (TempData["Error"] != null)
         {
             <div class="alert alert-danger">
                 @TempData["Error"]
             </div>
-        }
+        } *@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form asp-action="ColorCreat" method="post">
             @Html.AntiForgeryToken()

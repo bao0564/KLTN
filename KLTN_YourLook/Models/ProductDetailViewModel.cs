@@ -58,4 +58,13 @@ namespace KLTN_YourLook.Models
 		public decimal GiaLoai { get; set; }
 		public int Quantity { get; set; }
 	}
+	public class ViewRattingProduct //view hiển thị các đánh giá của khách hàng
+    {
+        public string Img { get; set; }
+        public string TenKh { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string DanhGia { get; set; }
+        public int Rate { get; set; }
+        public string ColorSize { get; set; }
+    }
 }

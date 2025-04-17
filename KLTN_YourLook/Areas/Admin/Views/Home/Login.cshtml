@@ -4,12 +4,12 @@
     <div class="login-admin">
         <div class="box-login-admin">
 			<h2 class="fljct">Admin login</h2>
-			@if (TempData["Error"] != null)
+			@* @if (TempData["Error"] != null)
 			{
 				<div class="alert alert-danger fljct" style="color:red">
 					@TempData["Error"]
 				</div>
-			}
+			} *@
             @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
             {
                 <div class="box-infor">

@@ -4,6 +4,7 @@ using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Interface;
 using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
@@ -25,23 +26,36 @@ DotEnv.Load();
 // Lấy giá trị từ biến môi trường
 string googleClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
 string googleClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+string facebookClientId = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_ID");
+string facebookClientSecret = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_SECRET");
 
 if (string.IsNullOrEmpty(googleClientId) || string.IsNullOrEmpty(googleClientSecret))
 {
-    throw new InvalidOperationException("Google Client ID or Secret is not set in the environment variables.");
+    throw new InvalidOperationException("ID or Secret gg không thấy đâu");
+}
+if (string.IsNullOrEmpty(facebookClientId) || string.IsNullOrEmpty(facebookClientSecret))
+{
+    throw new InvalidOperationException("ID or Secret facebook không thấy đâu");
 }
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
 })
 .AddCookie()
-.AddGoogle(options =>
+.AddGoogle(googleoptions =>
 {
-    options.ClientId = googleClientId;
-    options.ClientSecret = googleClientSecret;
-});
+    googleoptions.ClientId = googleClientId;
+    googleoptions.ClientSecret = googleClientSecret;
+})
+.AddFacebook(facebookOptions =>
+ {
+     facebookOptions.AppId = facebookClientId;
+     facebookOptions.AppSecret = facebookClientSecret;
+     //facebookOptions.CallbackPath = "/signin-facebook"; // Đường dẫn callback
+ });
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -59,7 +73,8 @@ builder.Services.AddScoped<Isanpham, Product>();
 
 //chuỗi kết nối (cho các procedure,...)
 builder.Services.AddScoped<IDbConnection>(sp =>
-    new SqlConnection(builder.Configuration.GetConnectionString("DbConnected")));
+    new SqlConnection(builder.Configuration.GetConnectionString("DbConnected"))
+);
 builder.Services.AddScoped<ProductRepository>(); 
 builder.Services.AddScoped<CategoryRepository>(); 
 builder.Services.AddScoped<SizeRepository>(); 

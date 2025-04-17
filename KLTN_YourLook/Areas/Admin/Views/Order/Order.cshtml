@@ -6,7 +6,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @model X.PagedList.IPagedList<AllOrderViewModle>
-<div id="page_top" class="cp0">
+<div id="page_top"   class="cp0">
     Danh sách đơn hàng
 </div>
 <div class="h-cp1">
@@ -21,12 +21,12 @@
             </div>            
         </div>
 
-        @if (TempData["Error"] != null)
+        @* @if (TempData["Error"] != null)
         {
             <div class="alert alert-danger">
                 @TempData["Error"]
             </div>
-        }
+        } *@
         @using (Html.BeginForm("Order", "Order", FormMethod.Get, new{id="filterForm"}))
         {
             <div>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<KLTN_YourLook.Models.ViewRattingProduct>;
+@{
+	var count = Model.Count();
+}
+<div class="tab_title reviews_title">
+	<h4>Đánh giá (@count)</h4>
+</div>
+@foreach(var inf in Model){
+	<div class="user_review_container d-flex flex-column flex-sm-row">
+		<div class="user">
+			<div class="user_pic" style="background-image:url('/fileupload/@inf.Img');background-size: cover;">
+				@* <img src="@Url.Content("/fileupload/"+inf.Img)" alt="Alternate Text" /> *@
+			</div>
+			<div class="user_rating">
+				<ul class="star_rating">
+					@if(inf.Rate == 1){
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+					}
+					@if(inf.Rate == 2){
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+					}
+					@if(inf.Rate == 3){
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+					}
+					@if(inf.Rate == 4){
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+					}
+					@if(inf.Rate == 5){
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+					}
+				</ul>
+			</div>
+		</div>
+		<div class="review">
+			<div class="flct">
+				<p class="fs1" style="color:#fe4c50">@inf.TenKh</p>
+				<div class="mg">@inf.CreateDate.ToString("dd/MM/yyyy")</div>
+			</div>
+			<p>Phân loại: @inf.ColorSize</p>
+			<div class="user_name">@inf.DanhGia</div>
+		</div>
+	</div>
+
+}
