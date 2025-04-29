@@ -67,8 +67,9 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-//
+//đăng ký interface
 builder.Services.AddScoped<Iuploadimg, UploadImg>();
+builder.Services.AddScoped<ISentMail, SentMail>();
 builder.Services.AddScoped<Isanpham, Product>();
 
 //chuỗi kết nối (cho các procedure,...)
@@ -83,6 +84,7 @@ builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<HomeRespository>(); 
 builder.Services.AddScoped<SP_Product>(); 
 builder.Services.AddScoped<SP_OrderCart>(); 
+builder.Services.AddScoped<SP_Access>(); 
 builder.Services.AddScoped<SP_User>(); 
 //chuỗi kết nối (dbcontext)
 builder.Services.AddDbContext<YourlookContext>(options =>

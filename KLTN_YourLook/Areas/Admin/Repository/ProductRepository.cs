@@ -41,7 +41,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
         }
         //tạo sản phẩm mới
         //lưu vào bảng sản phẩm
-        public async Task<(int newIdSp,string error)> CreateProduct(int iddm, string tensp, int nhomid, string anhsp, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string createby)
+        public async Task<(int newIdSp,string error)> CreateProduct(int iddm, string tensp, int nhomid, string anhsp,string classify, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string createby)
         {
             if (_dbConnection == null)
             {
@@ -53,6 +53,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             parameters.Add("@tensp", tensp);
             parameters.Add("@nhomid", nhomid);
             parameters.Add("@anhsp", anhsp);
+            parameters.Add("@classify", classify);
             parameters.Add("@pricemax", pricemax);
             parameters.Add("@giamgia", giamgia);
             parameters.Add("@pricemin", pricemin);

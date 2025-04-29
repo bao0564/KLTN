@@ -40,12 +40,12 @@ namespace KLTN_YourLook.Models
 		public string MotaSp { get; set; }
 		public bool IsFavorite { get; set; }
 
-		public List<ViewDetailImg> ImgDetail { get; set; }
+		public List<ViewDetailImg>? ImgDetail { get; set; }
 		public List<ViewDetail> Detail { get; set; }
 	}
 	public class ViewDetailImg
 	{
-		public string Img {  get; set; }
+		public string? Img {  get; set; }
 	}
 	public class ViewDetail
 	{

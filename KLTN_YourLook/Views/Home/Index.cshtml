@@ -24,21 +24,21 @@
 			<div class="col-md-4">
 				<div class="banner_item align-items-center" style="background-image:url(images/all.png)">
 					<div class="banner_category">
-						<a href="@Url.Action("AllProduct","Home")">ALL</a>
+						<a href="@Url.Action("AllProduct","Home")">Sản Phẩm</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="banner_item align-items-center" style="background-image:url(images/dl.png)">
 					<div class="banner_category">
-						<a href="@Url.Action("UnderProduct","Home")">PERSONAL ITEMS</a>
+						<a href="@Url.Action("UnderProduct","Home")">Cá Nhân</a>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="banner_item align-items-center" style="background-image:url(images/pk.png)">
 					<div class="banner_category">
-						<a href="@Url.Action("ProductCategory","Home")">CATEGOGRY</a>
+						<a href="@Url.Action("ProductCategory","Home")">Danh Mục</a>
 					</div>
 				</div>
 			</div>
@@ -119,7 +119,7 @@
 				<div class="new_arrivals_sorting">
 					<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
 						<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" id="hotprd">Sản Phẩm Hot</li>
-						<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" id="newprd">Sản Phẩm New</li>
+						<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" id="newprd">Sản Phẩm Mới</li>
 					</ul>
 				</div>
 			</div>
@@ -131,11 +131,11 @@
 						@await Component.InvokeAsync("View_Hot")
 					</div>
 				</div>
-				<button id="prevProducts" class="btn btn-primary-prev" style="padding:10px">
+				<button id="prevProducts" class=" btn-primary-prev  btn">
 					<i class="fa-solid fa-angle-left fa-xl"
 					   style="color: #000000"></i>
 				</button>
-				<button id="nextProducts" class="btn btn-primary-next" style="padding:10px">
+				<button id="nextProducts" class="btn btn-primary-next">
 					<i class="fa-solid fa-angle-right fa-xl"
 					   style="color: #0d0d0d"></i>
 				</button>
@@ -154,11 +154,11 @@
 						@await Component.InvokeAsync("View_New")
 					</div>
 				</div>
-				<button id="prevProductsN" class="btn btn-primary-prev" style="padding:10px">
+				<button id="prevProductsN" class="btn btn-primary-prev">
 					<i class="fa-solid fa-angle-left fa-xl"
 					   style="color: #000000"></i>
 				</button>
-				<button id="nextProductsN" class="btn btn-primary-next" style="padding:10px">
+				<button id="nextProductsN" class="btn btn-primary-next">
 					<i class="fa-solid fa-angle-right fa-xl"
 					   style="color: #0d0d0d"></i>
 				</button>
@@ -181,122 +181,182 @@
 <div class="new_arrivals">
 	<div class="">
 		<div class="row">
-			<div class="col text-center">
-				<div class="section_title new_arrivals_title">
-					<h2>Quần Dài</h2>
+			<div class="w100 flspb flct">
+				<div class="col flfe gap">
+					<div class="section_title pd-lr">
+						<div class="section_products">Quần</div>
+					</div>
+					<div class="section_title new_arrivals_title active">
+						<div class="btn_sex ttu" id="menprdpage1">Nam</div>
+					</div>
+					<div class="section_title new_arrivals_title">
+						<div class="btn_sex ttu" id="womenprdpage1">Nữ</div>
+					</div>
+				</div>
+				<div class="prd-btn">
+					<button class="btn prd-next fl-center">
+						<a class="flct show_more_btn">
+							<div class="ttu">Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col">
+			<div class="col" id="menprd_page1">
 				<div class="prd-grid" style="">
-					<div class="productContainer" id="productContainer">
+					<div class="productContainer">@*  id="productContainer" *@
 						@await Component.InvokeAsync("View_Page1")
 					</div>
 				</div>
-				<div class="prd-btn">
-					<button class="btn prd-next fl-center">
-						<a class="flct">
-							<div>Xem Thêm</div>
-							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
-						</a>
-					</button>
-				</div>
 			</div>
-		</div>
-	</div>
-</div>
-<!-- Sản phẩm quần cộc -->
-<section class="ad-type" style="margin: 30px 0 10px 0;" id="page2">
-	@await Component.InvokeAsync("View_Ads", new { place = "page2" })
-</section>
-<div class="new_arrivals">
-	<div class="">
-		<div class="row">
-			<div class="col text-center">
-				<div class="section_title new_arrivals_title">
-					<h2>Quần Short</h2>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
+			<div class="col" id="womenprd_page1">
 				<div class="prd-grid" style="">
-					<div class="productContainer" id="productContainer">
+					<div class="productContainer"  >
 						@await Component.InvokeAsync("View_Page2")
 					</div>
-				</div>
-				<div class="prd-btn">
-					<button class="btn prd-next fl-center">
-						<a class="flct">
-							<div>Xem Thêm</div>
-							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
-						</a>
-					</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- Sản phẩm áo -->
+<section class="ad-type" style="margin: 30px 0 10px 0;" id="page2">
+	@await Component.InvokeAsync("View_Ads", new { place = "page2" })
+</section>
+<div class="new_arrivals">
+	<div class="">
+		<div class="row">
+			<div class="w100 flspb flct">
+				<div class="col flfe gap">
+					<div class="section_title pd-lr">
+						<div class="section_products">Áo</div>
+					</div>
+					<div class="section_title new_arrivals_title active">
+						<div class="btn_sex ttu" id="menprdpage2">Nam</div>
+					</div>
+					<div class="section_title new_arrivals_title">
+						<div class="btn_sex ttu" id="womenprdpage2">Nữ</div>
+					</div>
+				</div>
+				<div class="prd-btn">
+					<button class="btn prd-next fl-center">
+						<a class="flct show_more_btn">
+							<div class="ttu">Xem Thêm</div>
+							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
+						</a>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col" id="menprd_page2">
+				<div class="prd-grid" style="">
+					<div class="productContainer">@*  id="productContainer" *@
+						@await Component.InvokeAsync("View_Page1")
+					</div>
+				</div>
+			</div>
+			<div class="col" id="womenprd_page2">
+				<div class="prd-grid" style="">
+					<div class="productContainer">
+						@await Component.InvokeAsync("View_Page2")
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Sản phẩm thu đông -->
 <section class="ad-type" style="margin: 30px 0 10px 0;" id="page3">
 	@await Component.InvokeAsync("View_Ads", new { place = "page3" })
 </section>
 <div class="new_arrivals">
 	<div class="">
 		<div class="row">
-			<div class="col text-center">
-				<div class="section_title new_arrivals_title">
-					<h2>Áo Phông</h2>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<div class="prd-grid" style="">
-					<div class="productContainer" id="productContainer">
-						@await Component.InvokeAsync("View_Page3")
+			<div class="w100 flspb flct">
+				<div class="col flfe gap">
+					<div class="section_title pd-lr">
+						<div class="section_products">Thu - Đông</div>
+					</div>
+					<div class="section_title new_arrivals_title active">
+						<div class="btn_sex ttu" id="menprdpage3">Nam</div>
+					</div>
+					<div class="section_title new_arrivals_title">
+						<div class="btn_sex ttu" id="womenprdpage3">Nữ</div>
 					</div>
 				</div>
 				<div class="prd-btn">
 					<button class="btn prd-next fl-center">
-						<a class="flct">
-							<div>Xem Thêm</div>
+						<a class="flct show_more_btn">
+							<div class="ttu">Xem Thêm</div>
 							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
 						</a>
 					</button>
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col" id="menprd_page3">
+				<div class="prd-grid" style="">
+					<div class="productContainer">@*  id="productContainer" *@
+						@await Component.InvokeAsync("View_Page1")
+					</div>
+				</div>
+			</div>
+			<div class="col" id="womenprd_page3">
+				<div class="prd-grid" style="">
+					<div class="productContainer">
+						@await Component.InvokeAsync("View_Page2")
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-<!-- Sản phẩm áo khoác -->
+<!-- Sản phẩm hè thu -->
 <section class="ad-type" style="margin: 30px 0 10px 0;" id="page4">
 	@await Component.InvokeAsync("View_Ads", new { place = "page4" })
 </section>
 <div class="new_arrivals">
 	<div class="">
 		<div class="row">
-			<div class="col text-center">
-				<div class="section_title new_arrivals_title">
-					<h2>Áo Khoác</h2>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<div class="prd-grid" style="">
-					<div class="productContainer" id="productContainer">
-						@await Component.InvokeAsync("View_Page4")
+			<div class="w100 flspb flct">
+				<div class="col flfe gap">
+					<div class="section_title pd-lr">
+						<div class="section_products">Hè - Thu</div>
+					</div>
+					<div class="section_title new_arrivals_title active">
+						<div class="btn_sex ttu" id="menprdpage4">Nam</div>
+					</div>
+					<div class="section_title new_arrivals_title">
+						<div class="btn_sex ttu" id="womenprdpage4">Nữ</div>
 					</div>
 				</div>
 				<div class="prd-btn">
 					<button class="btn prd-next fl-center">
-						<a class="flct">
-							<div>Xem Thêm</div>
+							<a class="flct show_more_btn">
+							<div class="ttu">Xem Thêm</div>
 							<i class="fa-solid fa-angle-right" style="color: #000000;"></i>
 						</a>
 					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col" id="menprd_page4">
+				<div class="prd-grid" style="">
+					<div class="productContainer">@*  id="productContainer" *@
+						@await Component.InvokeAsync("View_Page1")
+					</div>
+				</div>
+			</div>
+			<div class="col" id="womenprd_page4">
+				<div class="prd-grid" style="">
+					<div class="productContainer">
+						@await Component.InvokeAsync("View_Page2")
+					</div>
 				</div>
 			</div>
 		</div>

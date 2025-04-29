@@ -213,6 +213,10 @@
       "PackagePath": "staticwebassets\\images\\8b315137-68d9-4f22-a467-68f1801aa835.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\8e19ae89-6237-4c0f-9b31-ad43e898fd7a.png",
+      "PackagePath": "staticwebassets\\images\\8e19ae89-6237-4c0f-9b31-ad43e898fd7a.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\95dd6b9c-1ad1-4f98-bd86-c81f8066578f.png",
       "PackagePath": "staticwebassets\\images\\95dd6b9c-1ad1-4f98-bd86-c81f8066578f.png"
     },
@@ -239,6 +243,14 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\b38c8281-6bb3-40a4-95ec-a9e681300c61.jpeg",
       "PackagePath": "staticwebassets\\images\\b38c8281-6bb3-40a4-95ec-a9e681300c61.jpeg"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\d3e173c6-3aa6-4d29-9bad-b69ab2817261.png",
+      "PackagePath": "staticwebassets\\images\\d3e173c6-3aa6-4d29-9bad-b69ab2817261.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\dfc19180-6faa-4ca4-a3c4-8cc5757bfaf8.jpeg",
+      "PackagePath": "staticwebassets\\images\\dfc19180-6faa-4ca4-a3c4-8cc5757bfaf8.jpeg"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\images\\dl.png",
@@ -313,6 +325,10 @@
       "PackagePath": "staticwebassets\\img\\294d2d85-e84f-4386-bc3b-a768b11bca49.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\29a28f77-485a-4294-a7e9-cdb28de47ad1.png",
+      "PackagePath": "staticwebassets\\img\\29a28f77-485a-4294-a7e9-cdb28de47ad1.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\2b8e907e-e10c-4680-8c03-131f310c3114.png",
       "PackagePath": "staticwebassets\\img\\2b8e907e-e10c-4680-8c03-131f310c3114.png"
     },
@@ -333,12 +349,24 @@
       "PackagePath": "staticwebassets\\img\\3405bb6d-4185-4ff5-9582-8b040f29c01b.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\38f6e818-55fb-41ab-a62d-c186742fa773.png",
+      "PackagePath": "staticwebassets\\img\\38f6e818-55fb-41ab-a62d-c186742fa773.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3947a77d-bf7a-4bae-823f-85d350522779.png",
+      "PackagePath": "staticwebassets\\img\\3947a77d-bf7a-4bae-823f-85d350522779.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3a2f565a-b801-4d31-aa0b-93d6a5cb7110.png",
       "PackagePath": "staticwebassets\\img\\3a2f565a-b801-4d31-aa0b-93d6a5cb7110.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\3a7ec0d6-478a-4ac4-b6f3-83b72c51c0c2.png",
       "PackagePath": "staticwebassets\\img\\3a7ec0d6-478a-4ac4-b6f3-83b72c51c0c2.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\4148bd3d-5550-4f97-967f-3ff6fef3a1ca.png",
+      "PackagePath": "staticwebassets\\img\\4148bd3d-5550-4f97-967f-3ff6fef3a1ca.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\41a32b3e-3fdc-46f9-b914-94b8e184e4cb.png",
@@ -353,6 +381,10 @@
       "PackagePath": "staticwebassets\\img\\46923113-e3c2-458c-a129-d250b19e354b.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\49901010-bf03-4fe7-b698-28f87d693cc0.jpg",
+      "PackagePath": "staticwebassets\\img\\49901010-bf03-4fe7-b698-28f87d693cc0.jpg"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\4a75d543-cac9-4f2d-b82f-3c8f868e5e08.png",
       "PackagePath": "staticwebassets\\img\\4a75d543-cac9-4f2d-b82f-3c8f868e5e08.png"
     },
@@ -365,8 +397,16 @@
       "PackagePath": "staticwebassets\\img\\4f538f9d-0ebc-4eaf-8190-c317e9c9964b.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\50e8efcf-e0ca-47de-9406-9a75b53d7df7.png",
+      "PackagePath": "staticwebassets\\img\\50e8efcf-e0ca-47de-9406-9a75b53d7df7.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\53393ed3-f547-41c8-8a22-0ee685626347.png",
       "PackagePath": "staticwebassets\\img\\53393ed3-f547-41c8-8a22-0ee685626347.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\539a715d-a593-479c-9cf7-7248a90d56d5.png",
+      "PackagePath": "staticwebassets\\img\\539a715d-a593-479c-9cf7-7248a90d56d5.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\57173d47-85d2-44be-b725-a938b5dab3a2.png",
@@ -375,6 +415,14 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\5a2b6480-2627-49f3-9a4e-8345d6f440c3.png",
       "PackagePath": "staticwebassets\\img\\5a2b6480-2627-49f3-9a4e-8345d6f440c3.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\5a9e81ad-841a-415b-815d-3b41a7698059.png",
+      "PackagePath": "staticwebassets\\img\\5a9e81ad-841a-415b-815d-3b41a7698059.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\5aa80ede-0cf6-4ee9-805e-b002f7e2839a.png",
+      "PackagePath": "staticwebassets\\img\\5aa80ede-0cf6-4ee9-805e-b002f7e2839a.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\60207b99-7867-4dbe-8ce4-08a3b13ad9d0.png",
@@ -389,6 +437,14 @@
       "PackagePath": "staticwebassets\\img\\60598322-ccf1-4f53-9b9c-68108bb8b873.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\66630b0f-f650-4702-83ca-d98e6ab554b4.jpg",
+      "PackagePath": "staticwebassets\\img\\66630b0f-f650-4702-83ca-d98e6ab554b4.jpg"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\66d65e58-9f84-444c-be1a-abaadbef4e55.png",
+      "PackagePath": "staticwebassets\\img\\66d65e58-9f84-444c-be1a-abaadbef4e55.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\69e0f5ef-9be7-43b6-97dc-7b1e4631c245.png",
       "PackagePath": "staticwebassets\\img\\69e0f5ef-9be7-43b6-97dc-7b1e4631c245.png"
     },
@@ -399,6 +455,10 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\73221843-b39b-4178-93de-1e5d045a441a.png",
       "PackagePath": "staticwebassets\\img\\73221843-b39b-4178-93de-1e5d045a441a.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\7487a5dc-68e5-406b-871a-5f53f6bac9a0.png",
+      "PackagePath": "staticwebassets\\img\\7487a5dc-68e5-406b-871a-5f53f6bac9a0.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\76a68c52-afe5-4428-8a33-517462ae9680.png",
@@ -441,16 +501,36 @@
       "PackagePath": "staticwebassets\\img\\906fe2d4-f783-45ab-82ee-fc38b0b8866a.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9330fd72-d537-442a-9038-978bb39082fc.png",
+      "PackagePath": "staticwebassets\\img\\9330fd72-d537-442a-9038-978bb39082fc.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\955d21f0-e0ed-4bb3-9949-788363afc855.png",
       "PackagePath": "staticwebassets\\img\\955d21f0-e0ed-4bb3-9949-788363afc855.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9850c9a7-bce0-4ed3-9d83-0386b798373f.png",
+      "PackagePath": "staticwebassets\\img\\9850c9a7-bce0-4ed3-9d83-0386b798373f.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9a47dcd3-106e-4edf-9eb5-afa87ceee707.png",
       "PackagePath": "staticwebassets\\img\\9a47dcd3-106e-4edf-9eb5-afa87ceee707.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9a965ddb-3687-40a6-a620-13f8aa9fdb22.png",
+      "PackagePath": "staticwebassets\\img\\9a965ddb-3687-40a6-a620-13f8aa9fdb22.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9cce8d52-a9c6-455a-b26c-3bb6820168dc.png",
+      "PackagePath": "staticwebassets\\img\\9cce8d52-a9c6-455a-b26c-3bb6820168dc.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\9cf1842f-1ce3-4431-a915-6d6e190e71b0.png",
       "PackagePath": "staticwebassets\\img\\9cf1842f-1ce3-4431-a915-6d6e190e71b0.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a2b106ab-4bbb-48ff-a5ef-85c8e596ecdd.png",
+      "PackagePath": "staticwebassets\\img\\a2b106ab-4bbb-48ff-a5ef-85c8e596ecdd.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a2f8fd79-494c-4ef3-8efa-d569997c5bbc.png",
@@ -459,6 +539,10 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a8170872-cab0-4f15-ace9-d5ffd4e19eb6.png",
       "PackagePath": "staticwebassets\\img\\a8170872-cab0-4f15-ace9-d5ffd4e19eb6.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a8705319-8215-468a-841a-0fb8ff36b2c2.png",
+      "PackagePath": "staticwebassets\\img\\a8705319-8215-468a-841a-0fb8ff36b2c2.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\a8d38e50-3f4f-4a31-a31c-3391896baa53.png",
@@ -473,12 +557,24 @@
       "PackagePath": "staticwebassets\\img\\ab212b78-c2c1-4b30-886b-f5550f7baac4.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\ac1942db-f9e4-4e1e-81cb-6aff3836b70f.png",
+      "PackagePath": "staticwebassets\\img\\ac1942db-f9e4-4e1e-81cb-6aff3836b70f.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\ae40ba1a-0ada-48fc-a33d-307266682671.png",
       "PackagePath": "staticwebassets\\img\\ae40ba1a-0ada-48fc-a33d-307266682671.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\aedb7c6b-399f-48e8-a327-8b1110e72ebe.png",
+      "PackagePath": "staticwebassets\\img\\aedb7c6b-399f-48e8-a327-8b1110e72ebe.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\b0f19e1d-feab-4f10-9487-a4af5c67c899.png",
       "PackagePath": "staticwebassets\\img\\b0f19e1d-feab-4f10-9487-a4af5c67c899.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\b4cf6a37-ca16-4beb-bbf9-609141c38922.png",
+      "PackagePath": "staticwebassets\\img\\b4cf6a37-ca16-4beb-bbf9-609141c38922.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\b5397fc8-4f60-4d2c-8ecb-c6c8f8970a26.png",
@@ -513,6 +609,10 @@
       "PackagePath": "staticwebassets\\img\\c5924775-5c09-4a17-88a5-06837a6cac34.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\c7acbf6c-a660-4b3f-8397-71a42942eaaf.png",
+      "PackagePath": "staticwebassets\\img\\c7acbf6c-a660-4b3f-8397-71a42942eaaf.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\cb123aad-ee39-41d4-8ce7-0790e1be919b.png",
       "PackagePath": "staticwebassets\\img\\cb123aad-ee39-41d4-8ce7-0790e1be919b.png"
     },
@@ -529,8 +629,20 @@
       "PackagePath": "staticwebassets\\img\\cfd5a2a7-1073-404e-9d8f-b3dc36ebaecd.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\d1d7993a-c69d-4e57-98a2-9811051c325a.png",
+      "PackagePath": "staticwebassets\\img\\d1d7993a-c69d-4e57-98a2-9811051c325a.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\d2e64d7a-269a-42b1-be6b-1c5107c89dcb.png",
       "PackagePath": "staticwebassets\\img\\d2e64d7a-269a-42b1-be6b-1c5107c89dcb.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\db3dd7c2-5164-4396-98bc-e87a4215ea4d.png",
+      "PackagePath": "staticwebassets\\img\\db3dd7c2-5164-4396-98bc-e87a4215ea4d.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\db68a8c4-0b19-4ba3-a0b8-9dea7150c2ac.png",
+      "PackagePath": "staticwebassets\\img\\db68a8c4-0b19-4ba3-a0b8-9dea7150c2ac.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\db6e1e65-026b-43fb-86d7-6be7390f4f66.png",
@@ -539,6 +651,10 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\dd6d6938-ad02-4567-8e7d-7760fa6f01df.png",
       "PackagePath": "staticwebassets\\img\\dd6d6938-ad02-4567-8e7d-7760fa6f01df.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\de2b4d41-d4a7-466b-a2dc-cdb151113c9c.png",
+      "PackagePath": "staticwebassets\\img\\de2b4d41-d4a7-466b-a2dc-cdb151113c9c.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\img\\e1770da2-368f-49d2-8a5b-7c872c3bcd7b.png",
@@ -565,6 +681,10 @@
       "PackagePath": "staticwebassets\\js\\Map.js"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\access.js",
+      "PackagePath": "staticwebassets\\js\\access.js"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\address.js",
       "PackagePath": "staticwebassets\\js\\address.js"
     },
@@ -583,10 +703,6 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\custom.js",
       "PackagePath": "staticwebassets\\js\\custom.js"
-    },
-    {
-      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\findprd.js",
-      "PackagePath": "staticwebassets\\js\\findprd.js"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\findprd2.js",
@@ -635,6 +751,10 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\suggetproduct.js",
+      "PackagePath": "staticwebassets\\js\\suggetproduct.js"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_CreatProduct.js",
@@ -965,6 +1085,10 @@
       "PackagePath": "staticwebassets\\logo\\hot-product.png"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\iconlogo.png",
+      "PackagePath": "staticwebassets\\logo\\iconlogo.png"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\images (11).jpg",
       "PackagePath": "staticwebassets\\logo\\images (11).jpg"
     },
@@ -983,6 +1107,10 @@
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\logo2.png",
       "PackagePath": "staticwebassets\\logo\\logo2.png"
+    },
+    {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\logonew.png",
+      "PackagePath": "staticwebassets\\logo\\logonew.png"
     },
     {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\logo\\new-product.png",

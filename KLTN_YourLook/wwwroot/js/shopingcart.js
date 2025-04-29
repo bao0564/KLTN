@@ -212,7 +212,7 @@
                 };
                 for (var key in addressInfo) {
                     if (addressInfo[key] === '' || addressInfo[key] === null) {
-                        showMess(key + ' không được để trống', false);
+                        showMess('các mục thông tin địa chỉ không được để trống', false);
                         return;
                     }
                 }

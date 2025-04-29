@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<title>YourLook</title>
+	<link rel="icon" href="/logo/iconlogo.png" type="image/x-icon">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Colo Shop Template">
@@ -25,11 +26,17 @@
 	<link rel="stylesheet" type="text/css" href="/css/categories_styles.css">
 	<link rel="stylesheet" type="text/css" href="/css/categories_responsive.css">
 	<script src="/js/jquery-3.2.1.min.js"></script>
+	@* font *@
+	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&subset=latin,vietnamese&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
 	@RenderSection("styles", required: false)
 </head>
 <body>
 	@{
-		var logo = "/logo/logo.png";
+		var logo = "/logo/logonew.png";
 	}
 	<div class="super_container">
 		<header id="headerr" class="headerr trans_300">
@@ -151,12 +158,15 @@
 						</div>
 						<nav class="navbar">
 							<div class="" style="display:flex;flex-direction:column">
-								<div class="form-search" style="">
-									<input style="position:relative" type="text" name="" class="search-text" id="searchKeyword" placeholder="Tìm Kiếm" />
-									<a id="searchButton">
-										<i id="searchButton" class="fa fa-search" aria-hidden="true"></i>
-									</a>
-								</div>
+								<form asp-controller="Home" asp-action="KeyWord" method="get">
+									<div class="form-search" style="">
+										<input style="position:relative" type="text" name="keyword" class="search-text" id="searchKeyword" placeholder="Tìm Kiếm" />
+										<button type="submit" class="fa fa-search"></button>
+										@* <a id="searchButton">
+											<i id="searchButton" class="fa fa-search" aria-hidden="true"></i>
+										</a> *@
+									</div>
+								</form>
 								<ul class="navbar_menu">
 									<li><a class="link" href="@Url.Action("Index","Home")">Home</a></li>
 									<li><a class="link" href="@Url.Action("ProductCategory","Home")">Product</a></li>
@@ -325,12 +335,15 @@
 		<div class="hamburger_menu">
 			<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
 			<div class="hamburger_menu_content text-right">
-				<div class="search-children" style="">
-					<input type="text" name="" class="search-text" id="searchKeyword-2" placeholder="Tìm Kiếm" />
-					<a id="searchButton-2">
-						<i id="searchButton-2" class="fa fa-search" aria-hidden="true"></i>
-					</a>
-				</div>
+				<form asp-controller="Home" asp-action="KeyWord" method="get">
+					<div class="search-children" style="">
+						<input type="text" name="keyword" class="search-text" id="searchKeyword-2" placeholder="Tìm Kiếm" />
+						<button type="submit" class="fa fa-search"></button>
+						@* <a id="searchButton-2" >
+							<i id="searchButton-2"  aria-hidden="true"></i>
+						</a> *@
+					</div>
+				</form>
 				<ul class="menu_top_nav">
 					<li class="menu_item has-children">
 						@if (Context.Session.GetString("userEmail") != null)

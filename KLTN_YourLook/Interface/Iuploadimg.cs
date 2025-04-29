@@ -2,8 +2,8 @@
 {
     public interface Iuploadimg
     {
-        Task<string> uploadOnePhotosAsync(IFormFile files, string folder);
-        Task<List<string>> uploadPhotosAsync(List<IFormFile> files, string folder);
+        Task<string> uploadOnePhotosAsync(IFormFile files, string folder);//1 ảnh
+        Task<List<string>> uploadPhotosAsync(List<IFormFile> files, string folder);//nhiều ảnh
     }
     public class UploadImg : Iuploadimg
     {

@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>YourLook</title>
+	<title>YourLook</title>	
+	<link rel="icon" href="/logo/iconlogo.png" type="image/x-icon">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Colo Shop Template">
@@ -27,6 +28,7 @@
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 	@* font *@
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&subset=latin,vietnamese&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 	
@@ -35,7 +37,7 @@
 
 <body>
 	@{
-		var logo = "/logo/logo.png";
+		var logo = "/logo/logonew.png";
 	}
 	<div class="super_container cate">
 		<header id="headerr" class="headerr trans_300">
@@ -161,13 +163,15 @@
 							</a>
 						</div>
 						<nav class="navbar">
-							<div class="" style="display:flex;flex-direction:column">
-								<div class="form-search" style="">
-									<input style="position:relative" type="text" name="" class="search-text" id="searchKeyword" placeholder="Tìm Kiếm" />
-									<a id="searchButton">
-										<i id="searchButton" class="fa fa-search" aria-hidden="true"></i>
-									</a>
-								</div>
+							<div class="" style="display:flex;flex-direction:column">								
+								<form asp-controller="Home" asp-action="KeyWord" method="get">	
+									<div class="form-search" style="">
+										<input style="position:relative" type="text" name="keyword" class="search-text" id="searchKeyword" placeholder="Tìm Kiếm" value="@ViewBag.keyword" />
+										<button type="submit" class="fa fa-search"></button>
+										<div id="suggestions" class="suggestions-box">
+										</div>
+									</div>
+								</form>
 								<ul class="navbar_menu">									
                                     <li><a class="link" href="@Url.Action("Index","Home")">Home</a></li>
                                     <li><a class="link" href="@Url.Action("ProductCategory","Home")">Product</a></li>
@@ -335,10 +339,15 @@
 			<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
 			<div class="hamburger_menu_content text-right">
 				<div class="search-children" style="">
-					<input type="text" name="" class="search-text" id="searchKeyword-2" placeholder="Tìm Kiếm" />
-					<a id="searchButton-2">
-						<i id="searchButton-2" class="fa fa-search" aria-hidden="true"></i>
-					</a>
+					<form asp-controller="Home" asp-action="KeyWord" method="get">
+						<div class="search-children" style="">
+							<input type="text" name="keyword" class="search-text" id="searchKeyword-2" placeholder="Tìm Kiếm" />
+							<button type="submit" class="fa fa-search"></button>
+							@* <a id="searchButton-2" >
+							<i id="searchButton-2"  aria-hidden="true"></i>
+						</a> *@
+						</div>
+					</form>
 				</div>
 				<ul class="menu_top_nav">
 					<li class="menu_item has-children">
@@ -643,6 +652,7 @@
     <script src="../js/site.js"></script>
 	<script src="../js/msg.js"></script>
 	<script src="~/js/goback.js"></script>
+	<script src="../js/suggetproduct.js"></script>
 
 	@RenderSection("scripts", required: false)
 </body>

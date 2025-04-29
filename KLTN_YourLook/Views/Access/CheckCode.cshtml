@@ -1,0 +1,47 @@
+﻿@using KLTN_YourLook.Models
+@{
+    ViewData["Title"] = "CheckCode";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model CheckCodeViewModel
+<main class="login-body mar_container">
+    <div class="font-login">
+        <div style="display:flex; justify-content:space-around;align-items:center">
+            <div>
+                <h2>Quên Mật Khẩu</h2>
+            </div>
+        </div>
+        <div></div>
+        @using (Html.BeginForm("CheckCode", "Access", FormMethod.Post))
+        {
+            <div class="space-address">  
+                <div class="inp">
+                    <input type="text" name="Email" value="@Model.Email" readonly/>
+                </div>
+            </div>
+            <div class="space-address">
+                <div class="inp">
+                    @Html.TextBoxFor(x => x.Code, new { @class = "input", placeholder = "Mã code nhận được...", type = "text", required = "required", autofocus = "autofocus" })
+                </div>
+            </div>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="text-danger" style="display:flex;justify-content:center;">
+                    @Html.ValidationSummary(true)
+                </div>
+            }
+            <div class="btn-login">
+                <button class="btn-login" type="submit">Kiểm tra</button>
+            </div>
+        }
+        <div style="margin: 25px 0;display: flex;justify-content: space-between;">
+            <a href="">Quay Lại</a>
+        </div>
+    </div>
+</main>
+<style>
+    .validation-summary-errors ul li {
+        color: red;
+    }
+</style>

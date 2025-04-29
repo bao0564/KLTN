@@ -90,7 +90,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhSp = await _uploadimg.uploadOnePhotosAsync(AnhSpFile,"img");
                 }
-                var (newIdSp, error) = await _productRepository.CreateProduct(model.IdDm,model.TenSp,model.NhomId,model.AnhSp,model.PriceMax,
+                var (newIdSp, error) = await _productRepository.CreateProduct(model.IdDm,model.TenSp,model.NhomId,model.AnhSp,model.Classify,model.PriceMax,
                         model.GiamGia ?? 0,model.PriceMin ?? 0,model.MoTaSp,model.IActive,model.IFeature,model.IFavorite,model.IHot, model.ISale, "bao" );
                 if (!string.IsNullOrEmpty(error))
                 {
@@ -299,7 +299,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult DeleteProduct(int idsp)
         {
-            TempData["Message"] = "";
+            //TempData["Message"] = "";
             var img = _context.DbImgs.Where(x => x.IdSp == idsp).ToList();
             var sanpham = _context.DbProducts.Find(idsp);
             var chitietsanpham = _context.DbProductDetails.Where(x => x.IdSp == idsp).ToList();
@@ -316,7 +316,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 _context.DbProducts.Remove(sanpham);
                 _context.SaveChanges();
             }
-            TempData["Success"] = "Sản Phẩm Đã Được Xóa";
+            TempData["Success"] = "Sản Phẩm Đã Bị Xóa Khỏi Danh sách sản phẩm";
             return RedirectToAction("Product");
         }
         //api tải ảnh

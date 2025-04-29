@@ -1,7 +1,45 @@
 ﻿use [KLTN];
+
+SET QUOTED_IDENTIFIER ON
+GO
+--tìm kiếm sản phẩm
+--EXEC sp_user_search_product @keyword="áo"
+--drop procedure sp_user_search_product
+create procedure [dbo].[sp_user_search_product]
+	@keyword nvarchar(50)=null
+as
+begin
+	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors		
+	from DbProduct p
+	join DbCategory cate on p.IdDm=cate.IdDm
+	where @keyword IS NULL OR p.TenSp like '%'+@keyword+'%' or cate.TenDm like '%'+@keyword+'%' and p.IActive = 1
+	order by p.IdSp desc
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--tìm kiếm sản phẩm
+--EXEC sp_user_search_sugget @keyword="áo"
+--drop procedure sp_user_search_sugget
+create procedure [dbo].[sp_user_search_sugget]
+	@keyword nvarchar(50)=null
+as
+begin
+	select top 10 p.TenSp from DbProduct p
+	where @keyword IS NULL OR p.TenSp like '%'+@keyword+'%' and p.IActive = 1
+end;
+
 SET QUOTED_IDENTIFIER ON
 GO
 --all sản phẩm
+--EXEC product_view
 -- drop procedure product_view
 create procedure [dbo].[product_view]
 as
@@ -10,7 +48,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -28,7 +66,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -47,12 +85,13 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
 	WHERE p.IActive = 1 and p.CreateDate <= DATEADD(DAY,50,GETDATE())
+	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -66,7 +105,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -86,7 +125,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -107,7 +146,7 @@ begin
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(CONCAT(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
@@ -117,6 +156,7 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --Chi tiết sản phẩm
+--EXEC product_detail @idsp=19
 --drop procedure product_detail
 create procedure [dbo].[product_detail]
 	@idsp int
@@ -595,5 +635,44 @@ begin
 	from DbRating rat 
 	join DbCustomer cus on rat.IdKh=cus.IdKh
 	where rat.IdSp=@idsp
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Lưu mã code để đặt lại mật khẩu
+--DECLARE @error NVARCHAR(500); EXEC sp_forgot_pass_code @idkh=21,@code="12345", @error = @error OUTPUT; PRINT @error;
+--drop procedure sp_forgot_pass_code
+create procedure [dbo].[sp_forgot_pass_code]
+	@idkh int,
+	@code nvarchar(15),
+	@error nvarchar(500) out
+as
+begin
+	begin try
+		update DbCustomer set ForgotPasword= @code where IdKh=@idkh
+	end try
+	begin catch
+		set @error=N'Lỗi - Mã code ForgotPasword không được lưu thành công '+ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--kiểm tra mã code để đổi mật khẩu
+--DECLARE @error NVARCHAR(500); EXEC sp_check_pass_code @email="",@pass="",@confirmpass="", @error = @error OUTPUT; PRINT @error;
+--drop procedure sp_check_pass_code
+create procedure [dbo].[sp_check_pass_code]
+	@email nvarchar(50),
+	@pass nvarchar(15),
+	@confirmpass nvarchar(15),
+	@error nvarchar(500) out
+as
+begin
+	begin try
+		update DbCustomer set Passwords=@pass,ConfirmPasswords=@confirmpass where Email=@email
+	end try
+	begin catch
+		set @error=N'Lỗi - Đổi mật khẩu không thành công '+ERROR_MESSAGE();
+	end catch
 end;
 use [KLTN];

@@ -2,7 +2,7 @@
 $(document).ready(function () {
     var SlideAdd = (function () {
 
-        //di chuyển ad đầu trang
+        //di chuyển ad đầu trang;
         const sliderImg = document.querySelector(".img-ad");
         let count = 0;
         function nextSlideImg() {
