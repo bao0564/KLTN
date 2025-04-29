@@ -46,15 +46,32 @@ COLOR PALETTE
 	--gray-a: #2f3640;
 	--gray-b: #535c68 /* #353b48*/;
 	--gray-d: #bdc3c7;
+	--gray-e: #f5f6fa;
+	--yellow-1: #e15f41; /*màu cho tag giảm giá*/
 	--font-1: /*"Fredoka One",*/ Arial, sans-serif; /*price*/
+	--font-2: 'Montserrat', sans-serif;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900');
 
+* {
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+body {
+	font-family: var(--font-2);
+	font-size: 14px;
+	font-weight: 500;
+}
+
 /*********************************
 2. Body and some general stuff
 *********************************/
-
+.w100{
+	width:100%;
+}
 .fs1 {
 	font-size: 1rem;
 }
@@ -84,7 +101,10 @@ COLOR PALETTE
 	display: flex;
 	align-items: center;
 }
-
+.flfe {
+	display: flex;
+	align-items: flex-end;
+}
 .fljct {
 	display: flex;
 	justify-content: center;
@@ -106,7 +126,9 @@ COLOR PALETTE
 	flex-direction: column;
 	gap: 10px
 }
-
+.gap {
+	gap: 10px
+}
 .flscr {
 	display: -webkit-flex;
 	overflow-y: hidden;
@@ -193,20 +215,6 @@ COLOR PALETTE
 	.no-scrollbar::-webkit-scrollbar { /* Chrome, Safari, and Opera */
 		display: none;
 	}
-
-* {
-	margin: 0;
-	padding: 0;
-	color: #000;
-}
-
-body {
-	font-family: 'Poppins', sans-serif;
-	font-size: 14px;
-	font-weight: 400;
-	background: #FFFFFF;
-	color: #1e1e27;
-}
 
 blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
 	margin: 0;
@@ -422,6 +430,32 @@ section {
 	overflow: hidden;
 	background-color: #FFFFFF;
 }
+/*********************************
+3.6 Logo
+*********************************/
+
+.logo_container {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	left: 3%;
+}
+
+	.logo_container a {
+		font-size: 24px;
+		color: #1e1e27;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+		.logo_container a span {
+			color: #fe4c50;
+		}
+
 /* form ??ng nh?p/??ng k� */
 .form-login, .form-address {
 	display: none;
@@ -570,7 +604,9 @@ section {
 	width: 100%;
 	padding: 10px;
 }
-
+.btn-primary-prev, .btn-primary-next {
+	padding: 10px ;
+}
 .btn-primary-next:hover, .btn-primary-prev:hover {
 	background-color: var(--gray-a);
 }
@@ -1137,6 +1173,8 @@ section {
 .form-search {
 	display: flex;
 	justify-content: center;
+	margin-top:10px;
+	position:relative;
 }
 
 	.form-search form {
@@ -1157,7 +1195,7 @@ section {
 	.form-search button {
 		position: absolute;
 		right: 11%;
-		top: 15%;
+		top: 25%;
 		border: none;
 		background-color: #ffffff00;
 	}
@@ -1180,11 +1218,11 @@ section {
 
 		.navbar_menu li a {
 			display: block;
-			color: #ffffff92;
+			color: #fff;
 			font-size: 15px;
 			font-weight: 500;
 			text-transform: uppercase;
-			padding: 20px;
+			padding: 15px 20px;
 		}
 
 			.navbar_menu li a:hover {
@@ -1512,7 +1550,7 @@ section {
 .red_button a {
 	display: block;
 	color: #FFFFFF;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	font-size: 14px;
 	font-weight: 500;
 	text-align: center;
@@ -1676,7 +1714,7 @@ section {
 		display: block;
 		color: #1e1e27;
 		text-transform: uppercase;
-		font-size: 22px;
+		/*font-size: 22px;*/
 		font-weight: 600;
 		text-align: center;
 		line-height: 50px;
@@ -1698,18 +1736,21 @@ section {
 
 .new_arrivals {
 	width: 100%;
+	padding: 0 20px;
 }
 
 .new_arrivals_title {
-	min-width: 150px;
-	border: 2px solid var(--gray-a);
+	min-width: 100px;
+	border: 3px solid var(--gray-a);
 	border-radius: 1.5rem;
-	padding: 10px;
-	margin-top: 20px;
+	padding: 5px;
+	cursor: pointer;
+	/*margin-top: 20px;*/
 }
 
-	.new_arrivals_title h2 {
-	}
+.new_arrivals_title h2 {
+
+}
 /*Thay ??i gi�  tr? m?c ??nh c?a template*/
 /*********************************
 5.1 New Arrivals Sorting
@@ -2073,9 +2114,11 @@ section {
 	bottom: -6px;
 	border: 6px solid;
 }
-
-.product_bubble_red::after {
-	border-color: transparent transparent transparent var(--gray-a);
+.fa-regular.fa-heart {
+	color: #f8a5c2 !important;
+}
+.fa-solid.fa-heart {
+	color: #ff3838 !important;
 }
 
 .product_bubble_left::after {
@@ -2083,9 +2126,12 @@ section {
 }
 
 .product_bubble_red {
-	background: var(--gray-a);
+	background: var(--yellow-1);
 }
 
+.product_bubble_red::after {
+	border-color: transparent transparent transparent var(--yellow-1);
+}
 .product_bubble_green {
 	background: #51a042;
 }
@@ -2114,8 +2160,8 @@ section {
 }
 
 	.add_to_cart_button a {
-		font-size: 12px;
-		font-weight: 600;
+		font-size: 14px;
+		/*font-weight: 600;*/
 	}
 
 .prd-item:hover .add_to_cart_button {
@@ -2161,16 +2207,37 @@ section {
 .deal_ofthe_week_content {
 	height: 100%;
 }
-
+.new_arrivals .section_title:first-child {
+	padding-left: 50px;
+	height: 70px;
+	/*background-color: #f5f6fa ;*/
+	border-bottom-right-radius:10px;
+	border-top-right-radius: 10px;
+}
+/*.new_arrivals .section_title:first-child::after {
+	content: "";
+	position: absolute;
+	top: 53px;
+	left: 94%;
+	width: 0px;
+	height: 0px;		
+	border-right: 20px solid red;
+	border-bottom: 0px solid transparent;
+	border-top: 20px solid transparent;
+}*/
+	.new_arrivals .section_title:first-child .section_products {
+		font-size: 40px;
+		display: inline-block;
+		position: relative;
+		text-transform: uppercase;
+		padding-top: 10px;
+		color: #000;
+		font-weight: 700;
+	}
 .section_title {
 	display: inline-block;
 	text-align: center;
 }
-
-	.section_title h2 {
-		display: inline-block;
-	}
-
 	.section_title::after {
 		display: block;
 		position: absolute;
@@ -2186,9 +2253,12 @@ section {
 		content: '';
 	}
 
-.timer {
-	margin-top: 66px;
-}
+	.section_title .btn_sex {
+		text-transform: uppercase;
+	}
+	.timer {
+		margin-top: 66px;
+	}
 
 	.timer li {
 		display: inline-block;
@@ -2283,25 +2353,29 @@ section {
 	justify-content: center;
 }
 
-#prd-hot {
+#prd-hot, #menprd_page1, #menprd_page2, #menprd_page3, #menprd_page4 {
 	display: block;
 }
-
-#prd-new {
+#prd-new, #womenprd_page1, #womenprd_page2, #womenprd_page3, #womenprd_page4 {
 	display: none;
 }
-
+.new_arrivals_title.active{
+	background-color:var(--gray-a);
+}
+.new_arrivals_title.active .btn_sex {
+	color:#fff;
+}
 .prd-next {
-	background-color: var(--gray-a);
+	background-color:#ffffff00;
 }
 
-	.prd-next a {
-		color: #fff;
-	}
+.prd-next a {
+	color: #fff;
+}
 
-		.prd-next a i {
-			padding-left: 5px;
-		}
+.prd-next a i {
+	padding-left: 5px;
+}
 /*********************************
 7.1 Slider Nav
 *********************************/
@@ -3320,3 +3394,24 @@ section {
 	left: 0 !important;
 	width:100%;
 }
+.suggestions-box {
+	border-radius:10px;
+	border: 1px solid #ccc;
+	max-height: 200px;
+	overflow-y: auto;
+	background: #2f3640;
+	position: absolute;
+	width: 80%;
+	z-index: 1000;
+	top:110%;
+}
+
+	.suggestions-box div {
+		padding: 8px;
+		cursor: pointer;
+		text-align:left;
+	}
+
+		.suggestions-box div:hover {
+			background-color: #eee;
+		}

@@ -23,11 +23,14 @@
                     data: { idsp: idsp, quantity: quantity, sizeid: selectedSize, colorid: selectedColor },
                     success: function (rs) {
                         if (rs.success) {
-                            showMess(rs.msg, true);
+                            showMess(rs.msg, true);// lấy thông báo từ controller
                             location.reload();
                         } else {
-                            showMess("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.", false);
+                            showMess(rs.msg, false);// lấy thông báo từ controller
                         }
+                    },
+                    else: function () {
+                        showMess("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.", false);
                     }
                 });
                 return false; // chặn sự kiện khác thực thi

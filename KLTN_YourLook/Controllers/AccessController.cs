@@ -10,6 +10,14 @@ using KLTN_YourLook.Models;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using DocumentFormat.OpenXml.Wordprocessing;
+using KLTN_YourLook.Interface;
+using Mailjet.Client;
+using Newtonsoft.Json.Linq;
+
+
+using Mailjet.Client;
+using Newtonsoft.Json.Linq;
+using Mailjet.Client.Resources;
 
 namespace KLTN_YourLook.Controllers
 {
@@ -17,10 +25,14 @@ namespace KLTN_YourLook.Controllers
 	{
 		private readonly YourlookContext _context;
 		private readonly SP_User _user;
-		public AccessController(YourlookContext context,SP_User sp_user)
+		private readonly SP_Access _access;
+		private readonly ISentMail _sentMail;
+		public AccessController(YourlookContext context,SP_User sp_user,SP_Access access,ISentMail sentMail)
 		{
 			_context = context;
 			_user = sp_user;
+			_access = access;
+			_sentMail = sentMail;
 		}
 		[HttpGet]
 		public IActionResult Login()
@@ -196,7 +208,6 @@ namespace KLTN_YourLook.Controllers
             return RedirectToAction("Index", "Home");  
         }
         // quên mật khẩu
-
         [HttpGet]
         public IActionResult ForgotPassword()
 		{
@@ -204,17 +215,88 @@ namespace KLTN_YourLook.Controllers
 		}
 		
         [HttpPost]
-        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
 		{
-			return View();
+			var checkkh= _context.DbCustomers.FirstOrDefault(x=>x.Email == model.Email);			
+            if (checkkh == null )
+			{
+                TempData["Error"] = "Email chưa được đăng ký";
+                return View(model);
+            }
+            if (checkkh.IsExternalAccount)
+            {
+                TempData["Error"] = "Email đã được đăng ký bằng Google";
+                return View(model);
+            }
+			var name= checkkh.TenKh;
+			var idkh = checkkh.IdKh;
+            string code = new Random().Next(100000, 999999).ToString();
+
+			//await sentWithMailjet(model.Email, name, "Quên mật khẩu", $"Mã xác nhận:{code}");
+			TempData["Success"] = "Nhập mã xác nhận được gửi về địa chỉ email của bạn";
+			var error = await _access.sp_AddCodeForgotPass(idkh, code);
+			if (!string.IsNullOrEmpty(error))
+			{
+				TempData["Error"] = error;
+				return View(model);
+			}
+			return RedirectToAction("CheckCode", "Access", new {mail=model.Email});
 		}
 
-        public IActionResult LogOut()
+        // check mã gửi
+        [HttpGet]
+        public IActionResult CheckCode(string mail)
+        {
+			var getmail = new CheckCodeViewModel
+			{
+				Email = mail
+			};
+            return View(getmail);
+        }
+
+        [HttpPost]
+        public IActionResult CheckCode(CheckCodeViewModel model)
+        {
+			var checkcode = _context.DbCustomers.FirstOrDefault(x => x.Email == model.Email && x.ForgotPasword == model.Code);
+			if (checkcode == null)
+			{
+				TempData["Error"] = "Mã nhập không đúng";
+				return View(model); 
+			}
+
+            return RedirectToAction("ChangePassword", "Access", new { mail = model.Email });
+        }
+
+        // đổi mật khẩu
+        [HttpGet]
+        public IActionResult ChangePassword(string mail)
+        {
+            var getmail = new ChangePassViewModel
+            {
+                Email = mail
+            };
+            return View(getmail);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePassViewModel model)
+        {
+			var error = await _access.sp_ChangePass(model.Email, model.Pass, model.ConfirmPass);
+			if (!string.IsNullOrEmpty(error))
+			{
+				TempData["Error"] = error;
+				return View(model);
+			}
+			TempData["Success"] = "Đặt lại mật khẩu thành công vui lòng đăng nhập lại";
+            return RedirectToAction("Login", "Access");
+        }
+        public IActionResult LogOut() 
 		{
 			HttpContext.Session.Remove("userEmail");
 			HttpContext.Session.Remove("userId");
             HttpContext.Session.Remove("userName");
             return RedirectToAction("Index", "Home");
 		}
+		
 	}
 }

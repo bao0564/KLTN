@@ -14,6 +14,8 @@ C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\KLTN_YourLook.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\KLTN_YourLook.pdb
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Azure.Core.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Azure.Identity.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\ClosedXML.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\ClosedXML.Parser.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Dapper.dll
@@ -32,6 +34,8 @@ C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.sign.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.styledxmlparser.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.svg.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\itext.commons.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Mailjet.Client.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\MailKit.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Facebook.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -82,6 +86,7 @@ C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGe
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\MimeKit.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\NuGet.Common.dll
@@ -104,13 +109,16 @@ C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Composition.Runtime.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Composition.TypedParts.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Formats.Asn1.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.IO.Packaging.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Memory.Data.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Reflection.MetadataLoadContext.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Runtime.Caching.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Text.Encoding.CodePages.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\System.Windows.Extensions.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\X.PagedList.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\X.PagedList.Mvc.Core.dll
@@ -263,7 +271,9 @@ C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Text.Encoding.CodePages.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Data.dll
 C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\Data.pdb
@@ -289,11 +299,10 @@ C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\staticwebassets\msbuild.build.KLT
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.KLTN_YourLook.props
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.KLTN_YourLook.props
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\staticwebassets.pack.json
+C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_You.047231EE.Up2Date
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_YourLook.dll
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\refint\KLTN_YourLook.dll
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_YourLook.pdb
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\KLTN_YourLook.genruntimeconfig.cache
 C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\ref\KLTN_YourLook.dll
-C:\ShopYourLook\KLTN_YourLook\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
-C:\ShopYourLook\KLTN_YourLook\bin\Debug\net7.0\BCrypt.Net-Next.dll

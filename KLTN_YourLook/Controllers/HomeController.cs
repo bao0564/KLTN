@@ -1,6 +1,5 @@
 ﻿using Data.Models;
 using KLTN_YourLook.Areas.Admin.Models;
-using KLTN_YourLook.Areas.Admin.Repository;
 using KLTN_YourLook.Extension;
 using KLTN_YourLook.Interface;
 using KLTN_YourLook.Models;
@@ -20,7 +19,7 @@ namespace KLTN_YourLook.Controllers
 		private readonly YourlookContext _context;
 		private readonly SP_Product _productProcedure;
 
-        public HomeController(ILogger<HomeController> logger,YourlookContext context, SP_Product productProcedure)
+        public HomeController(ILogger<HomeController> logger,YourlookContext context, SP_Product productProcedure )
         {
             _logger = logger;
 			_context = context;
@@ -54,28 +53,44 @@ namespace KLTN_YourLook.Controllers
 			}
 		}
 
-		////tìm từ khóa
-		//public IActionResult KeyWord(int? page, string keyword)
-		//{
-		//	int pageSize = 25;
-		//	int pageNumber = page ?? 1;
-		//	var item = from sp in _context.DbProducts
-		//			   join dm in _context.DbDanhMucs on sp.MaDm equals dm.MaDm
-		//			   where (string.IsNullOrEmpty(keyword) || sp.TenSp.Contains(keyword) || dm.TenDm.Contains(keyword))
-		//			   select new DbSanPham
-		//			   {
-		//				   MaSp = sp.MaSp,
-		//				   TenSp = sp.TenSp,
-		//				   GiamGia = sp.GiamGia,
-		//				   AnhSp = sp.AnhSp,
-		//				   PriceMax = sp.PriceMax,
-		//				   PriceMin = sp.PriceMin,
-		//			   };
-		//	var lst = item.ToList();
-		//	PagedList<DbSanPham> lstsp = new PagedList<DbSanPham>(lst, pageNumber, pageSize);
-		//	return View(lstsp);
-		//}
+		//tìm từ khóa
+		public async Task<IActionResult> KeyWord(int? page, string keyword)
+		{
+			int pageSize = 25;
+			int pageNumber = page ?? 1;
 
+            var idkh = HttpContext.Session.GetInt32("userId");
+            var idFvrPrd = new List<int>();
+            if (idkh != null)
+            {
+                idFvrPrd = _context.DbFavoriteProducts.Where(x => x.IdKh == idkh.Value).Select(x => x.IdSp).ToList();
+            }
+			//if (keyword == null)
+			//{
+			//	return RedirectToAction("Index","Home");
+			//}
+            var lst = await _productProcedure.User_Search_Product(keyword);
+            ViewBag.keyword = keyword;
+            foreach (var prd in lst)
+            {
+                prd.IFavorite = idFvrPrd.Contains(prd.IdSp);
+            }
+            PagedList<ViewAllDetail> lstcatesp = new PagedList<ViewAllDetail>(lst, pageNumber, pageSize);
+            return View(lstcatesp);
+        }
+		//hiển thị gọi ý tìm kiếm
+		[HttpGet]		
+		public async Task<JsonResult> SuggetResult(string keyword)
+		{
+            var lst = await _productProcedure.User_Search_Product(keyword);
+            var result = lst.Select(x => x.TenSp).ToList();
+            //        var lst = _context.DbProducts
+            //.Where(p => p.TenSp.Contains(keyword))
+            //.Select(p => p.TenSp)
+            //.Take(10)
+            //.ToList();
+            return Json(result);
+        }
 		//all sp
 		public async Task<IActionResult> AllProduct(int? page)
 		{

@@ -660,6 +660,7 @@ create procedure [dbo].[product_insert]
 	@iddm int,
 	@tensp nvarchar(100),
 	@nhomid int,
+	@classify nvarchar(10),
 	@anhsp nvarchar(500),
 	@pricemax decimal,
 	@giamgia int,
@@ -678,8 +679,8 @@ as
 begin
 	declare @GeneratedMaSp nvarchar(8);
 	begin try
-		insert into DbProduct (IdDm,TenSp,NhomId,AnhSp,PriceMax,GiamGia,PriceMin,MotaSp,IActive,IFeature,IFavorite,IHot,ISale,CreateBy,CreateDate) 
-		values (@iddm,@tensp,@nhomid,@anhsp,@pricemax,@giamgia,@pricemin,@motasp,@iactive,@ifeature,@ihot,@isale,@ifavorite,@createby,GETDATE())
+		insert into DbProduct (IdDm,TenSp,NhomId,AnhSp,Classify,PriceMax,GiamGia,PriceMin,MotaSp,IActive,IFeature,IFavorite,IHot,ISale,CreateBy,CreateDate,LuotXem) 
+		values (@iddm,@tensp,@nhomid,@anhsp,@classify,@pricemax,@giamgia,@pricemin,@motasp,@iactive,@ifeature,@ihot,@isale,@ifavorite,@createby,GETDATE(),0)
 
 		set @newidsp=SCOPE_IDENTITY();
 		set @GeneratedMaSp= CONCAT('SP',FORMAT(@newidsp,''));

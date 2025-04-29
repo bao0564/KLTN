@@ -1,13 +1,36 @@
-
+﻿
 
 $(document).ready(function () {
+    function changecolorbtn() { //đổi màu nút nam nữ
+        //$('.new_arrivals_title').click(function () {
+        //    setTimeout(function () {
+        //        initFixProductBorder();
+        //    }, 500);
+
+        //    $('.new_arrivals_title.active').removeClass('active');
+        //    $(this).addClass('active');
+        //});
+        const btn = document.querySelectorAll(".new_arrivals_title");
+        btn.forEach(function (a) {
+            a.addEventListener('click', function () {
+                setTimeout(function () {
+                    initFixProductBorder();
+                }, 500);
+                btn.forEach(function (t) {
+                    t.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    }
     //===============================================
     var SwichListProduct = (function () {
-        function newprd() {
+        //_________________
+        function newprd() { //sản phẩm mới
             document.getElementById("prd-hot").style.display = "none";
             document.getElementById("prd-new").style.display = "block";
         }                            
-        function hotprd() {
+        function hotprd() { //sản phẩm hot
             document.getElementById("prd-hot").style.display = "block";
             document.getElementById("prd-new").style.display = "none";
         }
@@ -15,9 +38,67 @@ $(document).ready(function () {
             document.getElementById("hotprd").addEventListener("click", hotprd);
             document.getElementById("newprd").addEventListener("click", newprd);
         }
+        //__________________
+        function menprd_page1() { //sản phẩm nam page 1
+            document.getElementById("womenprd_page1").style.display = "none";  
+            document.getElementById("menprd_page1").style.display = "block";
+        }
+        function womenprd_page1() { //sản phẩm nữ page 1
+            document.getElementById("womenprd_page1").style.display = "block";
+            document.getElementById("menprd_page1").style.display = "none";
+        }
+        function SwichBtn_page1() {
+            document.getElementById("womenprdpage1").addEventListener("click", womenprd_page1);
+            document.getElementById("menprdpage1").addEventListener("click", menprd_page1);
+
+            changecolorbtn();
+        }
+        //__________________
+        function menprd_page2() { //sản phẩm nam page 2
+            document.getElementById("womenprd_page2").style.display = "none";
+            document.getElementById("menprd_page2").style.display = "block";
+        }
+        function womenprd_page2() { //sản phẩm nữ page 2
+            document.getElementById("womenprd_page2").style.display = "block";
+            document.getElementById("menprd_page2").style.display = "none";
+        }
+        function SwichBtn_page2() {
+            document.getElementById("womenprdpage2").addEventListener("click", womenprd_page2);
+            document.getElementById("menprdpage2").addEventListener("click", menprd_page2);
+        }
+        //__________________
+        function menprd_page3() { //sản phẩm nam page 3
+            document.getElementById("womenprd_page3").style.display = "none";
+            document.getElementById("menprd_page3").style.display = "block";
+        }
+        function womenprd_page3() { //sản phẩm nữ page 3
+            document.getElementById("womenprd_page3").style.display = "block";
+            document.getElementById("menprd_page3").style.display = "none";
+        }
+        function SwichBtn_page3() {
+            document.getElementById("womenprdpage3").addEventListener("click", womenprd_page3);
+            document.getElementById("menprdpage3").addEventListener("click", menprd_page3);
+        }
+        //__________________
+        function menprd_page4() { //sản phẩm nam page 4
+            document.getElementById("womenprd_page4").style.display = "none";
+            document.getElementById("menprd_page4").style.display = "block";
+        }
+        function womenprd_page4() { //sản phẩm nữ page 4
+            document.getElementById("womenprd_page4").style.display = "block";
+            document.getElementById("menprd_page4").style.display = "none";
+        }
+        function SwichBtn_page4() {
+            document.getElementById("womenprdpage4").addEventListener("click", womenprd_page4);
+            document.getElementById("menprdpage4").addEventListener("click", menprd_page4);
+        }
         return {
             init: function () {
                 SwichBtn();
+                SwichBtn_page1();
+                SwichBtn_page2();
+                SwichBtn_page3();
+                SwichBtn_page4();
             }
         }
     })();

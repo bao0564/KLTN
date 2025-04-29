@@ -788,6 +788,11 @@ namespace Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("Classify")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("CreateBy")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");

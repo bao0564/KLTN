@@ -58,7 +58,7 @@
 					else
 					{
 						//<div class="flct product_price"><h3 id="price">@string.Format("{0:N0}", Model.PriceMax)</h3></div>
-                        <div class="flct product_price"><h3 id="type_price">@string.Format("{0:N0}", Model.PriceMax)</h3></div>
+						<div class="flct product_price"><h3 id="type_price" data-price="@Model.PriceMax">@string.Format("{0:N0}", Model.PriceMax)</h3></div>
 					}
 					<div class="flct" style="margin-bottom:8px">
 						<ul class="star_rating pd-lr">
@@ -116,13 +116,13 @@
 					</div>
 					<div class="cart-box">
 						<div class="btn flct pd" style="background-color:#2f3640;margin:0 10px">
-							@if(Context.Session.GetInt32("userId")!=null){
+							@* @if(Context.Session.GetInt32("userId")!=null){ *@
 								<a class="btnAddToCart" id="btnAddToCart" data-idsp="@Model.IdSp" style="color:#fff">Thêm vào giỏ hàng</a>
-							}
-							else
+							@* } *@
+							@* else
 							{
 								<a onclick="OpLable()" style="color:#fff">Thêm vào giỏ hàng</a>
-							}
+							} *@
 						</div>
 						<div style="border:1px solid #2f3640;border-radius:10px">
 							<div class="favorite" data-id="@Model.IdSp" style="font-size:20px;position:relative;top:0;left:0;padding:5px 15px">

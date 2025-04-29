@@ -103,8 +103,32 @@ namespace KLTN_YourLook.Repository_YL
 			});
 			return lst.ToList();
 		}
-		//sản phẩm sale
-		public async Task<List<ViewAllDetail>> Product_Sale_View()
+        //tìm kiếm sản phẩm
+        public async Task<List<ViewAllDetail>> User_Search_Product(string? keyword)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@keyword", keyword);
+            var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("sp_user_search_product", parameters,commandType:CommandType.StoredProcedure);
+            return MapToViewAllDetails(lstraw);
+        }
+        //gợi ý tìm kiếm
+        public async Task<List<ViewSugget>> User_Search_Sugget(string? keyword)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@keyword", keyword);
+            var lst = await _dbConnection.QueryAsync<ViewSugget>("sp_user_search_sugget", parameters, commandType: CommandType.StoredProcedure);			
+            return lst.ToList();
+        }
+        //sản phẩm sale
+        public async Task<List<ViewAllDetail>> Product_Sale_View()
 		{
 			if (_dbConnection == null)
 			{
@@ -178,11 +202,11 @@ namespace KLTN_YourLook.Repository_YL
 				LuotSold = x.LuotSold,
 				MotaSp = x.MotaSp,
 				IsFavorite = x.IsFavorite,
-				ImgDetail = x.ImgDetail.Split(';')
+				ImgDetail = !string.IsNullOrWhiteSpace(x.ImgDetail) ? x.ImgDetail.Split(';')//tránh sản phẩm ko có ảnh phụ
 							.Select(y => new ViewDetailImg
 							{
 								Img = y
-							}).ToList(),
+							}).ToList() : new List<ViewDetailImg>(),
 				Detail=x.Detail.Split(';')
 							.Select(y =>
 							{

@@ -32,12 +32,6 @@
                 <div class="tab-content">
                     <div class="active tab-pane" id="page1">
                         <div class="fl pd">
-                           @*  <div class="col-4">
-                                <label class="control-label">Mã Sản Phẩm:</label>
-                                <input asp-for="MaSp" id="masp" class="form-control" onkeyup="MaSpLength()" />
-                                <span id="error" style="color: red;"></span>
-                                <span asp-validation-for="MaSp" class="text-danger"></span>
-                            </div> *@
                             <div class="col-4">
                                 <label class="control-label">Tên Sản Phẩm</label>
                                 <input asp-for="TenSp" id="tensp" class="form-control" onkeyup="TenSpLength()" />
@@ -47,6 +41,14 @@
                                 <label class="control-label">Ảnh Đại Diện (330x470)</label>
                                 <input type="file" asp-for="AnhSp" class="form-control" name="AnhSpFile" accept="image/*" />
                                 <span asp-validation-for="AnhSp" class="text-danger"></span>
+							</div>
+							 <div class="col-4">
+                                <label class="control-label">Đối tượng phù hợp:</label>
+								<select asp-for="Classify" class="form-control">
+									<option value="All">--- Nam/Nữ ---</option>
+                                    <option value="Nam">--- Nam ---</option>
+                                    <option value="Nữ">--- Nữ ---</option>
+                                </select>
                             </div>
                         </div>
                         <div class="fl mg">

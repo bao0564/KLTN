@@ -25,18 +25,15 @@ namespace KLTN_YourLook.Areas.Admin.Models
     public class AddProductViewModel:DbAbstract //view thêm sản phẩm
     {
         public int IdSp { get; set; }
-        [StringLength(10)]
         public string? MaSp { get; set; }
-        [Required(ErrorMessage = "Tên sản phẩm không được để trống")]
-        [StringLength(100)]
         public string TenSp { get; set; }
         public int IdDm { get; set; }
         public int NhomId { get; set; }
+        public string Classify { get; set; }
         public decimal PriceMax { get; set; }
         public int? GiamGia { get; set; }
         public decimal? PriceMin { get; set; }
         public string? AnhSp { get; set; }
-        [Required(ErrorMessage = "Mô tả sản phẩm không được để trống")]
         public string MoTaSp { get; set; }
         public bool IActive { get; set; }
         public bool IFeature { get; set; }

@@ -133,6 +133,9 @@
 	}
 	/*3. 1280px*/
 @media only screen and (max-width: 1280px) {
+	.form-search button {
+		right: 21%;
+	}
 	.product-item {
 		width: 20%;
 	}
@@ -301,7 +304,16 @@
 	}
 }
 	/*4. 1199px*/
-@media only screen and (max-width: 1199px) {	
+@media only screen and (max-width: 1199px) {
+	.new_arrivals .section_title:first-child {
+		padding-left: 0px;
+	}
+	.new_arrivals .section_title:first-child .section_products {
+		font-size:2rem;
+	}
+	.btn_sex,.show_more_btn{
+		font-size:0.75rem;
+	}
 	.product_image-2 .box-inf-cl-s {
 		width: 90%;
 	}
@@ -417,9 +429,11 @@
 	}
 
 	.logo_container {
-		width: 30%
+		width: auto;
 	}
-
+	.form-search button {
+		 right: 5%; 
+	}
 	.navbar {
 		height: 100px;
 	}
@@ -574,10 +588,6 @@
 		font-size: 10px;
 	}
 
-	.logo_container {
-		width: 20%
-	}
-
 	.logo_container a .logo {
 		height: 60px;
 		font-size: 12px;
@@ -695,6 +705,9 @@
 }
 	/*8. 880px*/
 @media only screen and (max-width: 880px) {
+	.new_arrivals .section_title:first-child .section_products {
+		font-size: 1.5rem;
+	}
 	.goBack{
 		display:none;
 	}
@@ -826,7 +839,10 @@
 }
 	/*9. 768px*/
 @media only screen and (max-width: 768px) {
-	
+
+	.new_arrivals_title {
+		margin: 0px;
+	}
 	.crate_infor {/*trang đánh giá*/
 		display: block;
 	}
@@ -996,10 +1012,10 @@
 		margin: 0 5px;
 	}
 
-		.navbar_user li a {
-			margin: 0 5px;
-			font-size: 12px
-		}
+	.navbar_user li a {
+		margin: 0 5px;
+		font-size: 12px
+	}
 
 	.account {
 		min-width: 40px;
@@ -1009,9 +1025,6 @@
 		display: none;
 	}
 
-	.prd-next a {
-		font-size: 11px;
-	}
 	/*.row {
 	flex-wrap: nowrap;
 }*/
@@ -1067,6 +1080,16 @@
 
 }
 @media only screen and (max-width: 667px) {
+	.new_arrivals .section_title:first-child {
+		height: 50px;
+	}
+	.new_arrivals .section_title:first-child .section_products {
+		font-size: 1.25rem;
+	}
+	.new_arrivals_title {
+		min-width: 70px;
+		border: 2px solid var(--gray-a);
+	}
 	.order-history .voucher, .order-history .ship, .order-history .date-order {
 		font-size: 11px;
 	}
@@ -1240,6 +1263,19 @@
 }
 /*11. 575px*/
 @media only screen and (max-width: 575px) {
+	.new_arrivals .section_title:first-child {
+        padding-left: 0px;
+		padding-right:0px;
+    }
+	.btn_sex, .show_more_btn {
+		font-size: 0.65rem;
+	}
+	.new_arrivals_title {
+		min-width: 60px;
+	}
+	.new_arrivals_title {
+		margin: 0 0 5px;
+	}
 	.first-box-prd {
 		top: 0;
 	}
@@ -1413,9 +1449,7 @@
 	}
 /*11. 539px*/
 @media only screen and (max-width: 539px) {
-		.logo_container {
-			padding-left: 0;
-		}
+		
 		.section_title h2 {
 			font-size: 23px;
 		}
@@ -1560,12 +1594,9 @@
 		padding: 0;
 	}
 
-	.btn-primary-prev {
-		top: 25%;
-	}
+	.btn-primary-prev,.btn-primary-next {
 
-	.btn-primary-next {
-		top: 25%;
+		top: 30%;
 	}
 
 	/*.favorite {
@@ -1585,7 +1616,21 @@
 }
 /*13. 479px*/
 @media only screen and (max-width: 479px) {
-	
+	.new_arrivals .section_title:first-child .section_products {
+		font-size: 1rem;
+	}
+	.btn_sex, .show_more_btn {
+		font-size: 0.55rem;
+	}
+	.new_arrivals_title {
+		min-width: 50px;
+	}
+	.btn{
+		font-size:0.75rem;
+	}
+	.logo_container {
+		width: 20%;
+	}
 	.toast {
 		right: 20%;
 	}
@@ -1784,8 +1829,12 @@
 }
 /*14. 400px*/
 @media only screen and (max-width: 400px) {
-	div{
-		font-size:13px;
+	.product_bubble {
+		width: 30px;
+		height: 15px;
+	}
+	.product_bubble span {
+		font-size: 0.55rem;
 	}
 	.new_arrivals_title {
 		padding:5px;

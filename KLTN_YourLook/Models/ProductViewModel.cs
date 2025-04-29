@@ -45,5 +45,9 @@ namespace KLTN_YourLook.Models
 		public int SizeId { get; set; }
 		public string NameSize { get; set; }
 	}
+	public class ViewSugget 
+	{
+        public string TenSp { get; set; }
+    }
 
 }

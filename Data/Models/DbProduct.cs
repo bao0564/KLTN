@@ -17,6 +17,8 @@ namespace Data.Models
         [StringLength(250)]
         public string TenSp { get; set; }
         public int? SaoDanhGia { get; set; }
+        [StringLength(10)]
+        public string Classify { get; set; }
         public int NhomId { get; set; }
 
         [StringLength(250)]
