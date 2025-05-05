@@ -1,25 +1,17 @@
 ﻿
-
 $(document).ready(function () {
     function changecolorbtn() { //đổi màu nút nam nữ
-        //$('.new_arrivals_title').click(function () {
-        //    setTimeout(function () {
-        //        initFixProductBorder();
-        //    }, 500);
-
-        //    $('.new_arrivals_title.active').removeClass('active');
-        //    $(this).addClass('active');
-        //});
         const btn = document.querySelectorAll(".new_arrivals_title");
         btn.forEach(function (a) {
             a.addEventListener('click', function () {
-                setTimeout(function () {
-                    initFixProductBorder();
-                }, 500);
-                btn.forEach(function (t) {
+                
+                const parent = a.closest(".new_arrivals") || document;//phần tử cha chứa new_arrivals_title click
+                const siblings = parent.querySelectorAll(".new_arrivals_title");//tìm trong cha đó
+
+                siblings.forEach(function (t) {
                     t.classList.remove('active');
                 });
-                this.classList.add('active');
+                a.classList.add('active');
             });
         });
     }

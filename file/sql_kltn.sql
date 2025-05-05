@@ -26,14 +26,17 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --tìm kiếm sản phẩm
---EXEC sp_user_search_sugget @keyword="áo"
---drop procedure sp_user_search_sugget
+--EXEC sp_user_search_sugget @keyword="ao"
+--drop procedure sp_user_search_sugget  --COLLATE Latin1_General_CI_AI:không phân biệt chữ hoa thường dấu
 create procedure [dbo].[sp_user_search_sugget]
 	@keyword nvarchar(50)=null
 as
 begin
-	select top 10 p.TenSp from DbProduct p
-	where @keyword IS NULL OR p.TenSp like '%'+@keyword+'%' and p.IActive = 1
+	select top 5 p.TenSp from DbProduct p
+	where (@keyword IS NULL or 
+			p.TenSp COLLATE Latin1_General_CI_AI like @keyword +'% ' OR 
+			p.TenSp COLLATE Latin1_General_CI_AI like '% '+@keyword+' % ' or 
+			p.TenSp COLLATE Latin1_General_CI_AI like @keyword +' %') and p.IActive = 1
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -54,6 +57,52 @@ begin
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
 	WHERE p.IActive = 1
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Sản phẩm Danh mục QUẦN phân loại Nam/Nữ
+--exec sp_product_trousers @classify=1
+--drop procedure sp_product_trousers
+--select * from DbCategory
+create procedure [dbo].[sp_product_trousers]
+	@classify int
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm in(1,8) and p.Classify=@classify
+	order by p.LuotSold desc	
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Sản phẩm Danh mục ÁO phân loại Nam/Nữ
+--exec sp_product_shirt @classify=2
+--drop procedure sp_product_shirt
+--select * from DbCategory
+create procedure [dbo].[sp_product_shirt]
+	@classify int
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p	
+	WHERE p.IActive = 1 and p.IdDm in(2,3,7,9) and p.Classify=@classify
+	order by p.LuotSold desc	
 end;
 SET QUOTED_IDENTIFIER ON
 GO
@@ -153,6 +202,28 @@ begin
 	from DbProduct p
 	WHERE p.IActive = 1 and p.IdDm = @iddm
 end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Sản phẩm Theo Danh mục
+--drop procedure product_by_iddm
+--select * from DbCategory
+create procedure [dbo].[product_by_iddm]
+	@iddm int
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.IdDm = @iddm
+end;
+
 SET QUOTED_IDENTIFIER ON
 GO
 --Chi tiết sản phẩm

@@ -177,8 +177,29 @@ namespace KLTN_YourLook.Repository_YL
 			var lstraw= await _dbConnection.QueryAsync<ViewAllDetailRaw>("product_by_iddm", new { iddm = iddm }, commandType: CommandType.StoredProcedure);
 			return MapToViewAllDetails(lstraw);
         }
-		//chi tiết sản phẩm
-		public async Task<List<ViewProductDetail>> Product_Detail(int idsp)
+
+        //san pham nam theo danh mục các loại Quần
+        public async Task<List<ViewAllDetail>> Product_Trousers(int classify)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("sp_product_trousers", new { classify = classify }, commandType: CommandType.StoredProcedure);
+            return MapToViewAllDetails(lstraw);
+        }
+        //san pham nữ theo danh mục các loại Áo
+        public async Task<List<ViewAllDetail>> Product_Shirt (int classify)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("sp_product_shirt", new { classify = classify }, commandType: CommandType.StoredProcedure);
+            return MapToViewAllDetails(lstraw);
+        }
+        //chi tiết sản phẩm
+        public async Task<List<ViewProductDetail>> Product_Detail(int idsp)
 		{
 			if (_dbConnection == null)
 			{

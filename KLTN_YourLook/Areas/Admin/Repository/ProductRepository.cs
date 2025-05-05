@@ -41,13 +41,12 @@ namespace KLTN_YourLook.Areas.Admin.Repository
         }
         //tạo sản phẩm mới
         //lưu vào bảng sản phẩm
-        public async Task<(int newIdSp,string error)> CreateProduct(int iddm, string tensp, int nhomid, string anhsp,string classify, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string createby)
+        public async Task<(int newIdSp,string error)> CreateProduct(int iddm, string tensp, int nhomid, string anhsp,int classify, decimal pricemax, int giamgia, decimal pricemin, string motasp, bool iactive, bool ifeature, bool ifavorite, bool ihot, bool isale, string createby)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-
             var parameters = new DynamicParameters();
             parameters.Add("@iddm", iddm);
             parameters.Add("@tensp", tensp);

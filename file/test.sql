@@ -12,13 +12,13 @@
 	 from DbOrder od
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
 	 where od.IdDh= 13
-	select * from DbProduct
-	update DbProduct set LuotXem=0 where IdSp=35
+	select * from DbProduct p WHERE p.IdDm in(2,3,7,9) and p.Classify=2
+	update DbProduct set Classify=1 where IdSp=11
 	  delete Dbhi where Id=72
 	select * from DbGroup
 	select * from DbCustomer
 	select * from DbProductDetail 
-	select * from DbProduct
+	select * from DbProduct 
 	select * from DbOrderDetail  
 	select * from DbOrder where IdDh=13
 	select * from DbAddress

@@ -162,9 +162,14 @@ input {
 ul,
 li {
     list-style: none;
+    margin:0 ;
+    padding:0;
 }
+.btn_li a {
 
-li:hover {
+    color: #fff;
+}
+li:hover ,.btn_li:hover{
     background-color: #576574;
 }
 i{
@@ -311,10 +316,11 @@ i{
 }
 
 .menu_ct {
-    width:15%;
+    width: 15%;
     border-radius: 10px;
     background-color: #1e272e;
-    overflow-y:scroll;
+    overflow-y: scroll;
+    margin:20px 0 0 10px;
 }
 
 .menu_cp {
@@ -595,7 +601,22 @@ td {
 .bt-ex {
     margin-left: 20px;
 }
+/***/
+    .btn_li button{
+        color: #fff;
+        border: none;
+        background: #ffffff00;
+        
+    }
+    .toggle-wrapper {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
 
+    .toggle-wrapper.open {
+        max-height: 500px; /* Đủ lớn để chứa toàn bộ nội dung */
+    }
 /*Trang đơn hàng*/
 .h-cp-f {
     display: block;
