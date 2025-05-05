@@ -124,7 +124,6 @@ body {
 .flcl {
 	display: flex;
 	flex-direction: column;
-	gap: 10px
 }
 .gap {
 	gap: 10px
@@ -3394,24 +3393,27 @@ section {
 	left: 0 !important;
 	width:100%;
 }
+#suggestions{
+	display: none;
+}
 .suggestions-box {
-	border-radius:10px;
+	border-radius: 10px;
 	border: 1px solid #ccc;
-	max-height: 200px;
-	overflow-y: auto;
+	max-height: 500px;
 	background: #2f3640;
 	position: absolute;
-	width: 80%;
+	width: 130%;
 	z-index: 1000;
-	top:110%;
+	top: 120%;
 }
 
-	.suggestions-box div {
-		padding: 8px;
-		cursor: pointer;
-		text-align:left;
-	}
+.suggestions-box div {
+	padding: 8px;
+	cursor: pointer;
+	text-align:left;
+}
 
-		.suggestions-box div:hover {
-			background-color: #eee;
-		}
+	.suggestions-box div:hover {
+		background-color: #eee;
+		border-radius: 10px;
+	}

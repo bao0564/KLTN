@@ -4,13 +4,16 @@
         function crollHeader () {
             let lastScrollTop = 0;
             const header = document.getElementById('headerr');
+            const suggetion = document.getElementById('suggestions');// danh sách gọi ý
 
             window.addEventListener('scroll', function () {
                 const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
                 if (currentScroll > lastScrollTop) {
                     header.style.top = '-200px';
+                    suggetion.style.display = 'none';// ẩn gọi ý
                 } else {
                     header.style.top = '0';
+                    suggetion.style.display = 'block';
                 }
                 lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
             });

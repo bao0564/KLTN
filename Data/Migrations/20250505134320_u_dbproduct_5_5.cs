@@ -1,0 +1,36 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class u_dbproduct_5_5 : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<int>(
+                name: "Classify",
+                table: "DbProduct",
+                type: "int",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(10)",
+                oldMaxLength: 10);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<string>(
+                name: "Classify",
+                table: "DbProduct",
+                type: "nvarchar(10)",
+                maxLength: 10,
+                nullable: false,
+                oldClrType: typeof(int),
+                oldType: "int");
+        }
+    }
+}

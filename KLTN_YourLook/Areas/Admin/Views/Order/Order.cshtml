@@ -134,10 +134,10 @@
 										<div style="display:flex;justify-content:space-between">
                                             @if(prd.ODHuy != true )
                                             {
-											    <a class="btn-ddu btn-ud" href="@Url.Action("orderupdate",new {iddh=prd.IdDh})">Update</a>
+											    <a class="btn-ddu btn-ud" href="@Url.Action("orderupdate",new {iddh=prd.IdDh})">Cập nhật</a>
                                             }
                                             else{
-                                                <a class="btn-ddu btn-ud" style="text-decoration:line-through" title="đơn hàng đã hủy không thể update">Update</a>
+                                                <a class="btn-ddu btn-ud" style="text-decoration:line-through" title="đơn hàng đã hủy không thể cập nhật">Cập Nhật</a>
                                             }
                                             @if (Context.Session.GetString("Role") != "Staff")
                                             {

@@ -1,13 +1,14 @@
 ﻿$(document).ready(function () {
     var SuggetSearch = (function () {
         var typingTimer;
-
+        const sugget_place = document.getElementById('suggestions');
         function LoadSugget() {
             $("#searchKeyword").keyup(function () {
                 clearTimeout(typingTimer);
                 var keyword = $(this).val();
 
-                if (keyword.length > 1) {
+                if (keyword.length >= 1) {
+                    sugget_place.style.display = 'block';
                     typingTimer = setTimeout(function () {
                         $.ajax({
                             url: '/home/suggetresult',

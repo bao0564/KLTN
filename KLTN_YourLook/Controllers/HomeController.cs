@@ -82,7 +82,7 @@ namespace KLTN_YourLook.Controllers
 		[HttpGet]		
 		public async Task<JsonResult> SuggetResult(string keyword)
 		{
-            var lst = await _productProcedure.User_Search_Product(keyword);
+            var lst = await _productProcedure.User_Search_Sugget(keyword);
             var result = lst.Select(x => x.TenSp).ToList();
             //        var lst = _context.DbProducts
             //.Where(p => p.TenSp.Contains(keyword))

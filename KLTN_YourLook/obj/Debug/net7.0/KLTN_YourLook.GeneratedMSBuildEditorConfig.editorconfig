@@ -240,12 +240,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld19Ob3RpZmljYXRpb25cRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ShopYourLook/KLTN_YourLook/Views/Shared/Components/View_Page1/Default.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld19QYWdlMVxEZWZhdWx0LmNzaHRtbA==
+[C:/ShopYourLook/KLTN_YourLook/Views/Shared/Components/View_Page1_M/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld19QYWdlMV9NXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/ShopYourLook/KLTN_YourLook/Views/Shared/Components/View_Page2/Default.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld19QYWdlMlxEZWZhdWx0LmNzaHRtbA==
+[C:/ShopYourLook/KLTN_YourLook/Views/Shared/Components/View_Page1_W/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld19QYWdlMV9XXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ShopYourLook/KLTN_YourLook/Views/Shared/Components/View_Page2_M/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld19QYWdlMl9NXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ShopYourLook/KLTN_YourLook/Views/Shared/Components/View_Page2_W/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVmlld19QYWdlMl9XXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/ShopYourLook/KLTN_YourLook/Views/Shared/Components/View_Page3/Default.cshtml]

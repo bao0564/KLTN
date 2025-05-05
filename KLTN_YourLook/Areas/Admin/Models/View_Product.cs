@@ -29,7 +29,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public string TenSp { get; set; }
         public int IdDm { get; set; }
         public int NhomId { get; set; }
-        public string Classify { get; set; }
+        public int Classify { get; set; }
         public decimal PriceMax { get; set; }
         public int? GiamGia { get; set; }
         public decimal? PriceMin { get; set; }
