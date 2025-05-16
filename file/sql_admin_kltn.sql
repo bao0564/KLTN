@@ -850,20 +850,76 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --hiển thị thông tin số liệu bán hàng
---drop procedure revenue_showall
---create procedure [dbo].[revenue_showall]
---	@date datetime,
---	@todate datetime
---as
---begin 
---	SELECT COUNT(od.IdDh) AS CoutDH,
---		SUM(CASE WHEN od.Complete = 1 THEN od.TongTienThanhToan ELSE 0 END) AS DoanhThu,
---		COUNT(CASE WHEN od.ODTransported = 1 THEN 1 ELSE NULL END) AS DHTranpost,
---		COUNT(CASE WHEN od.Complete = 1 THEN 1 ELSE NULL END) AS DHComplete,
---		COUNT(CASE WHEN od.ODHuy = 1 THEN 1 ELSE NULL END) AS DHHuy
---	FROM DbOrder od
---	WHERE od.CreateDate >= @date AND od.CreateDate <= @todate;
---end;
+--exec revenue_showall
+--drop procedure revenue_showall 
+create procedure [dbo].[revenue_showall]
+	@Month INT = NULL, 
+    @Year INT = NULL  
+as
+begin 
+	 -- Nếu @Month hoặc @Year không được cung cấp, sử dụng giá trị hiện tại
+    SET @Month = ISNULL(@Month, MONTH(GETDATE()));
+    SET @Year = ISNULL(@Year, YEAR(GETDATE()));
+    
+    -- Tính ngày bắt đầu và ngày kết thúc của tháng
+    DECLARE @StartDate DATE = DATEFROMPARTS(@Year, @Month, 1);
+    DECLARE @EndDate DATE = EOMONTH(@StartDate);
+	   
+    -- Tính toán tháng và năm của tháng trước
+    DECLARE @PrevMonth INT = @Month - 1;
+    DECLARE @PrevYear INT = @Year;
+
+    -- Nếu tháng trước là tháng 12 của năm trước
+    IF @PrevMonth = 0
+    BEGIN
+        SET @PrevMonth = 12;
+        SET @PrevYear = @Year - 1;
+    END;
+    -- Tính ngày bắt đầu và ngày kết thúc của tháng hiện tại
+    DECLARE @CurrentStartDate DATE = DATEFROMPARTS(@Year, @Month, 1);
+    DECLARE @CurrentEndDate DATE = EOMONTH(@CurrentStartDate);
+
+    -- Tính ngày bắt đầu và ngày kết thúc của tháng trước
+    DECLARE @PrevStartDate DATE = DATEFROMPARTS(@PrevYear, @PrevMonth, 1);
+    DECLARE @PrevEndDate DATE = EOMONTH(@PrevStartDate);
+
+	--doanh thu các tháng trong năm 
+	WITH DoanhThuThang AS (
+		SELECT 
+			MONTH(CreateDate) AS Thang,
+			SUM(TongTienThanhToan) AS TongDoanhThu
+		FROM DbOrder
+		WHERE 
+			YEAR(CreateDate) = @Year AND Complete = 1
+		GROUP BY MONTH(CreateDate) --xếp theo từng tháng
+	)	
+    -- Truy vấn doanh thu và số liệu
+    SELECT 
+		@Month as Thang,
+		@Year as Nam,
+		@PrevMonth as Thangtrc,
+		@PrevYear as NamTrc,
+        COUNT(od.IdDh) AS CoutDH,
+
+        SUM(CASE WHEN od.Complete = 1 THEN od.TongTienThanhToan ELSE 0 END) AS DoanhThu,
+		(SELECT SUM(CASE WHEN od.Complete = 1 THEN od.TongTienThanhToan ELSE 0 END)
+         FROM DbOrder od
+         WHERE od.CreateDate >= @PrevStartDate AND od.CreateDate <= @PrevEndDate) AS PrevDoanhThu, 
+		 
+        COUNT(CASE WHEN od.ODTransported = 1 THEN 1 ELSE NULL END) AS DHTranpost,
+        COUNT(CASE WHEN od.Complete = 1 THEN 1 ELSE NULL END) AS DHComplete,
+        COUNT(CASE WHEN od.ODHuy = 1 THEN 1 ELSE NULL END) AS DHHuy,
+
+		(
+			select STRING_AGG(
+				'Tháng ' + CAST(Thang AS VARCHAR) + ': ' + CAST(TongDoanhThu AS VARCHAR),
+				' | '
+			)
+			FROM DoanhThuThang
+		) AS DoanhThuTongHop
+    FROM DbOrder od
+    WHERE od.CreateDate >= @StartDate AND od.CreateDate <= @EndDate;
+end;
 
 SET QUOTED_IDENTIFIER ON
 GO

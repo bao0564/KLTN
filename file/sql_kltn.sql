@@ -5,6 +5,7 @@ GO
 --tìm kiếm sản phẩm
 --EXEC sp_user_search_product @keyword="áo"
 --drop procedure sp_user_search_product
+--select * from DbProduct 
 create procedure [dbo].[sp_user_search_product]
 	@keyword nvarchar(50)=null
 as
@@ -32,7 +33,7 @@ create procedure [dbo].[sp_user_search_sugget]
 	@keyword nvarchar(50)=null
 as
 begin
-	select top 5 p.TenSp from DbProduct p
+	select top 5 p.IdSp, p.TenSp, p.AnhSp from DbProduct p
 	where (@keyword IS NULL or 
 			p.TenSp COLLATE Latin1_General_CI_AI like @keyword +'% ' OR 
 			p.TenSp COLLATE Latin1_General_CI_AI like '% '+@keyword+' % ' or 
@@ -104,6 +105,53 @@ begin
 	WHERE p.IActive = 1 and p.IdDm in(2,3,7,9) and p.Classify=@classify
 	order by p.LuotSold desc	
 end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Sản phẩm Danh mục THU ĐÔNG phân loại Nam/Nữ
+--exec sp_product_aw @classify=1
+--drop procedure sp_product_aw
+--select * from DbCategory
+create procedure [dbo].[sp_product_aw]
+	@classify int
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.NhomId in(3,4) and p.Classify=@classify
+	order by p.LuotSold desc	
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--Sản phẩm Danh mục THU ĐÔNG phân loại Nam/Nữ
+--exec sp_product_sa @classify=1
+--drop procedure sp_product_sa
+--select * from DbCategory
+create procedure [dbo].[sp_product_sa]
+	@classify int
+as
+begin
+	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
+		from DbProductDetail pd
+		where pd.IdSp=p.IdSp)as Sizes,
+		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
+		from DbProductDetail pd
+		join DbColor c on pd.ColorId=c.ColorId
+		where pd.IdSp =p.IdSp)as Colors
+	from DbProduct p
+	WHERE p.IActive = 1 and p.NhomId in(6,7) and p.Classify=@classify
+	order by p.LuotSold desc	
+end;
+
 SET QUOTED_IDENTIFIER ON
 GO
 --sản phẩm sale

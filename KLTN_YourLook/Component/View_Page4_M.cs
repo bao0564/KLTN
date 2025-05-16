@@ -4,30 +4,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KLTN_YourLook.Component
 {
-	public class View_Page3 : ViewComponent
+	public class View_Page4_M : ViewComponent
 	{
 		private readonly YourlookContext _context;
 		private readonly SP_Product _productRepository;
-		public View_Page3(YourlookContext context, SP_Product productRepository)
+		public View_Page4_M(YourlookContext context, SP_Product productRepository)
 		{
 			_context = context;
 			_productRepository = productRepository;
 		}
 		public async Task<IViewComponentResult> InvokeAsync()
-		{
-			var iddm = 3;//áo cộc tay
-			var idkh = HttpContext.Session.GetInt32("userId");
+        {
+            int classify = 1;//Nam
+            var idkh = HttpContext.Session.GetInt32("userId");
 			var idFvrPrd = new List<int>();
 			if (idkh != null)
 			{
 				idFvrPrd = _context.DbFavoriteProducts.Where(x => x.IdKh == idkh.Value).Select(x => x.IdSp).ToList();
 			}
-			var page3lst = await _productRepository.Product_By_Iddm(iddm);
-			foreach (var prd in page3lst)
+			var page4lst = await _productRepository.Product_SA(classify);
+			foreach (var prd in page4lst)
 			{
 				prd.IFavorite = idFvrPrd.Contains(prd.IdSp);
 			}
-			return View(page3lst);
+			return View(page4lst);
 		}
 	}
 }

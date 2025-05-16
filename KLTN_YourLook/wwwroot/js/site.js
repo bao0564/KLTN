@@ -4,16 +4,17 @@
         function crollHeader () {
             let lastScrollTop = 0;
             const header = document.getElementById('headerr');
-            const suggetion = document.getElementById('suggestions');// danh sách gọi ý
+            const formsearchactive = document.getElementById('form_search_active');// danh sách gọi ý
+            const formsearch = document.getElementById("header_search");
 
             window.addEventListener('scroll', function () {
                 const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
                 if (currentScroll > lastScrollTop) {
                     header.style.top = '-200px';
-                    suggetion.style.display = 'none';// ẩn gọi ý
+                    formsearchactive.style.display = 'none';// ẩn gọi ý
                 } else {
                     header.style.top = '0';
-                    suggetion.style.display = 'block';
+                    formsearch.style.display = 'block';
                 }
                 lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
             });

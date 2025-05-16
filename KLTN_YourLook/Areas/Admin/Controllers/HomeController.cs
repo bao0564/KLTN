@@ -29,14 +29,14 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
 
         //trang chủ admin
         [Route("")]
-        [Route("index ")]
+        [Route("index")]
         public async Task<IActionResult> Index(int month,int year)
         {
             var name = HttpContext.Session.GetString("NameAdmin");
             if (name == null)
             {
                 return RedirectToAction("Login", "Home");
-            }            
+            }
             if (month == 0)
             {
                 month = DateTime.Now.Month;
@@ -48,6 +48,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
 
             var result = await _homeRespository.Revenue(month, year);
             return View(result);
+
         }
         //tài khoản admin
         [Route("viewaccounts")]
