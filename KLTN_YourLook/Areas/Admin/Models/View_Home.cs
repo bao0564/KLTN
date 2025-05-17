@@ -26,5 +26,27 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public int DHTranpost { get; set; }
         public int DHComplete { get; set; }
         public int DHHuy { get; set; }
+        // Doanh thu từng ngày/tháng (để vẽ biểu đồ đường)
+        public List<DoanhThuChartItem> DoanhThuThangTheoNam { get; set; }
+        public List<SanPhamBanChayItem> TopSanPhamBanChay { get; set; }
+        //public List<SanPhamTonKhoItem> TopSanPhamTonKho { get; set; }
+    }
+
+    public class DoanhThuChartItem
+    {
+        public string Thang { get; set; }   //từng ngày trong tháng
+        public decimal DoanhThu { get; set; }
+    }
+
+    public class SanPhamBanChayItem
+    {
+        public string TenSp { get; set; }
+        public int SoLuongBan { get; set; }
+    }
+
+    public class SanPhamTonKhoItem
+    {
+        public string TenSp { get; set; }
+        public int SoLuongTon { get; set; }
     }
 }

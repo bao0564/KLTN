@@ -133,6 +133,9 @@
 	}
 	/*3. 1280px*/
 @media only screen and (max-width: 1280px) {
+	.list_cate_search .label_text_1 {
+		display: none;
+	}
 	.form-search button {
 		right: 21%;
 	}
@@ -381,6 +384,11 @@
 }
 	/*5. 1024px*/
 @media only screen and (max-width: 1058px) {
+
+	.suggestions_list a {
+		min-width: 25%;
+		max-width: 25%;
+	}
 	/*thoong baos msg*/
 	.toast {
 		right: 35%;
@@ -520,6 +528,11 @@
 }
 	/*6. 991px*/
 @media only screen and (max-width: 991px) {
+
+	.suggestions-box, .list_cate_search {
+		width: 150%;
+		height:400px;
+	}
 	.container-flashsell .product_image-2 img {
 		min-height: 240px;
 		max-height: 240px;

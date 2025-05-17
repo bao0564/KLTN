@@ -2,7 +2,6 @@
 	ViewData["Title"] = "Trang Chủ";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="list-ad" id="listad">
 	<div class="img-ad" style="padding: 0">
 		@await Component.InvokeAsync("View_Ads", new { place = "ads" })
@@ -301,14 +300,14 @@
 			<div class="col" id="menprd_page3">
 				<div class="prd-grid" style="">
 					<div class="productContainer">@*  id="productContainer" *@
-						@await Component.InvokeAsync("View_Page1_M")
+						@await Component.InvokeAsync("View_Page3_M")
 					</div>
 				</div>
 			</div>
 			<div class="col" id="womenprd_page3">
 				<div class="prd-grid" style="">
 					<div class="productContainer">
-						@await Component.InvokeAsync("View_Page2_W")
+						@await Component.InvokeAsync("View_Page3_W")
 					</div>
 				</div>
 			</div>
@@ -348,14 +347,14 @@
 			<div class="col" id="menprd_page4">
 				<div class="prd-grid" style="">
 					<div class="productContainer">@*  id="productContainer" *@
-						@await Component.InvokeAsync("View_Page1_M")
+						@await Component.InvokeAsync("View_Page4_M")
 					</div>
 				</div>
 			</div>
 			<div class="col" id="womenprd_page4">
 				<div class="prd-grid" style="">
 					<div class="productContainer">
-						@await Component.InvokeAsync("View_Page2_W")
+						@await Component.InvokeAsync("View_Page4_W")
 					</div>
 				</div>
 			</div>

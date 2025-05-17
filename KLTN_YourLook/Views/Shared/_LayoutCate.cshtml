@@ -165,7 +165,7 @@
 						<nav class="navbar">
 							<div class="" style="display:flex;flex-direction:column">								
 								<form asp-controller="Home" asp-action="KeyWord" method="get">	
-									<div class="form-search" style="">
+									<div class="form-search_1" style="">
 										<input style="position:relative" type="text" name="keyword" class="search-text" id="searchKeyword" placeholder="Tìm Kiếm" value="@ViewBag.keyword" />
 										<button type="submit" class="fa fa-search"></button>
 										<div id="suggestions" class="suggestions-box">
@@ -652,7 +652,6 @@
     <script src="../js/site.js"></script>
 	<script src="../js/msg.js"></script>
 	<script src="~/js/goback.js"></script>
-	<script src="../js/suggetproduct.js"></script>
 
 	@RenderSection("scripts", required: false)
 </body>

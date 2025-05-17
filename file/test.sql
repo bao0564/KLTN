@@ -12,7 +12,7 @@
 	 from DbOrder od
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
 	 where od.IdDh= 13
-	select * from DbProduct p WHERE p.IdDm in(2,3,7,9) and p.Classify=2
+	select * from DbProduct p WHERE p.NhomId in(3,4) and p.Classify=1
 	update DbProduct set Classify=1 where IdSp=11
 	  delete Dbhi where Id=72
 	select * from DbGroup
@@ -175,3 +175,32 @@ BEGIN
         WHERE ODPrint = 0;
     END
 END;
+
+SELECT STRING_AGG(
+    'Tháng ' + CAST(Month(CreateDate) AS VARCHAR) + ': ' + CAST(SUM(CASE WHEN Complete = 1 THEN TongTienThanhToan ELSE 0 END) AS VARCHAR),
+    ' | '
+) AS DoanhThuTongHop
+FROM DbOrder
+WHERE 
+    YEAR(CreateDate) = YEAR(GETDATE())
+    AND Complete = 1
+GROUP BY MONTH(CreateDate);
+
+
+WITH DoanhThuThang AS (
+    SELECT 
+        MONTH(CreateDate) AS Thang,
+        SUM(TongTienThanhToan) AS TongDoanhThu
+    FROM DbOrder
+    WHERE 
+        YEAR(CreateDate) = 2025
+        AND Complete = 1
+    GROUP BY MONTH(CreateDate)
+)
+
+-- Bước 2: Dùng STRING_AGG để nối thành 1 chuỗi
+SELECT STRING_AGG(
+    'Tháng ' + CAST(Thang AS VARCHAR) + ': ' + CAST(TongDoanhThu AS VARCHAR),
+    ' | '
+) AS DoanhThuTongHop
+FROM DoanhThuThang; 

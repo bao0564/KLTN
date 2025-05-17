@@ -83,12 +83,12 @@ namespace KLTN_YourLook.Controllers
 		public async Task<JsonResult> SuggetResult(string keyword)
 		{
             var lst = await _productProcedure.User_Search_Sugget(keyword);
-            var result = lst.Select(x => x.TenSp).ToList();
-            //        var lst = _context.DbProducts
-            //.Where(p => p.TenSp.Contains(keyword))
-            //.Select(p => p.TenSp)
-            //.Take(10)
-            //.ToList();
+			var result = lst.Select(x => new 
+			{  
+				IdSp=x.IdSp,//vào json là idSp,tenSp, anhSp :)))))
+                TenSp = x.TenSp,
+                AnhSp = x.AnhSp
+			}).ToList();            
             return Json(result);
         }
 		//all sp

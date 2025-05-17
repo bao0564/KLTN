@@ -1,9 +1,32 @@
 ﻿$(document).ready(function () {
+
+    //===============================================
+    var OpenFormSearch = (function () {
+        //_________________
+        function open() { 
+            document.getElementById("header_search").style.display = "none";
+            document.getElementById("form_search_active").style.display = "block";
+        }
+        function close() { 
+            document.getElementById("header_search").style.display = "block";
+            document.getElementById("form_search_active").style.display = "none";
+        }
+        function SwichBtn() {
+            document.getElementById("searchKeyword").addEventListener("click", open);
+            document.getElementById("close_form_search").addEventListener("click", close);
+        }
+
+        return {
+            init: function () {
+                SwichBtn();  
+            }
+        };
+    })();
     var SuggetSearch = (function () {
         var typingTimer;
         const sugget_place = document.getElementById('suggestions');
         function LoadSugget() {
-            $("#searchKeyword").keyup(function () {
+            $("#searchKeyword-1").keyup(function () {
                 clearTimeout(typingTimer);
                 var keyword = $(this).val();
 
@@ -14,13 +37,22 @@
                             url: '/home/suggetresult',
                             data: { keyword: keyword },
                             success: function (data) {
-                                var suggestions = $("#suggestions");
+                                var suggestions = $("#suggestions_list");
+                                //var product_lable = $("#suggestions");
                                 suggestions.empty();
 
                                 if (data.length > 0) {
+                                    //product_lable.append(
+                                    //    `<lable class="fw600">Sản Phẩm:</lable>`
+                                    //);
                                     data.forEach(function (item) {
                                         suggestions.append(
-                                            `<div class="suggest-item" data-value="${item}">${item}</div>`
+                                            `<a href="/Home/ProductDetail?idsp=${item.idSp}">
+                                                <div class="suggestion_item flcl gap">                                                
+                                                    <img class="suggest-img" src="/img/${item.anhSp}"/>
+                                                    <div class="suggest-item">${item.tenSp}</div>
+                                                </div>
+                                            </a>`
                                         );
                                     });
                                     suggestions.show();
@@ -59,6 +91,6 @@
             }
         };
     })();
-
+    OpenFormSearch.init();
     SuggetSearch.init();
 });
