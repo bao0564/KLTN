@@ -189,6 +189,7 @@ wwwroot\js\suggetproduct.js
 wwwroot\js_admin\Admin_CreatProduct.js
 wwwroot\js_admin\Admin_Order.js
 wwwroot\js_admin\Admin_Product.js
+wwwroot\js_admin\Admin_Revenue.js
 wwwroot\js_admin\Admin_Stock.js
 wwwroot\js_admin\Admin_UpdateProduct.js
 wwwroot\js_admin\get _date.js
