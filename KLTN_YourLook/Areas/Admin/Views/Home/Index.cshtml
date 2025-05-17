@@ -36,7 +36,7 @@
                 }
                 else{
 
-                }
+                } 
             </div>
             </div>
             <div class="bdrdu pd">
@@ -55,12 +55,19 @@
             </div>
     </div>
 </div>
-<div class="cp fl">
+<div class="cp fl w100">
     <div style="width:50%">
-        <div class="fl_center" style="height:100px;background-color:#2f3640;margin-bottom:10px">
-             <h3>biểu đồ </h3>
-            <canvas id="doanhThuChart" width="400" height="200"></canvas>
-
+        <div class="pd bdrdu" style="height:auto;margin-bottom:10px;background-color:#f5f6fa">            
+            <canvas id="revenueChart" width="800" height="400"></canvas>
+            <div>
+                <label for="yearSelect">Năm: </label>
+                <select id="yearSelect">
+                    @for (int i = DateTime.Now.Year; i >= DateTime.Now.Year - 10; i--)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
         </div>
         <div class="fl_center" style="height:100px;background-color:#2f3640">
             <h3>đánh giá</h3>
@@ -73,38 +80,7 @@
         <a href="@Url.Action("CreateNotification","Admin")">Tạo thông báo</a>
     </div>
 </div>
-@* 
+@section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var labels = @Html.Raw(Json.Serialize(Model.DoanhThuTheoThoiGian.Select(x => x.NgayHoacThang)));
-        var data = @Html.Raw(Json.Serialize(Model.DoanhThuTheoThoiGian.Select(x => x.DoanhThu)));
-
-        var ctx = document.getElementById('doanhThuChart').getContext('2d');
-        var doanhThuChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Doanh thu (VNĐ)',
-                    data: data,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.3
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function (value) {
-                                return value.toLocaleString() + ' đ';
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script> *@
+	<script src="~/js_admin/admin_revenue.js"></script>
+}

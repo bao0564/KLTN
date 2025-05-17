@@ -10,6 +10,7 @@ using KLTN_YourLook.Areas.Admin.Repository;
 using Microsoft.AspNetCore.Identity;
 using KLTN_YourLook.Models;
 using KLTN_YourLook.Repository_YL;
+using Microsoft.CodeAnalysis;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -45,10 +46,31 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             {
                 year = DateTime.Now.Year;
             }
-
             var result = await _homeRespository.Revenue(month, year);
             return View(result);
+        }
+        [Route("getrevenuechart")]
+        [HttpGet]
+        public async Task<IActionResult> GetRevenueChart(int month, int year)
+        {
+            if (month == 0)
+            {
+                month = DateTime.Now.Month;
+            }
+            if (year == 0)
+            {
+                year = DateTime.Now.Year;
+            }
+            var data = await _homeRespository.RevenueAll(month, year);
+            if (data == null) return Json(new { success = false });
 
+            var chartData = new
+            {
+                labels = data.DoanhThuThangTheoNam.Select(x => x.Thang).ToArray(), //tên mặc định của thư viện
+                values = data.DoanhThuThangTheoNam.Select(x => x.DoanhThu).ToArray()
+            };
+
+            return Json(chartData);
         }
         //tài khoản admin
         [Route("viewaccounts")]

@@ -48,6 +48,43 @@ namespace KLTN_YourLook.Areas.Admin.Repository
 
             return (msg, error);
         }
+        //số liệu doanh thu tổng quan
+        public async Task<View_Revenue> RevenueAll(int month, int year)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@Month", month);
+            parameters.Add("@Year", year);
+            var lstraw = await _dbConnection.QueryAsync<View_Revenue_Raw>("revenue_showall", parameters, commandType: CommandType.StoredProcedure);
+            var lst = lstraw.Select(x => new View_Revenue
+            {
+                Thang = x.Thang,
+                Nam = x.Nam,
+                Thangtrc = x.Thangtrc,
+                NamTrc = x.NamTrc,
+                CoutDH = x.CoutDH,
+                DoanhThu = x.DoanhThu,
+                PrevDoanhThu = x.PrevDoanhThu,
+                DHTranpost = x.DHTranpost,
+                DHComplete = x.DHComplete,
+                DHHuy = x.DHHuy,
+                DoanhThuThangTheoNam = x.DoanhThuTongHop.Split('|')
+                                        .Select(y =>
+                                        {
+                                            var s = y.Split(':');
+                                            return new DoanhThuChartItem
+                                            {
+                                                Thang = int.Parse(s[0]),
+                                                DoanhThu = decimal.Parse(s[1])
+                                            };
+                                        }).ToList()
+            });
+            return lst.FirstOrDefault();
+        }
         //số liệu doanh thu
         public async Task<View_Revenue> Revenue(int month,int year)
         {

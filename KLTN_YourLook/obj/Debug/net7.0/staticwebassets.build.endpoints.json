@@ -20667,6 +20667,88 @@
       ]
     },
     {
+      "Route": "js_admin/Admin_Revenue.cqf960nc3m.js",
+      "AssetFile": "js_admin/Admin_Revenue.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1699"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 17 May 2025 14:08:47 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cqf960nc3m"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY="
+        },
+        {
+          "Name": "label",
+          "Value": "js_admin/Admin_Revenue.js"
+        }
+      ]
+    },
+    {
+      "Route": "js_admin/Admin_Revenue.js",
+      "AssetFile": "js_admin/Admin_Revenue.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1699"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 17 May 2025 14:08:47 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY="
+        }
+      ]
+    },
+    {
       "Route": "js_admin/Admin_Stock.js",
       "AssetFile": "js_admin/Admin_Stock.js",
       "Selectors": [],
@@ -20857,7 +20939,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 15:43:04 GMT"
+          "Value": "Sat, 17 May 2025 11:56:40 GMT"
         }
       ],
       "EndpointProperties": [
@@ -20902,7 +20984,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 15:43:04 GMT"
+          "Value": "Sat, 17 May 2025 11:56:40 GMT"
         }
       ],
       "EndpointProperties": [

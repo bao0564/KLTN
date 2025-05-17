@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "R+VsoNoZK142xLywizPYUCmXRwBnIJwKX2uvCCoEjoE=",
+  "Hash": "3LgPYcbxDnB99OQbObr5vfyf3df9jBFCiYfYKL3tXtg=",
   "Source": "KLTN_YourLook",
   "BasePath": "_content/KLTN_YourLook",
   "Mode": "Default",
@@ -5347,6 +5347,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js_admin\\Admin_Product.js"
+    },
+    {
+      "Identity": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Revenue.js",
+      "SourceId": "KLTN_YourLook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\",
+      "BasePath": "_content/KLTN_YourLook",
+      "RelativePath": "js_admin/Admin_Revenue#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cqf960nc3m",
+      "Integrity": "HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js_admin\\Admin_Revenue.js"
     },
     {
       "Identity": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Stock.js",
@@ -28873,6 +28894,88 @@
       ]
     },
     {
+      "Route": "js_admin/Admin_Revenue.cqf960nc3m.js",
+      "AssetFile": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Revenue.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1699"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 17 May 2025 14:08:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cqf960nc3m"
+        },
+        {
+          "Name": "label",
+          "Value": "js_admin/Admin_Revenue.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY="
+        }
+      ]
+    },
+    {
+      "Route": "js_admin/Admin_Revenue.js",
+      "AssetFile": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Revenue.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1699"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 17 May 2025 14:08:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HBLP6jTqDsGqCZoB0O77JOLKQdj4aPpzVLzC8jUzxcY="
+        }
+      ]
+    },
+    {
       "Route": "js_admin/Admin_Stock.js",
       "AssetFile": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Stock.js",
       "Selectors": [],
@@ -29141,7 +29244,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 15:43:04 GMT"
+          "Value": "Sat, 17 May 2025 11:56:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -29186,7 +29289,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 02 May 2025 15:43:04 GMT"
+          "Value": "Sat, 17 May 2025 11:56:40 GMT"
         },
         {
           "Name": "Cache-Control",

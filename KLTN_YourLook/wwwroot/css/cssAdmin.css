@@ -20,7 +20,9 @@ body {
     left: 50%;
     transform: translate(-53%,-60%);
 }
-
+.w100 {
+    width: 100%;
+}
 .fl {
     display: flex;
 }
