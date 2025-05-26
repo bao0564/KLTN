@@ -63,7 +63,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         }
         [Route("categorycreat")]
         [HttpPost]
-        public async Task<IActionResult> CreatCategory(DbCategory model, IFormFile FileAnh)
+        public async Task<IActionResult> CreatCategory(InsertCategoryViewModel model, IFormFile FileAnh)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhDaiDien = await _uploadimg.uploadOnePhotosAsync(FileAnh, "images");
                 }
-                var (msg,error) = await _categoryRepository.CreateCategory(model.TenDm, model.AnhDaiDien ?? "","Bao");
+                var (msg,error) = await _categoryRepository.CreateCategory(model.MaDm,model.TenDm, model.AnhDaiDien ?? "","Bao");
 
                 if (!string.IsNullOrEmpty(error))
                 {

@@ -10,6 +10,8 @@ namespace Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCTSP { get; set; }
+        [StringLength(50)]
+        public string MaCTSP { get; set; }
         public int IdSp { get; set; }
         public int SizeId { get; set; }
         [StringLength(50)]

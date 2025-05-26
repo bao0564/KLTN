@@ -9,9 +9,9 @@ namespace Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdDm { get; set; }
-        [StringLength(10)]
+        [StringLength(50)]
         public string? MaDm { get; set; }
-        [StringLength(10)]
+        [StringLength(50)]
         public string TenDm { get; set; }
         [StringLength(250)]
         public string? AnhDaiDien { get; set; }

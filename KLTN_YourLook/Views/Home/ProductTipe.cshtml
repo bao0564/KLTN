@@ -38,7 +38,7 @@
                             <div class="box-inf-title fljct">Phân Loại</div>
                             <div class="box-inf-size fljct flct">
                                 Size:
-                                <div class="flscr">
+                                <div class="show_cs">
                                     @foreach (var sz in prd.Sizes)
                                     {
                                         <button>@sz.NameSize</button>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="box-inf-color fljct flct">
                                 Màu:
-                                <div class="flscr">
+                                <div class="show_cs">
                                     @foreach (var cl in prd.Colors)
                                     {
                                         <button style="background-color:@cl.MaHex" title="@cl.NameColor"></button>

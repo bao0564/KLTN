@@ -7,6 +7,7 @@
     --gray-b: #535c68 /* #353b48*/;
     --gray-d: #bdc3c7;
     --orange-a: #b77b02;
+    --color-7: #f5f6fa;
     --font-1: /*"Fredoka One",*/ Arial, sans-serif; /*price*/
 }
 body {
@@ -167,9 +168,19 @@ li {
     margin:0 ;
     padding:0;
 }
+.btn_li {
+    padding:5px 10px 5px 40px;
+    display:flex;
+    justify-content:space-between;
+}
 .btn_li a {
-
     color: #fff;
+    font-size:0.95rem;
+}
+.btn_li>i {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
 }
 li:hover ,.btn_li:hover{
     background-color: #576574;
@@ -312,13 +323,14 @@ i{
 }
 
 .menu .menu_ct li a {
-    padding: 20px 40px;
+    padding:10px 0 10px 40px;
     color: #ffffff;
     text-decoration: none;
+    font-size:0.9rem
 }
 
 .menu_ct {
-    width: 15%;
+    width: 13%;
     border-radius: 10px;
     background-color: #1e272e;
     overflow-y: scroll;
@@ -327,7 +339,7 @@ i{
 
 .menu_cp {
     position:relative;
-    width: 85%;
+    width: 87%;
     border: 1px solid #cd6133;
     border-radius: 10px;
     margin-left: 10px;
@@ -336,16 +348,21 @@ i{
     max-height: 85vh;
     overflow-y: scroll;
 }
-
+.menu_ct ul{
+    margin:0 0 0 10px;
+}
 .menu_ct li {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-left: 18px;
+    margin-left: 20px;
     border-radius: 5px;
-    box-shadow: 4px 3px 4px #1f2325;
+    /*box-shadow: 4px 3px 4px #1f2325;*/
 }
-
+.menu_ct .navigation{
+    color:#fff;
+    margin-bottom:0;
+    font-size:0.9rem;
+}
 .nav-pills .nav_item {
     font-size: 20px;
     display: flex;
@@ -608,7 +625,7 @@ td {
         color: #fff;
         border: none;
         background: #ffffff00;
-        
+        padding:0;
     }
     .toggle-wrapper {
         max-height: 0;
@@ -922,7 +939,9 @@ input[type=checkbox]{
     align-items: center;
 }
 /***/
-
+.box_infor_data{
+    background-color:var(--color-7);
+}
 /*thoong baos msg*/
 .toastt {
     position: fixed;

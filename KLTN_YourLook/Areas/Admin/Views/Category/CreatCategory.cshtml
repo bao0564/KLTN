@@ -1,4 +1,4 @@
-﻿@model Data.Models.DbCategory
+﻿@model KLTN_YourLook.Areas.Admin.Models.InsertCategoryViewModel
 @{
     ViewData["Title"] = "CreatCategory";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -24,6 +24,11 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             <div class="h-cp-mid-1">
+                <div class="mid-c">
+                    <label class="control-label">Mã Danh Mục</label>
+                    <input asp-for="MaDm" class="form-control" />
+                    <span asp-validation-for="MaDm" class="text-danger"></span>
+                </div>
                 <div class="mid-c">
                     <label class="control-label">Tên danh Mục</label>
                     <input asp-for="TenDm" class="form-control" />

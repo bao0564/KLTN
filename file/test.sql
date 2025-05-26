@@ -13,14 +13,14 @@
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
 	 where od.IdDh= 13
 	select * from DbProduct p WHERE p.NhomId in(3,4) and p.Classify=1
-	update DbProduct set Classify=1 where IdSp=11
+	update DbOrder set ODReadly=0, ODSuccess=1, ODPrint=0, Complete=0  where IdDh=54
 	  delete Dbhi where Id=72
 	select * from DbGroup
 	select * from DbCustomer
 	select * from DbProductDetail 
 	select * from DbProduct 
-	select * from DbOrderDetail  
-	select * from DbOrder where IdDh=13
+	select * from Dbcategory 
+	select * from DbOrder  where IdDh=13
 	select * from DbAddress
 	select * from DbCart
 	select * from DbNotification
@@ -49,10 +49,10 @@
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
 	where IdDm =(select p2.IdDm from DbProduct p2 where p2.IdSp=9) and p.IdSp !=9
+delete DbCategory where IdDm=11
 
-	DECLARE @msg NVARCHAR(500);
+DECLARE @msg NVARCHAR(500);
 DECLARE @error NVARCHAR(500);
-delete DbCustomer where IdKh=34
 EXEC create_admin 
     @emaildn = 'baokun959@gmail.com',
     @namedn = 'bossbao',
@@ -103,7 +103,7 @@ FROM OrderedData
 WHERE ColorRank = SizeRank  -- Chỉ lấy các cặp có cùng số thứ tự
 GROUP BY IdDh,IdSp, AnhSp, TenSp;
 
-update DbOrder set ODHuy=0, ODSuccess=1,ODReadly=0,ODTransported=0,Complete=0 ,ODPrint=0,ODReprint=0
+update DbOrder set ODHuy=0, ODSuccess=0,ODReadly=0,ODTransported=0,Complete=1 
 select *from DbOrder
 SET QUOTED_IDENTIFIER ON
 GO

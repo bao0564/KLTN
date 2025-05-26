@@ -31,29 +31,22 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --thêm danh mục
+--DECLARE @msg NVARCHAR(500), @error NVARCHAR(500);exec category_insert @madm="Polotron", @tendm="polo trơn",@anhdaidien="bvwb", @createby="bao",@msg = @msg OUTPUT, @error = @error OUTPUT; SELECT @msg AS Message, @error AS Error;
 --drop procedure category_insert
 create procedure [dbo].[category_insert]
+	@madm nvarchar(10),
 	@tendm nvarchar(10),
 	@anhdaidien nvarchar(250),
 	@createby nvarchar(25),
 
-	@newiddm int output,
-	@newmadm nvarchar(10) output,
 	@msg nvarchar(500) output,
 	@error nvarchar(500) output
-as
+as 
 begin
-	declare @GeneratedMaDm nvarchar(10)
 	begin try
 		--tạo mới
-		insert into DbCategory (TenDm,AnhDaiDien,CreateBy,CreateDate) 
-		values (@tendm,@anhdaidien,@createby,GETDATE())
-
-		set @newiddm=SCOPE_IDENTITY();
-		set @GeneratedMaDm= CONCAT('DM',FORMAT(@newiddm,''));
-		set @newmadm=@GeneratedMaDm;
-		--cập nhật lại mã dm
-		update DbCategory set MaDm=@newmadm where IdDm=@newiddm
+		insert into DbCategory (MaDm,TenDm,AnhDaiDien,CreateBy,CreateDate) 
+		values (@madm,@tendm,@anhdaidien,@createby,GETDATE())
 
 		set @msg = N'Danh mục đã được thêm thành công.';
 	end try
@@ -419,7 +412,7 @@ begin
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
 	 WHERE (@iddh IS NULL OR @iddh = 0 OR od.IdDh = @iddh)and od.ODPrint=0 and od.ODHuy=0 --nếu in nhiều ctdh thì trong code @iddh = 0 nên thêm @iddh =0 vào dkien
 end;
--- cập nhật tình trạng in sau khi in đơn hàng theo id, in tất cả đơn hàng
+--in lại
 --drop procedure sp_reprint_order
 --EXEC sp_reprint_order @iddh=10
 SET QUOTED_IDENTIFIER ON
@@ -548,6 +541,12 @@ begin
 		else
 			update DbOrder set ODSuccess=@odsuccess,ODReadly=@odreadly,ODTransported=@odtransported,Complete=@complete,ODHuy=@odhuy,ModifiedBy=@modifiedby
 				where IdDh=@iddh
+				if @odreadly=1
+					begin
+						EXEC sp_order_print_status @iddh=@iddh, @error = @error OUTPUT; PRINT @error;--vì dùng sp này nên nó sẽ update @odreadly=1
+						update DbOrder set ODReadly=0 where IdDh=@iddh;
+						return;
+					end
 				if @odhuy=1
 					begin
 						update pd set pd.Quantity= pd.Quantity + odd.SoLuongSp
@@ -850,7 +849,7 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --hiển thị thông tin số liệu bán hàng
---exec revenue_showall
+--exec revenue_showall @month=1, @year=2024
 --drop procedure revenue_showall 
 create procedure [dbo].[revenue_showall]
 	@Month INT = NULL, 
@@ -883,8 +882,9 @@ begin
     DECLARE @PrevStartDate DATE = DATEFROMPARTS(@PrevYear, @PrevMonth, 1);
     DECLARE @PrevEndDate DATE = EOMONTH(@PrevStartDate);
 
-	--doanh thu các tháng trong năm 
-	WITH DoanhThuThang AS (
+	--các tháng có doanh thu trong năm 
+	WITH
+	DoanhThuThang AS (
 		SELECT 
 			MONTH(CreateDate) AS Thang,
 			SUM(TongTienThanhToan) AS TongDoanhThu
@@ -892,7 +892,21 @@ begin
 		WHERE 
 			YEAR(CreateDate) = @Year AND Complete = 1
 		GROUP BY MONTH(CreateDate) --xếp theo từng tháng
-	)	
+	),
+	--tất cả 12 tháng trong năm
+	Thang AS (
+		SELECT 1 AS Thang UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL
+		SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL
+		SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12
+	),
+	--tổng hợp daonh thu của 12 tháng 
+	DoanhThuDayDu AS (
+		SELECT 
+			t.Thang,
+			ISNULL(dt.TongDoanhThu, 0) AS TongDoanhThu
+		FROM Thang t
+		LEFT JOIN DoanhThuThang dt ON t.Thang = dt.Thang
+	)
     -- Truy vấn doanh thu và số liệu
     SELECT 
 		@Month as Thang,
@@ -912,10 +926,10 @@ begin
 
 		(
 			select STRING_AGG(
-				'Tháng ' + CAST(Thang AS VARCHAR) + ': ' + CAST(TongDoanhThu AS VARCHAR),
+				CAST(Thang AS VARCHAR) + ': ' + CAST(TongDoanhThu AS VARCHAR),
 				' | '
 			)
-			FROM DoanhThuThang
+			FROM DoanhThuDayDu
 		) AS DoanhThuTongHop
     FROM DbOrder od
     WHERE od.CreateDate >= @StartDate AND od.CreateDate <= @EndDate;
