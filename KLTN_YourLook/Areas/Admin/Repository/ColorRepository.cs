@@ -13,7 +13,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             _dbConnection = dbConnection;
         }
         //tạo màu
-        public async Task<(string msg,string error)> CreateColor(string namecl,string mahex, string img, string createby)
+        public async Task<(string msg,string error)> CreateColor(string macl,string namecl,string mahex, string img, string createby)
         {
             if (_dbConnection == null)
             {
@@ -21,13 +21,11 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             }
 
             var parameters = new DynamicParameters();
+            parameters.Add("@macl", macl);
             parameters.Add("@namecl", namecl);
             parameters.Add("@mahex", mahex);
             parameters.Add("@img", img);
             parameters.Add("@createby", createby);
-
-            parameters.Add("@newidcl", dbType: DbType.Int32, direction: ParameterDirection.Output);
-            parameters.Add("@newmacl", dbType: DbType.String, size: 10, direction: ParameterDirection.Output);
             parameters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
             parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
 
@@ -40,7 +38,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return (msg,error);
         }
         //sửa color
-        public async Task<(string msg, string error)> UpdateColor(int idcl, string namecl,string mahex, string img, string modifiedby)
+        public async Task<(string msg, string error)> UpdateColor(int idcl, string namecl,string macl,string mahex, string img, string modifiedby)
         {
             if (_dbConnection == null)
             {
@@ -49,6 +47,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@idcl", idcl);
             parameters.Add("@namecl", namecl);
+            parameters.Add("@macl", macl);
             parameters.Add("@mahex", mahex);
             parameters.Add("@img", img);
             parameters.Add("@modifiedby", modifiedby);

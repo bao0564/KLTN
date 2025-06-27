@@ -9,7 +9,7 @@ namespace Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ColorId { get; set; }
-        [StringLength(10)]
+        [StringLength(50)]
         public string? MaColor { get; set; }
         [StringLength(50)]
         public string NameColor { get; set; }

@@ -17,7 +17,7 @@
                 <button type="button" id="exportOrderExcel" style="border:none;background-color:#ffffff00">Xuất Excel📥</button>
 			</div>
             <div class="bt-c">
-                <a href="@Url.Action("PrintBillToPDF", "Order")" title="xuất pdf tất cả đơn đặt hàng chưa in">Xuất Thông tin đơn đặt hàng (.PDF) </a>
+                <a href="@Url.Action("PrintBillToPDF", "Order")" title="xuất pdf tất cả đơn đặt hàng chưa in">In BILL đơn hàng (.PDF) </a>
             </div>            
         </div>
 
@@ -108,24 +108,24 @@
                                         <div style="position:absolute;top:2px;right:2px" title=" Đơn Hàng Đã In"><i class="fa-solid fa-newspaper fa-sm" style="color: #000000;"></i></div>
                                     }
 									@if (prd.ODSuccess == true)
-                                    {   
-                                        <div class="bdrdu" style="background-color:#dcdde1;color:#fff">Chờ xử lý</div>
+                                    {
+                                        <div class="bdrdu nw pd-lr" style="background-color:#ffbe76;color:#fff">Chờ xử lý</div>
                                     }
                                     else if (prd.ODReadly == true)
                                     {
-									    <div class="bdrdu" style="background-color:#00a8ff;color:#fff">Chờ vận chuyển</div>
+                                        <div class="bdrdu nw pd-lr" style="background-color:#e74c3c;color:#fff">Chờ vận chuyển</div>
                                     }
                                     else if (prd.ODTransported == true )
                                     {
-                                        <div class="bdrdu" style="background-color:#00a8ff;color:#fff">Đang vận chuyển</div>
+                                        <div class="bdrdu nw pd-lr" style="background-color:#00a8ff;color:#fff">Đang vận chuyển</div>
                                     }
                                     else if (prd.Complete == true)
                                     {
-                                        <div class="bdrdu" style="background-color:#4cd137;color:#fff">Hoàn thành</div>
+                                        <div class="bdrdu nw pd-lr" style="background-color:#4cd137;color:#fff">Hoàn thành</div>
                                     }
                                     else if (prd.ODHuy == true)
                                     {
-                                        <div class="bdrdu" style="background-color:#eb2f06;color:#fff">Đã hủy</div>
+                                        <div class="bdrdu nw pd-lr" style="background-color:#eb2f06;color:#fff">Đã hủy</div>
                                     }
                                 </td>
                                 <td>

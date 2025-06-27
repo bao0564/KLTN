@@ -4,18 +4,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model ShoppingCartDetail
-<main class="cart" style="margin-bottom:150px">
+<main class="cart" style="margin-bottom:150px;background-image:url(/wwwroot/logo/image_png_V1.png)">
     <div class="body-cart body-cart-index">
         <div class="address-cart">
             <div class="box-cart box-cart-address" style="color:#fff">
                 <div class="flct" style="justify-content:space-between">
                     <div class="title">
-                        <h3 style="color:#fff">Thông Tin Địa Chỉ </h3>
+                        <h3>Thông Tin Địa Chỉ </h3>
                     </div>
                     @if (Context.Session.GetInt32("userId") != null)
                     {
                         <div>
-                            <a onclick="openAD()"><i onclick="openAD()" class="fa-solid fa-plus fa-lg" style="color: #fff;"></i></a>
+                            <a onclick="openAD()"><i onclick="openAD()" class="fa-solid fa-plus fa-lg"></i></a>
                         </div>
                     }
                     else
@@ -58,7 +58,7 @@
                         }
 					</div>
                 </div>
-                <div class="bdrdu" style="padding:0;">
+                <div class="" style="padding:0;">
                     <div class="">
                         <div class="space-address">
                             <div class="box-address"><input type="text" name="TenKh" id="TenKh" placeholder="Tên người nhận"/></div>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="space-address">
                             <div class="box-address">
-                                <input type="text" name="GhiChu" id="GhiChu" style="background-color:#2f3640 !important" placeholder="Ghi chú cho đơn hàng" />
+                                <input type="text" name="GhiChu" id="GhiChu"  title="Ghi chú cho đơn hàng" value="..." />
                             </div>
                         </div>
                     </div>
@@ -91,9 +91,9 @@
             <div class="box-cart-pay-voucher">
                 <div class="box-cart box-cart-pay" style="">
                     <div>
-                        <h3 style="color:#fff">Hình Thức Thanh Toán  </h3>
+                        <h3>Hình Thức Thanh Toán  </h3>
                     </div>
-                    <div class="bdrdu pay-list" style="">
+                    <div class=" pay-list" style="">
                         <div class="space-pay">
                             @foreach (var pay in Model.Payments)
                             {
@@ -114,9 +114,9 @@
                 </div>
                 <div class="box-cart box-cart-voucher" style="">
                     <div>
-                        <h3 style="color:#fff">Voucher</h3>
+                        <h3>Voucher</h3>
                     </div>
-                    <div class="bdrdu voucher-list">
+                    <div class=" voucher-list">
                         @foreach (var vc in Model.Vouchers)
                         {
                             <div class="space-pay">

@@ -23,7 +23,7 @@ jQuery(document).ready(function($)
 
 	/* 
 
-	1. Vars and Inits
+	1. Vars and Initsproduct-item
 
 	*/
 
@@ -382,6 +382,7 @@ jQuery(document).ready(function($)
 
 			// Lọc sản phẩm theo màu sắc khi checkbox được chọn
 			$('.color-filter').on('change', function () {
+				$('.color-filter').not(this).prop('checked', false);//chỉ cho chọn 1 loại màu
 				var selectedColors = [];
 
 				// Thu thập tất cả các màu được chọn
@@ -411,6 +412,9 @@ jQuery(document).ready(function($)
 				});
 			});
 			$('.size-filter').on('change', function () {
+
+				$('.size-filter').not(this).prop('checked', false);//chỉ cho chọn 1 loại size
+
 				var selectedSizes = [];
 				$('.size-filter:checked').each(function () {
 					var size = $(this).siblings('p').text().toLowerCase().trim();

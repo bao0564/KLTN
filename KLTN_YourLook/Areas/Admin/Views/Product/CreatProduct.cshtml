@@ -8,7 +8,7 @@
         Thêm / Tạo Sản Phẩm mới
     </div>
     <div>
-        <div class="card-header p-2" style="background-color:#d3d3d347">
+        <div class="sticky_head card-header p-2" style="background-color:#d3d3d347">
             <ul class="nav nav-pills">
                 <a asp-action="Product"><img class="mg-lr" style="height:20px" src="\icon\drop left.svg" /> </a>
                 <li class="nav_item"><a class="nav-link active" href="#page1" data-toggle="tab">Thông Tin Chính</a></li>
@@ -93,7 +93,7 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox talg">
-                                        @Html.CheckBoxFor(x => x.IActive, new { @class = "custom-control-input", @id = "customCheckbox2", @checked = "checked" })
+                                        @Html.CheckBoxFor(x => x.IActive, new { @class = "custom-control-input", @id = "customCheckbox2"})
                                         <label for="customCheckbox2" class="custom-control-label">Hiển thị</label>
                                     </div>
                                 </div>

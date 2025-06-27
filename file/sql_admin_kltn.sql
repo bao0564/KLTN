@@ -2,7 +2,7 @@
 SET QUOTED_IDENTIFIER ON
 GO
 --all danh mục
---drop procedure category_showall
+--drop procedure category_showall  
 create procedure [dbo].[category_showall]
 as
 begin
@@ -12,7 +12,7 @@ begin
 	group by c.IdDm,c.MaDm,c.TenDm,c.AnhDaiDien,c.CreateDate,c.ModifiedDate,c.CreateBy
 	order by c.IdDm desc
 end;
-
+ 
 SET QUOTED_IDENTIFIER ON
 GO
 --tìm danh mục
@@ -31,29 +31,22 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --thêm danh mục
+--DECLARE @msg NVARCHAR(500), @error NVARCHAR(500);exec category_insert @madm="Polotron", @tendm="polo trơn",@anhdaidien="bvwb", @createby="bao",@msg = @msg OUTPUT, @error = @error OUTPUT; SELECT @msg AS Message, @error AS Error;
 --drop procedure category_insert
 create procedure [dbo].[category_insert]
-	@tendm nvarchar(10),
+	@madm nvarchar(50),
+	@tendm nvarchar(50),
 	@anhdaidien nvarchar(250),
 	@createby nvarchar(25),
 
-	@newiddm int output,
-	@newmadm nvarchar(10) output,
 	@msg nvarchar(500) output,
 	@error nvarchar(500) output
-as
+as 
 begin
-	declare @GeneratedMaDm nvarchar(10)
 	begin try
 		--tạo mới
-		insert into DbCategory (TenDm,AnhDaiDien,CreateBy,CreateDate) 
-		values (@tendm,@anhdaidien,@createby,GETDATE())
-
-		set @newiddm=SCOPE_IDENTITY();
-		set @GeneratedMaDm= CONCAT('DM',FORMAT(@newiddm,''));
-		set @newmadm=@GeneratedMaDm;
-		--cập nhật lại mã dm
-		update DbCategory set MaDm=@newmadm where IdDm=@newiddm
+		insert into DbCategory (MaDm,TenDm,AnhDaiDien,CreateBy,CreateDate) 
+		values (@madm,@tendm,@anhdaidien,@createby,GETDATE())
 
 		set @msg = N'Danh mục đã được thêm thành công.';
 	end try
@@ -68,7 +61,8 @@ GO
 --drop procedure category_update
 create procedure [dbo].[category_update]
 	@iddm int,
-	@tendm nvarchar(10),
+	@tendm nvarchar(50),
+	@madm nvarchar(50),
 	@anhdaidien nvarchar(250),
 	@modifiedby nvarchar(25),
 	@msg nvarchar(500) output,
@@ -76,7 +70,7 @@ create procedure [dbo].[category_update]
 as
 begin
 	begin try
-		update DbCategory set TenDm=@tendm,AnhDaiDien=@anhdaidien,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
+		update DbCategory set TenDm=@tendm,MaDm=@madm,AnhDaiDien=@anhdaidien,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
 		where IdDm=@iddm;
 		set @msg = N'Sửa danh mục thành công.';
 	end try
@@ -106,33 +100,93 @@ end
 
 SET QUOTED_IDENTIFIER ON
 GO
---thêm màu
---drop procedure color_insert
-create procedure [dbo].[color_insert]
-	@namecl nvarchar(50),
-	@mahex nvarchar(20),
-	@img nvarchar(250),
+--thêm nhóm
+--DECLARE @msg NVARCHAR(500), @error NVARCHAR(500);exec group_insert @madm="Polotron", @tendm="polo trơn",@anhdaidien="bvwb", @createby="bao",@msg = @msg OUTPUT, @error = @error OUTPUT; SELECT @msg AS Message, @error AS Error;
+--drop procedure group_insert
+create procedure [dbo].[group_insert]
+	@manhom nvarchar(50),
+	@tennhom nvarchar(50),
+	@anhdaidien nvarchar(250),
 	@createby nvarchar(25),
 
-	@newidcl int output,
-	@newmacl nvarchar(10) output,
+	@msg nvarchar(500) output,
+	@error nvarchar(500) output
+as 
+begin
+	begin try
+		--tạo mới
+		insert into DbGroup(MaNhom,GroupName,AnhDaiDien,CreateBy,CreateDate) 
+		values (@manhom,@tennhom,@anhdaidien,@createby,GETDATE())
+
+		set @msg = N'Thêm nhóm thành công';
+	end try
+	begin catch
+		set @error =ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--sửa nhóm
+--drop procedure group_update
+create procedure [dbo].[group_update]
+	@idnhom int,
+	@manhom nvarchar(50),
+	@tennhom nvarchar(50),
+	@anhdaidien nvarchar(250),
+	@modifiedby nvarchar(25),
+
 	@msg nvarchar(500) output,
 	@error nvarchar(500) output
 as
 begin
-	declare @GeneratedMaCl nvarchar(10)
+	begin try
+		update DbGroup set GroupName=@tennhom,MaNhom=@manhom,AnhDaiDien=@anhdaidien,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
+		where IdNhom=@idnhom;
+		set @msg = N'Sửa thành công.';
+	end try
+	begin catch
+		set @error= ERROR_MESSAGE();
+	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--xóa nhóm
+--drop procedure group_delete
+create procedure [dbo].[group_delete]
+	@idnhom int,
+	@msg nvarchar(500) output,
+	@error nvarchar(500) output
+as
+begin
+	begin try
+		delete DbGroup where IdNhom=@idnhom;
+		set @msg = N'Đã xóa nhóm.';
+	end try
+	begin catch
+		set @error= ERROR_MESSAGE();
+	end catch
+end
+SET QUOTED_IDENTIFIER ON
+GO
+--thêm màu
+--drop procedure color_insert
+create procedure [dbo].[color_insert]
+	@macl nvarchar(50),
+	@namecl nvarchar(50),
+	@mahex nvarchar(20),
+	@img nvarchar(250),
+	@createby nvarchar(25),
+	@msg nvarchar(500) output,
+	@error nvarchar(500) output
+as
+begin
 	begin try
 		--tạo mới
-		insert into DbColor(NameColor,MaHex,Img,CreateBy,CreateDate) 
-		values (@namecl,@mahex,@img,@createby,GETDATE())
-
-		set @newidcl=SCOPE_IDENTITY();
-		set @GeneratedMaCl= CONCAT('CL',FORMAT(@newidcl,''));
-		set @newmacl=@GeneratedMaCl;
-		--cập nhật lại mã cl
-		update DbColor set MaColor=@newmacl where ColorId=@newidcl
-
-		set @msg = N'Màu đã được thêm thành công.';
+		insert into DbColor(MaColor,NameColor,MaHex,Img,CreateBy,CreateDate) 
+		values (@macl,@namecl,@mahex,@img,@createby,GETDATE())
+		set @msg = N'Đã thêm màu.';
 	end try
 	begin catch
 		set @error =ERROR_MESSAGE();
@@ -146,6 +200,7 @@ GO
 create procedure [dbo].[color_update]
 	@idcl int,
 	@namecl nvarchar(50),
+	@macl nvarchar(50),
 	@mahex nvarchar(20),
 	@img nvarchar(250),
 	@modifiedby nvarchar(25),
@@ -154,7 +209,7 @@ create procedure [dbo].[color_update]
 as
 begin
 	begin try
-		update DbColor set NameColor=@namecl,MaHex=@mahex,Img=@img,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
+		update DbColor set NameColor=@namecl,MaColor=@macl,MaHex=@mahex,Img=@img,ModifiedBy=@modifiedby,ModifiedDate=GETDATE() 
 		where ColorId=@idcl;
 		set @msg = N'Sửa màu thành công.';
 	end try
@@ -253,52 +308,52 @@ end
 SET QUOTED_IDENTIFIER ON
 GO
 --lưu thông tin thay đổi khi Cập nhật đơn hàng 
---drop trigger trg_AfterUpdateOrder
-create trigger trg_AfterUpdateOrder 
-on DbOrder
-after update 
-as
-begin
-	set nocount on;
-	insert into DbHistory(TableName,TableId,OldValue,NewValue,ModifiedDate,ModifiedBy)
-	select 
-		'DbOrder' as TableName,
-		i.IdDh as TableId,
-		(
-            SELECT 
-				Case when d.ODSuccess<>i.ODSuccess then d.ODSuccess else null end as odsuccess,
-				Case when d.ODReadly<>i.ODReadly then d.ODReadly else null end as odreadly,
-				Case when d.ODTransported<>i.ODTransported then d.ODTransported else null end as odtransported,
-				Case when d.Complete<>i.Complete then d.Complete else null end as complete,
-				Case when d.ODHuy <>i.ODHuy then d.ODHuy else null end as odhuy,
-				Case when d.ODPrint <>i.ODPrint then d.ODPrint else null end as odprint,
-				Case when d.ODReprint <>i.ODReprint then d.ODReprint else null end as odreprint
-            FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
-        ) AS OldValue,
-        (
-			select 
-				Case when d.ODSuccess<>i.ODSuccess then i.ODSuccess else null end as odsuccess,
-				Case when d.ODReadly<>i.ODReadly then i.ODReadly else null end as odreadly,
-				Case when d.ODTransported<>i.ODTransported then i.ODTransported else null end as odtransported,
-				Case when d.Complete<>i.Complete then i.Complete else null end as complete,
-				Case when d.ODHuy <>i.ODHuy then i.ODHuy else null end as odhuy,
-				Case when d.ODPrint <>i.ODPrint then i.ODPrint else null end as odprint,
-				Case when d.ODReprint <>i.ODReprint then i.ODReprint else null end as odreprint
-			for json path,WITHOUT_ARRAY_WRAPPER
-		) as NewValue,
-		GETDATE() as ModifiedDate,
-		i.ModifiedBy as ModifiedBy
-	from inserted i
-	inner join deleted d on i.IdDh=d.IdDh
-	where
-		d.ODSuccess <> i.ODSuccess or
-		d.ODReadly <> i.ODReadly or
-		d.ODTransported <> i.ODTransported or
-		d.Complete <> i.Complete or
-		d.ODHuy <> i.ODHuy or
-		d.ODPrint <>i.ODPrint or
-		d.ODReprint <>i.ODReprint
-end;
+----drop trigger trg_AfterUpdateOrder
+--create trigger trg_AfterUpdateOrder 
+--on DbOrder
+--after update 
+--as
+--begin
+--	set nocount on;
+--	insert into DbHistory(TableName,TableId,OldValue,NewValue,ModifiedDate,ModifiedBy)
+--	select 
+--		'DbOrder' as TableName,
+--		i.IdDh as TableId,
+--		(
+--            SELECT 
+--				Case when d.ODSuccess<>i.ODSuccess then d.ODSuccess else null end as odsuccess,
+--				Case when d.ODReadly<>i.ODReadly then d.ODReadly else null end as odreadly,
+--				Case when d.ODTransported<>i.ODTransported then d.ODTransported else null end as odtransported,
+--				Case when d.Complete<>i.Complete then d.Complete else null end as complete,
+--				Case when d.ODHuy <>i.ODHuy then d.ODHuy else null end as odhuy,
+--				Case when d.ODPrint <>i.ODPrint then d.ODPrint else null end as odprint,
+--				Case when d.ODReprint <>i.ODReprint then d.ODReprint else null end as odreprint
+--            FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
+--        ) AS OldValue,
+--        (
+--			select 
+--				Case when d.ODSuccess<>i.ODSuccess then i.ODSuccess else null end as odsuccess,
+--				Case when d.ODReadly<>i.ODReadly then i.ODReadly else null end as odreadly,
+--				Case when d.ODTransported<>i.ODTransported then i.ODTransported else null end as odtransported,
+--				Case when d.Complete<>i.Complete then i.Complete else null end as complete,
+--				Case when d.ODHuy <>i.ODHuy then i.ODHuy else null end as odhuy,
+--				Case when d.ODPrint <>i.ODPrint then i.ODPrint else null end as odprint,
+--				Case when d.ODReprint <>i.ODReprint then i.ODReprint else null end as odreprint
+--			for json path,WITHOUT_ARRAY_WRAPPER
+--		) as NewValue,
+--		GETDATE() as ModifiedDate,
+--		i.ModifiedBy as ModifiedBy
+--	from inserted i
+--	inner join deleted d on i.IdDh=d.IdDh
+--	where
+--		d.ODSuccess <> i.ODSuccess or
+--		d.ODReadly <> i.ODReadly or
+--		d.ODTransported <> i.ODTransported or
+--		d.Complete <> i.Complete or
+--		d.ODHuy <> i.ODHuy or
+--		d.ODPrint <>i.ODPrint or
+--		d.ODReprint <>i.ODReprint
+--end;
 
 SET QUOTED_IDENTIFIER ON
 GO
@@ -419,7 +474,7 @@ begin
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
 	 WHERE (@iddh IS NULL OR @iddh = 0 OR od.IdDh = @iddh)and od.ODPrint=0 and od.ODHuy=0 --nếu in nhiều ctdh thì trong code @iddh = 0 nên thêm @iddh =0 vào dkien
 end;
--- cập nhật tình trạng in sau khi in đơn hàng theo id, in tất cả đơn hàng
+--in lại
 --drop procedure sp_reprint_order
 --EXEC sp_reprint_order @iddh=10
 SET QUOTED_IDENTIFIER ON
@@ -537,17 +592,43 @@ create procedure [dbo].[orderupdate]
 	@error nvarchar(500) output
 as
 begin
+	--các thông tin đang có trong đon hangf
 	declare @isprint bit;
+	declare @isodsuccess bit;
+	declare @isodreadly bit;
+	declare @isodtransported bit;
+	declare @iscomplete bit;
+	declare @isodhuy bit;
+	DECLARE @hasError BIT = 0;
 	begin try	
-		select @isprint=od.ODPrint from DbOrder od where od.IdDh=@iddh;
-		if @isprint=1 and @odsuccess =1
+		select @isprint=od.ODPrint,@isodsuccess=od.ODSuccess,@isodreadly=od.ODReadly,@isodtransported=od.ODTransported,@iscomplete=od.Complete,@isodhuy=od.ODHuy
+			from DbOrder od
+			where od.IdDh=@iddh;		
+		if @isodreadly=1 and @odsuccess =1
 			begin
-				set @error=N'Đơn hàng đã được in không thể cập nhật về trạng thái này ';
+				set @error=N'Đơn hàng đã sẵn sàng không thể cập nhật về trạng thái này ';
+				return;
+			end					
+		if @isodtransported=1 and (@odreadly =1 or @odsuccess =1)
+			begin
+				set @error=N'Đơn hàng đang vận chuyển không thể cập nhật về trạng thái này ';
 				return;
 			end
+								
+		if @iscomplete=1 and (@odreadly =1 or @odsuccess =1 or @odtransported=1)
+			begin
+				set @error=N'Đơn hàng đã hoàn thành không thể cập nhật về trạng thái này ';
+				return;
+			end		
 		else
 			update DbOrder set ODSuccess=@odsuccess,ODReadly=@odreadly,ODTransported=@odtransported,Complete=@complete,ODHuy=@odhuy,ModifiedBy=@modifiedby
 				where IdDh=@iddh
+				if @complete=1
+					begin
+						update DbOrder set CompleteDate= GETDATE() 
+
+						where IdDh=@iddh
+					end
 				if @odhuy=1
 					begin
 						update pd set pd.Quantity= pd.Quantity + odd.SoLuongSp
@@ -726,9 +807,17 @@ create procedure [dbo].[productdetail_insert]
 	@error nvarchar(500) out
 as 
 begin
+	declare @ma nvarchar(50);
+	declare @sz nvarchar(10);
+	declare @cl nvarchar(10);
+	select @ma=c.MaDm, @sz=s.MaSize, @cl=cl.MaColor from DbCategory c  
+		join DbProduct p on p.IdDm = c.IdDm
+		join DbSize s on s.SizeId= @sizeid 
+		join DbColor cl on cl.ColorId=@colorid
+		where p.IdSp= @idsp
 	begin try
-		insert into DbProductDetail (IdSp,ColorId,NameColor,SizeId,NameSize,GiaLoai,Quantity,SoLuongBan)
-		values (@idsp,@colorid,@namecolor,@sizeid,@namesize,@gialoai,@soluong,0)
+		insert into DbProductDetail (IdSp,ColorId,NameColor,SizeId,NameSize,GiaLoai,Quantity,SoLuongBan,MaCTSP)
+		values (@idsp,@colorid,@namecolor,@sizeid,@namesize,@gialoai,@soluong,0,@ma + @cl +@sz)
 	end try
 	begin catch
 		set @error=N'lỗi không thêm đc các thông tin chi tiết ảnh vào bảng DbProductDetail'+ ERROR_MESSAGE();
@@ -737,8 +826,21 @@ end;
 
 SET QUOTED_IDENTIFIER ON
 GO
+--nhập số lượng nhập vào bảng chi tiết sản phẩm
+--exec insert_quantity_stock @soluong= 50, @mactsp=pololentrontrangM
+--drop procedure insert_quantity_stock
+create procedure [dbo].[insert_quantity_stock]
+	@mactsp nvarchar(50),
+	@soluong int
+as
+begin
+	update DbProductDetail set Quantity+=@soluong where MaCTSP=@mactsp
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
 --hiển thị thông tin chi tiết sản phẩm
-	--drop procedure product_find
+--drop procedure product_find
 create procedure [dbo].[product_find]
 	@idsp int
 as
@@ -747,7 +849,7 @@ begin
 end;
 SET QUOTED_IDENTIFIER ON
 GO
-	--drop procedure product_img_find
+--drop procedure product_img_find
 create procedure [dbo].[product_img_find]
 	@idsp int
 as
@@ -756,7 +858,7 @@ begin
 end;
 SET QUOTED_IDENTIFIER ON
 GO
-	--drop procedure product_productdetail_find
+--drop procedure product_productdetail_find
 create procedure [dbo].[product_productdetail_find]
 	@idsp int
 as
@@ -850,7 +952,7 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --hiển thị thông tin số liệu bán hàng
---exec revenue_showall
+--exec revenue_showall @month=1, @year=2024
 --drop procedure revenue_showall 
 create procedure [dbo].[revenue_showall]
 	@Month INT = NULL, 
@@ -883,8 +985,9 @@ begin
     DECLARE @PrevStartDate DATE = DATEFROMPARTS(@PrevYear, @PrevMonth, 1);
     DECLARE @PrevEndDate DATE = EOMONTH(@PrevStartDate);
 
-	--doanh thu các tháng trong năm 
-	WITH DoanhThuThang AS (
+	--các tháng có doanh thu trong năm 
+	WITH
+	DoanhThuThang AS (
 		SELECT 
 			MONTH(CreateDate) AS Thang,
 			SUM(TongTienThanhToan) AS TongDoanhThu
@@ -892,7 +995,21 @@ begin
 		WHERE 
 			YEAR(CreateDate) = @Year AND Complete = 1
 		GROUP BY MONTH(CreateDate) --xếp theo từng tháng
-	)	
+	),
+	--tất cả 12 tháng trong năm
+	Thang AS (
+		SELECT 1 AS Thang UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL
+		SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL
+		SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12
+	),
+	--tổng hợp daonh thu của 12 tháng 
+	DoanhThuDayDu AS (
+		SELECT 
+			t.Thang,
+			ISNULL(dt.TongDoanhThu, 0) AS TongDoanhThu
+		FROM Thang t
+		LEFT JOIN DoanhThuThang dt ON t.Thang = dt.Thang
+	)
     -- Truy vấn doanh thu và số liệu
     SELECT 
 		@Month as Thang,
@@ -912,10 +1029,10 @@ begin
 
 		(
 			select STRING_AGG(
-				'Tháng ' + CAST(Thang AS VARCHAR) + ': ' + CAST(TongDoanhThu AS VARCHAR),
+				CAST(Thang AS VARCHAR) + ': ' + CAST(TongDoanhThu AS VARCHAR),
 				' | '
 			)
-			FROM DoanhThuThang
+			FROM DoanhThuDayDu
 		) AS DoanhThuTongHop
     FROM DbOrder od
     WHERE od.CreateDate >= @StartDate AND od.CreateDate <= @EndDate;

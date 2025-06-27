@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 using KLTN_YourLook.Extension;
 using KLTN_YourLook.Interface;
 using KLTN_YourLook.Models;
@@ -6,6 +7,7 @@ using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using KLTN_YourLook.Areas.Admin.Repository;
 
 namespace KLTN_YourLook.Controllers
 {
@@ -13,10 +15,12 @@ namespace KLTN_YourLook.Controllers
     {
         private readonly YourlookContext _context;
         private readonly SP_OrderCart _orderCart;
-        public ShoppingCartController(YourlookContext context, SP_OrderCart orderCart)
+        private readonly OrderRepository _orderRepository;
+        public ShoppingCartController(YourlookContext context, SP_OrderCart orderCart, OrderRepository orderRepository)
         {
             _context = context;
             _orderCart = orderCart;
+            _orderRepository = orderRepository;
         }
         public async Task<IActionResult> Cart()
         {
@@ -39,6 +43,7 @@ namespace KLTN_YourLook.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToCart(int idsp, int quantity, int sizeid, int colorid)
         {
+            var prd = _context.DbProductDetails.FirstOrDefault(pd => pd.IdSp == idsp && pd.SizeId == sizeid && pd.ColorId == colorid);
             var checkkh = HttpContext.Session.GetInt32("userId");
             if (checkkh == null)
             {
@@ -50,14 +55,21 @@ namespace KLTN_YourLook.Controllers
             {
                 return Json(new { success = false, msg = "sản phẩm không tồn tại" });
             }
-            var addprd = await _orderCart.Add_To_Cart(idsp, idkh, quantity, colorid, sizeid);//thêm sp
-            if(addprd != null){
-                return Json(new { success = true, msg="Thêm Sản phẩm thành công"});
-            }
-            else
+            var quantityprd = prd.Quantity;
+            if(quantityprd == 0)
             {
-                return Json(new { success = false, msg = "Thêm Sản phẩm không thành công" });
+                return Json(new { success = false, msg = "sản phẩm hiện tại đã hết hàng vui lòng chọn sản phẩm khác để thay thế" });
             }
+            //if(quantity > quantityprd)
+            //{
+            //    return Json(new { success = false, msg = "Số lượng không được vượt quá số lượng còn lại của sản phẩm" });
+            //}
+            var (msg,error) = await _orderCart.Add_To_Cart(idsp, idkh, quantity, colorid, sizeid);//thêm sp
+            if (!string.IsNullOrEmpty(msg))
+            {
+                return Json(new { success = true, msg=msg});
+            }
+            return Json(new { success = false, msg = error });
         }
         [AllowAnonymous]
         [HttpPost]
@@ -172,6 +184,10 @@ namespace KLTN_YourLook.Controllers
                         _context.Remove(spcart);
                     }
                 }
+                if (orderPayment.PaymentId!=1)
+                {
+                    var updateTrangThaiDH = await _orderRepository.UpdateOrder(newIdDH, false, true, false, false, false, orderInfor.TenKh);
+                }
                 await _context.SaveChangesAsync();
                 HttpContext.Session.Remove("Order");
                 HttpContext.Session.Remove("OrderInfor");
@@ -193,6 +209,15 @@ namespace KLTN_YourLook.Controllers
             }
         }
         public IActionResult PayOrderSuccess()
+        {
+            var checkkh = HttpContext.Session.GetInt32("userId");
+            if (checkkh == null)
+            {
+                return RedirectToAction("Login", "Access");
+            }
+            return View();
+        }
+        public IActionResult PaymentSpace()
         {
             var checkkh = HttpContext.Session.GetInt32("userId");
             if (checkkh == null)

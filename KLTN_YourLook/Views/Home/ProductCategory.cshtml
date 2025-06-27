@@ -1,4 +1,4 @@
-﻿@using KLTN_YourLook.Models;
+﻿﻿@using KLTN_YourLook.Models;
 @using X.PagedList.Mvc.Core;
 @{
     ViewData["Title"] = "ProductCategory";
@@ -30,34 +30,34 @@
                             {
                                 <i class="fa-regular fa-heart" style="color: #2f3640;" title="Thêm vào yêu thích"></i>
                             }
-						</div>
-						<div class="box-inf-cl-s">
-							<div>
-								<div class="box-inf-title fljct">Phân Loại</div>
-								<div class="box-inf-size flct">
+                        </div>
+                        <div class="box-inf-cl-s">
+                            <div>
+                                <div class="box-inf-title fljct">Phân Loại</div>
+                                <div class="box-inf-size flct">
                                     <div>Size:</div>
                                     <div class="fl" style="max-width:90%;overflow:auto">
-										@foreach (var sz in prd.Sizes)
-										{
-											<button>@sz.NameSize</button>
-											<div class="in-size-item" style="display:none;">@sz.NameSize</div>
-											//để lọc theo size (categories_custom.js)
-										}
-									</div>
-								</div>
-								<div class="box-inf-color flct" style="padding-left:5%">
+                                        @foreach (var sz in prd.Sizes)
+                                        {
+                                            <button>@sz.NameSize</button>
+                                            <div class="in-size-item" style="display:none;">@sz.NameSize</div>
+                                            //để lọc theo size (categories_custom.js)
+                                        }
+                                    </div>
+                                </div>
+                                <div class="box-inf-color flct" style="padding-left:5%">
                                     <div>Màu:</div>
                                     <div class="fl" style="max-width:90%;overflow:auto">
-										@foreach (var cl in prd.Colors)
-										{
-											<button style="background-color:@cl.MaHex" title="@cl.NameColor"></button>
-											<div class="in-color-item" style="display:none;">@cl.NameColor</div>
-											//để lọc theo color (categories_custom.js)
-										}
-									</div>
-								</div>
-							</div>
-						</div>
+                                        @foreach (var cl in prd.Colors)
+                                        {
+                                            <button style="background-color:@cl.MaHex" title="@cl.NameColor"></button>
+                                            <div class="in-color-item" style="display:none;">@cl.NameColor</div>
+                                            //để lọc theo color (categories_custom.js)
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="product_info">

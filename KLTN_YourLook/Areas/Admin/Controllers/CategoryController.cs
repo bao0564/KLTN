@@ -63,15 +63,21 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         }
         [Route("categorycreat")]
         [HttpPost]
-        public async Task<IActionResult> CreatCategory(DbCategory model, IFormFile FileAnh)
+        public async Task<IActionResult> CreatCategory(InsertCategoryViewModel model, IFormFile FileAnh)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (ModelState.IsValid)
             {
+                //model.AnhDaiDien = "Null.png";
                 if (FileAnh != null && FileAnh.Length > 0)
                 {
                     model.AnhDaiDien = await _uploadimg.uploadOnePhotosAsync(FileAnh, "images");
                 }
-                var (msg,error) = await _categoryRepository.CreateCategory(model.TenDm, model.AnhDaiDien ?? "","Bao");
+                var (msg,error) = await _categoryRepository.CreateCategory(model.MaDm,model.TenDm, model.AnhDaiDien,name);
 
                 if (!string.IsNullOrEmpty(error))
                 {
@@ -108,6 +114,11 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateCategory(DbCategory model, IFormFile? FileAnh)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (ModelState.IsValid)
             {
                 var img = _context.DbCategorys.Where(c=>c.IdDm==model.IdDm).Select(c=>c.AnhDaiDien).FirstOrDefault();//lấy ảnh hiện tại
@@ -120,7 +131,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 {
                     model.AnhDaiDien = img;
                 }
-                var (msg,error) = await _categoryRepository.UpdateCategory(model.IdDm, model.TenDm, model.AnhDaiDien, "bao2" );
+                var (msg,error) = await _categoryRepository.UpdateCategory(model.IdDm, model.TenDm,model.MaDm, model.AnhDaiDien, name);
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"] = error;

@@ -118,9 +118,9 @@ $(document).ready(function () {
             var giaMax = parseFloat(document.getElementById('GiaMax').value) || 0;
             var giamGia = parseFloat(document.getElementById('GiamGia').value) || 0;
             var giaMin = giaMax - (giaMax * giamGia / 100);
-            document.getElementById('GiaMin').value = (Math.round(giaMin / 100) * 100);
+            document.getElementById('GiaMin').value = (Math.round(giaMin / 1000) * 1000);
         }
-
+ 
         function bindPrice() {
             document.getElementById('GiamGia').addEventListener('input', function () {
                 checkMaxValue(this);

@@ -14,12 +14,6 @@
                 <a asp-action="Color"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
-        @* @if (TempData["Error"] != null)
-        {
-            <div class="alert alert-danger">
-                @TempData["Error"]
-            </div>
-        } *@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form asp-action="ColorCreat" method="post">
             @Html.AntiForgeryToken()
@@ -32,13 +26,13 @@
                 </div>
                 <div class="col-4">
                     <label class="control-label">Tên Màu</label>
-                    <input asp-for="NameColor" class="form-control" />
+                    <input asp-for="NameColor" id="input1" class="form-control" />
                     <span asp-validation-for="NameColor" class="text-danger"></span>
                 </div>
                 <div class="col-4">
-                    <label class="control-label">Ảnh màu (nếu có)</label>
-                    <input type="file" asp-for="Img" class="form-control" />
-                    <span asp-validation-for="Img" class="text-danger"></span>
+                    <label class="control-label">Mã màu</label>
+                    <input id="input2" asp-for="MaColor" class="form-control" readonly />
+                    <span asp-validation-for="MaColor" class="text-danger"></span>
                 </div>
             </div>
             <div class="h-cp-mid-1">
@@ -48,7 +42,7 @@
                 </div>
                 <div class="mid-c">
                     <label class="control-label">Người Tạo</label>
-                    <input class="form-control" value="bao" readonly />
+                    <input class="form-control" value="@Context.Session.GetString("NameAdmin")" readonly />
                 </div>
             </div>
             <div class="h-cp-dow fljct">
@@ -60,24 +54,6 @@
     </div>
 </div>
 @section scripts {
-   @*  <script>
-        //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
-        document.getElementById("macl").addEventListener("blur", function () {
-            var cl = this.value;
-            fetch(`/admin/colorcheck?macl=${cl}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.exists) {
-                        alert("Mã đã tồn tại!");
-                    }
-                })
-                .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
-        });
-    </script> *@
+    <script src="~/js_admin/admin_originaltext.js"></script>
 }
 

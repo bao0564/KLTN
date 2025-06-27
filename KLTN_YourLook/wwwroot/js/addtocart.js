@@ -8,6 +8,10 @@
                 var quantity = $('#quantity_value').val();
                 if (quantity != '') {
                     quantity = parseInt(quantity);
+                    if (quantity==0) {
+                        showMess("Số lượng sản phẩm phải lớn hơn 0", false);
+                        return false;
+                    }
                 }
                 // size/color
                 var selectedSize = $('.size-option.selected').data('size');

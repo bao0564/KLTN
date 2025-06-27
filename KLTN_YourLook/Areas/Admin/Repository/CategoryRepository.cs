@@ -36,20 +36,18 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return await _dbConnection.QueryAsync<AllCategoryViewModel>("category_search",parameters,commandType:CommandType.StoredProcedure);            
         }
         //tạo danh mục
-        public async Task<(string msg,string error)> CreateCategory(string tendm, string anhdaidien, string createby)
+        public async Task<(string msg,string error)> CreateCategory(string madm,string tendm, string anhdaidien, string createby)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-
             var parameters = new DynamicParameters();
+            parameters.Add("@madm", madm);
             parameters.Add("@tendm", tendm);
             parameters.Add("@anhdaidien", anhdaidien);
             parameters.Add("@createby", createby);
 
-            parameters.Add("@newiddm", dbType: DbType.Int32, direction: ParameterDirection.Output);
-            parameters.Add("@newmadm", dbType: DbType.String,size:10, direction: ParameterDirection.Output);
             parameters.Add("@msg", dbType: DbType.String,size:500, direction: ParameterDirection.Output); 
             parameters.Add("@error", dbType: DbType.String,size:500, direction: ParameterDirection.Output); 
 
@@ -61,7 +59,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return (msg,error);
         }
         //sửa danh mục
-        public async Task<(string msg,string error)> UpdateCategory(int iddm, string tendm, string anhdaidien, string modifiedby)
+        public async Task<(string msg,string error)> UpdateCategory(int iddm, string tendm,string madm, string anhdaidien, string modifiedby)
         {
             if (_dbConnection == null)
             {
@@ -70,6 +68,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@iddm", iddm);
             parameters.Add("@tendm", tendm);
+            parameters.Add("@madm", madm);
             parameters.Add("@anhdaidien", anhdaidien);
             parameters.Add("@modifiedby", modifiedby);
 

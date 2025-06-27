@@ -11,10 +11,10 @@
                 const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
                 if (currentScroll > lastScrollTop) {
                     header.style.top = '-200px';
-                    formsearchactive.style.display = 'none';// ẩn gọi ý
+                    //formsearchactive.style.display = 'none';// ẩn gọi ý
                 } else {
                     header.style.top = '0';
-                    formsearch.style.display = 'block';
+                    //formsearch.style.display = 'block';
                 }
                 lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
             });

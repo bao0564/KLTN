@@ -136,7 +136,7 @@
 	.list_cate_search .label_text_1 {
 		display: none;
 	}
-	.form-search button {
+	.form-search_1 button {
 		right: 21%;
 	}
 	.product-item {
@@ -274,10 +274,10 @@
 		font-size: 20px;
 	}
 
-	.form-search {
+	.form-search_1 {
 	}
 
-		.form-search input {
+		.form-search_1 input {
 			width: 60%;
 		}
 
@@ -439,14 +439,14 @@
 	.logo_container {
 		width: auto;
 	}
-	.form-search button {
+	.form-search_1 button {
 		 right: 5%; 
 	}
 	.navbar {
 		height: 100px;
 	}
 
-	.form-search input {
+	.form-search_1 input {
 		width: 300px
 	}
 
@@ -463,7 +463,7 @@
 		display: block;
 	}
 
-	.hamburger_menu_content .form-search {
+	.hamburger_menu_content .form-search_1 {
 		display: none;
 	}
 
@@ -699,7 +699,7 @@
 		max-height: 280px;
 	}
 
-	.form-search input {
+	.form-search_1 input {
 		width: 250px
 	}
 
@@ -997,7 +997,7 @@
 	.top_nav_menu {
 		height: 30px
 	}
-	.form-search {
+	.form-search_1 {
 		display: none;
 	}
 	.hamburger_menu_content .search-children {

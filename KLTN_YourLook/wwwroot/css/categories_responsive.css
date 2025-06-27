@@ -118,7 +118,7 @@
 @media only screen and (max-width: 1280px)
 {
 	.cate .product-item{
-		width:25%;
+		width:23%;/* trc là 25%*/
 	}
 	.cate .product_name a {
 		font-size: 12px;

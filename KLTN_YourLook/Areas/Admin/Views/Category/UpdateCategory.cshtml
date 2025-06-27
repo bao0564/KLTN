@@ -14,28 +14,22 @@
                 <a asp-action="Category"><img style="height:20px" src="\icon\drop left.svg" /> </a>
             </div>
         </div>
-        @* @if (TempData["Error"] != null)
-        {
-            <div class="alert alert-danger" >
-                @TempData["Error"]
-            </div>
-        } *@
         @using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <input type="hidden" asp-for="IdDm" />
             <input type="hidden" asp-for="CreateDate" />
             <input type="hidden" asp-for="CreateBy" />
             <div class="h-cp-mid-1">
-                @* <div class="mid-c">
-                    <label class="control-label">Mã danh Mục</label>
-                    <input asp-for="MaDm" id="madm" class="form-control" />
-                    <span asp-validation-for="MaDm" class="text-danger"></span>
-                </div> *@
                 <div class="mid-c">
                     <label class="control-label">Tên danh Mục</label>
-                    <input asp-for="TenDm" class="form-control" />
+                    <input asp-for="TenDm" id="input1" class="form-control" />
                     <span asp-validation-for="TenDm" class="text-danger"></span>
-                </div>
+				</div>
+				<div class="mid-c">
+					<label class="control-label">Mã danh Mục</label>
+					<input asp-for="MaDm" id="input2" class="form-control" readonly/>
+					<span asp-validation-for="MaDm" class="text-danger"></span>
+				</div>
                 <div class="mid-c">
                     <label class="control-label">Ảnh</label>
                     <input type="file" asp-for="AnhDaiDien" class="form-control" name="FileAnh" accept="image/*" />
@@ -51,23 +45,5 @@
     </div>
 </div>
 @section scripts {
-   @*  <script>
-        //kiểm tra mã dm (blur: thường được gọi để kiểm tra dl nhập khi rời khỏi ô nhập)
-        document.getElementById("madm").addEventListener("blur", function () {
-            var dm = this.value;
-            fetch(`/admin/categorycheck?madm=${dm}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.exists) {
-                        alert("Mã danh mục đã tồn tại!");
-                    }
-                })
-                .catch(error => console.error('Error:', error)); // Thêm xử lý lỗi
-        });
-    </script> *@
+    <script src="~/js_admin/admin_originaltext.js"></script>
 }

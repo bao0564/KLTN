@@ -6,6 +6,7 @@ using KLTN_YourLook.Areas.Admin.Models;
 using KLTN_YourLook.Models;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace KLTN_YourLook.Areas.Admin.Repository
 {
@@ -163,6 +164,19 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             parameters.Add("@isale", isale);
             parameters.Add("@modifiedby", modifiedby);
             var result=await _dbConnection.ExecuteAsync("product_update",parameters, commandType: CommandType.StoredProcedure);
+            return result;
+        }
+        //cộng thêm số lượng nhập vào bằng chi tiết sản phẩm
+        public async Task<int> InsertStock(string mactsp, int quantity)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+            var parameters = new DynamicParameters();
+            parameters.Add("@mactsp", mactsp);
+            parameters.Add("@soluong", quantity);
+            var result= await _dbConnection.ExecuteAsync("insert_quantity_stock",parameters,commandType: CommandType.StoredProcedure);
             return result;
         }
         ////không dùng vì chọn cách xóa hết ảnh sp cũ và ấy lại 
