@@ -17,12 +17,15 @@
 	  delete Dbhi where Id=72
 	select * from DbGroup
 	select * from DbCustomer
-	select * from DbProductDetail 
-	select * from DbProduct 
+	select * from DbPayment
+	select * from DbProductDetail where IdCTSP= 789
+	select * from DbProduct where MaSp='SP44'
 	select * from Dbcategory 
-	select * from DbOrder  where IdDh=13
+	select * from DbOrder  where MaDh='DH57'
+	select * from DbOrderDetail  where MaDh='DH57'
 	select * from DbAddress
 	select * from DbCart
+	select * from DbColor
 	select * from DbNotification
 	select * from DbRating
 	select * from DbHistory

@@ -1,0 +1,53 @@
+﻿@model KLTN_YourLook.Areas.Admin.Models.InsertGroupViewModel
+@{
+    ViewData["Title"] = "tạo nhóm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="menu-cp">
+    <div class="cp0">
+        Thêm / Tạo nhóm mới
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div class="flct mg">
+                <a asp-action="Group"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        @*  @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        } *@
+        @using (Html.BeginForm("CreatGroup", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="h-cp-mid-1">
+                <div class="mid-c">
+                    <label class="control-label">Tên nhóm</label>
+                    <input asp-for="TenNhom" id="input1" class="form-control" />
+                    <span asp-validation-for="TenNhom" class="text-danger"></span>
+                </div>
+                <div class="mid-c">
+                    <label class="control-label">Mã nhóm</label>
+                    <input asp-for="MaNhom" id="input2" class="form-control" readonly />
+                    <span asp-validation-for="MaNhom" class="text-danger"></span>
+                </div>
+                <div class="mid-c">
+                    <label class="control-label">Ảnh</label>
+                    <input type="file" asp-for="AnhDaiDien" class="form-control" name="FileAnh" accept="image/*" />
+                    <span asp-validation-for="AnhDaiDien" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="h-cp-dow fljct">
+                <div class="mg">
+                    <input type="submit" value="Tạo nhóm" class="" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section scripts {
+    <script src="~/js_admin/admin_originaltext.js"></script>
+}

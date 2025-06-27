@@ -58,6 +58,7 @@ begin
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
 	WHERE p.IActive = 1
+	order by p.CreateDate desc	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -232,14 +233,14 @@ end;
 
 SET QUOTED_IDENTIFIER ON
 GO
---Sản phẩm Theo Danh mục
---drop procedure product_by_iddm
+--Sản phẩm Theo nhóm
+--drop procedure product_by_idnhom
 --select * from DbCategory
-create procedure [dbo].[product_by_iddm]
-	@iddm int
+create procedure [dbo].[product_by_idnhom]
+	@idnhom int
 as
 begin
-	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
+	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
 		from DbProductDetail pd
 		where pd.IdSp=p.IdSp)as Sizes,
@@ -248,28 +249,8 @@ begin
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
-	WHERE p.IActive = 1 and p.IdDm = @iddm
-end;
-
-SET QUOTED_IDENTIFIER ON
-GO
---Sản phẩm Theo Danh mục
---drop procedure product_by_iddm
---select * from DbCategory
-create procedure [dbo].[product_by_iddm]
-	@iddm int
-as
-begin
-	select top 5 p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
-		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
-		from DbProductDetail pd
-		where pd.IdSp=p.IdSp)as Sizes,
-		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
-		from DbProductDetail pd
-		join DbColor c on pd.ColorId=c.ColorId
-		where pd.IdSp =p.IdSp)as Colors
-	from DbProduct p
-	WHERE p.IActive = 1 and p.IdDm = @iddm
+	WHERE p.IActive = 1 and p.NhomId = @idnhom
+	order by p.CreateDate desc	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -320,24 +301,44 @@ create procedure [dbo].[product_in_cart]
 	@idkh int,
 	@quantity int,
 	@colorid int,
-	@sizeid int
+	@sizeid int,
+	@msg nvarchar(500) output,
+	@error nvarchar(500) output
 as
 begin
-	begin try
+	--begin try
 		declare @SoluongTon int;
 		declare @ExistProduct int;
+		declare @tongraw int;
+		declare @tongsp int;
 		--kiểm tra số lượng trong kho
 			select @SoluongTon=dt.Quantity from DbProductDetail dt where dt.IdSp=@idsp and dt.ColorId=@colorid and dt.SizeId=@sizeid;
 			if @quantity > @SoluongTon
 			begin
-				RAISERROR('Số lượng sản phẩm yêu cầu vượt quá số lượng có trong kho.', 16, 1);
+				--RAISERROR('Số lượng sản phẩm yêu cầu vượt quá số lượng có trong kho.', 16, 1);
+				set @error=N'Số lượng sản phẩm yêu cầu vượt quá số lượng có trong kho'
 				RETURN;
 			end 
 			select @ExistProduct = cr.Id from DbCart cr where cr.IdKh=@idkh and cr.IdSp=@idsp and cr.ColorId=@colorid and cr.SizeId=@sizeid;
 			if @ExistProduct is not null
 				begin
-					--cập nhật số lượng sp đã có vào giỏ hàng
-					update DbCart set ProductQuantity =ProductQuantity+@quantity where Id=@ExistProduct;
+					--kiểm tra tổng số lượng tồn tại và đang thêm vào có vượt quá tồn kho ko
+					select @tongraw=ProductQuantity from DbCart where Id=@ExistProduct;
+					set @tongsp= @tongraw + @quantity
+					if @tongsp >@SoluongTon
+						begin		
+							--cập nhật số lượng sp bằng số lượng tồn kho đã có vào giỏ hàng					
+							update DbCart set ProductQuantity =@SoluongTon where Id=@ExistProduct;
+							set @msg=N'Thêm sản phẩm vào giỏ hàng thành công.'
+							return;
+						end
+					else
+						begin
+							--cập nhật số lượng sp đã có vào giỏ hàng
+							update DbCart set ProductQuantity =ProductQuantity+@quantity where Id=@ExistProduct;
+							set @msg=N'Thêm sản phẩm vào giỏ hàng thành công.'
+							return;
+						end
 				end
 			else
 				begin
@@ -345,13 +346,14 @@ begin
 					insert into DbCart(IdSp,IdKh,ProductQuantity,ColorId,SizeId,CreateDate) values(@idsp,@idkh,@quantity,@colorid,@sizeid,GETDATE());
 				end
 			--msg	
-		SELECT 'Thêm sản phẩm vào giỏ hàng thành công.' AS Message;
-	end try
-	begin catch
-		SELECT 
-            ERROR_NUMBER() AS ErrorNumber,
-            ERROR_MESSAGE() AS ErrorMessage;
-	end catch
+		--SELECT 'Thêm sản phẩm vào giỏ hàng thành công.' AS Message;		
+		 set @msg=N'Thêm sản phẩm vào giỏ hàng thành công.'
+	--end try
+	--begin catch
+	--	SELECT 
+ --           ERROR_NUMBER() AS ErrorNumber,
+ --           ERROR_MESSAGE() AS ErrorMessage;
+	--end catch
 end;
 go
 

@@ -9,6 +9,7 @@ namespace Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCTDH { get; set; }
+        //public int IdCTSP { get; set; }
         public int IdDh { get; set; }
 		[StringLength(500)]
 		public string MaDh { get; set; }
@@ -21,5 +22,6 @@ namespace Data.Models
         public int SoLuongSp { get; set; }
         public virtual DbOrder order { get; set; }// 1 chi tiết đơn hàng thuộc 1 đơn hàng
         public virtual DbProduct product { get; set; }
+        //public virtual DbProductDetail productdetail { get; set; } // nên lieen liên kết với bảng productdetail để rõ biến thể của sp // nhưng để sau:)))
     }
 }

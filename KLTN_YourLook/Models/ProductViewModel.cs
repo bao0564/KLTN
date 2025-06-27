@@ -18,7 +18,8 @@ namespace KLTN_YourLook.Models
 		public int? LuotXem { get; set; }
 		public string Sizes { get; set; }
 		public string Colors { get; set; }
-	}
+        public int? soluongban { get; set; } // trong 3 tháng
+    }
 	public class ViewAllDetail
 	{
 		public int IdSp { get; set; }
@@ -32,7 +33,8 @@ namespace KLTN_YourLook.Models
 		public int? LuotXem { get; set; }
 		public List<ViewSize> Sizes { get; set; }
 		public List<ViewColor> Colors { get; set; }
-	}
+        public int? soluongban { get; set; } // trong 3 tháng
+    }
 	public class ViewColor
 	{
 		public int ColorId { get; set; }

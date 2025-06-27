@@ -78,6 +78,7 @@ builder.Services.AddScoped<IDbConnection>(sp =>
 );
 builder.Services.AddScoped<ProductRepository>(); 
 builder.Services.AddScoped<CategoryRepository>(); 
+builder.Services.AddScoped<GroupRepository>(); 
 builder.Services.AddScoped<SizeRepository>(); 
 builder.Services.AddScoped<ColorRepository>(); 
 builder.Services.AddScoped<OrderRepository>(); 

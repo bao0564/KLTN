@@ -13,7 +13,7 @@ namespace KLTN_YourLook.Component
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var result = await _context.DbCategorys.OrderBy(x => x.IdDm).ToListAsync();
+            var result = await _context.DbGroups.OrderBy(x => x.IdNhom).ToListAsync();
             return View(result);
         }
     }

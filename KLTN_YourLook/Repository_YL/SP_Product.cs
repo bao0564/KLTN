@@ -167,14 +167,14 @@ namespace KLTN_YourLook.Repository_YL
 			var lstraw = await _dbConnection.QueryAsync<ViewAllDetailRaw>("EXEC product_ql_view");
 			return MapToViewAllDetails(lstraw);
 		}
-		//san pham theo danh mục
-		public async Task<List<ViewAllDetail>> Product_By_Iddm(int iddm)
+		//san pham theo nhóm
+		public async Task<List<ViewAllDetail>> Product_By_Idnhom(int idnhom)
         {
             if (_dbConnection == null)
             {
                 throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
             }
-			var lstraw= await _dbConnection.QueryAsync<ViewAllDetailRaw>("product_by_iddm", new { iddm = iddm }, commandType: CommandType.StoredProcedure);
+			var lstraw= await _dbConnection.QueryAsync<ViewAllDetailRaw>("product_by_idnhom", new { idnhom = idnhom }, commandType: CommandType.StoredProcedure);
 			return MapToViewAllDetails(lstraw);
         }
 
@@ -226,7 +226,7 @@ namespace KLTN_YourLook.Repository_YL
 				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
 			}
 			var lstraw = await _dbConnection.QueryAsync<ProductDetailViewModelRaw>("product_detail",new {idsp=idsp},commandType: CommandType.StoredProcedure);
-            
+            await _dbConnection.ExecuteAsync("UPDATE DbProduct SET LuotXem = LuotXem + 1 WHERE IdSp = @id",new { id = idsp });
             var lst = lstraw.Select(x => new ViewProductDetail
 			{
 				IdSp = idsp,

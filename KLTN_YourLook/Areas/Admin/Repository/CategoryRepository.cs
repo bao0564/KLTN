@@ -59,7 +59,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             return (msg,error);
         }
         //sửa danh mục
-        public async Task<(string msg,string error)> UpdateCategory(int iddm, string tendm, string anhdaidien, string modifiedby)
+        public async Task<(string msg,string error)> UpdateCategory(int iddm, string tendm,string madm, string anhdaidien, string modifiedby)
         {
             if (_dbConnection == null)
             {
@@ -68,6 +68,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             var parameters = new DynamicParameters();
             parameters.Add("@iddm", iddm);
             parameters.Add("@tendm", tendm);
+            parameters.Add("@madm", madm);
             parameters.Add("@anhdaidien", anhdaidien);
             parameters.Add("@modifiedby", modifiedby);
 

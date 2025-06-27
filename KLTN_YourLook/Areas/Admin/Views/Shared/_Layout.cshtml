@@ -62,6 +62,15 @@
                 </div>
             </div>
         }
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="boxmess fljct">
+                <div class="alert alert-danger">
+                @TempData["Message"]
+                </div>
+            </div>
+        }
         <div class="menu">
 			<div class="menu_ct flcl flscr">
                 <label class="navigation pd-lr">Quản lý chung</label>

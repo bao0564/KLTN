@@ -819,8 +819,20 @@ section {
 
 .mar150_container, .cart {
 	margin: 150px 0 20px 0;
+	background-color:#fff;
 }
-
+.checkout_body {
+	height: 650px;
+	background-image: url(/logo/checkout.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+	.checkout_body .font_checkout {
+		margin: 0 auto;
+		padding: 10px;
+		background-color: #cecece;
+		border-radius: 20px;
+	}
 .login-body {
 	padding: 70px;
 }
@@ -828,7 +840,7 @@ section {
 	.login-body .font-login {
 		margin: 0 auto;
 		padding: 10px;
-		width: 50%;
+		width: 60%;
 		background-color: #fff;
 		border: 2px solid var(--gray-a);
 		border-radius: 20px;
@@ -2878,13 +2890,13 @@ section {
 	margin: 10px;
 }
 
-.address-cart .box-cart {
+/*.address-cart .box-cart {
 	border-bottom: 1px solid #fff;
-}
+}*/
 
 .address-cart .box-cart, .box-cart-address .space-address, .box-cart-address .box-address, .box-cart-address .space-address input {
-	background-color: var(--gray-a);
-	border-radius: 0px;
+	background-color: #fff;
+	border-radius: 10px;
 }
 
 .cart-container .check-box {
@@ -2914,7 +2926,7 @@ section {
 
 .space-address, .space-pay {
 	display: flex;
-	margin: 10px 10px 10px 0;
+	margin: 10px;
 }
 
 	.space-address .box-address, .box-pay, .inp {
@@ -2924,7 +2936,7 @@ section {
 		align-items: center;
 		margin-left: 10px;
 		height: 50px;
-		border-bottom: 1px solid #252424;
+		border-bottom: 1px solid #8d8d8d;
 		/*border-top: 1px solid #252424;*/
 		/*border-radius: 20px;*/
 	}
@@ -2949,6 +2961,7 @@ section {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color:#000;
 }
 
 .pay-title .icon {
@@ -3024,7 +3037,7 @@ section {
 	background-color: #fff;
 }
 
-.pay-btn, .checkout-btn, .pay-btn-none {
+.pay-btn, .checkout-btn, .checkout-btn-ocd, .pay_complete, .pay-btn-none {
 	width: auto;
 	padding: 0 10px;
 	height: 35px;

@@ -50,9 +50,14 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> ColorCreat(DbColor model)
         {
+            var name = HttpContext.Session.GetString("NameAdmin"); 
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (ModelState.IsValid)
             {
-                var (msg,error) = await _colorRepository.CreateColor(model.NameColor,model.MaHex, model.Img ?? "", "bao" );
+                var (msg,error) = await _colorRepository.CreateColor(model.MaColor,model.NameColor,model.MaHex, model.Img ?? "", name);
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"]=error;
@@ -60,7 +65,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 }
                 TempData["Success"] = msg;
 
-                return RedirectToAction("color");
+                return RedirectToAction("color"); 
             }
             TempData["Error"] = "dữ liệu không hợp lệ";
             return View(model);
@@ -88,9 +93,14 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> ColorUpdate(DbColor model)
         {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (ModelState.IsValid)
             {
-                var (msg,error) =await _colorRepository.UpdateColor(model.ColorId, model.NameColor,model.MaHex, model.Img ?? "", "Bao2");
+                var (msg,error) =await _colorRepository.UpdateColor(model.ColorId, model.NameColor,model.MaColor,model.MaHex, model.Img ?? "", name);
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"] = error;

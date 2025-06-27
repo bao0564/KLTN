@@ -5,11 +5,12 @@
     <div class="prd-item">
         @if (prd.GiamGia > 0)
         {
-            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-@prd.GiamGia%</span></div>
+            @* <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-@prd.GiamGia%</span></div> *@
+            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>Hot</span></div>
         }
         else
         {
-            <div></div>
+            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>Hot</span></div>
         }
         <div class="product-2 discount product_filter">
             <div class="product_image-2">
@@ -65,6 +66,7 @@
                 <div class="product_price">@string.Format("{0:N0}", prd.PriceMax)</div>
             </div>
         }
+        @* <div class="flct">@prd.soluongban đã bán trong 3 tháng</div> *@
         <div class="red_button add_to_cart_button">
             <a asp-controller="Home" asp-action="ProductDetail" asp-route-idsp="@prd.IdSp">
                 Xem Chi Tiết<i class="fa-solid fa-cart-plus fa-flip-horizontal fa-lg" style="color: #ffffff;padding:10px"></i>

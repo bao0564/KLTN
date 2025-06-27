@@ -78,11 +78,19 @@
                 msg.innerText = "chọn thêm size";
                 return;
             }
+            var quantity = $('#quantity_value').val();
             const detail = productDetails.find(d => d.sizeId === parseInt(selectedSize) && d.colorId === parseInt(selectedColor));
+            var quantityleft = detail.quantity;
             if (detail) {
                 PriceOption.innerText = `${detail.giaLoai.toLocaleString()}`;
                 msg.innerText = `Còn lại: ${detail.quantity} sản phẩm`;
                 //console.log("SizeId:", sizeId, "ColorId:", colorId);
+            }
+            if (quantity > quantityleft) {
+                msg.innerText = `số lượng mua vượt quá số lượng sản phẩm còn lại`;
+
+                showMess("Số lượng mua vượt quá số lượng còn lại của sản phẩm", false);
+                return false;
             }
         };
         // Highlight nút được chọn

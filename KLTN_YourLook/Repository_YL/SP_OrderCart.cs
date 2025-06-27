@@ -23,7 +23,7 @@ namespace KLTN_YourLook.Repository_YL
             return lst.ToList();
         }
         //thêm sp vào giỏ hàng (DbCart)
-        public async Task<string> Add_To_Cart(int idsp,int idkh,int quantity,int colorid,int sizeid)
+        public async Task<(string msg, string error)> Add_To_Cart(int idsp,int idkh,int quantity,int colorid,int sizeid)
         {
             if(_dbConnection == null)
             {
@@ -35,8 +35,15 @@ namespace KLTN_YourLook.Repository_YL
             parameters.Add("quantity", quantity);
             parameters.Add("colorid", colorid);
             parameters.Add("sizeid",sizeid);
-            var result = await _dbConnection.QueryFirstOrDefaultAsync<string>("product_in_cart", parameters, commandType: CommandType.StoredProcedure);
-            return result ?? "Thêm vào giỏ hàng không thành công" ;
+            parameters.Add("@msg", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+            parameters.Add("@error", dbType: DbType.String, size: 500, direction: ParameterDirection.Output);
+
+            //var result = await _dbConnection.QueryFirstOrDefaultAsync<string>("product_in_cart", parameters, commandType: CommandType.StoredProcedure);
+            await _dbConnection.ExecuteAsync("product_in_cart", parameters, commandType: CommandType.StoredProcedure);
+            var msg = parameters.Get<string>("@msg");
+            var error = parameters.Get<string>("@error");
+
+            return (msg, error);
         }
 		//Thay đổi số lượng sản phẩm trong giỏ hàng
         public async Task<bool> Update_Cart(int idsp, int idkh, int quantity, int colorid, int sizeid)

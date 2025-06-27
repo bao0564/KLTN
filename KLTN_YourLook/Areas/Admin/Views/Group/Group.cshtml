@@ -11,24 +11,12 @@
 <div class="h-cp1">
     <div class="h-cp-f">
         <div class="h-cp-up">
-            @* <div class="bt-c"><a href="@Url.Action("","Admin")">Tạo Nhóm Mới</a></div> *@
+            <div class="bt-c"><a href="@Url.Action("groupcreat","Admin")">Tạo Nhóm Mới</a></div>
             <div class="bt-c"><a href="">In dữ liệu </a></div>
             <div class="bt-c"><a href="">Xuất Excel</a></div>
             <div class="bt-c"><a href="">Xuất PDF</a></div>
         </div>
         <div class="h-cp-mid">
-           @*  @if (TempData["Success"] != null)
-            {
-                <div class="alert alert-success">
-                    @TempData["Success"]
-                </div>
-            }
-            @if (TempData["Message"] != null)
-            {
-                <div class="alert alert-danger">
-                    @TempData["Message"]
-                </div>
-            } *@
             @using (Html.BeginForm("Group", "Home", FormMethod.Get))
             {
                 <div class="flspe">
@@ -40,6 +28,7 @@
                 <thead>
                     <tr>
                         <th style="display:none">Id</th>
+                        <th>Hình ảnh</th>
                         <th>Mã Nhóm</th>
                         <th>Tên Nhóm</th>
                         <th></th>
@@ -52,17 +41,18 @@
                         {
                             <tr>
                                 <td style="display:none">@prd.IdNhom</td>
+                                <td><img src="@Url.Content("/images/"+prd.AnhDaiDien)" alt=""></td>
                                 <td>@prd.MaNhom</td>
                                 <td>@prd.GroupName</td>
                                 <td>
 
                                     @if (Context.Session.GetString("Role") == "Admin")
                                     {
-                                        <a href="@Url.Action("", new { idkh = prd.IdNhom })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
+                                        <a href="@Url.Action("DeleteGroup", new { idnhom = prd.IdNhom })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
                                     }
                                     @if (Context.Session.GetString("Role") != "Staff")
                                     {
-                                        <a asp-action="" asp-route-idkh="@prd.IdNhom" style="color: black;">Sửa</a>
+                                        <a asp-action="UpdateGroup" asp-route-idnhom="@prd.IdNhom" style="color: black;">Sửa</a>
                                     }
                                 </td>
                             </tr>

@@ -68,6 +68,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             }
             var viewModel = new AddProductViewModel
             {
+                IActive=true,
                 SizeList = _context.DbSizes.ToList(),
                 ColorList = _context.DbColors.ToList()
             };
@@ -319,30 +320,6 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             TempData["Success"] = "Sản Phẩm Đã Bị Xóa Khỏi Danh sách sản phẩm";
             return RedirectToAction("Product");
         }
-        //api tải ảnh
-        [HttpPost]
-        [Route("uploadimg")]
-        public async Task<IActionResult> UploadImg(List<IFormFile> files)
-        {
-            var filePaths = new List<string>();
-            foreach (var file in files)
-            {
-                if (file.Length > 0)
-                {
-                    string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "img");
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string filePath = Path.Combine(uploadDir, fileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await file.CopyToAsync(fileStream);
-                    }
-
-                    filePaths.Add(fileName);
-                }
-            }
-            return Json(new { success = true, filePaths });
-        }
         //Chi Tiết Sản Phẩm 
         [HttpGet]
         [Route("productdetail")]
@@ -358,14 +335,6 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 Details = ctsp.ToList()
             };
             return View(model);
-        }
-        //api kiểm tra mã sp trùng lặp 
-        [HttpGet]
-        [Route("productcheck")]
-        public async Task<IActionResult> check(string masp, int? idsp)
-        {
-            var exists = await _context.DbProducts.AnyAsync(x => x.MaSp == masp && x.IdSp != idsp);
-            return Json(new { exists });
         }
         [HttpGet]
         [Route("productexportexcel")]
@@ -416,6 +385,98 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                     return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DanhSachSanPham.xlsx");
                 }
             }
+        }
+
+        //api tải ảnh
+        [HttpPost]
+        [Route("uploadimg")]
+        public async Task<IActionResult> UploadImg(List<IFormFile> files)
+        {
+            var filePaths = new List<string>();
+            foreach (var file in files)
+            {
+                if (file.Length > 0)
+                {
+                    string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "img");
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string filePath = Path.Combine(uploadDir, fileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+
+                    filePaths.Add(fileName);
+                }
+            }
+            return Json(new { success = true, filePaths });
+        }
+        //api kiểm tra mã sp trùng lặp 
+        [HttpGet]
+        [Route("productcheck")]
+        public async Task<IActionResult> check(string masp, int? idsp)
+        {
+            var exists = await _context.DbProducts.AnyAsync(x => x.MaSp == masp && x.IdSp != idsp);
+            return Json(new { exists });
+        }
+        ////api lấy tên sp
+        //[HttpGet]
+        //[Route("getproductname")]
+        //public async Task<IActionResult> GetProductName(string masp)
+        //{
+        //    var sp = await _context.DbProducts.FirstOrDefaultAsync(p => p.MaSp == masp);
+        //    if (sp == null)
+        //    {
+        //        return NotFound("Không tìm thấy sản phẩm");
+        //    }
+        //    return Json(new {tenSp = sp.TenSp});
+        //}
+
+        ////api lấy mactsp
+        //[HttpGet]
+        //[Route("getmactsp")]
+        //public async Task<IActionResult> GetMaCTSP(string masp, int idcl, int idsize)
+        //{
+        //    var sp = await _context.DbProducts.FirstOrDefaultAsync(p => p.MaSp == masp);
+        //    if (sp == null)
+        //    {
+        //        return NotFound("Không tìm thấy sản phẩm");
+        //    }
+        //    var ctsp = await _context.DbProductDetails.FirstOrDefaultAsync(pd => pd.IdSp == sp.IdSp && pd.ColorId == idcl && pd.SizeId == idsize);
+        //    if (ctsp == null)
+        //    {
+        //        return NotFound("Không tìm thấy chi tiết sản phẩm");
+        //    }
+        //    return Json(new { maCTsp = ctsp.MaCTSP });
+        //}
+
+        //api lấy thông tin sản phẩm nhập hàng
+        [HttpGet]
+        [Route("getstockinfor")]
+        public async Task<IActionResult> GetStockInfor(string masp, int idcl, int idsize)
+        {
+            var sp = await _context.DbProducts.FirstOrDefaultAsync(p => p.MaSp == masp);
+            if (sp == null)
+            {
+                return NotFound("Không tìm thấy sản phẩm");
+            }
+            var ctsp = await _context.DbProductDetails.FirstOrDefaultAsync(pd => pd.IdSp == sp.IdSp && pd.ColorId == idcl && pd.SizeId == idsize);
+            if (ctsp == null)
+            {
+                return NotFound("Không tìm thấy chi tiết sản phẩm");
+            }
+            return Ok(new { maCTsp = ctsp.MaCTSP, tenSp = sp.TenSp });
+        }
+        //api lưu thông tin nhập hàng vào bảng chi tiết sản phẩm
+        [HttpPost]
+        [Route("insertstock")]
+        public async Task<IActionResult> InsertStock([FromBody] List<StockUpdateModel> model)// lấy về từ api tạo khi tải lên file excel hàng nhập
+        {
+            foreach (var item in model) {
+                var ctsp = await _productRepository.InsertStock(item.MaCTSP, item.Quantity);
+            }
+
+            return Json(new { success = true, msg = "Nhập hàng thành công!" });
         }
     }
 }

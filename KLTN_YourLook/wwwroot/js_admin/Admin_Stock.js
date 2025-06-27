@@ -1,6 +1,9 @@
 ﻿
 $(document).ready(function () {
     var UploadExcelStock = (function () {
+
+        let tableBody = document.querySelector("#previewTableBody");
+        let products = [];
         function fileStock() {
             let fileInput = document.getElementById("fileStock").files[0];
             if (!fileInput) {
@@ -23,48 +26,43 @@ $(document).ready(function () {
                     return;
                 }
 
-                let tableBody = document.querySelector("#previewTableBody");
                 tableBody.innerHTML = ""; // Xóa dữ liệu cũ trước khi hiển thị mới
-
-                let products = [];
 
                 for (let i = 1; i < rows.length; i++)  {
                     let row = rows[i];
 
                     let maSp = row[0];  // Cột A: Mã sản phẩm
-                    let colorId = row[1] ?? "0";  // Cột B: Mã màu
-                    let sizeId = row[2] ?? "0";  // Cột B: Mã size
-                    let quantity = row[3];  // Cột C: Số lượng nhập
+                    //let tenSp = row[1];  // Cột b: Tên sản phẩm
+                    //let mactsp = row[2] ?? "0";  // Cột c: Mã màu
+                    let colorId = row[3];  // Cột c: Mã màu
+                    let sizeId = row[4];  // Cột d: Mã size
+                    let quantity = row[5] ?? "0";  // Cột e: Số lượng nhập
 
                     if (!maSp) continue;
-
-                    // Thêm vào danh sách hiển thị
-                    let tr = document.createElement("tr");
-                    tr.innerHTML = `<td>${maSp}</td><td>${colorId}</td><td>${sizeId}</td><td>${quantity}</td>`;
-                    tableBody.appendChild(tr);
+                    fetch(`/Admin/getstockinfor?masp=${maSp}&idcl=${colorId}&idsize=${sizeId}`)
+                        .then(r => r.ok ? r.json() : { maCTsp: "error", tenSp: "error" })
+                        .then((ctsp) => {
+                            let tr = document.createElement("tr");
+                            tr.innerHTML = `
+                                <td>${maSp}</td>
+                                <td>${ctsp.tenSp}</td>
+                                <td>${ctsp.maCTsp}</td>
+                                <td>${colorId}</td>
+                                <td>${sizeId}</td>
+                                <td>${quantity}</td>
+                                <td></td>
+                            `;
+                            tableBody.appendChild(tr);
+                            if (ctsp.maCTsp !== "error") {
+                                products.push({
+                                    MaCTSP: ctsp.maCTsp,
+                                    Quantity: parseInt(quantity)
+                                });
+                            }
+                    });
 
                     // Thêm vào danh sách để gửi lên server
-                    let existingProduct = products.find(p => p.MaSp == maSp);
-                    if (existingProduct) {
-                        existingProduct.ColorQuantities.push({ ColorId: colorId, Quantity: quantity });
-                    }
-                    else {
-                        products.push({
-                            MaSp: maSp,
-                            ColorQuantities: [{ ColorId: colorId, Quantity: quantity }]
-                        });
-                    }
                 }
-
-                    // Gửi dữ liệu lên server 
-                    // let response = await fetch("/api/update-stock", {
-                    //     method: "POST",
-                    //     headers: { "Content-Type": "application/json" },
-                    //     body: JSON.stringify(products)
-                    // });
-
-                    // let result = await response.json();
-                    // alert(result.message);
             };
         };
         function uploadStock() {
@@ -72,9 +70,34 @@ $(document).ready(function () {
                 fileStock();
             });
         }
+        function sendStockToServer() {
+            document.getElementById("saveStockBtn").addEventListener('click', function () {
+                if (products.length === 0) {
+                    alert("Không có dữ liệu để lưu!");
+                    return;
+                }
+
+                fetch('/Admin/insertstock', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(products)
+                })
+                    .then(rs => rs.json())
+                    .then(data => {
+                        showMess(data.msg, true);
+                        tableBody.innerHTML = ""; 
+                    })
+                    .catch(error => {
+                        showMess(error.msg, false);
+                    });
+            });
+        }
         return {
             init: function () {
                 uploadStock();
+                sendStockToServer();
             }
         };
     })();

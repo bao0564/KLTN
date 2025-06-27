@@ -119,7 +119,8 @@
                     <div>Vận Chuyển:</div>@Model.selectedPayments.Ship.ToString("N0") VND
                 </div>
                 <div class="flspb pd ttu bd-t">
-                    <div>Tổng thanh toán:</div>@FinalTotal
+					<div>Tổng thanh toán:</div>@FinalTotal
+                    <div style="display:none" id="tienthanhtoan">@GiaCuoi</div>
                 </div>
             </div>
 
@@ -131,9 +132,16 @@
                         <div class="flex-cart title total-price-container fl-center">
                             Thành Tiền: <div class="flct product_price" style="color:#000;margin:0 10px">@FinalTotal</div>
                         </div>
-                        <div>
-                            <button class="checkout-btn">Đặt Hàng</button>
-                        </div>
+                        @if(Model.selectedPayments.PaymentId != 1){
+                            <div>
+                                <button class="checkout-btn">Thanh toán</button>
+                            </div>
+                        }
+                        else{
+                            <div>
+                                <button class="checkout-btn-ocd">Đặt Hàng</button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

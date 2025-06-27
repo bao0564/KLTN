@@ -1,24 +1,22 @@
-﻿@using Data.Models
+﻿
+@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+@using Data.Models
 @model DbAdmin
-<div style="position:relative">
+<div class="body_admin_login" style="">
     <div class="login-admin">
         <div class="box-login-admin">
-			<h2 class="fljct">Admin login</h2>
-			@* @if (TempData["Error"] != null)
-			{
-				<div class="alert alert-danger fljct" style="color:red">
-					@TempData["Error"]
-				</div>
-			} *@
+            <h2 class="fljct clfff">Admin Đăng Nhập</h2>
             @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
             {
                 <div class="box-infor">
-                    <label>Tên Đăng Nhập: </label>
+                    <label class="clfff">Tên Đăng Nhập: </label>
                     @* @Html.TextBoxFor(x => x.NameDn, new { @class = "input", placeholder = "Tên đăng nhập...", type = "text", required = "required", autofocus = "autofocus" }) *@
-                    <input name="name" placeholder="Tên đăng nhập..." type="text" required="required" autofocus="autofocus" />
+                    <input name="name" placeholder="Tên đăng nhập..." type="text" required="required" autofocus="autofocus" title="tên đăng nhập bắt buộc" />
                 </div>
                 <div class="box-infor">
-                    <label>Mật Khẩu:</label>
+                    <label class="clfff">Mật Khẩu:</label>
                     @Html.TextBoxFor(x => x.PasswordDn, new { @class = "input", placeholder = "Mật khẩu...", type = "text", required = "required", autofocus = "autofocus" })
                 </div>
                 <div class="fljct">
@@ -29,7 +27,17 @@
     </div>
 </div>
 <style>
-
+    .clfff {
+        color: #fff
+    }
+    .body_admin_login {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background-image: url(/logo/bg_admin_login.jpeg);
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
     .login-admin {
         position: fixed;
         top: 50%;
@@ -51,13 +59,12 @@
         justify-content: space-between;
         align-items: center;
     }
-
-        .box-infor input {
-            border-radius: 10px;
-            padding: 10px;
-        }
-        .fljct{
-            display:flex;
-            justify-content:center;
-        }
+    .box-infor input {
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .fljct{
+        display:flex;
+        justify-content:center;
+    }
 </style>

@@ -12,8 +12,6 @@ namespace Data.Models
         [StringLength(10)]
         public string? MaSp { get; set; }
         public int IdDm { get; set; }
-
-        [Required(ErrorMessage = "Tên sản phẩm không được để trống")]
         [StringLength(250)]
         public string TenSp { get; set; }
         public int? SaoDanhGia { get; set; }

@@ -75,4 +75,10 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public int SoLuongBan { get; set; }
 
     }
+    public class StockUpdateModel
+    {
+        public string MaCTSP { get; set; }
+        public int Quantity { get; set; }
+
+    }
 }

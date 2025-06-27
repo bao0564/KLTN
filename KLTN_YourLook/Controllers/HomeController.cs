@@ -208,7 +208,7 @@ namespace KLTN_YourLook.Controllers
 			return View(lstcatesp);
 		}
 		//
-		public async Task<IActionResult> ProductTipe(int iddm, int? page)
+		public async Task<IActionResult> ProductTipe(int idnhom, int? page)
 		{
 			int pageSize = 25;
 			int pageNumber = page ?? 1;
@@ -218,7 +218,7 @@ namespace KLTN_YourLook.Controllers
 			{
 				idFvrPrd = _context.DbFavoriteProducts.Where(x => x.IdKh == idkh.Value).Select(x => x.IdSp).ToList();
 			}
-			var lstProductTipe = await _productProcedure.Product_By_Iddm(iddm);
+			var lstProductTipe = await _productProcedure.Product_By_Idnhom(idnhom);
 			foreach (var prd in lstProductTipe)
 			{
 				prd.IFavorite = idFvrPrd.Contains(prd.IdSp);
@@ -231,22 +231,23 @@ namespace KLTN_YourLook.Controllers
 		{
 			var lstSanPham = await _productProcedure.Product_Detail(idsp);
 			var idkh = HttpContext.Session.GetInt32("userId");
-			if (lstSanPham == null || !lstSanPham.Any())
+			var SanPham=lstSanPham.FirstOrDefault();
+			if (lstSanPham == null || !lstSanPham.Any() || SanPham==null)
 			{
 				return NotFound(); // Nếu không tìm thấy sản phẩm, trả về lỗi 404
 			}
-			var SanPham=lstSanPham.FirstOrDefault();
-			if (lstSanPham != null)
-			{
-				SanPham.LuotXem = SanPham.LuotXem + 1;
-				var prd= await _context.DbProducts.FindAsync(idsp);
-				if (prd != null)
-				{
-					prd.LuotXem = SanPham.LuotXem;
-					await _context.SaveChangesAsync();
-				}
-			};
-			if (idkh != null)
+            //Đã thay thêm lượt xem trực tiếp vì dùng trigger sẽ bị lỗi // đã thêm 1 đoạn + lượt xem trong dapper SP:Product_Detail
+            //if (lstSanPham != null)
+            //{
+            //	SanPham.LuotXem = SanPham.LuotXem + 1;
+            //	var prd = await _context.DbProducts.FindAsync(idsp);
+            //	if (prd != null)
+            //	{
+            //		prd.LuotXem = SanPham.LuotXem;
+            //		await _context.SaveChangesAsync();
+            //	}
+            //};
+            if (idkh != null)
 			{
 				SanPham.IsFavorite = _context.DbFavoriteProducts.Any(x => x.IdKh == idkh.Value && x.IdSp == idsp);
 			}

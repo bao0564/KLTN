@@ -257,8 +257,8 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("MaColor")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("MaHex")
                         .HasMaxLength(20)
@@ -397,15 +397,34 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdNhom"));
 
+                    b.Property<string>("AnhDaiDien")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("CreateBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("GroupName")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("MaNhom")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("IdNhom");
 
@@ -568,6 +587,9 @@ namespace Data.Migrations
 
                     b.Property<bool>("Complete")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("CompleteDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("CreateBy")
                         .HasMaxLength(25)

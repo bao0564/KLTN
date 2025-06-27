@@ -24,6 +24,9 @@ body {
 .w100 {
     width: 100%;
 }
+.h100{
+    height:100%;
+}
 .fl {
     display: flex;
 }
@@ -976,3 +979,9 @@ input[type=checkbox]{
     left: 0 !important;
     width: 100%;
 }
+.sticky_head {
+    position: sticky !important;
+    top: 0;
+    z-index:10;
+}
+/**admin login*/

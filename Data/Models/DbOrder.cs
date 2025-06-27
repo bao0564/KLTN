@@ -42,6 +42,7 @@ namespace Data.Models
         public bool ODReadly { get; set; }
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
+        public DateTime? CompleteDate { get; set; }
         public bool ODHuy { get; set; }
         public bool ODPrint { get; set; }
         public bool ODReprint { get; set; }
