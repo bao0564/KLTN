@@ -82,6 +82,7 @@ builder.Services.AddScoped<GroupRepository>();
 builder.Services.AddScoped<SizeRepository>(); 
 builder.Services.AddScoped<ColorRepository>(); 
 builder.Services.AddScoped<OrderRepository>(); 
+builder.Services.AddScoped<ReportRepository>(); 
 builder.Services.AddScoped<HomeRespository>(); 
 builder.Services.AddScoped<SP_Product>(); 
 builder.Services.AddScoped<SP_OrderCart>(); 

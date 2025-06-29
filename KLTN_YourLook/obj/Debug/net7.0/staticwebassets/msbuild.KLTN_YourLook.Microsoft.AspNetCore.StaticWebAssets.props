@@ -4314,8 +4314,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>lvtso00003</Fingerprint>
-      <Integrity>v2EIJGkwUtG8y9my371VNbwiXG1CGgGLajh9BNYcrs0=</Integrity>
+      <Fingerprint>mje4akq6f9</Fingerprint>
+      <Integrity>XqMnBSHGgQr6/4rIP3kyvrKI9/LloCdZTL/1EAOmz9I=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Qr_code.js'))</OriginalItemSpec>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Report";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<table class="h-table">
+    <thead class="sticky_top">
+        <tr>
+            <th style="width:5%">STT</th>
+            <th>Loại báo cáo</th>
+            <th style="width:5%"></th>
+        </tr>
+    </thead>
+    <tbody>        
+        <tr>
+            <td>1</td>
+            <td class="ttu" style="text-align:left "><a href="@Url.Action("Report_Inventory", "Admin")">Báo cáo thống kê tồn kho</a></td>
+            <td></td>
+        </tr>       
+        <tr>
+            <td>2</td>
+            <td class="ttu" style="text-align:left ">Báo cáo thống kê nhập hàng</td>
+            <td></td>
+        </tr>       
+        <tr>
+            <td>3</td>
+            <td class="ttu" style="text-align:left ">Báo cáo thống kê </td>
+            <td></td>
+        </tr>       
+    </tbody>
+</table>

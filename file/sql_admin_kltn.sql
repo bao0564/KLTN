@@ -1090,3 +1090,46 @@ BEGIN
     FROM DbOrder od
     WHERE od.CreateDate >= @StartDate AND od.CreateDate <= @EndDate;
 END;
+--báo cáo 1
+--drop procedure Report_Inventory
+DECLARE @msg NVARCHAR(500);
+DECLARE @error NVARCHAR(500);
+exec Report_Inventory @keyword = '',@quantity=100, @msg = @msg OUTPUT, @error = @error OUTPUT;SELECT @msg AS Message, @error AS Error;
+create procedure [dbo].[Report_Inventory]
+	@keyword nvarchar(50),-- mã chi tiết sản phẩm, tên ...
+	@quantity int,--số lượng tồn cần show
+	
+    @msg NVARCHAR(500) OUTPUT,
+    @error NVARCHAR(500) OUTPUT
+as 
+begin
+	DECLARE @qty INT = NULL
+
+    -- Nếu có nhập số lượng thì kiểm tra
+    IF @quantity IS NOT NULL AND LTRIM(RTRIM(@quantity)) <> ''
+		BEGIN
+			IF TRY_CONVERT(INT, @quantity) IS NULL
+				BEGIN
+					SET @error = N'Số lượng không hợp lệ. Vui lòng nhập số.'
+					RETURN
+				END
+			ELSE
+				BEGIN
+					SET @qty = CONVERT(INT, @quantity)
+				END
+		END
+    -- Truy vấn chính
+    SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
+		FROM DbProductDetail pd 
+		JOIN DbProduct p ON p.IdSp = pd.IdSp
+		JOIN DbColor cl ON pd.ColorId = cl.ColorId
+		JOIN DbSize sz ON pd.SizeId = sz.SizeId
+		WHERE (@qty IS NULL OR pd.Quantity < @qty) and
+			(@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '' OR pd.MaCTSP LIKE N'%' + @keyword + '%'OR p.TenSp LIKE N'%' + @keyword + '%')
+		ORDER BY pd.Quantity ASC
+    -- Gửi thông báo
+    IF @qty IS NULL AND (@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '')
+        SET @msg = N'Hiển thị tất cả sản phẩm (không lọc).'
+    ELSE
+        SET @msg = N'Kết quả đã được lọc theo điều kiện.'
+end;

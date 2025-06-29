@@ -329,7 +329,5 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             TempData["Success"] = "Thông báo đã được gửi!";
             return RedirectToAction("Index");
         }
-
-
     }
 }
