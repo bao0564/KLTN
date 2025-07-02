@@ -309,51 +309,51 @@ SET QUOTED_IDENTIFIER ON
 GO
 --lưu thông tin thay đổi khi Cập nhật đơn hàng 
 ----drop trigger trg_AfterUpdateOrder
---create trigger trg_AfterUpdateOrder 
---on DbOrder
---after update 
---as
---begin
---	set nocount on;
---	insert into DbHistory(TableName,TableId,OldValue,NewValue,ModifiedDate,ModifiedBy)
---	select 
---		'DbOrder' as TableName,
---		i.IdDh as TableId,
---		(
---            SELECT 
---				Case when d.ODSuccess<>i.ODSuccess then d.ODSuccess else null end as odsuccess,
---				Case when d.ODReadly<>i.ODReadly then d.ODReadly else null end as odreadly,
---				Case when d.ODTransported<>i.ODTransported then d.ODTransported else null end as odtransported,
---				Case when d.Complete<>i.Complete then d.Complete else null end as complete,
---				Case when d.ODHuy <>i.ODHuy then d.ODHuy else null end as odhuy,
---				Case when d.ODPrint <>i.ODPrint then d.ODPrint else null end as odprint,
---				Case when d.ODReprint <>i.ODReprint then d.ODReprint else null end as odreprint
---            FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
---        ) AS OldValue,
---        (
---			select 
---				Case when d.ODSuccess<>i.ODSuccess then i.ODSuccess else null end as odsuccess,
---				Case when d.ODReadly<>i.ODReadly then i.ODReadly else null end as odreadly,
---				Case when d.ODTransported<>i.ODTransported then i.ODTransported else null end as odtransported,
---				Case when d.Complete<>i.Complete then i.Complete else null end as complete,
---				Case when d.ODHuy <>i.ODHuy then i.ODHuy else null end as odhuy,
---				Case when d.ODPrint <>i.ODPrint then i.ODPrint else null end as odprint,
---				Case when d.ODReprint <>i.ODReprint then i.ODReprint else null end as odreprint
---			for json path,WITHOUT_ARRAY_WRAPPER
---		) as NewValue,
---		GETDATE() as ModifiedDate,
---		i.ModifiedBy as ModifiedBy
---	from inserted i
---	inner join deleted d on i.IdDh=d.IdDh
---	where
---		d.ODSuccess <> i.ODSuccess or
---		d.ODReadly <> i.ODReadly or
---		d.ODTransported <> i.ODTransported or
---		d.Complete <> i.Complete or
---		d.ODHuy <> i.ODHuy or
---		d.ODPrint <>i.ODPrint or
---		d.ODReprint <>i.ODReprint
---end;
+create trigger trg_AfterUpdateOrder 
+on DbOrder
+after update 
+as
+begin
+	set nocount on;
+	insert into DbHistory(TableName,TableId,OldValue,NewValue,ModifiedDate,ModifiedBy)
+	select 
+		'DbOrder' as TableName,
+		i.IdDh as TableId,
+		(
+            SELECT 
+				Case when d.ODSuccess<>i.ODSuccess then d.ODSuccess else null end as odsuccess,
+				Case when d.ODReadly<>i.ODReadly then d.ODReadly else null end as odreadly,
+				Case when d.ODTransported<>i.ODTransported then d.ODTransported else null end as odtransported,
+				Case when d.Complete<>i.Complete then d.Complete else null end as complete,
+				Case when d.ODHuy <>i.ODHuy then d.ODHuy else null end as odhuy,
+				Case when d.ODPrint <>i.ODPrint then d.ODPrint else null end as odprint,
+				Case when d.ODReprint <>i.ODReprint then d.ODReprint else null end as odreprint
+            FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
+        ) AS OldValue,
+        (
+			select 
+				Case when d.ODSuccess<>i.ODSuccess then i.ODSuccess else null end as odsuccess,
+				Case when d.ODReadly<>i.ODReadly then i.ODReadly else null end as odreadly,
+				Case when d.ODTransported<>i.ODTransported then i.ODTransported else null end as odtransported,
+				Case when d.Complete<>i.Complete then i.Complete else null end as complete,
+				Case when d.ODHuy <>i.ODHuy then i.ODHuy else null end as odhuy,
+				Case when d.ODPrint <>i.ODPrint then i.ODPrint else null end as odprint,
+				Case when d.ODReprint <>i.ODReprint then i.ODReprint else null end as odreprint
+			for json path,WITHOUT_ARRAY_WRAPPER
+		) as NewValue,
+		GETDATE() as ModifiedDate,
+		i.ModifiedBy as ModifiedBy
+	from inserted i
+	inner join deleted d on i.IdDh=d.IdDh
+	where
+		d.ODSuccess <> i.ODSuccess or
+		d.ODReadly <> i.ODReadly or
+		d.ODTransported <> i.ODTransported or
+		d.Complete <> i.Complete or
+		d.ODHuy <> i.ODHuy or
+		d.ODPrint <>i.ODPrint or
+		d.ODReprint <>i.ODReprint
+end;
 
 SET QUOTED_IDENTIFIER ON
 GO
@@ -1090,6 +1090,7 @@ BEGIN
     FROM DbOrder od
     WHERE od.CreateDate >= @StartDate AND od.CreateDate <= @EndDate;
 END;
+
 --báo cáo 1
 --drop procedure Report_Inventory
 DECLARE @msg NVARCHAR(500);
@@ -1128,8 +1129,52 @@ begin
 			(@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '' OR pd.MaCTSP LIKE N'%' + @keyword + '%'OR p.TenSp LIKE N'%' + @keyword + '%')
 		ORDER BY pd.Quantity ASC
     -- Gửi thông báo
-    IF @qty IS NULL AND (@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '')
-        SET @msg = N'Hiển thị tất cả sản phẩm (không lọc).'
-    ELSE
-        SET @msg = N'Kết quả đã được lọc theo điều kiện.'
+    --IF @qty IS NULL AND (@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '')
+    --    SET @msg = N'Hiển thị tất cả sản phẩm (không lọc).'
+    --ELSE
+    --    SET @msg = N'Kết quả đã được lọc theo điều kiện.'
+end;
+
+--báo cáo 2 
+--drop procedure Report_Revenue
+DECLARE @msg NVARCHAR(500);
+DECLARE @error NVARCHAR(500);
+exec Report_Revenue @keyword = '',@quantity=100, @msg = @msg OUTPUT, @error = @error OUTPUT;SELECT @msg AS Message, @error AS Error;
+create procedure [dbo].[Report_Revenue]
+	@keyword nvarchar(50),-- mã chi tiết sản phẩm, tên ...
+	@quantity int,--số lượng tồn cần show
+	
+    --@msg NVARCHAR(500) OUTPUT,
+    --@error NVARCHAR(500) OUTPUT
+as 
+begin
+	DECLARE @qty INT = NULL
+
+    -- Nếu có nhập số lượng thì kiểm tra
+    IF @quantity IS NOT NULL AND LTRIM(RTRIM(@quantity)) <> ''
+		BEGIN
+			IF TRY_CONVERT(INT, @quantity) IS NULL
+				BEGIN
+					SET @error = N'Số lượng không hợp lệ. Vui lòng nhập số.'
+					RETURN
+				END
+			ELSE
+				BEGIN
+					SET @qty = CONVERT(INT, @quantity)
+				END
+		END
+    -- Truy vấn chính
+    SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
+		FROM DbProductDetail pd 
+		JOIN DbProduct p ON p.IdSp = pd.IdSp
+		JOIN DbColor cl ON pd.ColorId = cl.ColorId
+		JOIN DbSize sz ON pd.SizeId = sz.SizeId
+		WHERE (@qty IS NULL OR pd.Quantity < @qty) and
+			(@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '' OR pd.MaCTSP LIKE N'%' + @keyword + '%'OR p.TenSp LIKE N'%' + @keyword + '%')
+		ORDER BY pd.Quantity ASC
+    -- Gửi thông báo
+    --IF @qty IS NULL AND (@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '')
+    --    SET @msg = N'Hiển thị tất cả sản phẩm (không lọc).'
+    --ELSE
+    --    SET @msg = N'Kết quả đã được lọc theo điều kiện.'
 end;
