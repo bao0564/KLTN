@@ -25341,6 +25341,88 @@
       ]
     },
     {
+      "Route": "js_admin/Admin_Report.js",
+      "AssetFile": "js_admin/Admin_Report.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1756"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Jun 2025 10:09:50 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo="
+        }
+      ]
+    },
+    {
+      "Route": "js_admin/Admin_Report.ztg9we1nw0.js",
+      "AssetFile": "js_admin/Admin_Report.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1756"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Jun 2025 10:09:50 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ztg9we1nw0"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo="
+        },
+        {
+          "Name": "label",
+          "Value": "js_admin/Admin_Report.js"
+        }
+      ]
+    },
+    {
       "Route": "js_admin/Admin_Revenue.05opgeachn.js",
       "AssetFile": "js_admin/Admin_Revenue.js",
       "Selectors": [],

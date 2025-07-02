@@ -258,3 +258,8 @@ C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
 C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
 C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
 C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
+C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
+C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
+C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
+C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json
+C:\ShopYourLook\Data\obj\Debug\net7.0\staticwebassets.build.json

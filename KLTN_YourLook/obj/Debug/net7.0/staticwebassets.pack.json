@@ -997,6 +997,10 @@
       "PackagePath": "staticwebassets\\js_admin\\Admin_Product.js"
     },
     {
+      "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Report.js",
+      "PackagePath": "staticwebassets\\js_admin\\Admin_Report.js"
+    },
+    {
       "Id": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Revenue.js",
       "PackagePath": "staticwebassets\\js_admin\\Admin_Revenue.js"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KbEGhO7OgvUYV9tYKn5yVzliXK9LHvs0KD5s1BxP2CU=",
+  "Hash": "y5rDC4ntO0D5swuBcOlt17dQG491i3OlCqGhJB/dSB8=",
   "Source": "KLTN_YourLook",
   "BasePath": "_content/KLTN_YourLook",
   "Mode": "Default",
@@ -6544,6 +6544,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js_admin\\Admin_Product.js"
+    },
+    {
+      "Identity": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Report.js",
+      "SourceId": "KLTN_YourLook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\",
+      "BasePath": "_content/KLTN_YourLook",
+      "RelativePath": "js_admin/Admin_Report#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ztg9we1nw0",
+      "Integrity": "d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js_admin\\Admin_Report.js"
     },
     {
       "Identity": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Revenue.js",
@@ -34845,6 +34866,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-sQEGIblrUUKBHA3/8lVXrcXbSyFn8w7j0eFOXVFJmUs="
+        }
+      ]
+    },
+    {
+      "Route": "js_admin/Admin_Report.js",
+      "AssetFile": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Report.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1756"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Jun 2025 10:09:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo="
+        }
+      ]
+    },
+    {
+      "Route": "js_admin/Admin_Report.ztg9we1nw0.js",
+      "AssetFile": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js_admin\\Admin_Report.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1756"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 29 Jun 2025 10:09:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ztg9we1nw0"
+        },
+        {
+          "Name": "label",
+          "Value": "js_admin/Admin_Report.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-d6V2uvafTJ5QWjDiPx2wUQCY7u+lQBTaI/ho5htjdfo="
         }
       ]
     },

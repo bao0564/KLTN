@@ -18,7 +18,7 @@
 	select * from DbGroup
 	select * from DbCustomer
 	select * from DbPayment
-	select * from DbProductDetail where IdCTSP= 789
+	select * from DbProductDetail where MaCTSP= 'detlothoangdenM'
 	select * from DbProduct where MaSp='SP44'
 	select * from Dbcategory 
 	select * from DbOrder  where MaDh='DH57'
@@ -201,9 +201,10 @@ WITH DoanhThuThang AS (
     GROUP BY MONTH(CreateDate)
 )
 
--- Bước 2: Dùng STRING_AGG để nối thành 1 chuỗi
+--Dùng STRING_AGG để nối thành 1 chuỗi
 SELECT STRING_AGG(
     'Tháng ' + CAST(Thang AS VARCHAR) + ': ' + CAST(TongDoanhThu AS VARCHAR),
     ' | '
 ) AS DoanhThuTongHop
 FROM DoanhThuThang; 
+

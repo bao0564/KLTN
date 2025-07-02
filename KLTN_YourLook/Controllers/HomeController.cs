@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using X.PagedList;
 
@@ -236,7 +237,8 @@ namespace KLTN_YourLook.Controllers
 			{
 				return NotFound(); // Nếu không tìm thấy sản phẩm, trả về lỗi 404
 			}
-            //Đã thay thêm lượt xem trực tiếp vì dùng trigger sẽ bị lỗi // đã thêm 1 đoạn + lượt xem trong dapper SP:Product_Detail
+            //Đã thay thêm lượt xem trực tiếp vì dùng trigger sẽ bị lỗi // đã thêm 1 fs + lượt xem trong dapper ở respo SP_Product.cs
+            #region
             //if (lstSanPham != null)
             //{
             //	SanPham.LuotXem = SanPham.LuotXem + 1;
@@ -247,6 +249,15 @@ namespace KLTN_YourLook.Controllers
             //		await _context.SaveChangesAsync();
             //	}
             //};
+            #endregion
+            //chặn spam tăng lượt view bằng f5 
+            var view = $"view_idprd_{idsp}"; //tạo tên sesson theo từng mã sp
+            var view_prd = HttpContext.Session.GetString(view);
+			if (view_prd == null)
+			{
+				await _productProcedure.Product_View(idsp);
+                HttpContext.Session.SetString(view, "1"); //tạo sesson
+            }
             if (idkh != null)
 			{
 				SanPham.IsFavorite = _context.DbFavoriteProducts.Any(x => x.IdKh == idkh.Value && x.IdSp == idsp);

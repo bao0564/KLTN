@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using Data.Models;
 using KLTN_YourLook.Models;
+using Mailjet.Client.Resources;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
@@ -226,8 +228,8 @@ namespace KLTN_YourLook.Repository_YL
 				throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
 			}
 			var lstraw = await _dbConnection.QueryAsync<ProductDetailViewModelRaw>("product_detail",new {idsp=idsp},commandType: CommandType.StoredProcedure);
-            await _dbConnection.ExecuteAsync("UPDATE DbProduct SET LuotXem = LuotXem + 1 WHERE IdSp = @id",new { id = idsp });
-            var lst = lstraw.Select(x => new ViewProductDetail
+			//
+			var lst = lstraw.Select(x => new ViewProductDetail
 			{
 				IdSp = idsp,
 				Rate=x.Rate,
@@ -267,9 +269,19 @@ namespace KLTN_YourLook.Repository_YL
 			});
 			return lst.ToList();
 		}
-
-		//Sản phẩm gợi ý
-		public async Task<List<ViewAllDetail>> Product_Suggest(int idsp)
+        //lượt xem sản phẩm
+        public async Task<int> Product_View(int idsp)
+        {
+            if (_dbConnection == null)
+            {
+                throw new Exception("Kết nối cơ sở dữ liệu chưa được khởi tạo.");
+            }
+			var action=await _dbConnection.ExecuteAsync("UPDATE DbProduct SET LuotXem = LuotXem + 1 WHERE IdSp = @id", new { id = idsp });
+			return action;
+                
+        }
+        //Sản phẩm gợi ý
+        public async Task<List<ViewAllDetail>> Product_Suggest(int idsp)
 		{
             if (_dbConnection == null)
             {
