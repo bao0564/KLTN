@@ -80,8 +80,8 @@ begin
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
-	WHERE p.IActive = 1 and p.IdDm in(1,8) and p.Classify=@classify
-	order by p.LuotSold desc	
+	WHERE p.IActive = 1 and p.IdDm in(1,21) and p.Classify=@classify
+	order by p.CreateDate desc 	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -103,8 +103,8 @@ begin
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p	
-	WHERE p.IActive = 1 and p.IdDm in(2,3,7,9) and p.Classify=@classify
-	order by p.LuotSold desc	
+	WHERE p.IActive = 1 and p.NhomId in(1,2,3) and p.Classify=@classify
+	order by p.CreateDate desc	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -126,8 +126,8 @@ begin
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
-	WHERE p.IActive = 1 and p.NhomId in(3,4) and p.Classify=@classify
-	order by p.LuotSold desc	
+	WHERE p.IActive = 1 and p.NhomId in(7,4) and p.Classify=@classify
+	order by p.CreateDate desc	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -149,8 +149,8 @@ begin
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
-	WHERE p.IActive = 1 and p.NhomId in(6,7) and p.Classify=@classify
-	order by p.LuotSold desc	
+	WHERE p.IActive = 1 and p.NhomId in(1,2,3,6) and p.Classify=@classify
+	order by p.CreateDate desc	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -188,8 +188,7 @@ begin
 		join DbColor c on pd.ColorId=c.ColorId
 		where pd.IdSp =p.IdSp)as Colors
 	from DbProduct p
-	WHERE p.IActive = 1 and p.CreateDate <= DATEADD(DAY,50,GETDATE())
-	
+	WHERE p.IActive = 1 and p.CreateDate >= DATEADD(DAY,-50,GETDATE())	
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -206,9 +205,13 @@ begin
 		(select string_agg(concat(pd.ColorId,',',pd.NameColor,',',c.MaColor,',',c.MaHex),';')
 		from DbProductDetail pd
 		join DbColor c on pd.ColorId=c.ColorId
-		where pd.IdSp =p.IdSp)as Colors
+		where pd.IdSp =p.IdSp)as Colors,
+		SUM(od.SoLuongSp) as soluongban
 	from DbProduct p
-	WHERE p.IActive = 1 and p.IHot =1
+	join DbOrderDetail od on od.IdSp=p.IdSp
+	WHERE p.IActive = 1 and od.CreateDate >=DATEADD(MONTH, -3, GETDATE())
+	group by p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem
+	order by soluongban desc
 end;
 
 SET QUOTED_IDENTIFIER ON

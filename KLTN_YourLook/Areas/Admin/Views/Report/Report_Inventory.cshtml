@@ -1,0 +1,57 @@
+﻿@using KLTN_YourLook.Areas.Admin.Models
+@{
+    ViewData["Title"] = "Report_Inventory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Report_Inventory_ViewModel>
+<div class="flspb flct" style="height:40px">
+	<div>
+		<div class="ttu pd-lr"><a href="@Url.Action("report","admin")"><i class="fa-solid fa-chevron-left" style="color: #000000;"></i>Tồn kho</a></div>
+    </div>
+    <form asp-controller="Report" asp-action="Report_Inventory" method="get">
+		<div class="fl gap">
+            <input class="pd-lr" placeholder="Mã sp chi tiết..." name="keyword" style="padding:0 !important" value="@ViewBag.keyword" />
+            <input class="" placeholder="Số lượng tồn kho..." name="quantity" style="padding:0 !important" value="@ViewBag.quantity" />
+			<button class="flct" style="border-radius:10px" type="submit"><i class="fa-solid fa-filter" style="color: #000000;"></i>Lọc</button>
+			<button class="nw" style="border-radius:10px" type="button" id="exportInventoryProductExcel">Xuất Excel</button>
+        </div>
+    </form>
+</div>
+
+<table class="h-table">
+    <thead class="sticky_top">
+        <tr>
+            <th class="hidden">IdSp</th>
+            <th>Mã SP</th>
+			<th style="width:200px">Mã chi tiết SP </th>
+            <th>Tên SP</th>
+            <th>Màu</th>
+            <th>Size</th>
+            <th>Số Lượng còn lại</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var prd in Model)
+            {
+                <tr>
+                    <td class="hidden">@prd.IdSp</td>
+                    <td>@prd.MaSp</td>
+                    <td>@prd.MaCTSP</td>
+                    <td style="text-align:left">@prd.TenSp</td>
+                    <td>@prd.NameColor</td>
+                    <td>@prd.NameSize</td>
+                    <td>@prd.Quantity</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="ttu" colspan="7">không có sản phẩm nào</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/js_admin/admin_report.js"></script>	

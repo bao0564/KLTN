@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+cdP9wRdB572SU7vhcQCnRliw1WUv68pVz0aO9DgqeY=",
+  "Hash": "KbEGhO7OgvUYV9tYKn5yVzliXK9LHvs0KD5s1BxP2CU=",
   "Source": "KLTN_YourLook",
   "BasePath": "_content/KLTN_YourLook",
   "Mode": "Default",
@@ -6371,8 +6371,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "lvtso00003",
-      "Integrity": "v2EIJGkwUtG8y9my371VNbwiXG1CGgGLajh9BNYcrs0=",
+      "Fingerprint": "mje4akq6f9",
+      "Integrity": "XqMnBSHGgQr6/4rIP3kyvrKI9/LloCdZTL/1EAOmz9I=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Qr_code.js"
@@ -15601,7 +15601,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 12 Jun 2025 13:17:28 GMT"
+          "Value": "Sat, 28 Jun 2025 17:26:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -15638,7 +15638,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 12 Jun 2025 13:17:28 GMT"
+          "Value": "Sat, 28 Jun 2025 17:26:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34121,7 +34121,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2538"
+          "Value": "2540"
         },
         {
           "Name": "Content-Type",
@@ -34129,11 +34129,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"v2EIJGkwUtG8y9my371VNbwiXG1CGgGLajh9BNYcrs0=\""
+          "Value": "\"XqMnBSHGgQr6/4rIP3kyvrKI9/LloCdZTL/1EAOmz9I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Jun 2025 05:14:38 GMT"
+          "Value": "Fri, 27 Jun 2025 16:26:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34143,12 +34143,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-v2EIJGkwUtG8y9my371VNbwiXG1CGgGLajh9BNYcrs0="
+          "Value": "sha256-XqMnBSHGgQr6/4rIP3kyvrKI9/LloCdZTL/1EAOmz9I="
         }
       ]
     },
     {
-      "Route": "js/Qr_code.lvtso00003.js",
+      "Route": "js/Qr_code.mje4akq6f9.js",
       "AssetFile": "C:\\ShopYourLook\\KLTN_YourLook\\wwwroot\\js\\Qr_code.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -34158,7 +34158,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2538"
+          "Value": "2540"
         },
         {
           "Name": "Content-Type",
@@ -34166,11 +34166,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"v2EIJGkwUtG8y9my371VNbwiXG1CGgGLajh9BNYcrs0=\""
+          "Value": "\"XqMnBSHGgQr6/4rIP3kyvrKI9/LloCdZTL/1EAOmz9I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 27 Jun 2025 05:14:38 GMT"
+          "Value": "Fri, 27 Jun 2025 16:26:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34180,7 +34180,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lvtso00003"
+          "Value": "mje4akq6f9"
         },
         {
           "Name": "label",
@@ -34188,7 +34188,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-v2EIJGkwUtG8y9my371VNbwiXG1CGgGLajh9BNYcrs0="
+          "Value": "sha256-XqMnBSHGgQr6/4rIP3kyvrKI9/LloCdZTL/1EAOmz9I="
         }
       ]
     },

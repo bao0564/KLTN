@@ -74,7 +74,7 @@
         <div class="menu">
 			<div class="menu_ct flcl flscr">
                 <label class="navigation pd-lr">Quản lý chung</label>
-                <div class="toggle-wrapper"></div>
+                <div class="toggle-wrapper"></div> @* cách dòng cho đều vì "lý do"*@
                     <div class="btn_li pd-tb">
                         <a href="@Url.Action("Index","Admin")"><i class="fa-solid fa-house" style="color: #ffffff;"></i>Tổng Quan</a>
                     </div>
@@ -87,7 +87,7 @@
                         <button class="" style="color:#fff"><i class="fa-solid fa-clipboard" style="color: #ffffff;"></i> Danh Mục</button>
                         <i class="fa-solid fa-chevron-right" style="color:#fff"></i>
                     </div>
-                <div class="toggle-wrapper" id="listWrapper">
+				<div class="toggle-wrapper" id="listWrapper">@*lý do*@
                     <ul>
                         <li><a href="@Url.Action("Product","Admin")"><i class="fa-solid fa-shirt" style="color: #ffffff;"></i>Sản Phẩm</a></li>
                         <li><a href="@Url.Action("Category","Admin")"><i class="fa-solid fa-clipboard" style="color: #ffffff;"></i>Danh Mục</a></li>
@@ -111,18 +111,27 @@
                 <div class="toggle-wrapper"></div>*@
                     <div class="btn_li pd-tb">
                         <a href="@Url.Action("ViewAccounts","Admin")"><i class="fa-solid fa-user" style="color: #ffffff;"></i>Admin</a>
-                    </div>
-                <div class="toggle-wrapper"></div>
-                <label class="navigation pd-lr">Quản lý giao diện</label>
-                <div class="toggle-wrapper"></div>
-                    <div class="btn_li pd-tb">
-                        <a href="@Url.Action("Ads","Admin")"><i class="fa-solid fa-audio-description" style="color: #ffffff;"></i>Banner Quảng Cáo </a>
                 </div>
+                @* .. *@
+                <div class="toggle-wrapper"></div>
+                <label class="navigation pd-lr">Thống kê</label>
+                <div class="toggle-wrapper"></div>
+                <div class="btn_li pd-tb">
+                    <a href="@Url.Action("Report","Admin")"><i class="fa-solid fa-chart-simple" style="color: #ffffff;"></i>Báo Cáo </a>
+                </div>
+				@* .. *@
+                <div class="toggle-wrapper"></div>
+                <label class="navigation pd-lr">Giao diện</label>
+                <div class="toggle-wrapper"></div>
+                <div class="btn_li pd-tb">
+                    <a href="@Url.Action("Ads","Admin")"><i class="fa-solid fa-audio-description" style="color: #ffffff;"></i>Banner Quảng Cáo </a>
+                </div>
+                @* .. *@
                 <label class="navigation pd-lr">Khác</label>
 				<div class="toggle-wrapper"></div>
-				    <div class="btn_li pd-tb">
-					    <a href="@Url.Action("logout","Admin")" onclick="logout(event)"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>Đăng Xuất</a>
-				    </div>
+				<div class="btn_li pd-tb">
+					<a href="@Url.Action("logout","Admin")" onclick="logout(event)"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>Đăng Xuất</a>
+				</div>
             </div>
             <div class="menu_cp">
                 @RenderBody()
