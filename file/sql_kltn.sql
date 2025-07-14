@@ -8,7 +8,7 @@ GO
 --select * from DbProduct 
 create procedure [dbo].[sp_user_search_product]
 	@keyword nvarchar(50)=null
-as
+as 
 begin
 	select p.IdSp, p.MaSp,p.TenSp,p.AnhSp,p.PriceMax,p.PriceMin,p.GiamGia,p.Ifavorite,p.LuotSold,p.LuotXem,
 		(select string_agg(concat(pd.SizeId,',',pd.NameSize),';')
@@ -798,5 +798,21 @@ begin
 	begin catch
 		set @error=N'Lỗi - Đổi mật khẩu không thành công '+ERROR_MESSAGE();
 	end catch
+end;
+
+SET QUOTED_IDENTIFIER ON
+GO
+--tìm kiếm mã chi tiết sản phẩm trong bảng DbProductDetail
+--EXEC sp_sugget_mactsp @keyword='polo';
+--drop procedure sp_sugget_mactsp
+create procedure [dbo].[sp_sugget_mactsp]
+	@keyword nvarchar(50)=null
+as
+begin	
+	select top 5 pd.MaCTSP from DbProductDetail pd
+	where (@keyword IS NULL or 
+			pd.MaCTSP COLLATE Latin1_General_CI_AI like @keyword +'% ' OR 
+			pd.MaCTSP COLLATE Latin1_General_CI_AI like '% '+@keyword+' % ' or 
+			pd.MaCTSP COLLATE Latin1_General_CI_AI like @keyword +' %') 
 end;
 use [KLTN];

@@ -13,4 +13,19 @@
         public string NameColor { get; set; }
         public int Quantity { get; set; }
     }
+    public class Report_Revenue_ViewModel
+    {
+        public DateTime Ngay { get; set; }
+        public int Tongdonhang { get; set; }
+        public int Tongsanpham { get; set; }
+        public decimal Tongtien { get; set; }
+        public decimal Tongtienthanhtoan { get; set; }
+        public decimal Vouchergiam { get; set; }
+        public int Tongdonhoanthanh { get; set; }
+        public int Tongdonhuy { get; set; }
+    }
+    public class Sugget_Mactsp
+    {
+        public string MaCTSP { get; set; }
+    }
 }

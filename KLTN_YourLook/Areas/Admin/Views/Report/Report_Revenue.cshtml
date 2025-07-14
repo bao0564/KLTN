@@ -1,0 +1,65 @@
+﻿@using KLTN_YourLook.Areas.Admin.Models
+@{
+    ViewData["Title"] = "Report_Revenue";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Report_Revenue_ViewModel>
+<div class="flspb flct" style="height:40px">
+    <div>
+        <div class="ttu pd-lr"><a href="@Url.Action("report","admin")"><i class="fa-solid fa-chevron-left" style="color: #000000;"></i>Tồn kho</a></div>
+    </div>
+    <form asp-controller="Report" asp-action="Report_Revenue" method="get">
+        <div class="fl gap">
+            <input class="pd-lr" id="date_revenue" name="date" type="date" style="padding:0 !important" value="@ViewBag.date" />
+			<input class="" id="todate_revenue" name="todate" type="date" style="padding:0 !important" value="@ViewBag.todate" />
+            <button class="flct" style="border-radius:10px" type="submit"><i class="fa-solid fa-filter" style="color: #000000;"></i>Lọc</button>
+            <button class="nw" style="border-radius:10px" type="button" id="exportInventoryProductExcel">Xuất Excel</button>
+        </div>
+    </form>
+</div>
+<div>
+	<div>
+		<table class="h-table">
+			<thead class="sticky_top">
+				<tr>
+					<th>Ngày</th>
+					<th style="width:200px">Tổng đơn hàng </th>
+					<th>Tổng sản phẩm</th>
+					<th>Tổng tiền</th>
+					<th>Tổng tiền thanh toán</th>
+					<th>Giảm giá từ voucher</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model != null && Model.Any())
+				{
+					foreach (var prd in Model)
+					{
+						<tr>
+							<td>@prd.Ngay.ToString("dd/MM/yyyy")</td>
+							<td style="text-align:left">@prd.Tongdonhang</td>
+							<td style="text-align:left">@string.Format("{0:N0}", prd.Tongsanpham)</td>
+							<td style="text-align:right">@string.Format("{0:N0}", prd.Tongtien)</td>
+							<td style="text-align:right">@string.Format("{0:N0}", prd.Tongtienthanhtoan)</td>
+							<td style="text-align:right">@string.Format("{0:N0}", prd.Vouchergiam)</td>
+						</tr>
+					}
+				}
+				else
+				{
+					<tr>
+						<td class="ttu" colspan="7">không có sản phẩm nào</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<canvas id="Report_Revenue_Chart" width="400" height="200"></canvas>
+	</div>
+
+</div>
+@section Scripts {
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="~/js_admin/admin_report_revenue.js"></script>
+}

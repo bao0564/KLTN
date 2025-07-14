@@ -54,10 +54,15 @@ $(document).ready(function () {
                             `;
                             tableBody.appendChild(tr);
                             if (ctsp.maCTsp !== "error") {
-                                products.push({
-                                    MaCTSP: ctsp.maCTsp,
-                                    Quantity: parseInt(quantity)
-                                });
+                                const existingProduct = products.find(p => p.MaCTSP === ctsp.maCTsp);
+                                if (existingProduct) {
+                                    existingProduct.Quantity += parseInt(quantity);
+                                } else {
+                                    products.push({
+                                        MaCTSP: ctsp.maCTsp,
+                                        Quantity: parseInt(quantity)
+                                    });
+                                }
                             }
                     });
 

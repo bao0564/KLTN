@@ -130,7 +130,14 @@
                                 </td>
                                 <td>
                                     <div style="display:flex;flex-direction:column;gap:10px">
-                                        <a class="btn-ddu btn-dt nw" href="@Url.Action("orderdetail", new { iddh = prd.IdDh })" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
+                                        @if (prd.ODHuy != true)
+                                        {
+                                            <a class="btn-ddu btn-dt nw" href="@Url.Action("orderdetail", new { iddh = prd.IdDh })" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn-ddu btn-dt nw" style="border:1px solid #2f3640;text-decoration:line-through">Chi Tiết Đơn Hàng</a>
+                                        }
 										<div style="display:flex;justify-content:space-between">
                                             @if(prd.ODHuy != true )
                                             {

@@ -10,8 +10,8 @@
     </div>
     <form asp-controller="Report" asp-action="Report_Inventory" method="get">
 		<div class="fl gap">
-            <input class="pd-lr" placeholder="Mã sp chi tiết..." name="keyword" style="padding:0 !important" value="@ViewBag.keyword" />
-            <input class="" placeholder="Số lượng tồn kho..." name="quantity" style="padding:0 !important" value="@ViewBag.quantity" />
+            <input class="pd-lr" placeholder="Mã sp chi tiết..." name="keyword" style="" value="@ViewBag.keyword" autocomplete="off" />
+            <input class="pd-lr" placeholder="Số lượng tồn kho..." name="quantity" style="" value="@ViewBag.quantity" autocomplete="off" />
 			<button class="flct" style="border-radius:10px" type="submit"><i class="fa-solid fa-filter" style="color: #000000;"></i>Lọc</button>
 			<button class="nw" style="border-radius:10px" type="button" id="exportInventoryProductExcel">Xuất Excel</button>
         </div>

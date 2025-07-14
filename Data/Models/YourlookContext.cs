@@ -95,6 +95,7 @@ namespace Data.Models
         //public virtual DbSet<DbTransaction> DbTransactions { get; set; }//bảng thông tin giao dịch
         public virtual DbSet<DbPayment> DbPayments { get; set; }//bảng phương thức thanh toán
         public virtual DbSet<DbVoucher> DbVouchers { get; set; }//bảng mã giảm giá
+        public virtual DbSet<DbUser_Voucher> DbUser_Vouchers { get; set; }//bảng sử dụng mã giảm giá
         public virtual DbSet<DbFavoriteProduct> DbFavoriteProducts { get; set; }// bảng sản phẩm yêu thích
         public virtual DbSet<DbCart> DbCarts { get; set; }// bảng sản phẩm Giỏ hàng 
         public virtual DbSet<DbRating> DbRatings { get; set; }// bảng đánh giá nhận sét sp 

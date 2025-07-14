@@ -507,16 +507,30 @@ CREATE PROCEDURE [dbo].[sp_order_print_status]
 AS
 BEGIN
 	declare @isprint bit;
+	declare @odS bit;
+	declare @odR bit;
+	declare @odT bit;
+	declare @C bit;
+
 	declare @count int;
 
     SET NOCOUNT ON;
 	IF @iddh IS NOT NULL AND @iddh > 0
 		BEGIN
-			select @isprint = od.ODPrint from DbOrder od where od.IdDh = @iddh
+			select @isprint=od.ODPrint, @odS=od.ODSuccess, @odR=od.ODReadly, @odT=od.ODTransported, @C=od.Complete from DbOrder od where od.IdDh = @iddh
 			if @isprint = 0
 				begin
 					EXEC sp_print_order @iddh
-					UPDATE DbOrder set ODPrint =1,ODSuccess=0,ODReadly=1 WHERE IdDh = @iddh;
+					if @odS=1 -- nếu trường hợp ODSuccess= 1(đơn hàng mới đặt thành công) thì chuyển qua trạng thái tiếp theo
+						begin
+							UPDATE DbOrder set ODPrint =1,ODSuccess=0,ODReadly=1 WHERE IdDh = @iddh;
+							return;
+						end
+					else -- còn trường hợp đơn hàng đã ko còn ở trạng thái ODSuccess= 1 thì chỉ thay đổi trạng thái in thôi
+						begin
+							UPDATE DbOrder set ODPrint =1 WHERE IdDh = @iddh;
+							return;
+						end
 					return;
 				end
 			else
@@ -533,12 +547,39 @@ BEGIN
 								TenKh nvarchar(50),NguoiNhan nvarchar(50),DiaChi nvarchar(100),GhiChu nvarchar(500),
 								TongTien decimal,Giamgia int,Ship decimal,TongTienThanhToan decimal,Sdt nvarchar(20),
 								PaymentName nvarchar(50),CreateDate datetime); --bảng tạm phải đủ các cột vs bảng chính
-			insert into #table1 EXEC sp_print_order @iddh;
+			insert into #table1 
+			EXEC sp_print_order @iddh;
 			SELECT @count = COUNT(*) FROM #table1;
 			if @count >0
+				--begin --dùng con trỏ để lấy 
+				--	declare @currentId INT;
+				--	declare order_cursor cursor for 
+				--		select IdDh from #table1 where IdDh is not null;-- duyệt lấy từng iddh trong bảng tạm
+				--	open order_cursor;
+				--		fetch next from order_cursor into @currentId;
+				--			WHILE @@FETCH_STATUS = 0
+				--			begin
+				--				select @odS=ODSuccess from DbOrder where IdDh=@currentId;
+				--				--EXEC sp_print_order @currentId; --in đơn hàng
+				--				if @odS=1
+				--					begin
+				--						UPDATE DbOrder set ODPrint = 1,ODSuccess=0,ODReadly=1 WHERE  IdDh = @currentId and ODPrint = 0;
+				--					end
+				--				else
+				--					begin
+				--						UPDATE DbOrder set ODPrint = 1 WHERE  IdDh = @currentId  and ODPrint = 0;
+				--					end
+				--				fetch next from order_cursor into @currentId;
+				--			end
+					
+				--		CLOSE order_cursor;
+				--		DEALLOCATE order_cursor;
+				--		DROP TABLE #table1;
+				--	return;
+				--end
 				begin
 					EXEC sp_print_order @iddh
-					UPDATE DbOrder set ODPrint = 1,ODSuccess=0,ODReadly=1 WHERE ODPrint = 0;
+					UPDATE DbOrder set ODPrint = 1 WHERE ODPrint = 0;--,ODSuccess=0,ODReadly=1
 					DROP TABLE #table1;
 					return;
 				end
@@ -631,6 +672,7 @@ begin
 					end
 				if @odhuy=1
 					begin
+						update od set od.ODSuccess=0, ODReadly=0, ODTransported=0, Complete=0 from DbOrder od where od.IdDh=@iddh
 						update pd set pd.Quantity= pd.Quantity + odd.SoLuongSp
 							from DbProductDetail pd 
 							join DbOrderDetail odd on pd.IdSp=odd.IdSp
@@ -827,14 +869,14 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --nhập số lượng nhập vào bảng chi tiết sản phẩm
---exec insert_quantity_stock @soluong= 50, @mactsp=pololentrontrangM
+--exec insert_quantity_stock @soluong= 50, @mactsp=shortlinenghiM
 --drop procedure insert_quantity_stock
 create procedure [dbo].[insert_quantity_stock]
 	@mactsp nvarchar(50),
 	@soluong int
 as
 begin
-	update DbProductDetail set Quantity+=@soluong where MaCTSP=@mactsp
+	update DbProductDetail set Quantity = Quantity + @soluong where MaCTSP=@mactsp
 end;
 
 SET QUOTED_IDENTIFIER ON
@@ -1105,7 +1147,6 @@ create procedure [dbo].[Report_Inventory]
 as 
 begin
 	DECLARE @qty INT = NULL
-
     -- Nếu có nhập số lượng thì kiểm tra
     IF @quantity IS NOT NULL AND LTRIM(RTRIM(@quantity)) <> ''
 		BEGIN
@@ -1119,7 +1160,7 @@ begin
 					SET @qty = CONVERT(INT, @quantity)
 				END
 		END
-    -- Truy vấn chính
+    -- Truy vấn 
     SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
 		FROM DbProductDetail pd 
 		JOIN DbProduct p ON p.IdSp = pd.IdSp
@@ -1137,44 +1178,36 @@ end;
 
 --báo cáo 2 
 --drop procedure Report_Revenue
-DECLARE @msg NVARCHAR(500);
-DECLARE @error NVARCHAR(500);
-exec Report_Revenue @keyword = '',@quantity=100, @msg = @msg OUTPUT, @error = @error OUTPUT;SELECT @msg AS Message, @error AS Error;
+--DECLARE @msg NVARCHAR(500);
+--DECLARE @error NVARCHAR(500);
+--exec Report_Revenue @keyword = '',@quantity=100, @msg = @msg OUTPUT, @error = @error OUTPUT;SELECT @msg AS Message, @error AS Error;
 create procedure [dbo].[Report_Revenue]
-	@keyword nvarchar(50),-- mã chi tiết sản phẩm, tên ...
-	@quantity int,--số lượng tồn cần show
+	@date datetime,-- từ ngày
+	@todate datetime--,tới ngày
 	
     --@msg NVARCHAR(500) OUTPUT,
     --@error NVARCHAR(500) OUTPUT
 as 
-begin
-	DECLARE @qty INT = NULL
-
-    -- Nếu có nhập số lượng thì kiểm tra
-    IF @quantity IS NOT NULL AND LTRIM(RTRIM(@quantity)) <> ''
-		BEGIN
-			IF TRY_CONVERT(INT, @quantity) IS NULL
-				BEGIN
-					SET @error = N'Số lượng không hợp lệ. Vui lòng nhập số.'
-					RETURN
-				END
-			ELSE
-				BEGIN
-					SET @qty = CONVERT(INT, @quantity)
-				END
-		END
+begin	
     -- Truy vấn chính
-    SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
-		FROM DbProductDetail pd 
-		JOIN DbProduct p ON p.IdSp = pd.IdSp
-		JOIN DbColor cl ON pd.ColorId = cl.ColorId
-		JOIN DbSize sz ON pd.SizeId = sz.SizeId
-		WHERE (@qty IS NULL OR pd.Quantity < @qty) and
-			(@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '' OR pd.MaCTSP LIKE N'%' + @keyword + '%'OR p.TenSp LIKE N'%' + @keyword + '%')
-		ORDER BY pd.Quantity ASC
-    -- Gửi thông báo
-    --IF @qty IS NULL AND (@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '')
-    --    SET @msg = N'Hiển thị tất cả sản phẩm (không lọc).'
-    --ELSE
-    --    SET @msg = N'Kết quả đã được lọc theo điều kiện.'
+    SELECT  CAST(od.CreateDate AS DATE) AS Ngay,
+			count(od.IdDh)as Tongdonhang,
+			SUM(od.soluong) as Tongsanpham,
+			SUM(od.TongTien) as Tongtien,
+			SUM(od.TongTienThanhToan) as Tongtienthanhtoan,
+			(SUM(od.TongTien)-SUM(od.TongTienThanhToan)) as Vouchergiam
+			--(select COUNT(*)
+			--		from DbOrder od2
+			--		where od2.Complete = 1 and	od2.CreateDate >= '2025/01/01' and od2.CreateDate <= '2025/02/01'
+			--) as Tongdonhoanthanh,
+			--(select COUNT(*)
+			--		from DbOrder od3
+			--		where od3.ODHuy = 1 and	od3.CreateDate >= '2025/01/01' and od3.CreateDate <= '2025/02/01'
+			--) as Tongdonhuy
+		FROM DbOrder od 
+		WHERE od.CreateDate >= @date and od.CreateDate <= @todate
+		group by CAST(od.CreateDate AS DATE)
+		order by Ngay
+		--WHERE od.CreateDate >= @date and od.CreateDate <= @todate
+		    
 end;
