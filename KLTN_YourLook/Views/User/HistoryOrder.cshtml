@@ -92,7 +92,7 @@
                                 <div class="flct nw">(Tổng(@od.soluong):</div>
                                 <div class="flct nw">@string.Format("{0:N0}", @od.TongTienThanhToan) VNĐ</div>
                             </div>
-                            @if(!od.ODHuy && !od.Complete){
+                            @if(!od.ODHuy && !od.Complete && !od.ODTransported){
                                 <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="UpdateOrder" asp-route-iddh="@od.IdDh" onclick="huydh(event)">hủy Đơn hàng</a></div>
                             }
                             else if (od.Complete && !od.Israted)//đơn hàng hoàn thành //chưa đánh giá

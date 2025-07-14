@@ -43,6 +43,40 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             return View(lst);
         }
 
+        [Route("report_revenue")]
+        [HttpGet]
+        public async Task<IActionResult> Report_Revenue(DateTime? date, DateTime? todate)
+        {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var data = await _reportRepository.Search_Report_Revenue(date, todate);
+            return View(data);
+        }
+        [Route("api_report_revenue")]
+        [HttpGet]
+        public async Task<IActionResult> Report_Revenue_Chart(DateTime? date, DateTime? todate)
+        {
+            var data = await _reportRepository.Search_Report_Revenue(date, todate);
+            if (data == null) return Json(new { success = false });
+            var sortedData = data.OrderBy(d => d.Ngay).ToList();
+
+            var labels = sortedData.Select(x => x.Ngay.ToString("dd/MM/yyyy")).ToList();
+
+            var chartData = new
+            {
+                labels,
+                tongdonhang = sortedData.Select(x => x.Tongdonhang).ToList(),
+                tongsanpham = sortedData.Select(x => x.Tongsanpham).ToList(),
+                tongtien = sortedData.Select(x => x.Tongtien).ToList(),
+                tongtienthanhtoan = sortedData.Select(x => x.Tongtienthanhtoan).ToList(),
+                vouchergiam = sortedData.Select(x => x.Vouchergiam).ToList()
+            };
+
+            return Json(chartData);
+        }
         [HttpGet]
         [Route("inventory_export_excel")]
         public async Task<IActionResult> ExportInventoryListToExcel(string keyword, int quantity)
@@ -99,6 +133,18 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                     return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DanhSachTonKho.xlsx");
                 }
             }
+        }
+        //hiển thị gọi ý tìm kiếm mã chi tiết sp
+        [Route("api_find_mctsp")]
+        [HttpGet]
+        public async Task<JsonResult> Find_Mctsp(string keyword)
+        {
+            var sugget= await _reportRepository.Sugget_Mactsp(keyword);
+            var result = sugget.Select(x => new
+            {
+                mactsp=x.MaCTSP
+            }).ToList();
+            return Json(result);
         }
     }
 }

@@ -13,16 +13,16 @@
 	 join DbCustomer cus on od.IdKh= cus.IdKh	 
 	 where od.IdDh= 13
 	select * from DbProduct p WHERE p.NhomId in(3,4) and p.Classify=1
-	update DbOrder set ODReadly=0, ODSuccess=1, ODPrint=0, Complete=0  where IdDh=54
+	update DbOrder set ODReadly=1, ODSuccess=0, ODPrint=0, Complete=0, ODHuy=0  where IdDh=69
 	  delete Dbhi where Id=72
 	select * from DbGroup
 	select * from DbCustomer
 	select * from DbPayment
-	select * from DbProductDetail where MaCTSP= 'detlothoangdenM'
+	select * from DbProductDetail where IdSp=51 and ColorId=2 --MaCTSP= 'shortlinenghiM' 
 	select * from DbProduct where MaSp='SP44'
 	select * from Dbcategory 
-	select * from DbOrder  where MaDh='DH57'
-	select * from DbOrderDetail  where MaDh='DH57'
+	select * from DbOrder  where MaDh='DH70'
+	select * from DbOrderDetail  where MaDh='DH69'
 	select * from DbAddress
 	select * from DbCart
 	select * from DbColor
