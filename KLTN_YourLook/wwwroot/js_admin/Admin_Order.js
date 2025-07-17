@@ -29,26 +29,39 @@
     //---------------------------------
     ExportOrderExcel.init();
 });
-//không tự động chạy
-//lọc trạng thái đơn hàng
+
+//chọn lọc trạng thái đơn hàng
+document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+        if (this.checked) {
+            document.querySelectorAll('input[type="checkbox"]').forEach(function (otherCheckbox) {
+                if (otherCheckbox !== checkbox) {
+                    otherCheckbox.checked = false;
+                }
+            });
+            applyFilter();
+        } else {
+            applyFilter();
+        }
+    });
+});
 function applyFilter() {
     let currentUrlParams = new URLSearchParams(window.location.search);
 
-    // Lấy giá trị của các checkbox trạng thái đơn hàng
-    let odsuccess = document.getElementById("odsuccess").checked;
-    let odreadly = document.getElementById("odreadly").checked;
-    let odtranport = document.getElementById("odtranport").checked;
-    let complete = document.getElementById("complete").checked;
-    let odhuy = document.getElementById("odhuy").checked;
+    // Lấy checkbox duy nhất được chọn
+    let selected = document.querySelector('input[name="status"]:checked');
 
-    // Cập nhật giá trị trạng thái đơn hàng vào URL
-    currentUrlParams.set("odsuccess", odsuccess);
-    currentUrlParams.set("odreadly", odreadly);
-    currentUrlParams.set("odtranport", odtranport);
-    currentUrlParams.set("complete", complete);
-    currentUrlParams.set("odhuy", odhuy);
+    // Xóa hết các trạng thái trước đó trong URL
+    currentUrlParams.delete("odsuccess");
+    currentUrlParams.delete("odreadly");
+    currentUrlParams.delete("odtranport");
+    currentUrlParams.delete("complete");
+    currentUrlParams.delete("odhuy");
+    currentUrlParams.delete("odreturn");
 
-    // Chuyển hướng với đầy đủ tham số
+    if (selected) {
+        currentUrlParams.set(selected.id, true);
+    }
+
     window.location.href = "/admin/order?" + currentUrlParams.toString();
 }
-

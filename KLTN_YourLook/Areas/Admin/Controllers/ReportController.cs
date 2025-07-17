@@ -1,4 +1,5 @@
-﻿using ClosedXML.Excel;
+﻿using System.Globalization;
+using ClosedXML.Excel;
 using Data.Models;
 using KLTN_YourLook.Areas.Admin.Models;
 using KLTN_YourLook.Areas.Admin.Repository;
@@ -31,15 +32,9 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            var(lst,msg,error) = await _reportRepository.Search_Report_Inventory(keyword, quantity);
+            var lst = await _reportRepository.Search_Report_Inventory(keyword, quantity);
             ViewBag.keyword = keyword;
             ViewBag.quantity = quantity;
-            if (!string.IsNullOrEmpty(error))
-            {
-                TempData["Error"] = error;
-                return View();
-            }
-            TempData["Success"] = msg;
             return View(lst);
         }
 
@@ -77,12 +72,13 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
 
             return Json(chartData);
         }
+        //
         [HttpGet]
         [Route("inventory_export_excel")]
         public async Task<IActionResult> ExportInventoryListToExcel(string keyword, int quantity)
         {
             IEnumerable<AllProductViewModel> lstSanPham;
-            var (lst, msg, error) = await _reportRepository.Search_Report_Inventory(keyword, quantity);
+            var lst = await _reportRepository.Search_Report_Inventory(keyword, quantity);
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Danh sách sản phẩm Tồn kho");
@@ -94,10 +90,10 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 worksheet.Cell(1, 1).Style.Font.FontSize = 14;
                 worksheet.Cell(1, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                 worksheet.Cell(1, 1).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-
+                
                 // Tiêu đề cột
-                currentRow = 2;
-
+                currentRow = 3;
+                 
                 worksheet.Cell(currentRow, 1).Value = "Mã Sản Phẩm";
                     worksheet.Cell(currentRow, 1).Style.Font.Bold = true;
                 worksheet.Cell(currentRow, 2).Value = "Mã chi tiết sản phẩm";
@@ -128,6 +124,63 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
                 using (var stream = new MemoryStream())
                 {
                     var date = DateTime.Now;
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DanhSachTonKho.xlsx");
+                }
+            }
+        }
+        //
+        [HttpGet]
+        [Route("revenue_export_excel")]
+        public async Task<IActionResult> ExportRevenueListToExcel(DateTime? date, DateTime? todate)
+        {
+            IEnumerable<Report_Revenue_ViewModel> lstdata;
+            var lst = await _reportRepository.Search_Report_Revenue(date, todate);
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Doanh thu");
+                var currentRow = 1;
+
+                worksheet.Range("A1:F1").Merge(); // Gộp 6 ô từ A1 đến F1
+                worksheet.Cell(1, 1).Value = "Doanh thu";
+                worksheet.Cell(1, 1).Style.Font.Bold = true;
+                worksheet.Cell(1, 1).Style.Font.FontSize = 14;
+                worksheet.Cell(1, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                worksheet.Cell(1, 1).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
+                // Tiêu đề cột
+                currentRow = 3;
+
+                worksheet.Cell(currentRow, 1).Value = "Ngày";
+                worksheet.Cell(currentRow, 1).Style.Font.Bold = true;
+                worksheet.Cell(currentRow, 2).Value = "Tổng đơn hàng";
+                worksheet.Cell(currentRow, 2).Style.Font.Bold = true;
+                worksheet.Cell(currentRow, 3).Value = "Tổng sản phẩm";
+                worksheet.Cell(currentRow, 3).Style.Font.Bold = true;
+                worksheet.Cell(currentRow, 4).Value = "Tổng tiền";
+                worksheet.Cell(currentRow, 4).Style.Font.Bold = true;
+                worksheet.Cell(currentRow, 5).Value = "Tổng tiền thanh toán";
+                worksheet.Cell(currentRow, 5).Style.Font.Bold = true;
+                worksheet.Cell(currentRow, 6).Value = "Giảm giá từ voucher";
+                worksheet.Cell(currentRow, 6).Style.Font.Bold = true;
+                foreach (var prd in lst)
+                {
+                    currentRow++;
+                    worksheet.Cell(currentRow, 1).Value = prd.Ngay;
+                    worksheet.Cell(currentRow, 2).Value = prd.Tongdonhang;
+                    worksheet.Cell(currentRow, 3).Value = prd.Tongsanpham;
+                    worksheet.Cell(currentRow, 4).Value = prd.Tongtien;
+                    worksheet.Cell(currentRow, 5).Value = prd.Tongtienthanhtoan;
+                    worksheet.Cell(currentRow, 6).Value = prd.Vouchergiam;
+                }
+                // Định dạng bảng (tô đậm tiêu đề, căn giữa)
+                worksheet.Range("A1:E1").Style.Font.Bold = true;
+                worksheet.RangeUsed().Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                worksheet.Columns().AdjustToContents(); // Tự động điều chỉnh kích thước cột
+
+                using (var stream = new MemoryStream())
+                {
                     workbook.SaveAs(stream);
                     var content = stream.ToArray();
                     return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DanhSachTonKho.xlsx");

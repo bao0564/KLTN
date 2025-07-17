@@ -66,6 +66,12 @@
                                     <i class="fa-solid fa-xmark fa-xl" style="color: #e30d0d;"></i>Đã hủy
                                 </td>
                             }
+                            else if (prd.ODReturn == true)
+                            {
+                                <td>
+                                    <i class="fa-solid fa-xmark fa-xl" style="color: #000;"></i>Đã hoàn hàng
+                                </td>
+                            }
                             <td>
                                 <div style="display:flex;flex-direction:column;gap:10px">
                                     <a class="btn-ddu btn-dt nw" href="@Url.Action("orderdetail","admin", new { iddh = prd.IdDh })" style="border:1px solid #2f3640;">Chi Tiết Đơn Hàng</a>

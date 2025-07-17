@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using KLTN_YourLook.Models;
 using KLTN_YourLook.Repository_YL;
 using Microsoft.CodeAnalysis;
+using DocumentFormat.OpenXml.EMMA;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace KLTN_YourLook.Areas.Admin.Controllers
 {
@@ -327,6 +329,49 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
 
             TempData["Success"] = "Thông báo đã được gửi!";
+            return RedirectToAction("Index");
+        }
+
+        [Route("vourcher")]
+        [HttpGet]
+        public IActionResult Vourcher(int? page)
+        {
+            var name = HttpContext.Session.GetString("NameAdmin");
+            if (name == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            int pageSize = 20;
+            int pageNumber = page ?? 1;
+            IEnumerable<DbVoucher> lstvc;
+            lstvc = _context.DbVouchers.OrderByDescending(x => x.CreateDate);
+            PagedList<DbVoucher> lst = new PagedList<DbVoucher>(lstvc, pageNumber, pageSize);
+            return View(lst);
+        }
+        [Route("createvourcher")]
+        [HttpGet]
+        public IActionResult CreateVourcher()
+        {
+            return View();
+        }
+        [Route("createvourcher")]
+        [HttpPost]
+        public async Task<IActionResult> CreateVourcher(DbVoucher model)
+        {
+            var vc = new DbVoucher
+            {
+                MaVoucher= model.MaVoucher,
+                IconVoucher= model.IconVoucher,
+                valueVoucher=model.valueVoucher,
+                valueMax=model.valueMax,
+                MotaVoucher= model.MaVoucher,
+                CreateDate = DateTime.Now
+            };
+
+            _context.DbVouchers.Add(vc);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "tạo voucher thành công!";
             return RedirectToAction("Index");
         }
     }

@@ -18,6 +18,8 @@ namespace KLTN_YourLook.Models
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
         public bool ODHuy { get; set; }
+        public bool ODReturn { get; set; }
+        public DateTime ODCompleteDate { get; set; }
         public DateTime CreateDate { get; set; }
     }
     public class ViewCustomerHistoryOrder //hiển thị các đơn hàng của khách hàng
@@ -33,6 +35,8 @@ namespace KLTN_YourLook.Models
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
         public bool ODHuy { get; set; }
+        public bool ODReturn { get; set; }
+        public DateTime ODCompleteDate { get; set; }
         public bool Israted { get; set; } //đánh giá hay chưa
         public DateTime CreateDate { get; set; }
     }

@@ -40,15 +40,15 @@ $(document).ready(function () {
 
                     if (!maSp) continue;
                     fetch(`/Admin/getstockinfor?masp=${maSp}&idcl=${colorId}&idsize=${sizeId}`)
-                        .then(r => r.ok ? r.json() : { maCTsp: "error", tenSp: "error" })
+                        .then(r => r.ok ? r.json() : { maCTsp: "lỗi", tenSp: "lỗi", tenColor: "lỗi", tenSize:"lỗi" })
                         .then((ctsp) => {
                             let tr = document.createElement("tr");
                             tr.innerHTML = `
                                 <td>${maSp}</td>
                                 <td>${ctsp.tenSp}</td>
                                 <td>${ctsp.maCTsp}</td>
-                                <td>${colorId}</td>
-                                <td>${sizeId}</td>
+                                <td>${ctsp.tenColor}</td>
+                                <td>${ctsp.tenSize}</td>
                                 <td>${quantity}</td>
                                 <td></td>
                             `;

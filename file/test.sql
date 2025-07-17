@@ -207,4 +207,32 @@ SELECT STRING_AGG(
     ' | '
 ) AS DoanhThuTongHop
 FROM DoanhThuThang; 
-
+update DbOrder set IdKh=21,
+					NguoiNhan=N'Đặng bảo',
+					EmailKh=N'baokun959@gmail.com',
+					Sdt='0332020050',
+					City=N'hưng yên',
+					District=N'tân hưng',
+					Ward=N'đội 9',
+					DiaChi=N'đội 9- tân hưng- hưng yên',
+					TongTien= 810000,
+					TongTienThanhToan=749000,
+					soluong=3,
+					PaymentId=1,
+					PaymentName=N'OCD-Thanh Toán Khi Nhận Hàng',
+					IdVoucher=1,
+					ValueVoucher=10,
+					Giamgia=81000,
+					Ship=20000,
+					GhiChu=N'none',
+					ODSuccess=1,
+					ODReadly=0,
+					ODTransported=0,
+					Complete=0,
+					CreateDate='2024-12-01 17:37:48.1233333',
+					ModifiedBy=N'bosbao',
+					ODHuy=0,
+					ODPrint=1,
+					ODReprint=0,
+					CompleteDate='2024-12-11 17:37:48.1233333',
+					odre

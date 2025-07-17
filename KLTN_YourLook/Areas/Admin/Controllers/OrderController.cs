@@ -33,7 +33,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
         }
         [Route("order")]
         [HttpGet]
-        public async Task<IActionResult> Order(int? page,bool? odsuccess,bool? odreadly,bool? odtranport,bool? complete,bool? odhuy,string? keyword,string? date ,string? todate)
+        public async Task<IActionResult> Order(int? page,bool? odsuccess,bool? odreadly,bool? odtranport,bool? complete,bool? odhuy, bool? odreturn, string? keyword,string? date ,string? todate)
         {
             var name = HttpContext.Session.GetString("NameAdmin");
             if (name == null)
@@ -44,12 +44,13 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             int pageNumber = page ?? 1;
             IEnumerable<AllOrderViewModle> order;//khai báo model chứa dữ liệu
 
-            order=await _orderRepository.SearchOrder( keyword,odsuccess, odreadly, odtranport, complete, odhuy, date, todate);
+            order=await _orderRepository.SearchOrder( keyword,odsuccess, odreadly, odtranport, complete, odhuy, odreturn, date, todate);
             ViewBag.odsuccess = odsuccess;
             ViewBag.odreadly = odreadly;
             ViewBag.odtranport = odtranport;
             ViewBag.complete = complete;
             ViewBag.odhuy = odhuy;
+            ViewBag.odreturn = odreturn;
             ViewBag.keyword = keyword;
             ViewBag.date = date;
             ViewBag.todate = todate;
@@ -101,7 +102,7 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                var (msg,error) = await _orderRepository.UpdateOrder(model.IdDh,model.ODSuccess, model.ODReadly, model.ODTransported, model.Complete, model.ODHuy,name);
+                var (msg,error) = await _orderRepository.UpdateOrder(model.IdDh,model.ODSuccess, model.ODReadly, model.ODTransported, model.Complete, model.ODHuy, model.ODReturn,name);
                 if (!string.IsNullOrEmpty(error))
                 {
                     TempData["Error"] =error;
@@ -344,10 +345,10 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("orderexportexcel")]//xuất excel tất cả thông tin đơn hàng (không phải chi tiết)
-        public async Task<IActionResult> ExportOrderListToExcel(bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete, bool? odhuy, string? keyword, string date, string todate)
+        public async Task<IActionResult> ExportOrderListToExcel(bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete, bool? odhuy, bool? odreturn, string? keyword, string date, string todate)
         {
             IEnumerable<AllOrderViewModle> order;
-            order = await _orderRepository.SearchOrder(keyword, odsuccess, odreadly, odtranport, complete, odhuy, date, todate);
+            order = await _orderRepository.SearchOrder(keyword, odsuccess, odreadly, odtranport, complete, odhuy, odreturn, date, todate);
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Danh sách đơn hàng");

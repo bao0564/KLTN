@@ -44,6 +44,7 @@ namespace Data.Models
         public bool Complete { get; set; }
         public DateTime? CompleteDate { get; set; }
         public bool ODHuy { get; set; }
+        public bool ODReturn { get; set; }
         public bool ODPrint { get; set; }
         public bool ODReprint { get; set; }
 

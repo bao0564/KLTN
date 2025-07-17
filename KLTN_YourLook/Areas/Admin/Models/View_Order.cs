@@ -23,6 +23,7 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
         public bool ODHuy { get; set; }
+        public bool ODReturn { get; set; }
         public bool ODPrint { get; set; }
         public bool ODReprint { get; set; }
     }
@@ -86,5 +87,6 @@ namespace KLTN_YourLook.Areas.Admin.Models
         public bool ODTransported { get; set; }
         public bool Complete { get; set; }
         public bool ODHuy { get; set; }
+        public bool ODReturn { get; set; }
     }
 }

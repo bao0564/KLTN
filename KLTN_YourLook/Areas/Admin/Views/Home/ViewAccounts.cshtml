@@ -22,11 +22,8 @@
                         <th style="display:none">Id</th>
                         <th>Mã NV</th>
                         <th>Tên NV</th>
-                        @if (Context.Session.GetString("Role") == "Admin")
-                        {
                         <th>Email NV</th>
                         <th>Mật Khẩu TK</th>
-                        }
                         <th>Quyền</th>
                         <th></th>
                     </tr>
@@ -40,17 +37,14 @@
                                 <td style="display:none">@prd.Id</td>
                                 <td>@prd.MaAdmin</td>
                                 <td>@prd.NameDn</td>
-                                @if (Context.Session.GetString("Role") == "Admin")
-                                {
-                                    <td>@prd.EmailDn</td>
-                                    <td>@prd.PasswordDn</td>
-                                }
+                                <td>@prd.EmailDn</td>
+                                <td>@prd.PasswordDn</td>
                                 <td>@prd.Quyen</td>
-                                <td>
-                                    @if (Context.Session.GetString("Role") == "Admin")
-                                    {
-                                        <a href="@Url.Action("", new { id = prd.Id })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
-                                        <a asp-action="" asp-route-id="@prd.Id" style="color: black;">Sửa</a>
+								<td>
+									@if (Context.Session.GetString("Role") == "Admin")
+									{
+									    <a asp-action="" asp-route-id="@prd.Id" style="color: black;">Sửa</a>
+									    <a href="@Url.Action("", new { id = prd.Id })" onclick="deletedm(event)" style="color: #000;">Xóa</a>
                                     }
                                 </td>
                             </tr>

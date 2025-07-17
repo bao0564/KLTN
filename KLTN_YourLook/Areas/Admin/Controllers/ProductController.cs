@@ -460,12 +460,15 @@ namespace KLTN_YourLook.Areas.Admin.Controllers
             {
                 return NotFound("Không tìm thấy sản phẩm");
             }
-            var ctsp = await _context.DbProductDetails.FirstOrDefaultAsync(pd => pd.IdSp == sp.IdSp && pd.ColorId == idcl && pd.SizeId == idsize);
+            var ctsp = await _context.DbProductDetails
+                .Include(cl=>cl.color)//join thêm bảng color để lấy tên
+                .Include(sz=>sz.size)//same
+                .FirstOrDefaultAsync(pd => pd.IdSp == sp.IdSp && pd.ColorId == idcl && pd.SizeId == idsize);
             if (ctsp == null)
             {
                 return NotFound("Không tìm thấy chi tiết sản phẩm");
             }
-            return Ok(new { maCTsp = ctsp.MaCTSP, tenSp = sp.TenSp });
+            return Ok(new { maCTsp = ctsp.MaCTSP, tenSp = sp.TenSp, tenColor=ctsp.NameColor, tenSize=ctsp.NameSize });
         }
         //api lưu thông tin nhập hàng vào bảng chi tiết sản phẩm
         [HttpPost]
