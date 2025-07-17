@@ -380,61 +380,94 @@ jQuery(document).ready(function($)
 			});
 			
 
-			// Lọc sản phẩm theo màu sắc khi checkbox được chọn
+			//// Lọc sản phẩm theo màu sắc khi checkbox được chọn
+			//$('.color-filter').on('change', function () {
+			//	$('.color-filter').not(this).prop('checked', false);//chỉ cho chọn 1 loại màu
+			//	var selectedColors = [];
+
+			//	// Thu thập tất cả các màu được chọn
+			//	$('.color-filter:checked').each(function () {
+			//		var color = $(this).next('.box_color').find('p').text().toLowerCase().trim();
+			//		selectedColors.push(color);
+			//	});
+
+			//	// Nếu không chọn màu nào, hiển thị tất cả sản phẩm
+			//	if (selectedColors.length === 0) {
+			//		$('.product-grid').isotope({ filter: '*' });
+			//		return;
+			//	}
+
+			//	// Áp dụng bộ lọc Isotope
+			//	$('.product-grid').isotope({
+			//		filter: function () {
+			//			var $itemColors = $(this).find('.in-color-item').map(function () {
+			//				return $(this).text().toLowerCase().trim();
+			//			}).get();
+
+			//			// Kiểm tra nếu sản phẩm có chứa bất kỳ màu nào trong danh sách đã chọn
+			//			return selectedColors.some(function (color) {
+			//				return $itemColors.includes(color);
+			//			});
+			//		}
+			//	});
+			//});
+			//$('.size-filter').on('change', function () {
+
+			//	$('.size-filter').not(this).prop('checked', false);//chỉ cho chọn 1 loại size
+
+			//	var selectedSizes = [];
+			//	$('.size-filter:checked').each(function () {
+			//		var size = $(this).siblings('p').text().toLowerCase().trim();
+			//		selectedSizes.push(size);
+			//	});
+			//	if (selectedSizes.length === 0) {
+			//		$('.product-grid').isotope({ filter: '*' });
+			//		return;
+			//	}
+			//	$('.product-grid').isotope({
+			//		filter: function () {
+			//			var itemSizes = $(this).find('.in-size-item').map(function () {
+			//				return $(this).text().toLowerCase().trim();
+			//			}).get();
+			//			return selectedSizes.some(function (size) {
+			//				return itemSizes.includes(size);
+			//			});
+			//		}
+			//	});
+			//});
+			//gộp 2 điều kiện lọc làm 1
 			$('.color-filter').on('change', function () {
-				$('.color-filter').not(this).prop('checked', false);//chỉ cho chọn 1 loại màu
-				var selectedColors = [];
+				$('.color-filter').not(this).prop('checked', false); // Chỉ chọn 1 màu
+				filterProducts();
+			});
 
-				// Thu thập tất cả các màu được chọn
-				$('.color-filter:checked').each(function () {
-					var color = $(this).next('.box_color').find('p').text().toLowerCase().trim();
-					selectedColors.push(color);
-				});
+			$('.size-filter').on('change', function () {
+				$('.size-filter').not(this).prop('checked', false); // Chỉ chọn 1 size
+				filterProducts();
+			});
+			//z`
+			function filterProducts() {
+				var selectedColor = $('.color-filter:checked').next('.box_color').find('p').text().toLowerCase().trim() || null;
+				var selectedSize = $('.size-filter:checked').siblings('p').text().toLowerCase().trim() || null;
 
-				// Nếu không chọn màu nào, hiển thị tất cả sản phẩm
-				if (selectedColors.length === 0) {
-					$('.product-grid').isotope({ filter: '*' });
-					return;
-				}
-
-				// Áp dụng bộ lọc Isotope
 				$('.product-grid').isotope({
 					filter: function () {
-						var $itemColors = $(this).find('.in-color-item').map(function () {
+						var itemColors = $(this).find('.in-color-item').map(function () {
 							return $(this).text().toLowerCase().trim();
 						}).get();
-
-						// Kiểm tra nếu sản phẩm có chứa bất kỳ màu nào trong danh sách đã chọn
-						return selectedColors.some(function (color) {
-							return $itemColors.includes(color);
-						});
-					}
-				});
-			});
-			$('.size-filter').on('change', function () {
-
-				$('.size-filter').not(this).prop('checked', false);//chỉ cho chọn 1 loại size
-
-				var selectedSizes = [];
-				$('.size-filter:checked').each(function () {
-					var size = $(this).siblings('p').text().toLowerCase().trim();
-					selectedSizes.push(size);
-				});
-				if (selectedSizes.length === 0) {
-					$('.product-grid').isotope({ filter: '*' });
-					return;
-				}
-				$('.product-grid').isotope({
-					filter: function () {
 						var itemSizes = $(this).find('.in-size-item').map(function () {
 							return $(this).text().toLowerCase().trim();
 						}).get();
-						return selectedSizes.some(function (size) {
-							return itemSizes.includes(size);
-						});
+
+						var colorMatch = selectedColor ? itemColors.includes(selectedColor) : true;//xem chọn chưa thì lấy chọn nếu ko trả về true (ko lọc đk đó)
+						var sizeMatch = selectedSize ? itemSizes.includes(selectedSize) : true;
+
+						// trả veef điều kiện đã chọn
+						return colorMatch && sizeMatch;
 					}
 				});
-			});
+			}
+
     	}
     }
 	

@@ -177,6 +177,8 @@ namespace KLTN_YourLook.Repository_YL
                 ODTransported = x.ODTransported,
                 Complete = x.Complete,
                 ODHuy = x.ODHuy,
+                ODReturn = x.ODReturn,
+                ODCompleteDate= x.ODCompleteDate,                
                 Israted = _context.DbRatings.Any(r => r.IdDh == x.IdDh)
             });
             return lst.ToList();

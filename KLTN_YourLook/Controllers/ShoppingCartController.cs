@@ -186,7 +186,7 @@ namespace KLTN_YourLook.Controllers
                 }
                 if (orderPayment.PaymentId!=1)
                 {
-                    var updateTrangThaiDH = await _orderRepository.UpdateOrder(newIdDH, false, true, false, false, false, orderInfor.TenKh);
+                    var updateTrangThaiDH = await _orderRepository.UpdateOrder(newIdDH, false, true, false, false, false, false, orderInfor.TenKh);
                 }
                 await _context.SaveChangesAsync();
                 HttpContext.Session.Remove("Order");

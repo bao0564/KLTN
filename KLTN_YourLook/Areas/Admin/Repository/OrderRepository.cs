@@ -68,7 +68,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
         }
 
         //tìm kiếm dơn hàng
-        public async Task<IEnumerable<AllOrderViewModle>> SearchOrder(string? keyword, bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete, bool? odhuy, string? date, string? todate)
+        public async Task<IEnumerable<AllOrderViewModle>> SearchOrder(string? keyword, bool? odsuccess, bool? odreadly, bool? odtranport, bool? complete, bool? odhuy, bool? odreturn, string? date, string? todate)
         {
             if (_dbConnection == null)
             {
@@ -81,6 +81,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             parames.Add("@odtranport", odtranport);
             parames.Add("@complete", complete);
             parames.Add("@odhuy", odhuy);
+            parames.Add("@odreturn", odreturn);
             parames.Add("@date", date);
             parames.Add("@todate", todate);
             return await _dbConnection.QueryAsync<AllOrderViewModle>("order_search", parames, commandType: CommandType.StoredProcedure);
@@ -277,7 +278,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             }
         }
         //Cập nhật đơn hàng 
-        public async Task<(string msg,string error)> UpdateOrder(int iddh,bool odsuccess,bool odreadly,bool odtransported,bool complete,bool odhuy,string modifiedby)
+        public async Task<(string msg,string error)> UpdateOrder(int iddh,bool odsuccess,bool odreadly,bool odtransported,bool complete,bool odhuy,bool odreturn, string modifiedby)
         {
             if (_dbConnection == null)
             {
@@ -290,6 +291,7 @@ namespace KLTN_YourLook.Areas.Admin.Repository
             parameters.Add("@odtransported", odtransported);            
             parameters.Add("@complete", complete);            
             parameters.Add("@odhuy", odhuy);
+            parameters.Add("@odreturn", odreturn);
             parameters.Add("@modifiedby", modifiedby);
 
             parameters.Add("@msg", dbType: DbType.String, size: 500,direction: ParameterDirection.Output);

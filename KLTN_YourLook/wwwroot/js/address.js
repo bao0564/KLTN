@@ -1,25 +1,29 @@
-﻿
-//chọn địa chỉ +Hinhf thuwcs Thanh toans
-$(document).on('change', '.address-val', function () {
-    $('.address-val').not(this).prop('checked', false);
-    // Kiểm tra
-    if (this.checked) {
-        // Lấy dữ liệu
-        var name = $(this).data('name');
-        var phone = $(this).data('phone');
-        var city = $(this).data('city');
-        var district = $(this).data('district');
-        var ward = $(this).data('ward');
-        var address = $(this).data('address');
+﻿$(document).ready(function () {
+    //chọn địa chỉ Thanh toans
+    $(document).on('change', '.address-val', function () {
+        $('.address-val').not(this).prop('checked', false);
+        // Kiểm tra
+        if (this.checked) {
+            // Lấy dữ liệu
+            var name = $(this).data('name');
+            var phone = $(this).data('phone');
+            var city = $(this).data('city');
+            var district = $(this).data('district');
+            var ward = $(this).data('ward');
+            var address = $(this).data('address');
 
-        // Gán dữ liệu 
-        $('#TenKh').val(name);
-        $('#Sdt').val(phone);
-        $('#City').val(city);
-        $('#District').val(district);
-        $('#Ward').val(ward);
-        $('#DiaChi').val(address);
-    }
+            // Gán dữ liệu 
+            $('#TenKh').val(name);
+            $('#Sdt').val(phone);
+            $('#City').val(city);
+            $('#District').val(district);
+            $('#Ward').val(ward);
+            $('#DiaChi').val(address);
+        }
+    });
+    //checked luôn cái đầu 
+    var firstAddress = $('.address-val').first();
+    firstAddress.prop('checked', true).trigger('change');
 });
 //chỉ chọn 1 hình thức thanh toán
 $(document).on('change', '.pay-checked', function () {

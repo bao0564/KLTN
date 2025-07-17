@@ -1,0 +1,52 @@
+﻿@model Data.Models.DbVoucher
+
+@{
+    ViewData["Title"] = "CreateVourcher";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="menu-cp">
+    <div class="cp0">
+        Thêm / Tạo voucher mới
+    </div>
+    <div class="h-cp1">
+        <div class="h-cp-up">
+            <div style="display:flex;align-items:center;padding-top:15px">
+                <a asp-action="Vourcher"><img style="height:20px" src="\icon\drop left.svg" /> </a>
+            </div>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="CreateVourcher">
+            <div class="h-cp-mid-1">
+                <div class="col-4">
+                    <label class="control-label">Mã voucher</label>
+                    <input asp-for="MaVoucher" id="masize" class="form-control" />
+                    <span asp-validation-for="MaVoucher" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label class="control-label">Icon</label>
+                    <input asp-for="IconVoucher" class="form-control" type="file"/>
+                    <span asp-validation-for="IconVoucher" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="h-cp-mid-1">
+                <div class="col-4">
+                    <label class="control-label">Giảm giá (%)</label>
+                    <input asp-for="valueVoucher" id="masize" class="form-control" />
+                    <span asp-validation-for="valueVoucher" class="text-danger"></span>
+                </div>
+                <div class="col-4">
+                    <label class="control-label">Tối đa</label>
+                    <input asp-for="valueMax" class="form-control" />
+                    <span asp-validation-for="valueMax" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="h-cp-dow fljct">
+                <div class="mg">
+                    <input type="submit" value="Lưu" class="" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

@@ -72,8 +72,8 @@
 
             // Click chọn gợi ý
             $(document).on("click", ".suggest-item", function () {
-                var value = $(this).data("value");
-                $("#searchKeyword").val(value);
+                //var value = $(this).data("value");
+                //$("#searchKeyword").val(value);
                 $("#suggestions").hide();
             });
 

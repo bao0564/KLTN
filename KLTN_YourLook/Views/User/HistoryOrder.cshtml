@@ -95,13 +95,26 @@
                             @if(!od.ODHuy && !od.Complete && !od.ODTransported){
                                 <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="UpdateOrder" asp-route-iddh="@od.IdDh" onclick="huydh(event)">hủy Đơn hàng</a></div>
                             }
-                            else if (od.Complete && !od.Israted)//đơn hàng hoàn thành //chưa đánh giá
+                            else if (od.Complete )//đơn hàng hoàn thành //chưa đánh giá 
                             {
-                                <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="CreateRating" asp-route-iddh="@od.IdDh">Đánh giá</a></div>
-                            }
-                            else if (od.Complete && od.Israted)//đã đánh giá
-                            {
-                                <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu">Đã Đánh giá</a></div>
+								<div class="fl">
+                                    @if (!od.Israted)//chưa đánh giá
+                                    {
+                                        <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="CreateRating" asp-route-iddh="@od.IdDh">Đánh giá</a></div>
+                                        if ((DateTime.Now - od.ODCompleteDate).TotalDays <= 7 && !od.ODReturn)//còn trong time hoàn hàng
+                                        {
+                                                <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" asp-action="ReturnOrder" asp-route-iddh="@od.IdDh" onclick="hoandh(event)">Hoàn hàng</a></div>
+                                       
+                                        }
+                                        else if(od.ODReturn){//đã hoàn
+                                            <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu" >Đã hoàn hàng</a></div>
+                                        }
+                                    }
+                                    else//đã đánh giá
+                                    {
+                                        <div class="flct mg-lr"><a class="bd pd-lr cl000 ttu">Đã Đánh giá</a></div>
+								    }
+								</div>
                             }
                             else{
                                 <div></div>
@@ -115,19 +128,34 @@
                             <div class="ttu" style="font-size:25px;color:#000">đơn hàng Đã Hủy</div>
                         </div>
                     }
+
+                    @if (od.ODReturn)
+                    {
+                        <div class="fl-center" style="position:absolute;top:0;bottom:0;left:0;width:100%;z-index:10;background-color:#353837a1;border-radius:10px">
+                            <div class="ttu" style="font-size:25px;color:#000"> Đã Hoàn Hàng</div>
+                        </div>
+                    }
                 </div>                
             }
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-    function huydh(event) {
-        event.preventDefault();
-        var userConfirmed = confirm("Bạn muốn hủy đơn hàng này?");
-        if (userConfirmed) {
-            var url = event.currentTarget.getAttribute("href");
-            window.location.href = url;
+    <script type="text/javascript">
+        function huydh(event) {
+            event.preventDefault();
+            var userConfirmed = confirm("Bạn muốn hủy đơn hàng này?");
+            if (userConfirmed) {
+                var url = event.currentTarget.getAttribute("href");
+                window.location.href = url;
+            }
         }
-    }
-</script>
+        function hoandh(event) {
+            event.preventDefault();
+            var userConfirmed = confirm("Bạn muốn hoàn trả đơn hàng này?");
+            if (userConfirmed) {
+                var url = event.currentTarget.getAttribute("href");
+                window.location.href = url;
+            }
+        }
+    </script>

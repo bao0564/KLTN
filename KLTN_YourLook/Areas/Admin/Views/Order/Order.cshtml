@@ -47,24 +47,28 @@
                 </div>
                 <div class="fl" style="margin:15px 15px 0 0">
                     <div class="flct mg-lr">
-                        <input type="checkbox" id="odsuccess" name="odsuccess" @(ViewBag.odsuccess == true ? "checked" : "") onchange="applyFilter()" />
+                        <input type="checkbox" id="odsuccess" name="status" @(ViewBag.odsuccess == true ? "checked" : "") onchange="applyFilter()" />
                         <div class="ttu cl000">Chờ xử lý</div>
                     </div>
                     <div class="flct mg-lr">
-                        <input type="checkbox" id="odreadly" name="odreadly" @(ViewBag.odreadly == true ? "checked" : "") onchange="applyFilter()" />
+                        <input type="checkbox" id="odreadly" name="status" @(ViewBag.odreadly == true ? "checked" : "") onchange="applyFilter()" />
                         <div class="ttu cl000">Chờ vận chuyển</div>
                     </div>
                     <div class="flct mg-lr">
-                        <input type="checkbox" id="odtranport" name="odtranport" @(ViewBag.odtranport == true ? "checked" : "") onchange="applyFilter()" />
+                        <input type="checkbox" id="odtranport" name="status" @(ViewBag.odtranport == true ? "checked" : "") onchange="applyFilter()" />
                         <div class="ttu cl000">Đang vận chuyển</div>
                     </div>
                     <div class="flct mg-lr">
-                        <input type="checkbox" id="complete" name="complete" @(ViewBag.complete == true ? "checked" : "") onchange="applyFilter()" />
-                        <div  class="ttu cl000">hoàn thành</div>
+                        <input type="checkbox" id="complete" name="status" @(ViewBag.complete == true ? "checked" : "") onchange="applyFilter()" />
+                        <div  class="ttu cl000">Hoàn thành</div>
                     </div>
                     <div class="flct mg-lr">
-                        <input type="checkbox" id="odhuy" name="odhuy" @(ViewBag.odhuy == true ? "checked" : "") onchange="applyFilter()" />
-                        <div class="ttu cl000">đã hủy</div>
+                        <input type="checkbox" id="odhuy" name="status" @(ViewBag.odhuy == true ? "checked" : "") onchange="applyFilter()" />
+                        <div class="ttu cl000">Đã hủy</div>
+                    </div>
+                    <div class="flct mg-lr">
+                        <input type="checkbox" id="odreturn" name="status" @(ViewBag.odreturn == true ? "checked" : "") onchange="applyFilter()" />
+                        <div class="ttu cl000">Trả hàng</div>
                     </div>
                 </div>
             </div>
@@ -126,6 +130,10 @@
                                     else if (prd.ODHuy == true)
                                     {
                                         <div class="bdrdu nw pd-lr" style="background-color:#eb2f06;color:#fff">Đã hủy</div>
+                                    }
+                                    else if (prd.ODReturn == true)
+                                    {
+                                        <div class="bdrdu nw pd-lr" style="background-color:#000;color:#fff">Đã trả hàng</div>
                                     }
                                 </td>
                                 <td>

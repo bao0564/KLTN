@@ -9,9 +9,26 @@
 		<div class="ttu pd-lr"><a href="@Url.Action("report","admin")"><i class="fa-solid fa-chevron-left" style="color: #000000;"></i>Tồn kho</a></div>
     </div>
     <form asp-controller="Report" asp-action="Report_Inventory" method="get">
-		<div class="fl gap">
-            <input class="pd-lr" placeholder="Mã sp chi tiết..." name="keyword" style="" value="@ViewBag.keyword" autocomplete="off" />
-            <input class="pd-lr" placeholder="Số lượng tồn kho..." name="quantity" style="" value="@ViewBag.quantity" autocomplete="off" />
+        <div class="fl gap">
+			<div style="height:auto">
+                <div style="position:relative;">
+                    <input id="input_mctsp" class="pd-lr" placeholder="Mã sp chi tiết..." name="keyword" style="width:200px;height:30px" value="@ViewBag.keyword" autocomplete="off" />
+                    <div id="suggestions">
+
+                    </div>
+                </div>
+            </div>
+            @if (ViewBag.quantity != null)
+            {
+                <div style="height:auto">
+                    <input class="pd-lr" placeholder="Số lượng tồn kho..." name="quantity" style="width:200px;height:30px" value="0" autocomplete="off"/>
+                </div>
+            }
+            else{
+                <div style="height:auto">
+                    <input class="pd-lr" placeholder="Số lượng tồn kho..." name="quantity" style="width:200px;height:30px" value="@ViewBag.quantity" autocomplete="off" />
+                </div>
+            }
 			<button class="flct" style="border-radius:10px" type="submit"><i class="fa-solid fa-filter" style="color: #000000;"></i>Lọc</button>
 			<button class="nw" style="border-radius:10px" type="button" id="exportInventoryProductExcel">Xuất Excel</button>
         </div>
@@ -54,4 +71,5 @@
         }
     </tbody>
 </table>
-<script src="~/js_admin/admin_report.js"></script>	
+@* <script src="~/js_admin/admin_report.js"></script>	 *@
+<script src="~/js_admin/admin_report_inventory.js"></script>

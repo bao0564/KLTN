@@ -380,12 +380,13 @@ create procedure [dbo].[order_search]
 	@odtranport bit= null,
 	@complete bit= null,
 	@odhuy bit= null,
+	@odreturn bit= null,
 	@date datetime= null,
 	@todate datetime= null	
 as
 begin
 	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
-			od.soluong,od.TongTien,od.TongTienThanhToan,od.PaymentName,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy,od.ODPrint,od.ODReprint
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.PaymentName,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy,od.ODReturn,od.ODPrint,od.ODReprint
 	from DbOrder od
 	join DbCustomer cus on od.IdKh=cus.IdKh
 	where (@keyword IS NULL OR od.MaDh LIKE '%' + @keyword + '%' 
@@ -397,6 +398,7 @@ begin
 		AND (@odtranport IS NULL OR od.ODTransported = @odtranport)
 		AND (@complete IS NULL OR od.Complete = @complete)
 		AND (@odhuy IS NULL OR od.ODHuy = @odhuy)
+		AND (@odreturn IS NULL OR od.ODReturn = @odreturn)
 		AND (
             (@date IS NULL AND @todate IS NULL) OR 
             (@date IS NOT NULL AND @todate IS NULL AND CAST(od.CreateDate AS DATE) = @date) OR
@@ -420,13 +422,15 @@ create procedure [dbo].[order_date]
 as
 begin
 	select od.IdDh,od.MaDh,cus.TenKh,CONCAT(od.NguoiNhan,'-',od.Sdt) as NguoiNhan,CONCAT(od.Ward,'-',od.District,'-',od.City,'-',od.DiaChi) as InforAddress,
-			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy,od.ODPrint,od.ODReprint
+			od.soluong,od.TongTien,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy,od.ODReturn,od.ODPrint,od.ODReprint
 	from DbOrder od
 	join DbCustomer cus on od.IdKh=cus.IdKh
 	where CAST(od.CreateDate AS DATE) = @date 
 	order by od.soluong ASC
 end;
 
+--select * from DbOrder
+--select * from DbOrderDetail
 SET QUOTED_IDENTIFIER ON
 GO
 --tìm chi tiết đơn hàng// dùng để in đơn hàng//dùng để in tất cả đơn hàng
@@ -620,6 +624,10 @@ end;
 SET QUOTED_IDENTIFIER ON
 GO
 --update đơn hàng
+--DECLARE @error NVARCHAR(500);DECLARE @msg NVARCHAR(500);exec orderupdate @iddh=77,@odsuccess=0,@odreadly=0,@odtransported=0,@complete=0,@odhuy=0,@odreturn=1 ,@modifiedby='bao'
+--    ,@msg = @msg OUTPUT,
+--    @error = @error OUTPUT;
+--SELECT @msg AS Message, @error AS Error;
 --drop procedure orderupdate
 create procedure [dbo].[orderupdate]
 	@iddh int,
@@ -628,6 +636,7 @@ create procedure [dbo].[orderupdate]
 	@odtransported bit,
 	@complete bit,
 	@odhuy bit,
+	@odreturn bit,
 	@modifiedby nvarchar(50),
 	@msg nvarchar(500) output,
 	@error nvarchar(500) output
@@ -639,10 +648,12 @@ begin
 	declare @isodreadly bit;
 	declare @isodtransported bit;
 	declare @iscomplete bit;
+	declare @iscompletedate datetime;
 	declare @isodhuy bit;
+	declare @isreturn bit;
 	DECLARE @hasError BIT = 0;
 	begin try	
-		select @isprint=od.ODPrint,@isodsuccess=od.ODSuccess,@isodreadly=od.ODReadly,@isodtransported=od.ODTransported,@iscomplete=od.Complete,@isodhuy=od.ODHuy
+		select @isprint=od.ODPrint,@isodsuccess=od.ODSuccess,@isodreadly=od.ODReadly,@isodtransported=od.ODTransported,@iscomplete=od.Complete,@isodhuy=od.ODHuy,@isreturn=od.ODReturn, @iscompletedate=od.CompleteDate
 			from DbOrder od
 			where od.IdDh=@iddh;		
 		if @isodreadly=1 and @odsuccess =1
@@ -660,14 +671,23 @@ begin
 			begin
 				set @error=N'Đơn hàng đã hoàn thành không thể cập nhật về trạng thái này ';
 				return;
-			end		
+			end						
+		if @isodhuy=1 and (@odreadly =1 or @odsuccess =1 or @odtransported=1 or @complete=1)
+			begin
+				set @error=N'Đơn hàng đã hủy không thể cập nhật về trạng thái này ';
+				return;
+			end								
+		if @isreturn=1 and (@odreadly =1 or @odsuccess =1 or @odtransported=1 or @complete=1 or @odhuy=1)
+			begin
+				set @error=N'Đơn hàng đã hoàn không thể cập nhật về trạng thái này ';
+				return;
+			end	
 		else
-			update DbOrder set ODSuccess=@odsuccess,ODReadly=@odreadly,ODTransported=@odtransported,Complete=@complete,ODHuy=@odhuy,ModifiedBy=@modifiedby
+			update DbOrder set ODSuccess=@odsuccess,ODReadly=@odreadly,ODTransported=@odtransported,Complete=@complete,ODHuy=@odhuy,ODReturn=@odreturn,ModifiedBy=@modifiedby
 				where IdDh=@iddh
 				if @complete=1
 					begin
 						update DbOrder set CompleteDate= GETDATE() 
-
 						where IdDh=@iddh
 					end
 				if @odhuy=1
@@ -679,6 +699,17 @@ begin
 							where odd.IdDh=@iddh and pd.ColorId=odd.IdColor and pd.SizeId=odd.IdSize
 						set @msg=N'Hủy đơn hàng thành công';
 						return;
+					end
+				if @odreturn=1 and @iscomplete=1 and DATEDIFF(DAY, @iscompletedate, GETDATE()) < 7
+					begin
+						update od set od.ODSuccess=0, ODReadly=0, ODTransported=0, Complete=0,ODHuy=0,ODReturn=1,ModifiedBy=@modifiedby from DbOrder od where od.IdDh=@iddh
+						set @msg=N'Yêu cầu hoàn đơn hàng thành công';
+						return;						
+					end					
+				if @odreturn=1 and @iscomplete=1 and DATEDIFF(DAY, @iscompletedate, GETDATE()) > 7
+					begin
+						set @msg=N'Đơn hàng đã vượt quá số ngày cho phép hoàn, ko thể hoàn hàng';
+						return;	
 					end
 			set @msg=N'Cập nhật đơn hàng thành công';
 	end try
@@ -1135,45 +1166,44 @@ END;
 
 --báo cáo 1
 --drop procedure Report_Inventory
-DECLARE @msg NVARCHAR(500);
-DECLARE @error NVARCHAR(500);
-exec Report_Inventory @keyword = '',@quantity=100, @msg = @msg OUTPUT, @error = @error OUTPUT;SELECT @msg AS Message, @error AS Error;
+--exec Report_Inventory @keyword = 'phonghoathoaden',@quantity=0
 create procedure [dbo].[Report_Inventory]
 	@keyword nvarchar(50),-- mã chi tiết sản phẩm, tên ...
-	@quantity int,--số lượng tồn cần show
-	
-    @msg NVARCHAR(500) OUTPUT,
-    @error NVARCHAR(500) OUTPUT
+	@quantity int--số lượng tồn cần show
 as 
 begin
-	DECLARE @qty INT = NULL
-    -- Nếu có nhập số lượng thì kiểm tra
-    IF @quantity IS NOT NULL AND LTRIM(RTRIM(@quantity)) <> ''
-		BEGIN
-			IF TRY_CONVERT(INT, @quantity) IS NULL
-				BEGIN
-					SET @error = N'Số lượng không hợp lệ. Vui lòng nhập số.'
-					RETURN
-				END
-			ELSE
-				BEGIN
-					SET @qty = CONVERT(INT, @quantity)
-				END
-		END
+    if @keyword is not null and @quantity <= 0
+		begin
+			SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
+				FROM DbProductDetail pd 
+				JOIN DbProduct p ON p.IdSp = pd.IdSp
+				JOIN DbColor cl ON pd.ColorId = cl.ColorId
+				JOIN DbSize sz ON pd.SizeId = sz.SizeId
+				WHERE (@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '' OR pd.MaCTSP LIKE N'%' + @keyword + '%'OR p.TenSp LIKE N'%' + @keyword + '%')
+				ORDER BY pd.Quantity
+		end
+    if @keyword= null and @quantity >0
+		begin			
+			SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
+				FROM DbProductDetail pd 
+				JOIN DbProduct p ON p.IdSp = pd.IdSp
+				JOIN DbColor cl ON pd.ColorId = cl.ColorId
+				JOIN DbSize sz ON pd.SizeId = sz.SizeId
+				WHERE pd.Quantity < @quantity 
+				ORDER BY pd.Quantity ASC
+		end
     -- Truy vấn 
-    SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
-		FROM DbProductDetail pd 
-		JOIN DbProduct p ON p.IdSp = pd.IdSp
-		JOIN DbColor cl ON pd.ColorId = cl.ColorId
-		JOIN DbSize sz ON pd.SizeId = sz.SizeId
-		WHERE (@qty IS NULL OR pd.Quantity < @qty) and
-			(@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '' OR pd.MaCTSP LIKE N'%' + @keyword + '%'OR p.TenSp LIKE N'%' + @keyword + '%')
-		ORDER BY pd.Quantity ASC
-    -- Gửi thông báo
-    --IF @qty IS NULL AND (@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '')
-    --    SET @msg = N'Hiển thị tất cả sản phẩm (không lọc).'
-    --ELSE
-    --    SET @msg = N'Kết quả đã được lọc theo điều kiện.'
+	else
+		begin		
+			SELECT p.IdSp, p.MaSp, pd.MaCTSP, p.TenSp, cl.NameColor, sz.NameSize, pd.Quantity
+				FROM DbProductDetail pd 
+				JOIN DbProduct p ON p.IdSp = pd.IdSp
+				JOIN DbColor cl ON pd.ColorId = cl.ColorId
+				JOIN DbSize sz ON pd.SizeId = sz.SizeId
+				WHERE (pd.Quantity < @quantity) and
+					(@keyword IS NULL OR LTRIM(RTRIM(@keyword)) = '' OR pd.MaCTSP LIKE N'%' + @keyword + '%'OR p.TenSp LIKE N'%' + @keyword + '%')
+				ORDER BY pd.Quantity ASC
+		end
 end;
 
 --báo cáo 2 
@@ -1205,7 +1235,7 @@ begin
 			--		where od3.ODHuy = 1 and	od3.CreateDate >= '2025/01/01' and od3.CreateDate <= '2025/02/01'
 			--) as Tongdonhuy
 		FROM DbOrder od 
-		WHERE od.CreateDate >= @date and od.CreateDate <= @todate
+		WHERE od.CreateDate >= @date and od.CreateDate <= @todate and od.Complete=1
 		group by CAST(od.CreateDate AS DATE)
 		order by Ngay
 		--WHERE od.CreateDate >= @date and od.CreateDate <= @todate

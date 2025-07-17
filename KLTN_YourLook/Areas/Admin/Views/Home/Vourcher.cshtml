@@ -1,0 +1,82 @@
+﻿@using Data.Models
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Vourcher";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@model X.PagedList.IPagedList<DbVoucher>
+<div class="cp0">
+    Danh Sách Voucher
+</div>
+<div class="h-cp1">
+    <div class="h-cp-f">
+        <div class="h-cp-up">
+            <div class="bt-c"><a href="@Url.Action("CreateVourcher","Admin")">Thêm voucher Mới</a></div>
+            <div class="bt-c"><a href="">In dữ liệu </a></div>
+            <div class="bt-c"><a href="">Xuất Excel</a></div>
+            <div class="bt-c"><a href="">Xuất PDF</a></div>
+        </div>
+        <div class="h-cp-mid">
+            <div>
+                <input class="form-search" type="text" placeholder="Tìm Kiếm mã/ Tên mã . . .">
+            </div>
+            <table class="h-table">
+                <thead>
+                    <tr>
+                        <th class="hidden">Id</th>
+                        <th>Mã voucher</th>
+                        <th>Icon</th>
+                        <th>Giảm giá (%)</th>
+                        <th>Tối đa</th>
+                        <th>Ngày tạo</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var prd in Model)
+                        {
+                            <tr>
+                                <td class="hidden">@prd.IdVoucher</td>
+                                <td>@prd.MaVoucher</td>
+                                <td>@prd.IconVoucher</td>
+                                <td>@prd.valueVoucher</td>
+                                <td>@prd.valueMax</td>
+                                <td>@prd.CreateDate</td>
+                                <td>
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <a href="@Url.Action("VourcherDelete", new { idvc = prd.IdVoucher })" onclick="deletevc(event)" style="color: #000;">Xóa</a>
+                                    }
+                                    @if (Context.Session.GetString("Role") != "Staff")
+                                    {
+                                        <a asp-action="VoucherUpdate" asp-route-idvc="@prd.IdVoucher" style="color: black;">Sửa</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6">"trống!"</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Voucher", "Voucher", new { page = page }))
+<script type="text/javascript">
+    function deletevc(event) {
+        event.preventDefault();
+        var userConfirmed = confirm("Bạn có chắc chắn muốn xóa voucher này?");
+        if (userConfirmed) {
+            var url = event.currentTarget.getAttribute("href");
+            window.location.href = url;
+        }
+    }
+</script>

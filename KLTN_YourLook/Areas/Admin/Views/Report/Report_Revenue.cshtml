@@ -6,14 +6,14 @@
 @model IEnumerable<Report_Revenue_ViewModel>
 <div class="flspb flct" style="height:40px">
     <div>
-        <div class="ttu pd-lr"><a href="@Url.Action("report","admin")"><i class="fa-solid fa-chevron-left" style="color: #000000;"></i>Tồn kho</a></div>
+        <div class="ttu pd-lr"><a href="@Url.Action("report","admin")"><i class="fa-solid fa-chevron-left" style="color: #000000;"></i>Doanh thu</a></div>
     </div>
     <form asp-controller="Report" asp-action="Report_Revenue" method="get">
         <div class="fl gap">
             <input class="pd-lr" id="date_revenue" name="date" type="date" style="padding:0 !important" value="@ViewBag.date" />
 			<input class="" id="todate_revenue" name="todate" type="date" style="padding:0 !important" value="@ViewBag.todate" />
             <button class="flct" style="border-radius:10px" type="submit"><i class="fa-solid fa-filter" style="color: #000000;"></i>Lọc</button>
-            <button class="nw" style="border-radius:10px" type="button" id="exportInventoryProductExcel">Xuất Excel</button>
+			<button class="nw" style="border-radius:10px" type="button" id="exportRevenueProductExcel">Xuất Excel</button>
         </div>
     </form>
 </div>

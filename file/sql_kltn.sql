@@ -617,14 +617,16 @@ begin
 		CAST(od.ODReadly AS BIT) AS ODReadly,
 		CAST(od.ODTransported AS BIT) AS ODTransported,
 		CAST(od.Complete AS BIT) AS Complete,
-		CAST(od.ODHuy AS BIT) AS ODHuy
+		CAST(od.ODHuy AS BIT) AS ODHuy,
+		CAST(od.ODReturn AS BIT) AS ODReturn,
+		od.CompleteDate as ODCompleteDate
 	from DbOrder od
 	join DbOrderDetail odd on odd.IdDh=od.IdDh
 	join DbProduct p on odd.IdSp=p.IdSp
 	join DbColor cl on cl.ColorId= odd.IdColor
 	join DbSize sz on odd.IdSize=sz.SizeId
 	where od.IdKh=@idkh
-	group by od.IdDh,od.MaDh,od.PaymentName,od.soluong,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy
+	group by od.IdDh,od.MaDh,od.PaymentName,od.soluong,od.TongTienThanhToan,od.CreateDate,od.ODSuccess,od.ODReadly,ODTransported,od.Complete,od.ODHuy,od.ODReturn,od.CompleteDate
 	order by od.CreateDate desc
 end;
 
@@ -809,10 +811,8 @@ create procedure [dbo].[sp_sugget_mactsp]
 	@keyword nvarchar(50)=null
 as
 begin	
-	select top 5 pd.MaCTSP from DbProductDetail pd
-	where (@keyword IS NULL or 
-			pd.MaCTSP COLLATE Latin1_General_CI_AI like @keyword +'% ' OR 
-			pd.MaCTSP COLLATE Latin1_General_CI_AI like '% '+@keyword+' % ' or 
-			pd.MaCTSP COLLATE Latin1_General_CI_AI like @keyword +' %') 
+	select top 10 pd.MaCTSP 
+	from DbProductDetail pd
+	where (@keyword IS NULL or pd.MaCTSP like '%'+@keyword+'%'  ) 
 end;
 use [KLTN];

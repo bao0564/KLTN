@@ -118,7 +118,7 @@
 @media only screen and (max-width: 1280px)
 {
 	.cate .product-item{
-		width:23%;/* trc là 25%*/
+		width:22%;/* trc là 25%*/
 	}
 	.cate .product_name a {
 		font-size: 12px;
@@ -200,11 +200,12 @@
 @media only screen and (max-width: 1024px)
 {
 	.cate .product-grid {
-		margin-top: 20px;
+		margin: 20px 0 0 50px;
+
 	}
 
 	.cate .product_image img {
-		width: auto;
+		/*width: auto;*/
 		height: 250px;
 	}
 	/*.favorite_prdlst .product-item .favorite {
@@ -383,12 +384,16 @@
 8. 880px
 ************/
 
-@media only screen and (max-width: 880px)
-{
-	/*.favorite_prdlst .product-item .favorite {
-		top: 0px;
-		left: 10%;
-	}*/
+@media only screen and (max-width: 880px) {
+	.cate .product-item{
+		width:21%;
+	}
+	.box-inf-cl-s{
+		padding:0;
+	}
+	.cate .product_image img {
+		height: auto;
+	}
 	.product_section_container{
 		margin-top:130px;
 	}
@@ -403,8 +408,14 @@
 
 @media only screen and (max-width: 768px)
 {
+	.cate .product_image img {
+		height: 250px;
+	}
 	.product_sorting .show-box{
 		display:none;
+	}
+	.cate .product-grid {
+		margin: 20px 0 0 70px;
 	}
 }
 
@@ -482,6 +493,9 @@
 }
 @media only screen and (max-width: 667px)
 {
+	.cate .product-grid {
+		margin: 20px 0 0 0;
+	}
 	.cate .product-item {
 		width: 33%;
 	}
@@ -531,6 +545,10 @@
 11. 575px
 ************/
 @media only screen and (max-width: 575px) {
+
+	.cate .product-grid {
+		margin: 20px 0 0 20px;
+	}
 	.breadcrumbs {
 		height: 40px;
 	}
@@ -579,7 +597,8 @@
 	}
 
 	.cate .product-item {
-		width: 33.33333%;
+		/*width: 33.33333%;*/
+		width: 30%;
 	}
 
 	.favorite_prdlst .product-item {
@@ -661,6 +680,9 @@
 
 @media only screen and (max-width: 479px)
 {
+	.cate .product-grid {
+		margin: 20px 0 0 0;
+	}
 	 .cate .box-inf-cl-s div {
 		font-size: 10px;
 	}
@@ -677,7 +699,7 @@
 		padding-left:0;
 	}
 	.cate .product-item {
-		width:50%;
+		width:45%;
 	}
 	/*.favorite_prdlst .product-item .favorite {
 		top: 0px;
@@ -867,6 +889,10 @@
 {
 	.product_sorting li ul li {
 		padding:0;
+	}
+
+	.cate .product-grid {
+		margin: 20px 0 0 4%;
 	}
 
 }

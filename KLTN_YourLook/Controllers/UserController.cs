@@ -7,6 +7,7 @@ using KLTN_YourLook.Repository_YL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KLTN_YourLook.Controllers
 {
@@ -153,9 +154,9 @@ namespace KLTN_YourLook.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateOrder(int iddh)
         {
-            var checkdh= _context.DbOrders.FirstOrDefault(dh=>dh.IdDh == iddh);
+            var checkdh = _context.DbOrders.FirstOrDefault(dh => dh.IdDh == iddh);
             var checkkh = HttpContext.Session.GetInt32("userId");
-            var namekh= HttpContext.Session.GetString("userName");
+            var namekh = HttpContext.Session.GetString("userName");
             if (checkkh == null)
             {
                 return RedirectToAction("Login", "Access");
@@ -165,9 +166,42 @@ namespace KLTN_YourLook.Controllers
             bool odtransported = checkdh.ODTransported;
             bool complete = false;
             bool odhuy = true;
-            var hdh = await _orderRepository.UpdateOrder(iddh, odsuccess, odreadly, odtransported, complete, odhuy, namekh);
+            bool odreturn = false;
+            var (msg, error) = await _orderRepository.UpdateOrder(iddh, odsuccess, odreadly, odtransported, complete, odhuy, odreturn, namekh);
 
-            TempData["Success"] = "Hủy đơn hàng thành công";
+            if (!string.IsNullOrEmpty(error))
+            {
+                TempData["Error"] = error;
+                return RedirectToAction("HistoryOrder");
+            }
+            TempData["Success"] = msg;
+            return RedirectToAction("HistoryOrder");
+        }
+        //hoàn trả đơn hàng
+        [HttpGet]
+        public async Task<IActionResult> ReturnOrder(int iddh)
+        {
+            var checkdh = _context.DbOrders.FirstOrDefault(dh => dh.IdDh == iddh);
+            var checkkh = HttpContext.Session.GetInt32("userId");
+            var namekh = HttpContext.Session.GetString("userName");
+            if (checkkh == null)
+            {
+                return RedirectToAction("Login", "Access");
+            }
+            bool odsuccess = false;
+            bool odreadly = false;
+            bool odtransported = false;
+            bool complete = false;
+            bool odhuy = false;
+            bool odreturn = true;
+            var (msg, error) = await _orderRepository.UpdateOrder(iddh, odsuccess, odreadly, odtransported, complete, odhuy, odreturn, namekh);
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                TempData["Error"] = error;
+                return RedirectToAction("HistoryOrder");
+            }
+            TempData["Success"] = msg;
             return RedirectToAction("HistoryOrder");
         }
         //Địa chỉ người dùng
